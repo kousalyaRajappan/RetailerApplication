@@ -1,0 +1,103 @@
+<resources>
+
+    <string name="app_name">TiU</string>
+
+    <!-- noun -->
+    <!-- Button texts-->
+    <!--command verb-->
+    <!--command verb-->
+    <!--command verb-->
+    <!--command verb-->
+
+    <!-- Info texts-->
+
+    <!-- Additional information-->
+    <string name="btn_conn">Connect USB Printer</string>
+    <string name="txt_content">&quot;&quot;</string>
+    <string name="choose_paper_width">Paper width:</string>
+    <string name="width1">58mm</string>
+    <string name="width2">80mm</string>
+    <string name="printhex">HEX</string>
+    <string name="big5">BIG5</string>
+    <string name="thai">Thai</string>
+    <string name="kor">Korean</string>
+    <string name="gbk12">Simplified</string>
+    <string name="btnSend">Send Data</string>
+    <string name="btn_test">Print  Test  Page</string>
+    <string name="btnClose">Close</string>
+    <string name="btn_bmp">Graphical Print</string>
+
+    <string name="printpicture">Print Picture</string>
+    <string name="chosecommand">Please select instruction</string>
+    <string name="btn_prttable">Print Form</string>
+    <string name="btn_prtcode">Print 1D/2D Codebar</string>
+    <string name="Smallticketprinting">Small Ticket Printing</string>
+    <string name="contentdescription"></string>
+    <string name="msg_getpermission">obtaining USB device access permissions success</string>
+    <string name="msg_conn_state">USB device can not access, please re-connect</string>
+    <string name="msg_state">Input Error!</string>
+    <string name="empty">Input is empty</string>
+    <string name="empty1">Input is empty, in the text box to enter the content to be converted &#8230;</string>
+    <string name="strLang">en</string>
+    <string name="msg_error">Input errors, please check!</string>
+
+    <string name="input">Please enter a print!</string>
+
+
+    <string name="title_activity_settings">activity_settings</string>
+    <string name="title_activity_users_detail">activity_users_detail</string>
+
+    <!-- QCOM SHOP1 Printer-->
+    <string name="print_device">/dev/ttyHSL1</string>
+    <string name="print_baudrate">9600</string>
+
+
+    <string name="disclaimer">Legal Disclaimer: I Confirm that by removing the time out function, I am fully responsible for all vouchers requested in the event of theft</string>
+    <string name="diadisclaimer">I Confirm that by removing the time out function, I am fully responsible for all vouchers requested in the event of theft</string>
+
+
+    <string name="product_admin_disable">Product is Disabled under Customised Settings!!!</string>
+    <string name="product_cashier_disable">Product is Disabled By Your Admin!!!</string>
+
+
+    <string name="mpos_bypass_calc">By Pass POS Calulator</string>
+
+    <string name="mpos_disclaimer">I Confirm that by saving the MPOS Password in the "Key" field, I am fully responsible for all transactions processed in the event of theft or fraud</string>
+
+
+
+
+
+    <!--主界面-->
+
+    <!--消费-->
+    <string name="consume_fail">Consume fail</string>
+
+    <!--退款-->
+
+    <!--查询-->
+
+    <string name="none_paired">No matching devices</string>
+    <string name="scanning">Scanning Device&#8230;</string>
+    <string name="none_found">No device found</string>
+    <string name="select_device">Select the connected device</string>
+    <string name="app_title">BlueTooth Demo</string>
+    <string name="connect">Search for and connect a Bluetooth printer</string>
+    <string name="not_connected">Please connect a Bluetooth printer</string>
+    <string name="bt_not_enabled_leaving">Bluetooth does not start, quit the program</string>
+
+    <string name="msg_statev1">Without a picture</string>
+    <string name="camer">No pictures</string>
+    <string name="notifyText">Deposit Point: Checkers \n Date and Time: 23 Oct @ 15h34</string>
+    <string name="spinner_title">Select Server</string>
+
+    <string name="title_paired_devices">Match equipment</string>
+    <string name="title_other_devices">Other useful equipment</string>
+    <string name="button_scan">Scanning device</string>
+    <string name="choose_printcoding"></string>
+    <string name="btn_prtbmp">Print Picture</string>
+    <string name="btn_scqr">Generate QR Code Print</string>
+    <string name="btn_dyca">Turn on the camera</string>
+
+
+</resources>

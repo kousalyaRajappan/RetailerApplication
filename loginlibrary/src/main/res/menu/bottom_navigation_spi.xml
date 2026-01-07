@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_back"
+        android:enabled="true"
+        android:icon="@drawable/arrow_back"
+        android:title="Back"
+    />
+
+
+
+    <item
+        android:id="@+id/action_airtime"
+        android:enabled="true"
+        android:icon="@drawable/spi_type"
+        android:title="Airtime"
+
+        />
+
+    <item
+        android:id="@+id/action_special"
+        android:enabled="true"
+        android:icon="@drawable/spi_type"
+        android:title="Social+"
+         />
+    <item
+        android:id="@+id/action_data"
+        android:enabled="true"
+        android:icon="@drawable/spi_type"
+        android:title="Data"
+        />
+</menu>

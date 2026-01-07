@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#263238">
+
+        <RelativeLayout
+            android:id="@+id/rl_network"
+            android:visibility="visible"
+            android:layout_toRightOf="@+id/activity_login_is_demo"
+            android:background="@drawable/edit_bg_blue"
+            android:layout_width="@dimen/dialog_no_net_height"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="@dimen/pad_20dp"
+            android:padding="@dimen/pad_10dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:id="@+id/img_info"
+                android:src="@drawable/no_wifi"
+                android:layout_width="@dimen/pad_18dp"
+                android:layout_height="@dimen/pad_18dp"/>
+            <TextView
+                android:layout_toRightOf="@+id/img_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="No Internet"
+                android:layout_marginLeft="@dimen/pad_20dp"
+                android:layout_marginRight="2dp"
+                android:textSize="@dimen/txt_16sp"
+                android:textColor="#fff" />
+
+        </RelativeLayout>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="Please Contact Customer Services"
+        android:layout_marginLeft="@dimen/pad_20dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="@dimen/pad_10dp"
+        android:textSize="@dimen/txt_16sp"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:textColor="@color/white" />
+    <RelativeLayout
+        android:id="@+id/btn_show_more_contact"
+        android:layout_marginRight="@dimen/pad_5dp"
+        android:layout_gravity="center"
+        android:padding="@dimen/pad_10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginRight="@dimen/pad_5dp"
+            android:src="@drawable/ic_call_icon"
+            android:id="@+id/img_call"
+            android:layout_width="@dimen/pad_20dp"
+            android:layout_height="@dimen/pad_20dp"/>
+        <TextView
+            android:layout_toRightOf="@+id/img_call"
+            android:textSize="@dimen/pad_15dp"
+            android:id="@+id/txt_call"
+            android:text="0860 111 723"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:layout_below="@+id/txt_call"
+            android:layout_marginRight="@dimen/pad_5dp"
+            android:src="@drawable/ic_whatsapp"
+            android:id="@+id/img_watsapp"
+            android:layout_width="@dimen/pad_20dp"
+            android:layout_height="@dimen/pad_20dp"/>
+
+        <TextView
+            android:textSize="@dimen/pad_15dp"
+            android:layout_toRightOf="@+id/img_watsapp"
+            android:layout_below="@+id/txt_call"
+            android:text="064 121 9970"
+            android:textColor="@color/white"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_close"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_rounded_red"
+        android:paddingLeft="@dimen/spacing_mlarge"
+        android:paddingRight="@dimen/spacing_mlarge"
+        android:layout_marginBottom="@dimen/spacing_mlarge"
+        android:text="CLOSE"
+        android:textColor="@android:color/white" /> <!-- -->
+
+
+
+
+
+</LinearLayout>

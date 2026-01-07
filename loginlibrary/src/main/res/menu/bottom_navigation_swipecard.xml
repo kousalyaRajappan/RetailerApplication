@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_dummy"
+        android:enabled="false"
+        android:visible="false"
+        android:icon="@drawable/arrow_back"
+        android:title=""
+
+        />
+    <item
+        android:id="@+id/action_back"
+        android:enabled="true"
+        android:icon="@drawable/arrow_back"
+        android:title="Back"
+
+        />
+    <item
+        android:id="@+id/action_billtxn"
+        android:icon="@drawable/billpayment_old"
+        android:enabled="true"
+        android:title="Sales"
+        />
+
+    <item
+        android:id="@+id/action_clear"
+        android:enabled="true"
+        android:icon="@drawable/clear"
+        android:title="Clear"
+        />
+
+
+</menu>

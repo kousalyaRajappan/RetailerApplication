@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <TextView
+
+
+        android:layout_centerHorizontal="true"
+        android:visibility="visible"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:text="Printer Offline or  Out of paper !"
+        android:textColor="@color/red"
+        android:id="@+id/txt_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+
+
+        android:layout_below="@+id/txt_head"
+        android:id="@+id/img_logo"
+        android:visibility="visible"
+        android:layout_marginRight="@dimen/margin10"
+        android:layout_marginTop="@dimen/margin20"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/usb_printer"
+        android:layout_width="150dp"
+        android:layout_height="200dp"/>
+
+
+
+
+    <TextView
+        android:layout_below="@+id/txt_head"
+
+        android:layout_toLeftOf="@+id/img_logo"
+        android:id="@+id/txt_desc"
+        android:layout_margin="@dimen/margin10"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:text="Please make sure the printer is connected and turned on before selling  a voucher
+
+               \n
+              \n   - Check the printer  USB Cable.
+              \n   - Check Printer Power.
+              \n   - If printer is connected, turn off and\n     try again.
+              \n   - Check that there is printer paper."
+
+
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_below="@+id/txt_desc"
+        android:id="@+id/ll_buttons"
+        android:layout_margin="@dimen/margin20"
+        android:weightSum="1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pad_60dp">
+        <TextView
+            android:visibility="visible"
+            android:layout_weight="1"
+            android:background="@drawable/red_background"
+            android:id="@+id/txt_ok"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="Close"
+            android:layout_marginRight="@dimen/margin2"
+
+            android:textColor="@color/white"
+            android:textSize="@dimen/pad_15dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:visibility="gone"
+            android:layout_weight="1"
+            android:background="@drawable/background_blue"
+            android:id="@+id/txt_print_screen"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="Display Voucher on Screen"
+            android:textColor="@color/white"
+            android:textSize="@dimen/pad_15dp"
+            android:layout_marginRight="@dimen/margin2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:visibility="gone"
+            android:layout_weight="1"
+            android:background="@drawable/back_green"
+            android:id="@+id/txt_reprint"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="Reprint"
+            android:textColor="@color/white"
+            android:textSize="@dimen/pad_15dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

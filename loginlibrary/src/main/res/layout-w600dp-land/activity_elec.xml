@@ -1,0 +1,430 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/layout_tiu_header_new" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/loginHeader"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/ll_one"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:maxHeight="100dp"
+            android:minHeight="@dimen/pad_50dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_acc_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+
+                android:layout_toLeftOf="@+id/btn_next"
+                android:layout_weight="1">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/meter_input"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="60dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:hint="Meter Number"
+                    android:textColorHint="@color/blue"
+                    app:boxStrokeColor="@color/blue">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtAccountNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="textImeMultiLine"
+                        android:textSize="22dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="180dp"
+                android:layout_height="@dimen/pad_50dp"
+                android:layout_below="@+id/ll_amount_wrapper"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="-60dp"
+                android:background="@drawable/background_blue"
+                android:text="Next"
+                android:textSize="@dimen/pad_15dp" />
+
+            <Button
+                android:id="@+id/btn_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/btn_orange_curved"
+                android:padding="10dp"
+                android:text="Clear"
+                android:visibility="gone"
+                android:textAllCaps="false" />
+            <LinearLayout
+                android:id="@+id/ll_amount_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_acc_number"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/btn_next"
+                android:layout_weight="3"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    app:layout_constraintTop_toBottomOf="@+id/grp_radio_layout_to">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/pad_20dp"
+                        android:layout_marginRight="@dimen/pad_20dp"
+                        android:background="@color/white"
+
+                        android:orientation="vertical"
+                        tools:ignore="MissingConstraints">
+
+                        <TextView
+                            android:id="@+id/tv_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/pad_5dp"
+                            android:text="Amount"
+                            android:textColor="#3c3c3c"
+                            android:textSize="@dimen/pad_15dp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2.1">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+
+                                android:layout_height="53dp"
+                                android:layout_weight="1"
+                                android:hint="Rands"
+                                app:boxStrokeColor="@color/blue">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/dialogEditText"
+                                    android:layout_width="match_parent"
+
+                                    android:layout_height="wrap_content"
+                                    android:imeOptions="actionDone"
+                                    android:inputType="number"
+                                    android:maxLength="8"
+
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="15dp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="0.1"
+                                android:gravity="center"
+                                android:text="."
+                                android:textColor="@color/black"
+                                android:textSize="35dp" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+
+                                android:layout_height="53dp"
+                                android:layout_weight="1"
+                                android:hint="Cents"
+                                app:boxStrokeColor="@color/blue">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/dialogEditText_cent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:imeOptions="actionDone"
+                                    android:inputType="number"
+                                    android:maxLength="2"
+
+                                    android:textColor="@color/black"
+                                    android:textColorHint="@color/black"
+                                    android:textSize="15dp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/electricity_rand_view_height"
+                            android:layout_marginLeft="@dimen/margin10"
+                            android:layout_marginTop="@dimen/margin10"
+                            android:layout_marginRight="@dimen/margin10"
+                            android:layout_marginBottom="@dimen/pad_5dp"
+                            android:visibility="gone"
+                            android:weightSum="2">
+
+                            <TextView
+
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="@dimen/margin10"
+                                android:layout_weight="1"
+                                android:background="@drawable/gray_blue"
+                                android:gravity="center"
+                                android:text="Rands"
+                                android:textColor="@color/black"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/margin10"
+                                android:layout_weight="1"
+                                android:background="@drawable/gray_blue"
+                                android:gravity="center"
+
+                                android:text="Cents"
+                                android:textColor="@color/black"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="@dimen/margin10"
+
+                            android:layout_marginRight="@dimen/margin10"
+                            android:visibility="gone"
+                            android:weightSum="2">
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/pad_40dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.95"
+                                android:background="@drawable/textbox_border"
+                                android:cursorVisible="true"
+                                android:gravity="center"
+                                android:hint=" R 0 "
+                                android:inputType="number"
+                                android:maxLength="8"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/black"
+                                android:textSize="25sp" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="0.1"
+                                android:gravity="center"
+                                android:text="."
+                                android:textColor="@color/black"
+                                android:textSize="35dp" />
+
+                            <EditText
+
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.95"
+                                android:background="@drawable/textbox_border"
+                                android:cursorVisible="true"
+                                android:gravity="center"
+                                android:hint=" 00 "
+                                android:inputType="number"
+                                android:maxLength="2"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/black"
+                                android:textSize="25sp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="@dimen/margin10">
+
+                            <TextView
+                                android:id="@+id/txt_rand"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text=""
+                                android:textColor="@color/red"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:id="@+id/txt_cent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/margin10"
+                                android:text="one  tweenty cennt"
+                                android:textColor="@color/red"
+                                android:textSize="@dimen/pad_15dp"
+                                android:visibility="gone" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+                <EditText
+                    android:id="@+id/txtPaymentAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="0.00"
+                    android:inputType="numberDecimal"
+                    android:textSize="@dimen/pad_15dp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:onClick="decreaseInteger"
+                        android:text="-" />
+
+                    <TextView
+                        android:id="@+id/voucher_qty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="1"
+                        android:textSize="50dp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:onClick="increaseInteger"
+                        android:text="+" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_one"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+
+            <TextView
+                android:id="@+id/tv_response"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/pad_25dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/tv_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Please ensure that all staff are trained &amp; comply with Municipality policies for vending Electricity:\n
+\n1. Can not overcharge for tokens
+\n2. No minumum vending amount
+\n3. Must vend Free Tokens Failure to comply will result in the Municipality deactivating Electricity vending permanently
+\n\nDue to security reasons we are unable to refund vouchers."
+                android:textSize="@dimen/pad_15dp" />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/prov_12"
+                android:layout_width="@dimen/multi_voucher_img"
+                android:layout_height="@dimen/multi_voucher_img"
+                android:layout_below="@+id/tv_notice"
+                android:layout_marginLeft="@dimen/pad_5dp"
+                android:layout_marginTop="-1dp"
+                android:layout_weight="1"
+                android:onClick="onclick_btn_provider"
+                android:src="@drawable/prov12_small"
+                android:tag="prov_unipin"
+                android:visibility="gone" />
+
+
+            <Button
+                android:id="@+id/freetoken"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:onClick="getfreetokens"
+                android:padding="20dp"
+                android:text="Get Free Tokens"
+                android:textSize="@dimen/pad_15dp"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        app:itemBackground="@drawable/bottom_navigation_back_colors"
+        app:itemIconSize="@dimen/pad_25dp"
+        app:itemIconTint="@drawable/bottom_navigation_colors"
+        app:itemTextColor="@drawable/bottom_navigation_colors"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_back">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+</FrameLayout>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#263238"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/pageLoadingWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spi_dark_dialog_progress_height"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/transparent">
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/white"
+                android:indeterminateTintMode="src_in"
+                android:progressDrawable="@drawable/circular_progress_bar"></ProgressBar>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="120dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_image"
+            android:background="@color/white"
+            android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
+            android:layout_height="@dimen/spi_dark_dialog_img_layout_height">
+            <ImageView
+                android:layout_marginTop="@dimen/pad_5dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/prov_cellc"
+                android:visibility="visible"
+                android:id="@+id/img_product"
+                android:layout_width="@dimen/spi_dark_dialog_img_width"
+                android:layout_height="@dimen/spi_dark_dialog_img_height"/>
+            <TextView
+                android:padding="@dimen/margin10"
+                android:id="@+id/txt_amount"
+                android:layout_marginTop="@dimen/margin10"
+                android:text="R 5"
+                android:textSize="@dimen/spi_dark_dialog_txt_size"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/img_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/pop_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Title"
+            android:textSize="@dimen/login_invalid_text_size"
+
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/pop_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text=""
+            android:textSize="@dimen/loginStoreTextSize"
+
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textColor="#cccccc" />
+
+       <LinearLayout
+           android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+           <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_paper_load"
+                android:layout_width="@dimen/spi_dark_dialog_paper_load_btn_width"
+                android:layout_height="@dimen/spi_dark_dialog_paper_load_btn_height"
+                android:textSize="@dimen/headerViewHeight"
+                android:text="          Paper Loaded            "
+                android:layout_marginTop="@dimen/spacing_large"
+                android:background="@drawable/btn_rounded_white"
+                android:textColor="@color/black"/>
+
+           <androidx.appcompat.widget.AppCompatButton
+               android:id="@+id/btn_Paper_ignore_time"
+               android:layout_width="@dimen/spi_dark_dialog_paper_load_btn_width"
+               android:layout_height="@dimen/spi_dark_dialog_paper_load_btn_height"
+                android:background="@drawable/btn_rounded_white"
+                android:text="Ignore Out\nof Paper this\ntime Only"
+               android:textSize="@dimen/headerViewHeight"
+                android:textColor="@color/black"/>
+
+
+           <!--   <androidx.appcompat.widget.AppCompatButton
+                 android:id="@+id/btn_Paper_ignore_always"
+                 android:layout_width="95dp"
+                  android:layout_height="80dp"
+                  android:background="@drawable/btn_rounded_white"
+                  android:text="Ignore Out\nof Paper\nAlways"
+                  android:textSize="10sp"
+                  android:textColor="@color/black"/>
+
+                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_Paper_ignore_al"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="wrap_content"
+                        android:layout_height="160dp"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:layout_marginBottom="@dimen/spacing_mlarge"
+                        android:background="@drawable/btn_rounded_white"
+                        android:paddingLeft="@dimen/spacing_mlarge"
+                        android:paddingRight="20dp"
+                        android:text="Ignore Out\nof\nPaper\nAlways"
+                  android:textColor="@android:color/black" />
+                  <Button
+                        android:id="@+id/button2"
+                        android:layout_width="133dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:paddingRight="60dp"
+                        android:text="Ignore Out of Paper thi time only" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="60dp"
+                    android:layout_alignParentRight="true"
+                    android:text="Ignore out of Paper Always" />
+  -->
+        </LinearLayout>
+      <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_close"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:background="@drawable/btn_rounded_red"
+            android:padding="@dimen/spacing_mlarge"
+            android:layout_marginBottom="@dimen/spacing_mlarge"
+          android:textSize="@dimen/login_invalid_text_size"
+
+          android:text="CLOSE"
+            android:textColor="@android:color/white" /> <!-- -->
+
+    </LinearLayout>
+
+</LinearLayout>

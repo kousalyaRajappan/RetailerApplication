@@ -1,0 +1,21 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- White background -->
+    <item>
+        <shape>
+            <solid android:color="#FFFFFF"/>  <!-- White background -->
+            <size android:width="50dp" android:height="50dp"/>  <!-- Adjust the size as needed -->
+        </shape>
+    </item>
+
+    <!-- Rotating spinner -->
+    <item android:gravity="center">
+        <rotate xmlns:android="http://schemas.android.com/apk/res/android"
+            android:drawable="@drawable/loading_bar"
+            android:fromDegrees="0"
+            android:toDegrees="360"
+            android:pivotX="50%"
+            android:pivotY="50%"
+            android:duration="1000"
+            android:repeatCount="infinite" />
+    </item>
+</layer-list>

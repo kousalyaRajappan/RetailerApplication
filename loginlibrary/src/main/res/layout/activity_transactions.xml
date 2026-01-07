@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f6f6f6"
+    tools:context=".admin.activity_transactions">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:elevation="2dp"
+                android:orientation="vertical">
+
+                <customfonts.MyTextView_Roboto_Regular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16.3dp"
+                    android:gravity="center"
+                    android:text="Financial Balance"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <customfonts.MyTextView_Roboto_Regular
+                    android:id="@+id/txt_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="9.7dp"
+                    android:layout_marginTop="9.3dp"
+                    android:background="@drawable/transac_bg_white"
+                    android:paddingBottom="6.7dp"
+                    android:paddingEnd="14.7dp"
+                    android:paddingStart="14.7dp"
+                    android:paddingTop="6.7dp"
+                    android:text="Default Wallet"
+                    android:textColor="@color/white"
+                    android:textSize="11.7sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="@dimen/margin10"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <customfonts.MyTextView_Roboto_Regular
+                        android:background="@color/indigo_500"
+                        android:layout_weight="0.99"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/margin10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="Wallet"
+                        android:textColor="@color/white"
+                        android:textSize="20dp" />
+                    <View
+                        android:layout_weight="0.02"
+                        android:background="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+                    <customfonts.MyTextView_Roboto_Regular
+                        android:layout_weight="0.99"
+                        android:gravity="center_vertical"
+                        android:background="@color/indigo_500"
+                        android:paddingLeft="@dimen/margin10"
+
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="Amount"
+                        android:textColor="@color/white"
+                        android:textSize="20dp" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <customfonts.MyTextView_Roboto_Regular
+                        android:background="@color/grey_40"
+                        android:layout_weight="0.99"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/margin10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="Standard* Balance"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+                    <View
+                        android:layout_weight="0.02"
+                        android:background="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+                    <customfonts.MyTextView_Roboto_Regular
+                        android:id="@+id/fin_balance_default"
+                        android:layout_weight="0.99"
+                        android:gravity="center_vertical"
+                        android:background="@color/grey_40"
+                        android:paddingLeft="@dimen/margin10"
+
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="--"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <customfonts.MyTextView_Roboto_Regular
+                        android:background="@color/divider_grey"
+                        android:layout_weight="0.99"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/margin10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="Standard* Available"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+                    <View
+                        android:layout_weight="0.02"
+                        android:background="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+                    <customfonts.MyTextView_Roboto_Regular
+                        android:layout_weight="0.99"
+                        android:gravity="center_vertical"
+                        android:background="@color/divider_grey"
+                        android:paddingLeft="@dimen/margin10"
+                        android:id="@+id/fin_balance_available"
+
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="--"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <customfonts.MyTextView_Roboto_Regular
+                        android:background="@color/grey_40"
+                        android:layout_weight="0.99"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/margin10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="Bills"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+                    <View
+                        android:layout_weight="0.02"
+                        android:background="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+                    <customfonts.MyTextView_Roboto_Regular
+                        android:layout_weight="0.99"
+                        android:gravity="center_vertical"
+                        android:background="@color/grey_40"
+                        android:paddingLeft="@dimen/margin10"
+                        android:id="@+id/fin_balance_cash"
+
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="--"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <customfonts.MyTextView_Roboto_Regular
+                        android:background="@color/divider_grey"
+                        android:layout_weight="0.99"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/margin10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="Commission"
+                        android:textColor="@color/red"
+                        android:textSize="15dp" />
+                    <View
+                        android:layout_weight="0.02"
+                        android:background="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+                    <customfonts.MyTextView_Roboto_Regular
+                        android:layout_weight="0.99"
+                        android:gravity="center_vertical"
+                        android:background="@color/divider_grey"
+                        android:paddingLeft="@dimen/margin10"
+
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="Coming Soon"
+                        android:textColor="@color/red"
+                        android:textSize="15dp" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <customfonts.MyTextView_Roboto_Regular
+                        android:background="@color/grey_40"
+                        android:layout_weight="0.99"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/margin10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="Swipe Card"
+                        android:textColor="@color/red"
+                        android:textSize="15dp" />
+                    <View
+                        android:layout_weight="0.02"
+                        android:background="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+                    <customfonts.MyTextView_Roboto_Regular
+                        android:layout_weight="0.99"
+                        android:gravity="center_vertical"
+                        android:background="@color/grey_40"
+                        android:paddingLeft="@dimen/margin10"
+
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="Coming Soon"
+                        android:textColor="@color/red"
+                        android:textSize="15dp" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_marginTop="5dp"
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <customfonts.MyTextView_Roboto_Regular
+                        android:background="@color/divider_grey"
+                        android:layout_weight="0.99"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/margin10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="Achiever"
+                        android:textColor="@color/red"
+                        android:textSize="15dp" />
+                    <View
+                        android:layout_weight="0.02"
+                        android:background="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+                    <customfonts.MyTextView_Roboto_Regular
+                        android:layout_weight="0.99"
+                        android:gravity="center_vertical"
+                        android:background="@color/divider_grey"
+                        android:paddingLeft="@dimen/margin10"
+
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="Coming Soon"
+                        android:textColor="@color/red"
+                        android:textSize="15dp" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="11.7dp"
+                android:background="@color/white"
+                android:elevation="2dp"
+                android:orientation="vertical">
+
+                <customfonts.MyTextView_Roboto_Regular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="11dp"
+                    android:text="Default Wallet"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16.7dp"
+                    android:layout_marginTop="11.7dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <customfonts.MyTextView_Roboto_Regular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Balance"
+                            android:textColor="@color/text_gray"
+                            android:textSize="10sp" />
+
+                        <customfonts.MyTextView_Roboto_Regular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3.3dp"
+                            android:text="R 0.00"
+                            android:textColor="@color/text_black"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="16.7dp"
+                            android:layout_height="1.7dp"
+                            android:layout_marginTop="8.3dp"
+                            android:background="@drawable/view_bg_green" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5.7dp"
+                        android:layout_marginTop="5.7dp"
+                        android:layerType="software"
+                        android:src="@drawable/vertical_dashed_line" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <customfonts.MyTextView_Roboto_Regular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Available Total"
+                            android:textColor="@color/text_black"
+                            android:textSize="10sp" />
+
+                        <customfonts.MyTextView_Roboto_Regular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3.3dp"
+                            android:text="R 0.00"
+                            android:textColor="@color/text_black"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="16.7dp"
+                            android:layout_height="1.7dp"
+                            android:layout_marginTop="8.3dp"
+                            android:background="@drawable/view_bg_red" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="11.7dp"
+                android:background="@color/white"
+                android:elevation="2dp"
+                android:orientation="vertical">
+
+                <customfonts.MyTextView_Roboto_Regular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="11dp"
+                    android:text="Bill Wallet"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16.7dp"
+                    android:layout_marginTop="11.7dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <customfonts.MyTextView_Roboto_Regular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Balance"
+                            android:textColor="@color/text_gray"
+                            android:textSize="10sp" />
+
+                        <customfonts.MyTextView_Roboto_Regular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3.3dp"
+                            android:text="R 0.00"
+                            android:textColor="@color/text_black"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="16.7dp"
+                            android:layout_height="1.7dp"
+                            android:layout_marginTop="8.3dp"
+                            android:background="@drawable/view_bg_green" />
+
+
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/btn_print_balance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_marginTop="50dp"
+                android:onClick="onclick_btn_action"
+                android:text="Print Financial Balance"
+                app:layout_constraintTop_toBottomOf="@+id/txt_total_available_cash"></Button>
+
+            <customfonts.MyTextView_Roboto_Regular
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3.3dp"
+                android:layout_gravity="center"
+                android:text="* Only shows Balance if Credit Customer"
+                android:textColor="@color/text_black"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:labelVisibilityMode="labeled"
+        android:background="@color/colorPrimary"
+        app:itemIconTint="@drawable/bottom_navigation_colors"
+        app:itemTextColor="@drawable/bottom_navigation_colors"
+        app:menu="@menu/bottom_nav_admin_back" />
+
+</FrameLayout>

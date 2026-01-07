@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_logout"
+        android:enabled="true"
+        android:checked="false"
+        android:icon="@drawable/main_logout"
+        android:title="Logout"
+        app:showAsAction="ifRoom" />
+    <item
+        android:enabled="true"
+        android:checked="false"
+        android:icon="@drawable/key_variant"
+        android:title="Product"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_admin"
+        android:enabled="true"
+        android:checked="false"
+        android:icon="@drawable/key_variant"
+        android:title="Admin"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_reprint"
+        android:enabled="true"
+        android:checked="false"
+        android:icon="@drawable/main_reprint"
+        android:title="Reprint"
+        app:showAsAction="ifRoom" />
+
+</menu>

@@ -1,0 +1,242 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <dimen name="one_dp">1.5dp</dimen>
+    <dimen name="two_dp">3dp</dimen>
+
+    <dimen name="four_dp">5.5dp</dimen>
+
+    <dimen name="five_dp">7.5dp</dimen>
+
+    <dimen name="eight_dp">12dp</dimen>
+    <dimen name="ten_dp">15dp</dimen>
+    <dimen name="thirty_dp">45dp</dimen>
+    <dimen name="fifty_four_dp">80dp</dimen>
+    <dimen name="fifty_four_dp_h">80dp</dimen>
+
+    <dimen name="one_hundred_fifty_dp">150dp</dimen>
+
+
+    <dimen name="spi_rand_desc">-70dp</dimen>
+
+    <!-- SP -->
+    <dimen name="thirty_two_sp">48sp</dimen>
+
+
+    <dimen name="pad_1dp">1dp</dimen>
+    <dimen name="pad_3dp">3dp</dimen>
+    <dimen name="pad_5dp">5dp</dimen>
+    <dimen name="pad_10dp">10dp</dimen>
+    <dimen name="pad_15dp">15dp</dimen>
+    <dimen name="pad_18dp">18dp</dimen>
+    <dimen name="pad_20dp">20dp</dimen>
+    <dimen name="pad_25dp">25dp</dimen>
+    <dimen name="pad_40dp">40dp</dimen>
+    <dimen name="pad_50dp">50dp</dimen>
+    <dimen name="pad_60dp">60dp</dimen>
+
+    <dimen name="pad_30dp">30dp</dimen>
+    <dimen name="txt_16sp">16sp</dimen>
+    <dimen name="txt_25sp">25sp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="spacing_middle">10dp</dimen>
+    <dimen name="spacing_large">15dp</dimen>
+    <dimen name="spacing_mlarge">20dp</dimen>
+    <dimen name="spacing_medium">5dp</dimen>
+
+
+    <dimen name="margin10">10dp</dimen>
+    <dimen name="margin2">2dp</dimen>
+    <dimen name="margin2.5">2.5dp</dimen>
+    <dimen name="margin4">4dp</dimen>
+    <dimen name="margin8">8dp</dimen>
+    <dimen name="login_bottom_tabs_size">80dp</dimen>
+
+    <dimen name="calcButtonTextSize">22sp</dimen>
+    <dimen name="headtextSize">11dp</dimen>
+
+
+
+    <dimen name="loginMarginHeader">70dp</dimen>
+    <dimen name="loginHeader">60dp</dimen>
+    <dimen name="headerFirstRow">20dp</dimen>
+    <dimen name="headerViewHeight">10dp</dimen>
+    <dimen name="headerViewwidth">2dp</dimen>
+    <dimen name="headerViewMarginTop">2dp</dimen>
+
+    <dimen name="header_wifi_width">25dp</dimen>
+    <dimen name="header_sim_width">18dp</dimen>
+
+    <dimen name="header_battery_width">30dp</dimen>
+    <dimen name="header_network_height">30dp</dimen>
+    <dimen name="loginWatsappHeight">20dp</dimen>
+    <dimen name="loginWatsapptext">15dp</dimen>
+
+    <dimen name="topitIconSize">30dp</dimen>
+    <dimen name="topitIconWidthSize">160dp</dimen>
+    <dimen name="loginStoreTextSize">18sp</dimen>
+    <dimen name="login_read_button_width">100dp</dimen>
+
+
+    <dimen name="loginEdittextSize">50dp</dimen>
+    <dimen name="clearbuttonwidth">60dp</dimen>
+    <dimen name="clearbuttonheight">35dp</dimen>
+    <dimen name="clearbuttonmargintop">10dp</dimen>
+    <dimen name="login_last_sale">14sp</dimen>
+    <dimen name="login_dot_size">40dp</dimen>
+    <dimen name="login_invalid_img_size">30dp</dimen>
+    <dimen name="login_invalid_text_size">20dp</dimen>
+    <dimen name="login_add_dialog">180dp</dimen>
+    <dimen name="login_add_dialog_hight">280dp</dimen>
+    <dimen name="login_dialog_dark_loading_hight">80dp</dimen>
+    <dimen name="login_dialog_dark_hight">120dp</dimen>
+    <dimen name="login_dialog_dark_close_width">110dp</dimen>
+
+    <dimen name="txt_licence_size">23dp</dimen>
+    <dimen name="txt_licence_sub_size">15dp</dimen>
+    <dimen name="licence_select_sever_height">20dp</dimen>
+    <dimen name="licence_save_licence">16dp</dimen>
+    <dimen name="licence_save_button_size">50dp</dimen>
+    <dimen name="licence_butiion_text_size">16dp</dimen>
+    <dimen name="licence_small_text_size">10dp</dimen>
+    <dimen name="licence_small_text_height">35dp</dimen>
+    <dimen name="licence_small_text_width">92dp</dimen>
+
+    <dimen name="licence_edit_size">45dp</dimen>
+    <dimen name="licence_edit_txt_size">18dp</dimen>
+    <dimen name="margin20">20dp</dimen>
+    <dimen name="recycler_item_height_new">70dp</dimen>
+
+    <dimen name="recycler_item_height">70dp</dimen>
+    <dimen name="recycler_item_hori_height">80dp</dimen>
+
+
+    <dimen name="recycler_item_horiz_width">90dp</dimen>
+    <dimen name="recycler_horizantal_image_hight">60dp</dimen>
+    <dimen name="recycler_horizantal_txt">30dp</dimen>
+    <dimen name="recycler_horizantal_amount_width">50dp</dimen>
+    <dimen name="horizantal_text_size">13dp</dimen>
+
+
+    <dimen name="bottom_icon_size">20dp</dimen>
+
+    <dimen name="dialog_alarm_text_width">100dp</dimen>
+    <dimen name="dialog_alarm_text_height">50dp</dimen>
+    <dimen name="dialog_alarm_text_size">15dp</dimen>
+
+    <dimen name="main_bottom_icon_text_size">10dp</dimen>
+
+    <dimen name="activity_spi_height">30dp</dimen>
+    <dimen name="activity_spi_width">60dp</dimen>
+
+    <dimen name="activity_spi_bottom_tab_width">85dp</dimen>
+    <dimen name="activity_spi_bottom_tab_height">45dp</dimen>
+
+    <dimen name="activity_spi_bottom_tab_text_size">12dp</dimen>
+    <dimen name="activity_spi_bottom_margin">-6dp</dimen>
+    <dimen name="activity_spi_bottom_margin_bottom">120dp</dimen>
+
+    <dimen name="spi_item_height">100dp</dimen>
+    <dimen name="spi_item_image_height">43dp</dimen>
+
+    <dimen name="spi_item_text_size">16dp</dimen>
+    <dimen name="spi_item_text_size_14dp">14dp</dimen>
+    <dimen name="spi_item_text_size_12dp">12dp</dimen>
+    <dimen name="spi_item_data_img_width">64dp</dimen>
+    <dimen name="spi_item_data_height">112dp</dimen>
+    <dimen name="spi_item_data_height_new">112dp</dimen>
+
+    <dimen name="spi_item_data_first_height">33dp</dimen>
+
+    <dimen name="spi_item_image_margin">-35dp</dimen>
+    <dimen name="spi_item_6dp">6dp</dimen>
+
+    <dimen name="spi_dark_dialog_img_layout_width">170dp</dimen>
+    <dimen name="spi_dark_dialog_img_layout_height">150dp</dimen>
+    <dimen name="spi_dark_dialog_img_width">120dp</dimen>
+    <dimen name="spi_dark_dialog_img_height">70dp</dimen>
+    <dimen name="spi_dark_dialog_txt_size">20dp</dimen>
+    <dimen name="spi_dark_dialog_paper_load_btn_width">120dp</dimen>
+    <dimen name="spi_dark_dialog_paper_load_btn_height">80dp</dimen>
+    <dimen name="spi_dark_dialog_progress_height">80dp</dimen>
+    <dimen name="spi_marchent_copy_btn_height">60dp</dimen>
+    <dimen name="spi_marchent_copy_btn_width">140dp</dimen>
+
+    <dimen name="image_height">60dp</dimen>
+    <dimen name="image_width">80dp</dimen>
+
+    <dimen name="rl_network_height">30dp</dimen>
+    <dimen name="rl_network_width">100dp</dimen>
+    <dimen name="rl_network_text_size">13dp</dimen>
+    <dimen name="rl_network_reprint_height">60dp</dimen>
+    <dimen name="rl_network_reprint_width">50dp</dimen>
+
+    <dimen name="flash_layout_rand">26dp</dimen>
+
+
+    <dimen name="rl_input_img_height">75dp</dimen>
+    <dimen name="rl_input_img_width">180dp</dimen>
+
+    <dimen name="view_1">1dp</dimen>
+    <dimen name="view_2">2dp</dimen>
+    <dimen name="paper_load_reprint">100dp</dimen>
+
+    <dimen name="tab_multi_height">65dp</dimen>
+    <dimen name="multi_voucher_img">100dp</dimen>
+    <dimen name="muliti_width">120dp</dimen>
+    <dimen name="muliti_btn_width">140dp</dimen>
+
+    <dimen name="electricity_rand_view_height">30dp</dimen>
+
+    <dimen name="main_bottom_size">60dp</dimen>
+
+    <dimen name="dialog_input_size">35dp</dimen>
+    <dimen name="payment_recycler_height">245dp</dimen>
+
+    <dimen name="global_recycler_head">77dp</dimen>
+    <dimen name="global_recycler_width">260dp</dimen>
+    <dimen name="global_edittext_size">273dp</dimen>
+    <dimen name="global_margin_top">320dp</dimen>
+    <dimen name="global_margin_continue">100dp</dimen>
+    <dimen name="dialog_no_net_height">200dp</dimen>
+    <dimen name="admin_row_item_height">60dp</dimen>
+    <dimen name="admin_row_item_width">120dp</dimen>
+
+    <dimen name="home_adapter_view_height">120dp</dimen>
+    <dimen name="transfer_card_heigth">105dp</dimen>
+    <dimen name="transfer_inside_height">90dp</dimen>
+    <dimen name="transfer_web_view_height">200dp</dimen>
+    <dimen name="deposit_slip_image_width">16.7dp</dimen>
+    <dimen name="deposit_slip_image_height">1.7dp</dimen>
+
+    <dimen name="deposit_slip_middle_image_width">328dp</dimen>
+
+    <dimen name="deposit_slip_middle_image_height">111dp</dimen>
+    <dimen name="deposit_slip_button_width">184dp</dimen>
+    <dimen name="temp_credit_height">230dp</dimen>
+    <dimen name="retailer_button_height">45dp</dimen>
+    <dimen name="adpay_reprint_bottom">330dp</dimen>
+    <dimen name="consume_c_height">24dp</dimen>
+    <dimen name="consume_c_width">27dp</dimen>
+    <dimen name="consume_text_size">28sp</dimen>
+    <dimen name="consume_oreder_height">500dp</dimen>
+    <dimen name="consume_tabs_width">340dp</dimen>
+    <dimen name="conume_button_width">380dp</dimen>
+    <dimen name="consume_webview_height">450dp</dimen>
+    <dimen name="consume_cardview_height">165dp</dimen>
+    <dimen name="consume_cardview_h">175dp</dimen>
+    <dimen name="consume_300dp">300dp</dimen>
+    <dimen name="consume_13sp">13sp</dimen>
+    <dimen name="product_setting_multi_spinner">275dp</dimen>
+    <dimen name="two_fifty">250dp</dimen>
+    <dimen name="fife_thirty_five">535dp</dimen>
+    <dimen name="two_seventy">270dp</dimen>
+    <dimen name="four_hundred">400dp</dimen>
+    <dimen name="row_item_scroll">63dp</dimen>
+    <dimen name="wallet_height">190dp</dimen>
+    <dimen name="wallet_inner_height">130dp</dimen>
+    <dimen name="horizantal_bottom">45dp</dimen>
+    <dimen name="margin2_">2dp</dimen>
+
+</resources>

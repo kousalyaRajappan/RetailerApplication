@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:focusableInTouchMode="true"
+    tools:context=".activity_reprint">
+
+    <include layout="@layout/layout_tiu_header_new" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ll_bottom"
+        android:layout_below="@+id/tiu_title_bar">
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/pad_10dp"
+            android:layout_marginTop="@dimen/pad_10dp"
+            android:layout_marginEnd="@dimen/pad_10dp"
+            android:layout_marginBottom="@dimen/pad_10dp"
+            android:gravity="center_horizontal"
+            android:text="Financial Transactions"
+            android:textColor="@color/red"
+            android:textSize="@dimen/txt_25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtTitle"
+            android:layout_gravity="center"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:drawablePadding="5dp"
+            android:text="Select Wallet"
+            android:textColor="@color/black"
+            android:textSize="@dimen/pad_15dp"
+            tools:ignore="MissingConstraints" />
+
+        <RadioGroup
+            android:id="@+id/grp_radio_wallet"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtStatus"
+            android:layout_marginTop="5dp"
+
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <RadioButton
+                android:id="@+id/radio_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="All"
+                android:textSize="@dimen/pad_15dp" />
+
+            <RadioButton
+                android:id="@+id/radio_standard"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Standard"
+
+                android:textSize="@dimen/pad_15dp" />
+
+            <RadioButton
+                android:id="@+id/radio_bill"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Bill"
+
+                android:textSize="@dimen/pad_15dp" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txtStatus2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/grp_radio_wallet"
+            android:layout_gravity="center"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="@dimen/pad_5dp"
+            android:text="Select Financial Transaction"
+            android:textColor="@color/black"
+            android:textSize="@dimen/pad_15dp"
+            tools:ignore="MissingConstraints" />
+
+        <RadioGroup
+            android:id="@+id/grp_radio_layout"
+            android:layout_width="450dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtStatus2"
+            android:layout_marginTop="@dimen/margin10"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+
+            >
+
+            <RadioButton
+                android:id="@+id/rdo_filter_type_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="All"
+
+                android:textSize="@dimen/pad_15dp" />
+
+            <RadioButton
+                android:id="@+id/rdo_filter_type_2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Payments"
+
+                android:textSize="@dimen/pad_15dp" />
+
+            <RadioButton
+                android:id="@+id/rdo_filter_type_3"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Bills"
+
+                android:textSize="@dimen/pad_15dp" />
+
+            <RadioButton
+                android:id="@+id/rdo_filter_type_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:text="Commissions"
+                android:textSize="@dimen/pad_15dp" />
+
+            <!--  <RadioButton
+                  android:id="@+id/rdo_filter_type_5"
+                  android:layout_width="wrap_content"
+
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:text="Commissions" />-->
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/ll_date"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtStatus"
+            android:layout_toRightOf="@+id/grp_radio_layout"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="2">
+
+            <EditText
+
+                android:id="@+id/date_start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:drawableRight="@drawable/calendar"
+                android:ems="10"
+                android:hint="Date"
+                android:inputType="date"
+
+                android:textSize="@dimen/pad_15dp"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/date_end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:drawableRight="@drawable/calendar"
+                android:ems="10"
+                android:hint="Date"
+                android:inputType="date"
+
+                android:textSize="@dimen/pad_15dp"
+                tools:ignore="MissingConstraints" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linListTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/grp_radio_layout"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/btn_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginEnd="@dimen/spacing_middle"
+                android:layout_marginRight="@dimen/spacing_middle"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Date"
+
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/grey_40"
+                android:textSize="@dimen/pad_15dp" />
+
+            <TextView
+                android:id="@+id/btn_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_middle"
+                android:layout_marginRight="@dimen/spacing_middle"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Transaction Type"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/grey_90"
+                android:textSize="@dimen/pad_18dp" />
+
+            <TextView
+                android:id="@+id/btn_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_middle"
+                android:layout_marginRight="@dimen/spacing_middle"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Value"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/grey_90"
+                android:textSize="@dimen/pad_18dp"
+                android:visibility="gone" />
+
+            <TextView
+
+                android:id="@+id/btn_user"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_weight="1"
+                android:gravity="center"
+
+                android:text="Amount"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/grey_90"
+                android:textSize="@dimen/pad_15dp" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linListTitle"
+            android:paddingBottom="10dp" />
+
+        <include
+            android:id="@+id/bottom_progress_layout"
+            layout="@layout/bottom_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone" />
+
+        <ListView
+            android:id="@+id/lst_reprint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_date"
+            android:paddingBottom="10dp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <LinearLayout
+
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#1c1c1c"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <Button
+            android:id="@+id/btn_bottom_close"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/pad_50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:onClick="onclick_btn_action"
+            android:text="Close"
+            android:textSize="@dimen/pad_15dp" />
+
+        <Button
+            android:id="@+id/btn_bottom_reprint_last"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/pad_50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:onClick="onclick_btn_action"
+
+            android:text="Reprint Last"
+            android:textSize="@dimen/pad_15dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_back"
+        android:enabled="true"
+        app:showAsAction="always|withText"
+        android:icon="@drawable/arrow_back"
+        android:title="Back"
+        />
+
+    <item
+        android:id="@+id/action_financial"
+        android:enabled="true"
+        app:showAsAction="always|withText|collapseActionView"
+        android:icon="@drawable/banking"
+        android:title="Financial"
+        />
+    <item
+        android:id="@+id/action_report"
+        android:enabled="true"
+        android:state_checked="true"
+        app:showAsAction="always|withText"
+        android:icon="@drawable/reports"
+        android:title="Reports"
+        />
+    <item
+        android:id="@+id/action_users"
+        android:enabled="true"
+        android:icon="@drawable/admin_user"
+        android:title="Users"
+        />
+
+    <item
+        android:id="@+id/action_setting"
+        android:enabled="true"
+        android:icon="@drawable/settings"
+        android:title="Settings"
+        />
+</menu>

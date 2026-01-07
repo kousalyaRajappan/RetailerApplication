@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:contentInsetRight="0dp"
+    app:contentInsetLeft="0dp"
+    app:contentInsetEnd="0dp"
+    app:contentInsetStart="0dp"
+    android:elevation="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/pad_15dp"
+            android:layout_gravity="center"
+            />
+
+        <customfonts.MyTextView_Montserrat_Medium
+            android:layout_width="0dp"
+            android:id="@+id/tiu_title_header"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Top it Up Admin"
+            android:textColor="@color/white"
+            android:textSize="@dimen/pad_15dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8.3dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/pad_20dp"/>
+
+    </LinearLayout>
+
+</androidx.appcompat.widget.Toolbar>

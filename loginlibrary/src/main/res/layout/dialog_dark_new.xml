@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/pageLoadingWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/conume_button_width"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_marginTop="@dimen/pad_20dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="@dimen/pad_20dp"
+
+            android:textColor="@color/black"
+            android:text="This product is currently disabled."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <ImageView
+            android:id="@+id/img_disable"
+            android:layout_marginTop="@dimen/margin10"
+            android:layout_gravity="center"
+            android:src="@drawable/prov_cell_dis"
+            android:layout_width="@dimen/one_hundred_fifty_dp"
+            android:layout_height="@dimen/image_width"/>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/pad_20dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt_cancel"
+                android:textSize="15dp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:text="Cancel"
+                android:background="@drawable/btn_rounded_red_new"
+                android:layout_width="@dimen/rl_network_width"
+                android:layout_height="@dimen/image_height"/>
+            <TextView
+                android:id="@+id/txt_activate"
+                android:textSize="15dp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:text="Request Activate"
+                android:background="@drawable/btn_rounded_green"
+                android:layout_width="@dimen/rl_network_width"
+                android:layout_height="@dimen/image_height"/>
+        </LinearLayout>
+        <View
+            android:layout_marginTop="@dimen/pad_5dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/red"
+            android:layout_width="@dimen/one_hundred_fifty_dp"
+            android:layout_height="@dimen/pad_1dp"/>
+
+        <TextView
+            android:id="@+id/txt_reference"
+            android:visibility="gone"
+            android:layout_margin="@dimen/margin10"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="@dimen/pad_20dp"
+            android:textColor="@color/black"
+            android:text="We have received yourActivation Request. Our Customer Service Team will contact you shortly. \n\nReference #:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_pin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="@dimen/pad_15dp"
+                android:gravity="center_horizontal"
+                android:text="To Activate, Enter PIN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:gravity="center"
+                android:inputType="numberPassword"
+                android:id="@+id/ed_pin"
+                android:maxLength="4"
+                android:layout_marginLeft="@dimen/pad_5dp"
+                android:background="@drawable/edit_bg_blue"
+                android:layout_width="@dimen/spi_item_height"
+                android:textSize="@dimen/pad_15dp"
+                android:layout_height="@dimen/pad_40dp"/>
+
+        </LinearLayout>
+
+            <TextView
+
+                android:visibility="gone"
+                android:id="@+id/txt_error"
+                android:layout_marginTop="@dimen/pad_5dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:text="Please enter valid PIN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+
+            android:background="@drawable/edit_bg_gray"
+            android:id="@+id/txt_ok"
+            android:layout_marginTop="@dimen/pad_5dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="OK"
+            android:layout_width="@dimen/image_height"
+            android:layout_height="@dimen/pad_30dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

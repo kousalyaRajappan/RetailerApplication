@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:focusableInTouchMode="true"
+    android:background="@color/white"
+    tools:context=".activity_reprint"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scoll"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <include layout="@layout/layout_tiu_header_new" />
+
+        <RelativeLayout
+
+            android:id="@+id/rl_main"
+            android:visibility="visible"
+            android:layout_below="@+id/tiu_title_bar"
+            android:layout_above="@+id/rl_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true"
+            tools:context=".activity_reprint">
+
+
+
+            <RadioGroup
+                android:id="@+id/grp_radio_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="15dp"
+                android:visibility="gone"
+               >
+
+                <RadioButton
+                    android:id="@+id/rdo_filter_type_0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:textSize="@dimen/pad_15dp"
+                    android:onClick="onclick_btn_action"
+                    android:text="From Standard Wallet" />
+
+                <RadioButton
+                    android:id="@+id/rdo_filter_type_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:onClick="onclick_btn_action"
+                    android:text="From Additional Wallet" />
+
+            </RadioGroup>
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Transfer to Bank"
+                android:textColor="@color/red"
+                android:textSize="@dimen/txt_25sp"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/pad_10dp"
+                />
+
+            <LinearLayout
+                android:layout_below="@+id/txtTitle"
+                android:id="@+id/ll_main"
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TableLayout
+                    android:layout_weight="1"
+                    android:id="@+id/simpleTableLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:weightSum="3"
+                    >
+                    <TableRow android:background="@color/colorPrimary" android:padding="5dp">
+
+                        <customfonts.MyTextView_Roboto_Medium
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.2"
+                            android:text="Wallet"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/spi_item_text_size_14dp" />
+
+                        <customfonts.MyTextView_Roboto_Medium
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:text="Funds"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/spi_item_text_size_14dp" />
+                    </TableRow>
+                    <TableRow android:background="@color/white" android:padding="5dp">
+
+                        <customfonts.MyTextView_Roboto_Regular
+
+                            android:textSize="@dimen/spi_item_text_size_12dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.2"
+                            android:text="Standard Wallet" />
+                        <customfonts.MyTextView_Roboto_Regular
+                            android:textSize="@dimen/spi_item_text_size_12dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txt_total_available_default"
+                            android:layout_weight="0.8"
+                            android:text="0.00" />
+
+                    </TableRow>
+                    <TableRow android:background="#DAE8FC" android:padding="5dp">
+
+                        <customfonts.MyTextView_Roboto_Regular
+                            android:textSize="@dimen/spi_item_text_size_12dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.2"
+                            android:text="Bills Wallet (Available Funds)" />
+
+                        <customfonts.MyTextView_Roboto_Regular
+                            android:textSize="@dimen/spi_item_text_size_12dp"
+                            android:id="@+id/txt_total_available_cash"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.8"
+                            android:text="0.00" />
+
+                    </TableRow>
+                    <TableRow android:background="@color/white" android:padding="5dp">
+
+                        <customfonts.MyTextView_Roboto_Regular
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.2"
+                            android:text="Available for Transfer to Bank \n (From Bills Wallet) "
+                            android:textSize="@dimen/spi_item_text_size_12dp" />
+                        <customfonts.MyTextView_Roboto_Regular
+                            android:textSize="@dimen/spi_item_text_size_12dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txt_total_available_cash_to_tansfer"
+                            android:layout_weight="0.8"
+                            android:text="0.00" />
+
+                    </TableRow>
+                    <TableRow android:background="#DAE8FC" android:padding="5dp" android:visibility="gone">
+
+                        <customfonts.MyTextView_Roboto_Regular
+                            android:textSize="@dimen/spi_item_text_size_14dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.2"
+                            android:text="No of Txn/s Done" />
+                        <customfonts.MyTextView_Roboto_Regular
+                            android:textSize="@dimen/spi_item_text_size_14dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txt_no_txns"
+                            android:layout_weight="0.8"
+                            android:text="0.00" />
+
+                    </TableRow>
+
+
+                    <TableRow
+                        android:visibility="gone"
+                        android:background="#D9DDDC" android:padding="10dp">
+
+                        <customfonts.MyTextView_Roboto_Medium
+                            android:visibility="gone"
+                            android:textSize="16dp"
+                            android:layout_width="260dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Amount" />
+                        <EditText
+                            android:visibility="gone"
+                            android:id="@+id/txt_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/textbox_border"
+                            android:cursorVisible="true"
+                            android:gravity="right"
+                            android:hint=" R 0.00 "
+                            android:inputType="numberDecimal"
+                            android:maxLength="10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
+                            android:textSize="28sp" />
+
+                    </TableRow>
+                </TableLayout>
+
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:background="@color/grey_40"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/margin10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:layout_marginLeft="@dimen/margin10"
+                        android:layout_marginRight="@dimen/margin10"
+                        android:layout_marginBottom="@dimen/margin10"
+                        android:orientation="vertical"
+                        tools:ignore="MissingConstraints">
+                        <TextView
+                            android:id="@+id/tv_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Amount"
+                            android:layout_marginLeft="@dimen/pad_5dp"
+                            android:textColor="#3c3c3c"
+                            android:textSize="@dimen/pad_15dp"
+                            android:textStyle="bold" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/pad_30dp"
+                            android:layout_marginLeft="@dimen/margin10"
+                            android:layout_marginTop="@dimen/margin10"
+                            android:layout_marginRight="@dimen/margin10"
+                            android:layout_marginBottom="@dimen/pad_5dp"
+                            android:weightSum="2">
+
+                            <TextView
+
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/pad_30dp"
+                                android:layout_marginRight="@dimen/margin10"
+                                android:layout_weight="1"
+                                android:background="@drawable/gray_blue"
+                                android:gravity="center"
+                                android:text="Rands"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/pad_18dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/pad_30dp"
+                                android:layout_marginLeft="@dimen/margin10"
+                                android:layout_weight="1"
+                                android:background="@drawable/gray_blue"
+                                android:gravity="center"
+
+                                android:text="Cents"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/pad_18dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/pad_40dp"
+
+                            android:layout_marginLeft="@dimen/margin10"
+                            android:layout_marginRight="@dimen/margin10"
+                            android:weightSum="2">
+
+                            <EditText
+                                android:id="@+id/dialogEditText"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/pad_40dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.95"
+                                android:background="@drawable/textbox_border"
+                                android:cursorVisible="true"
+                                android:gravity="center"
+                                android:imeOptions="actionDone"
+                                android:hint=" R 0 "
+                                android:inputType="number"
+                                android:maxLength="8"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/black"
+                                android:textSize="@dimen/txt_25sp" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/pad_40dp"
+                                android:layout_weight="0.1"
+                                android:gravity="center"
+                                android:text="."
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/pad_30dp" />
+
+                            <EditText
+                                android:id="@+id/dialogEditText_cent"
+                                android:imeOptions="actionDone"
+
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/pad_40dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.95"
+                                android:background="@drawable/textbox_border"
+                                android:cursorVisible="true"
+                                android:gravity="center"
+                                android:hint=" 00 "
+                                android:inputType="number"
+                                android:maxLength="2"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/black"
+                                android:textSize="@dimen/txt_25sp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="@dimen/margin10">
+
+                            <TextView
+                                android:id="@+id/txt_rand"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/pad_5dp"
+                                android:text=""
+                                android:textColor="@color/red"
+                                android:textSize="@dimen/pad_15dp" />
+
+                            <TextView
+                                android:id="@+id/txt_cent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/margin10"
+                                android:text="one  tweenty cennt"
+                                android:textColor="@color/red"
+                                android:textSize="@dimen/pad_15dp"
+                                android:visibility="gone" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+
+            <WebView
+                android:id="@+id/wb_slip"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/ll_main"/>
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:visibility="gone"
+                android:textSize="@dimen/pad_15dp"
+                android:text="Confirm Above Bank Details are Correct" />
+
+            <Button
+                android:layout_alignParentBottom="true"
+                android:id="@+id/btn_pay_terms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_marginTop="16dp"
+                android:onClick="onclick_btn_action"
+                android:visibility="gone"
+                android:textSize="@dimen/pad_15dp"
+                android:text="Payment Terms"
+                />
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_qr_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:padding="24dp">
+
+                <!-- Header -->
+                <TextView
+                    android:id="@+id/txt_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Topit Up Retailer"
+                    android:textColor="@color/red"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:layout_marginTop="30dp" />
+
+                <!-- QR Code container with corner brackets -->
+                <RelativeLayout
+                    android:id="@+id/qr_container"
+                    android:layout_below="@id/txt_header"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="60dp"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp">
+
+                    <!-- QR Image -->
+                    <ImageView
+                        android:id="@+id/img_sample_qr"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/sample_qr"
+                        android:scaleType="fitXY"
+                        android:contentDescription="Sample QR Code" />
+
+                    <!-- 4 corner brackets -->
+                    <ImageView
+                        android:id="@+id/corner_top_left"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_qr_corner"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true" />
+
+                    <ImageView
+                        android:id="@+id/corner_top_right"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_qr_corner"
+                        android:rotation="90"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true" />
+
+                    <ImageView
+                        android:id="@+id/corner_bottom_left"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_qr_corner"
+                        android:rotation="270"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true" />
+
+                    <ImageView
+                        android:id="@+id/corner_bottom_right"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_qr_corner"
+                        android:rotation="180"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true" />
+
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:id="@+id/tv_login_with_qr"
+                    android:layout_below="@id/qr_container"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:text="Login with QR Code"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
+
+                <!-- "Scan this to login instantly" small text -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_scan_to_login"
+                    android:layout_below="@id/tv_login_with_qr"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="Scan this to login instantly"
+                    android:textColor="@color/grey_90"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_bottom"
+            android:layout_alignParentBottom="true"
+            android:background="#1c1c1c"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+
+            <LinearLayout
+
+                android:id="@+id/ll_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#1c1c1c"
+                android:orientation="horizontal"
+
+                android:padding="5dp"
+
+                android:layout_centerHorizontal="true"
+                android:gravity="center_vertical">
+
+                <Button
+                    android:layout_marginLeft="@dimen/margin10"
+                    android:layout_marginRight="@dimen/margin10"
+                    android:id="@+id/btn_bottom_close"
+                    android:layout_width="120dp"
+                    android:layout_height="@dimen/pad_50dp"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="@dimen/pad_15dp"
+                    android:background="@drawable/btn_red_curved"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center_vertical"
+                    android:onClick="onclick_btn_action"
+                    android:text="Close" />
+                <Button
+                    android:layout_marginLeft="@dimen/margin10"
+                    android:layout_marginRight="@dimen/margin10"
+
+                    android:visibility="gone"
+                    android:id="@+id/btn_make_payment"
+                    android:layout_width="120dp"
+                    android:layout_height="@dimen/pad_50dp"
+                    android:layout_margin="@dimen/pad_15dp"
+                    android:layout_marginTop="@dimen/pad_25dp"
+                    android:onClick="onclick_btn_action"
+                    android:text="Transfer"
+                    android:background="@drawable/btn_green_curved"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/pad_15dp"
+
+                    />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>

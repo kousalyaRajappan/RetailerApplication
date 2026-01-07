@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="15dp"
+    android:layout_marginLeft="15dp"
+    android:padding="15dp"
+    android:background="#263238">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="7dp"
+        android:textColor="#6f6f6f" />
+
+
+    <TextView
+        android:id="@+id/tv_please_enter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="7dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="@dimen/login_invalid_text_size"
+
+        android:text="Do you want print merchant copy??"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"/>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:weightSum="2"
+        android:orientation="horizontal"
+        >
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_close"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="@dimen/spi_marchent_copy_btn_width"
+                android:layout_height="@dimen/spi_marchent_copy_btn_height"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/txt_licence_sub_size"
+                android:background="@drawable/btn_rounded_red"
+                android:text="Cancel"
+                android:textColor="@android:color/white" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_save"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="@dimen/spi_marchent_copy_btn_width"
+                android:layout_height="@dimen/spi_marchent_copy_btn_height"
+                android:textSize="@dimen/txt_licence_sub_size"
+                android:layout_centerHorizontal="true"
+
+                android:background="@drawable/btn_rounded_green"
+                android:text="Yes"
+                android:textColor="@android:color/white" />
+
+        </RelativeLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        >
+
+        <!--
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_close"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:background="@drawable/btn_rounded_red"
+                    android:paddingLeft="@dimen/spacing_mlarge"
+                    android:paddingRight="20dp"
+                    android:layout_marginBottom="@dimen/spacing_mlarge"
+                    android:text="Close"
+                    android:textColor="@android:color/white" />
+
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_save"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:background="@drawable/btn_rounded_green"
+                    android:paddingLeft="@dimen/spacing_mlarge"
+                    android:paddingRight="10dp"
+                    android:layout_marginBottom="@dimen/spacing_mlarge"
+                    android:text="Merchant Copy"
+                    android:textColor="@android:color/white" />
+
+                  <Button
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_centerInParent="true"
+                      android:text="Crash Me !"
+                      android:onClick="crashMe"/>-->
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

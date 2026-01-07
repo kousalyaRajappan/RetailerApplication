@@ -1,0 +1,1340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:background="@color/white"
+    tools:context=".activity_reprint">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="371dp">
+        <include layout="@layout/nav_admin" />
+        <LinearLayout
+            android:id="@+id/gensettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin10"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin10"
+                android:textSize="@dimen/pad_15dp"
+                android:text="General Settings"
+                android:visibility="gone" />
+
+            <androidx.cardview.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                card_view:cardPreventCornerOverlap="false"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin4"
+                card_view:cardCornerRadius="@dimen/margin4"
+                card_view:cardElevation="@dimen/margin10">
+
+                <RelativeLayout
+                    android:layout_margin="@dimen/margin10"
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="top" >
+ />
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/pad_15dp"
+                        android:text="Topitup Number " />
+                    <TextView
+                        android:layout_below="@+id/textView10"
+
+                        android:visibility="gone"
+                        android:id="@+id/textView101"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:textSize="@dimen/pad_15dp"
+                        android:text="Serial : " />
+
+                    <EditText
+                        android:visibility="gone"
+                        android:layout_below="@+id/textView10"
+                        android:id="@+id/txt_terminal_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textSize="@dimen/pad_15dp"
+                        android:hint="Terminal Name"
+                        android:inputType="text" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/pad_15dp"
+                    android:text="  Login Screen" />
+                <CheckBox
+                    android:button="@null"
+                    android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:id="@+id/chk_last_sale"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="   - Show Last Sale" />
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:gravity="center"
+                android:background="@color/Smooch_userMessageBorder"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/pad_40dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/pad_20dp"
+                android:text="  Manage  Balances" />
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin10"
+                android:weightSum="5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/pad_50dp">
+                <TextView
+                    android:background="@color/blue"
+
+                    android:layout_marginRight="@dimen/view_2"
+                    android:layout_weight="1.7"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/pad_15dp"
+                    android:text="Wallet" />
+                <TextView
+                    android:layout_marginRight="@dimen/view_2"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:layout_weight="1.1"
+                    android:gravity="center"
+                    android:background="@color/blue"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+
+                    android:text="Login Screen" />
+                <TextView
+                    android:layout_marginRight="@dimen/view_2"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:layout_weight="1.1"
+                    android:gravity="center"
+                    android:background="@color/blue"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:text="Admin" />
+                <TextView
+                    android:layout_marginRight="@dimen/view_2"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:layout_weight="1.1"
+                    android:gravity="center"
+                    android:background="@color/blue"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:text="Cashier" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/view_2"
+
+                android:weightSum="5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/pad_30dp">
+                <TextView
+                    android:background="@color/color_gray1"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:layout_marginRight="@dimen/view_2"
+                    android:layout_weight="1.7"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:text="Standard" />
+                <LinearLayout
+                    android:layout_marginRight="@dimen/view_2"
+                    android:background="@color/color_gray1"
+
+                    android:layout_weight="1.1"
+
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:id="@+id/chk_balance_login"
+                        android:textSize="@dimen/pad_15dp"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginRight="@dimen/view_2"
+                    android:background="@color/color_gray1"
+
+                    android:layout_weight="1.1"
+
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:id="@+id/chk_balance_admin"
+
+                        android:textSize="@dimen/pad_15dp"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginRight="@dimen/view_2"
+                    android:background="@color/color_gray1"
+
+                    android:layout_weight="1.1"
+
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:id="@+id/chk_balance_cashier"
+                        android:textSize="@dimen/pad_15dp"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/view_2"
+                android:weightSum="5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/pad_30dp">
+                <TextView
+                    android:background="@color/color_gray"
+
+                    android:layout_marginRight="@dimen/view_2"
+                    android:layout_weight="1.7"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:text="Bills" />
+                <LinearLayout
+                    android:layout_marginRight="@dimen/view_2"
+
+                    android:layout_weight="1.1"
+                    android:background="@color/color_gray"
+
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:id="@+id/chk_balance_bills"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/pad_15dp"
+
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginRight="@dimen/view_2"
+
+                    android:layout_weight="1.1"
+                    android:background="@color/color_gray"
+
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:id="@+id/chk_balance_admin_bills"
+                        android:textSize="@dimen/pad_15dp"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginRight="@dimen/view_2"
+
+                    android:layout_weight="1.1"
+                    android:background="@color/color_gray"
+
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:id="@+id/chk_balance_cashier_bills"
+                        android:textSize="@dimen/pad_15dp"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/view_2"
+                android:weightSum="5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/pad_30dp">
+                <TextView
+                    android:background="@color/color_gray1"
+
+                    android:layout_marginRight="@dimen/view_2"
+                    android:layout_weight="1.7"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:text="Commission" />
+                <LinearLayout
+                    android:layout_marginRight="@dimen/view_2"
+
+                    android:layout_weight="1.1"
+                    android:background="@color/color_gray1"
+
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:id="@+id/chk_balance_commission"
+                        android:textSize="@dimen/pad_15dp"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginRight="@dimen/view_2"
+
+                    android:layout_weight="1.1"
+                    android:background="@color/color_gray1"
+
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:id="@+id/chk_balance_admin_commission"
+                        android:textSize="@dimen/pad_15dp"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginRight="@dimen/view_2"
+
+                    android:layout_weight="1.1"
+                    android:background="@color/color_gray1"
+
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:id="@+id/chk_balance_cashier_commission"
+                        android:textSize="@dimen/pad_15dp"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/view_2"
+                android:weightSum="5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/pad_30dp">
+                <TextView
+                    android:background="@color/color_gray"
+
+                    android:layout_marginRight="@dimen/view_2"
+                    android:layout_weight="1.7"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:text="Swipe" />
+                <LinearLayout
+                    android:layout_marginRight="@dimen/view_2"
+
+                    android:layout_weight="1.1"
+                    android:background="@color/color_gray"
+
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:textSize="@dimen/pad_15dp"
+
+                        android:id="@+id/chk_balance_swipe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginRight="@dimen/view_2"
+
+                    android:layout_weight="1.1"
+                    android:background="@color/color_gray"
+
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:id="@+id/chk_balance_admin_swipe"
+                        android:textSize="@dimen/pad_15dp"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginRight="@dimen/view_2"
+
+                    android:layout_weight="1.1"
+                    android:background="@color/color_gray"
+
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:id="@+id/chk_balance_cashier_swipe"
+                        android:textSize="@dimen/pad_15dp"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <CheckBox
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/margin10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/pad_10dp"
+                android:button="@null"
+                android:textSize="@dimen/pad_15dp"
+
+                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                android:text="Display Summary Balance Screen" />
+
+
+           <LinearLayout
+               android:background="@color/color_light"
+               android:layout_marginTop="@dimen/pad_18dp"
+               android:id="@+id/ll_sallah"
+               android:layout_width="match_parent"
+               android:visibility="gone"
+               android:layout_height="wrap_content">
+               <ImageView
+                   android:src="@drawable/salaah_mute"
+                   android:layout_width="@dimen/pad_50dp"
+                   android:layout_height="@dimen/pad_50dp"/>
+               <CheckBox
+                   android:id="@+id/check_salaha"
+                   android:layout_marginLeft="@dimen/margin10"
+
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="@dimen/margin10"
+                   android:button="@null"
+                   android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                   android:textSize="@dimen/pad_15dp"
+
+                   android:text="Mute Salaah App" />
+           </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/chk_add_pay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+
+                android:textSize="@dimen/pad_15dp"
+                android:text="Add Pay Cashier" />
+
+            <CheckBox
+                android:id="@+id/chk_time_out"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+
+                android:textSize="@dimen/pad_15dp"
+                android:text="Auto Log Out after voucher sale." />
+
+
+            <RadioGroup
+                android:id="@+id/first_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:id="@+id/type1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="15 secs" />
+
+                <RadioButton
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:id="@+id/type2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:text="30 secs" />
+
+                <RadioButton
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:id="@+id/type3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:text="1 min" />
+
+
+                <RadioButton
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:id="@+id/type4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:text="2 mins" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/second_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/first_group"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:id="@+id/type5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:text="5 mins" />
+
+                <RadioButton
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:id="@+id/type6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:text="10 mins" />
+
+                <RadioButton
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:id="@+id/type7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:text="30 mins" />
+
+                <RadioButton
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:id="@+id/type8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:text="Never" />
+            </RadioGroup>
+
+
+            <CheckBox
+                android:id="@+id/chk_disclaimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textSize="@dimen/pad_15dp"
+
+                android:text="@string/disclaimer"
+                android:textColor="@color/colorPrimary" />
+
+
+            <!-- Text Label
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:id="@+id/spinnetxt"
+                android:text="on:"
+                android:layout_marginBottom="5dp"
+                />
+
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/app_name"
+                android:entries="@array/timeout"
+                />
+
+    -->
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/elesettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:layout_width="@dimen/consume_300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:text="Show Max Vend Amount with Address Lookup (As set by Top it Up)" />
+
+                <CheckBox
+                    android:layout_width="@dimen/consume_300dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:layout_marginTop="@dimen/margin10"
+                    android:text="Show Warning Message" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:text="          (Confirmation Required, Retailer to Enter warning Threshold)"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/margin10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin10">
+
+
+                <EditText
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="@dimen/pad_15dp"
+                    android:hint="R 0.00"
+                    android:inputType="text" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/pad_10dp"
+                    android:text="Current System Maximum Vend Amount"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/pad_10dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/slipsettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin10"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/chk_print_address"
+                    android:layout_width="@dimen/consume_300dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:layout_marginTop="@dimen/pad_10dp"
+                    android:text="Print Address on Airtime Slip" />
+
+                <CheckBox
+                    android:id="@+id/chk_print_ele_copy"
+                    android:layout_width="@dimen/consume_300dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/pad_15dp"
+                    android:layout_marginTop="@dimen/pad_10dp"
+                    android:text="Print Merchant Copy" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:paddingTop="3dp"
+                    android:text="(Only For Airtime)"
+                    android:textColor="@color/red" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/chk_print_to_screen"
+                    android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pad_10dp"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:text="Print to Screen" />
+
+
+                <CheckBox
+                    android:id="@+id/chk_print_barcode"
+                    android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/chk_print_to_screen"
+                    android:layout_marginTop="@dimen/pad_10dp"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:text="Print Barcodes" />
+
+
+                <Button
+                    android:id="@+id/btn_ping_tools"
+                    android:layout_width="@dimen/one_hundred_fifty_dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="onclick_btn_action"
+                    android:padding="@dimen/margin20"
+                    android:visibility="gone"></Button>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/chk_print_by_pass"
+                    android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/pad_15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Ignore out of paper" />
+                <CheckBox
+                    android:id="@+id/chk_printer_cash_box"
+                    android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/chk_print_to_screen"
+                    android:layout_marginTop="10dp"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:text="Printer has a Cash Drawer" />
+            </LinearLayout>
+
+            <TextView
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:text="Printer Type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <RadioGroup
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/rdog_printer"
+                android:layout_marginTop="5dp"
+                android:paddingRight="15dp"
+                android:paddingLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <RadioButton
+                    android:id="@+id/rdo_bluetooth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="12dp"
+                    android:text="Bluetooth" />
+                <RadioButton
+                    android:id="@+id/rdo_usb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="12dp"
+                    android:text="USB" />
+
+                <RadioButton
+                    android:id="@+id/rdo_inner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:textSize="12dp"
+                    android:text="Internal" />
+
+            </RadioGroup>
+            <Button
+                android:id="@+id/btn_usb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/chk_print_barcode"
+                android:gravity="center"
+                android:textSize="@dimen/pad_15dp"
+                android:onClick="onclick_btn_action"
+                android:text="Pair USB printer"
+                android:visibility="gone" />
+            <Button
+                android:id="@+id/btn_bluetooth_"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/chk_print_barcode"
+                android:gravity="center"
+                android:textSize="@dimen/pad_15dp"
+                android:onClick="onclick_btn_action"
+                android:text="Pair Bluetooth printer"
+                android:visibility="gone" />
+            <Button
+                android:id="@+id/btn_blutooth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/chk_print_barcode"
+                android:gravity="center"
+                android:textSize="@dimen/pad_15dp"
+                android:onClick="onclick_btn_action"
+                android:text="Pair Bluetooth printer"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_blutooth_unpair"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/chk_print_barcode"
+                android:gravity="center"
+                android:textSize="@dimen/pad_15dp"
+                android:onClick="onclick_btn_action"
+                android:text="un pair"
+                android:visibility="gone" />
+
+
+            <Button
+                android:id="@+id/btn_wpos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/chk_print_barcode"
+                android:gravity="center"
+                android:textSize="@dimen/pad_15dp"
+                android:onClick="onclick_btn_action"
+                android:text="WPOS Printer Test"
+                android:visibility="gone" />
+
+            <Button
+                android:textSize="@dimen/pad_15dp"
+                android:id="@+id/btn_q1_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/chk_print_barcode"
+                android:gravity="center"
+                android:onClick="onclick_btn_action"
+                android:text="Print Test Slip"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cashiersettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin10"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:textSize="@dimen/pad_15dp"
+                    android:text="Cashier general"
+                    android:textColor="@color/red" />
+
+                <CheckBox
+                    android:id="@+id/chk_cashier_own_sales"
+                    android:layout_width="@dimen/consume_300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pad_5dp"
+
+                    android:textSize="@dimen/pad_15dp"
+                    android:text="Only allowed to view their own sales" />
+
+                <CheckBox
+                    android:id="@+id/chk_disable_cashier_ele"
+                    android:layout_width="@dimen/consume_300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pad_5dp"
+                    android:textSize="@dimen/pad_15dp"
+
+                    android:text="Disable Electricity for Cashier Only" />
+
+                <CheckBox
+                    android:id="@+id/chk_disable_cashier_bill"
+                    android:layout_width="@dimen/consume_300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pad_5dp"
+                    android:textSize="@dimen/pad_15dp"
+                    android:text="Disable Bill payments for Cashier Only" />
+
+                <CheckBox
+                    android:id="@+id/chk_disable_cashier_sale_his"
+                    android:layout_width="@dimen/consume_300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pad_5dp"
+                    android:textSize="@dimen/pad_15dp"
+                    android:text="Disable Sales History for Cashier Only" />
+
+                <CheckBox
+                    android:id="@+id/chk_allow_cashier_rep_ser"
+                    android:layout_width="@dimen/consume_300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pad_5dp"
+                    android:textSize="@dimen/pad_15dp"
+                    android:text="Allow Cashier to Reprint from Serial" />
+                <CheckBox
+                android:id="@+id/chk_allow_cashier_cash_drawer"
+                android:layout_width="@dimen/consume_300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/pad_5dp"
+                android:textSize="@dimen/pad_15dp"
+                android:text="Enable Open Cash Drawer" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/pad_5dp"
+                    android:textSize="@dimen/pad_15dp"
+                    android:text="Allow to Reprint Last Voucher"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/chk_last_vou_admin"
+                    android:textSize="@dimen/pad_15dp"
+                    android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Admin" />
+
+
+                <CheckBox
+                    android:id="@+id/chk_last_vou_cashier"
+                    android:textSize="@dimen/pad_15dp"
+                    android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/chk_last_vou_admin"
+                    android:layout_marginTop="4dp"
+                    android:text="Cashier" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/pad_5dp"
+                android:textSize="@dimen/pad_15dp"
+                android:text="Allow Override Bill Payments Convenience Fee"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/chk_over_bill_pay_admin"
+
+                    android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
+                    android:textSize="@dimen/pad_15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Admin" />
+
+
+                <CheckBox
+                    android:id="@+id/chk_over_bill_pay_cashier"
+                    android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
+                    android:textSize="@dimen/pad_15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/chk_over_bill_pay_admin"
+                    android:layout_marginTop="4dp"
+                    android:text="Cashier" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:text="Cashier Cashup"
+                android:textColor="@color/red" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/chk_run_w_repo"
+                    android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
+                    android:textSize="@dimen/pad_15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin10"
+                    android:text="Allow Cashier run W Report" />
+
+
+                <CheckBox
+                    android:id="@+id/chk_run_y_repo"
+                    android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/chk_run_w_repo"
+                    android:layout_marginTop="@dimen/margin10"
+                    android:textSize="@dimen/pad_15dp"
+                    android:text="Allow Cashier run Y Report" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/chk_run_y_his"
+                    android:textSize="@dimen/pad_15dp"
+                    android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin10"
+                    android:text="Allow Cashier to view Y History" />
+
+
+                <CheckBox
+                    android:id="@+id/chk_all_y_repo"
+                    android:textSize="@dimen/pad_15dp"
+                    android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/chk_run_y_his"
+                    android:layout_marginTop="@dimen/pad_10dp"
+                    android:text="Show All Sales on Y Report"
+                    android:textColor="@color/red" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/mpossettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textusergroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/pad_10dp"
+                    android:textSize="@dimen/pad_15dp"
+                    android:text="User Group" />
+
+                <EditText
+                    android:id="@+id/mpos_user_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="@dimen/pad_15dp"
+                    android:hint="User Group"
+                    android:inputType="number" />
+
+                <TextView
+                    android:textSize="@dimen/pad_15dp"
+                    android:id="@+id/textusername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="User Name" />
+
+                <EditText
+                    android:textSize="@dimen/pad_15dp"
+                    android:id="@+id/mpos_user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="User Name"
+                    android:inputType="text" />
+
+                <TextView
+                    android:textSize="@dimen/pad_15dp"
+                    android:id="@+id/textpasswrd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="Password" />
+
+                <EditText
+                    android:textSize="@dimen/pad_15dp"
+                    android:id="@+id/mpos_user_pwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Password"
+                    android:inputType="textPassword" />
+
+                <CheckBox
+                    android:textSize="@dimen/pad_15dp"
+                    android:id="@+id/chk_auto_mpos"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:checked="false"
+                    android:text="Auto Print Swipe Slip"
+                    android:visibility="visible" />
+
+                <RadioGroup
+                    android:id="@+id/mposfirstgroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:textSize="@dimen/pad_15dp"
+                        android:id="@+id/mpostype1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Customer Only" />
+
+                    <RadioButton
+                        android:id="@+id/mpostype2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+
+                        android:textSize="@dimen/pad_15dp"
+                        android:text="Merchant Only" />
+
+                    <RadioButton
+                        android:textSize="@dimen/pad_15dp"
+                        android:id="@+id/mpostype3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="Both" />
+
+
+                </RadioGroup>
+
+                <CheckBox
+                    android:id="@+id/chk_slip_cancel"
+                    android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin10"
+                    android:checked="true"
+                    android:textSize="@dimen/pad_15dp"
+                    android:text="Print Slip for Canceled/Declined Txns."
+                    android:visibility="gone" />
+
+                <CheckBox
+                    android:id="@+id/chk_slip_logout"
+                    android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pad_10dp"
+                    android:checked="true"
+                    android:textSize="@dimen/pad_15dp"
+                    android:text="Logout After Card Sale" />
+
+                <ListView
+                    android:id="@+id/lst_pos_txn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mpostype3"
+                    android:layout_marginTop="@dimen/margin20"
+                    android:paddingBottom="@dimen/pad_10dp"
+                    android:visibility="gone" />
+
+
+                <CheckBox
+                    android:id="@+id/chk_bypass_calculator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/pad_20dp"
+                    android:gravity="top"
+                    android:textSize="@dimen/pad_15dp"
+                    android:text="@string/mpos_bypass_calc"
+                    android:textColor="@color/colorPrimary" />
+
+
+                <CheckBox
+                    android:id="@+id/chk_mpos_disclaimer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin20"
+                    android:textSize="@dimen/pad_15dp"
+                    android:gravity="top"
+                    android:text="@string/mpos_disclaimer"
+                    android:textColor="@color/colorPrimary" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/pad_5dp"
+        android:orientation="horizontal"
+        android:padding="@dimen/pad_5dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btn_bottom_close"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/pad_50dp"
+            android:textSize="@dimen/pad_15dp"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:onClick="onclick_btn_action"
+            android:text="Close" />
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/btn_bottom_test_print"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/pad_50dp"
+            android:textSize="@dimen/pad_15dp"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:onClick="onclick_btn_action"
+            android:text="Test Print" />
+
+
+        <Button
+            android:id="@+id/btn_settings_save"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/pad_50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:textSize="@dimen/pad_15dp"
+            android:onClick="onclick_btn_action"
+            android:text="Save" />
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

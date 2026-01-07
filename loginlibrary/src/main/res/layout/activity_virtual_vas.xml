@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+
+    android:layout_height="match_parent">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_admin">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pad_50dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <customfonts.MyTextView_Montserrat_Medium
+            android:id="@+id/textViewheader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="@dimen/margin10"
+            android:text="Reports"
+            android:textSize="@dimen/pad_18dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8.3dp"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+    <include layout="@layout/content_main" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+<com.google.android.material.bottomnavigation.BottomNavigationView
+    android:visibility="gone"
+android:id="@+id/bottom_navigation"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:elevation="0dp"
+android:layout_gravity="bottom"
+app:labelVisibilityMode="labeled"
+    android:background="@android:color/white"
+    app:itemBackground="@color/colorPrimary"
+app:itemIconTint="@drawable/bottom_navigation_colors"
+app:itemTextColor="@drawable/bottom_navigation_colors_admin"
+    app:elevation="8dp"
+app:menu="@menu/bottom_navigation_admin_menu" /></FrameLayout>

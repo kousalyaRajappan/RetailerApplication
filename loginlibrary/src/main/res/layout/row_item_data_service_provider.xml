@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/spi_item_data_height"
+    android:layout_margin="@dimen/margin4"
+
+    card_view:cardCornerRadius="@dimen/margin4"
+    card_view:cardElevation="@dimen/pad_40dp"
+    card_view:cardPreventCornerOverlap="false">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/spi_item_data_img_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spi_item_image_margin"
+            android:contentDescription="@null" />
+        <!--android:tint="@android:color/holo_red_light"-->
+        <TextView
+            android:id="@+id/textDeno"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spi_item_data_first_height"
+            android:layout_toRightOf="@+id/imageView"
+            android:background="@color/red"
+           android:padding="@dimen/pad_5dp"
+            android:gravity="center"
+            android:text="R274"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/spi_item_text_size_14dp" />
+
+        <TextView
+            android:id="@+id/textViewcat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textDeno"
+            android:background="@color/blue_light"
+            android:gravity="center"
+            android:text="Monthly"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/spi_item_text_size"
+            android:visibility="visible" />
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/textViewcat"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="2dp"
+            android:drawablePadding="5dp"
+            android:focusable="true"
+            android:gravity="center"
+            android:text=""
+            android:maxLines="2"
+            android:maxLength="40"
+            android:textColor="@color/black"
+            android:textSize="12dp" />
+
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/textView"
+            android:layout_marginTop="-35dp"
+
+            android:contentDescription="@null"
+            android:gravity="center" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

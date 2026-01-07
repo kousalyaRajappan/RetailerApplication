@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity_admin"
+    android:background="@color/white"
+
+    tools:showIn="@layout/activity_admin_main">
+
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ececec"
+        android:layout_marginBottom="@dimen/pad_50dp"
+        tools:context=".activity_admin_main">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtCashReports"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/pad_5dp"
+                    android:background="#FF9248"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="Cashup (Shift) Reports"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/pad_15dp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linSales"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/pad_5dp"
+                    android:background="#FF9248"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="Sales Reports"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/pad_15dp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linswipe"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/pad_5dp"
+                    android:background="#FF9248"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="Swipe Reports"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/pad_15dp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

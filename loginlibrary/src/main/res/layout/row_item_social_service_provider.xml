@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/spi_item_height"
+    android:layout_margin="@dimen/margin4"
+    card_view:cardCornerRadius="@dimen/margin4"
+    card_view:cardElevation="@dimen/pad_40dp"
+    card_view:cardPreventCornerOverlap="false">
+
+    <LinearLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="43dp"
+                android:layout_height="@dimen/spi_item_image_height"
+                android:layout_weight="0.5"
+                android:contentDescription="@null"
+                android:src="@drawable/whatsapp_icon" />
+
+            <customfonts.MyTextView_SFNS_Display
+                android:id="@+id/textDeno"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/spi_item_image_height"
+                android:layout_below="@+id/imageView"
+                android:layout_centerVertical="true"
+                android:layout_weight="0.5"
+                android:background="@color/red"
+                android:drawablePadding="0dp"
+                android:gravity="center"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/spi_item_text_size" />
+
+        </LinearLayout>
+
+
+        <customfonts.MyTextView_SFNS_Display
+            android:id="@+id/textViewcat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
+            android:layout_centerVertical="true"
+            android:background="@color/blue_light"
+            android:drawablePadding="0dp"
+            android:gravity="center"
+            android:text="Monthly"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/spi_item_text_size_14dp"
+            android:visibility="visible" />
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:freezesText="true"
+            android:gravity="center"
+            android:lines="2"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingLeft="15dip"
+            android:paddingRight="15dip"
+            android:paddingBottom="@dimen/pad_5dp"
+            android:scrollbars="horizontal"
+            android:scrollHorizontally="true"
+            android:text="Daily"
+            android:textAllCaps="false"
+            android:textSize="@dimen/spi_item_text_size_14dp"
+            android:textColor="@color/black"/>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

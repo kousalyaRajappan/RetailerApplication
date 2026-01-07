@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:background="@color/white"
+
+    tools:context=".admin.activity_quick_launch">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/nav_admin" />
+
+        <LinearLayout
+            android:id="@+id/ll_disable"
+            android:layout_marginTop="@dimen/loginHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <CheckBox
+                android:id="@+id/chk_quick_launch"
+                android:layout_alignBaseline="@+id/chk_balance_login"
+                android:layout_width="wrap_content"
+
+                android:textSize="@dimen/pad_18dp"
+                android:layout_height="wrap_content"
+                android:text="Disable Quick Launch" />
+
+
+
+
+
+        </LinearLayout>
+
+        <CheckBox
+            android:layout_below="@+id/ll_disable"
+            android:id="@+id/chk_voucher_print"
+            android:textSize="@dimen/pad_18dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm before voucher print" />
+        <ScrollView
+
+            android:layout_above="@+id/ll_bottom"
+            android:layout_below="@+id/chk_voucher_print"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:id="@+id/quicklaunh"
+
+            android:layout_marginBottom="@dimen/pad_20dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <!-- Text Label -->
+
+            <TextView
+                android:paddingTop="@dimen/margin10"
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/pad_15dp"
+                android:text="Quick Launch 1" />
+
+            <!-- Spinner Element -->
+            <LinearLayout
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner1_amount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:paddingTop="@dimen/margin10"
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quick Launch 2" />
+
+            <LinearLayout
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner2_amount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+            </LinearLayout>
+           <!-- <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />-->
+            <TextView
+            android:paddingTop="@dimen/pad_10dp"
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quick Launch 3" />
+
+            <LinearLayout
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner3_amount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+            </LinearLayout>
+           <!-- <Spinner
+                android:id="@+id/spinner3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />-->
+            <TextView
+                android:paddingTop="@dimen/margin10"
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quick Launch 4" />
+            <LinearLayout
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner4_amount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+            </LinearLayout>
+           <!-- <Spinner
+                android:id="@+id/spinner4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />-->
+            <TextView
+                android:paddingTop="@dimen/margin10"
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quick Launch 5" />
+            <LinearLayout
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner5_amount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+            </LinearLayout>
+           <!-- <Spinner
+                android:id="@+id/spinner5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />-->
+            <TextView
+                android:paddingTop="@dimen/margin10"
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quick Launch 6" />
+
+            <LinearLayout
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner6"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner6_amount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+            </LinearLayout>
+            <TextView
+                android:paddingTop="@dimen/margin10"
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quick Launch 7" />
+
+            <LinearLayout
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner7"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner7_amount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+            </LinearLayout>
+            <TextView
+                android:paddingTop="@dimen/margin10"
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quick Launch 8" />
+
+            <LinearLayout
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner8"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+                <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/spinner8_amount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+        </ScrollView>
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pad_50dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/pad_5dp"
+            android:layout_marginBottom="@dimen/pad_5dp"
+            >
+
+            <Button
+                android:id="@+id/btn_button_close"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:onClick="onClickBtnAction"
+                android:text="Close"
+                android:textSize="@dimen/pad_15dp"
+                android:layout_alignParentLeft="true"
+                />
+
+
+            <Button
+                android:textSize="@dimen/pad_15dp"
+                android:id="@+id/btn_setting_save"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:onClick="onClickBtnAction"
+                android:text="Save"
+                android:layout_alignParentLeft="true"
+                />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

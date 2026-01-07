@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#263238"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:minHeight="@dimen/muliti_width"
+        android:orientation="vertical"
+        android:padding="@dimen/margin20">
+        <TextView
+            android:id="@+id/id_last_txn_pos"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/pad_15dp"
+            android:text=""
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true" />
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:layout_below="@+id/id_last_txn_pos"
+            android:layout_marginTop="@dimen/pad_5dp"
+            android:background="@color/color_blue" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/lntxwait"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/pad_20dp">
+        <ProgressBar
+            android:id="@+id/id_pbar"
+            android:background="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/paper_load_reprint"
+
+            />
+        <TextView
+            android:id="@+id/id_loading"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/pad_5dp"
+            android:textSize="@dimen/pad_18dp"
+            android:background="@color/white"
+            android:layout_below="@+id/id_pbar"
+            android:textColor="@color/colorPrimary"
+            android:text="Please Wait....Fetching Receipt"
+            android:layout_height="@dimen/paper_load_reprint"
+            android:layout_centerHorizontal="true" />
+
+        </LinearLayout>
+
+        <WebView
+            android:id="@+id/wb_realtime_slip"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="@dimen/consume_300dp" />
+
+        <TextView
+            android:id="@+id/id_title"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/pad_15dp"
+            android:text="    Successful card transactions can also be \n     printed in PocketPOS"
+            android:layout_centerHorizontal="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/pad_15dp"
+            android:orientation="horizontal"
+            >
+
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bt_merchant_copy"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="@dimen/spi_item_height"
+                android:layout_height="@dimen/pad_50dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/btn_rounded_green"
+                android:text="Merchant\nCopy"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/margin10" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bt_customer_copy"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="@dimen/spi_item_height"
+                android:layout_height="@dimen/pad_50dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/btn_rounded_green"
+                android:text="Customer\nCopy"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/margin10" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bt_merchant_customer_copy"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="@dimen/spi_item_height"
+                android:layout_height="@dimen/pad_50dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/btn_rounded_green"
+                android:text="Customer\n+\nMerchant"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/margin10" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/pad_15dp"
+            android:orientation="horizontal"
+            >
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bt_email"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="@dimen/spi_item_height"
+                android:layout_height="@dimen/pad_50dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/btn_rounded_green"
+                android:text="Email\nCopy"
+                android:enabled="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/margin10" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="@dimen/spi_item_height"
+                android:layout_height="@dimen/pad_50dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/btn_rounded_green"
+                android:text="Customer+Merchant"
+                android:visibility="invisible"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/margin10" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bt_close"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="@dimen/spi_item_height"
+                android:layout_height="@dimen/pad_50dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/btn_rounded_red"
+                android:text="CLOSE"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/margin10"  />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

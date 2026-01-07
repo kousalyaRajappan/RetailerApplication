@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:background="@color/gray_light"
+    android:orientation="vertical"
+
+    android:padding="15dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="License PIN"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+
+                android:textColor="#3c3c3c"
+                android:textSize="@dimen/txt_licence_size" />
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rdpserver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:textSize="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Server:"
+                    android:textSize="@dimen/txt_licence_sub_size"
+
+                    />
+
+                <RadioButton
+                    android:id="@+id/radio_demo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Demo             "
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/txt_licence_sub_size" />
+
+                <RadioButton
+                    android:id="@+id/radio_live"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Live"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/txt_licence_sub_size" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/header1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Live Server:"
+                android:textSize="@dimen/txt_licence_sub_size"
+                android:visibility="gone"
+
+                />
+
+            <Spinner
+                android:id="@+id/spinnerServer"
+
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/licence_select_sever_height"
+                android:layout_marginTop="10dp"
+                android:clickable="false"
+                android:prompt="@string/spinner_title"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/device_demo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingBottom="7dp"
+                    android:text="Enter the device ID."
+
+                    android:textColor="#6f6f6f"
+                    android:textSize="@dimen/txt_licence_sub_size" />
+
+                <EditText
+                    android:id="@+id/tv_device_id"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/licence_edit_size"
+                    android:layout_centerHorizontal="true"
+                    android:background="#ffffff"
+                    android:foreground="@color/white"
+                    android:gravity="center"
+                    android:inputType="number|text"
+                    android:maxLength="10"
+                    android:textAlignment="center"
+
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/licence_edit_txt_size" />
+
+
+                <TextView
+                    android:id="@+id/tv_please_enter"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:paddingBottom="7dp"
+                    android:text="Enter the licence PIN for this device."
+                    android:textColor="#6f6f6f"
+                    android:textSize="@dimen/txt_licence_sub_size"
+                    android:visibility="visible" />
+
+                <EditText
+                    android:id="@+id/tv_cell_number"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/licence_edit_size"
+                    android:layout_centerHorizontal="true"
+                    android:background="#ffffff"
+                    android:foreground="@color/white"
+                    android:gravity="center"
+                    android:inputType="number|text"
+                    android:maxLength="10"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/licence_edit_txt_size"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/btnSaveNumber"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/licence_save_button_size"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="Save License / PIN"
+                    android:textSize="@dimen/licence_save_licence" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/device_live"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/btn_activate"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/licence_edit_size"
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/color_teal"
+                    android:gravity="center"
+                    android:text="Activate"
+                    android:textSize="@dimen/licence_butiion_text_size" />
+
+                <Button
+                    android:id="@+id/btn_deactivate"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/licence_edit_size"
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/red"
+                    android:gravity="center"
+                    android:text="Deactivate"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/licence_butiion_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/btnExit"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center"
+                    android:text="Exit"
+                    android:textSize="@dimen/licence_butiion_text_size" />
+
+
+                <Button
+                    android:id="@+id/btnCancelJC"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center"
+                    android:text="Cancel"
+                    android:textSize="@dimen/licence_butiion_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_daydream"
+                    android:layout_width="@dimen/licence_small_text_width"
+                    android:layout_height="@dimen/licence_small_text_height"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/red"
+                    android:text="Daydream"
+                    android:textColor="@color/white"
+
+                    android:textSize="@dimen/licence_small_text_size" />
+
+                <Button
+                    android:id="@+id/btnTimezone"
+                    android:layout_width="@dimen/licence_small_text_width"
+                    android:layout_height="@dimen/licence_small_text_height"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/red"
+                    android:gravity="center"
+                    android:text="Set TimeZone"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/licence_small_text_size" />
+
+                <Button
+                    android:id="@+id/btnKeyboard"
+                    android:layout_width="@dimen/licence_small_text_width"
+                    android:layout_height="@dimen/licence_small_text_height"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/red"
+                    android:gravity="center"
+                    android:text="TIU Keyboard"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/licence_small_text_size" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/btnTIULocker"
+                    android:layout_width="280dp"
+                    android:layout_height="@dimen/licence_small_text_height"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/blue"
+                    android:gravity="center"
+                    android:text="TIU Locker"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/licence_small_text_size" />
+                <!--  <Button
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_centerInParent="true"
+                      android:text="Crash Me !"
+                      android:onClick="crashMe"/>-->
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

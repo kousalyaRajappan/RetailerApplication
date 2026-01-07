@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#263238"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="@dimen/muliti_width"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/margin20"
+        android:paddingTop="@dimen/margin10"
+        android:paddingRight="@dimen/margin20">
+
+        <TextView
+            android:id="@+id/pop_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirmation"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/pad_30dp"
+            android:textStyle="bold" />
+
+        <customfonts.MyTextView_Roboto_Medium
+            android:id="@+id/country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vw_hor"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:paddingRight="@dimen/margin20"
+            android:text="Transfer to Bank Account"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/pad_18dp" />
+
+        <View
+            android:id="@+id/vw_hor"
+            android:layout_width="@dimen/global_margin_top"
+            android:layout_height="@dimen/view_2"
+            android:layout_below="@+id/pop_title"
+            android:layout_marginLeft="@dimen/pad_5dp"
+            android:layout_marginTop="@dimen/margin10"
+            android:background="#FFFFFF" />
+
+
+        <customfonts.MyTextView_Roboto_Medium
+            android:id="@+id/payamount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/country"
+            android:layout_marginTop="@dimen/pad_5dp"
+            android:gravity="center"
+            android:text="Paying Amount "
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/pad_18dp" />
+
+        <customfonts.MyTextView_Roboto_Medium
+            android:id="@+id/bankdetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/payamount"
+            android:layout_marginTop="@dimen/margin10"
+            android:gravity="left"
+            android:text="bank details"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/spi_item_text_size_14dp" />
+
+        <CheckBox
+            android:id="@+id/chk_acc_bank_cinfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/pad_5dp"
+            android:buttonTint="@color/Smooch_backgroundInput"
+            android:gravity="center"
+            android:text="Confirm Above Bank Details are Correct"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/pad_15dp"
+            app:layout_constraintTop_toBottomOf="@+id/bankdetails" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/pad_50dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bt_close"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="@dimen/muliti_btn_width"
+                android:layout_height="@dimen/main_bottom_size"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/btn_rounded_red"
+                android:text="CANCEL"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/pad_15dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bt_process_fin"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="@dimen/muliti_btn_width"
+                android:layout_height="@dimen/main_bottom_size"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/btn_rounded_green"
+                android:text="TRANSFER"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/pad_15dp" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            android:paddingTop="@dimen/pad_5dp">
+
+            <TextView
+                android:id="@+id/txt_last_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=""
+                android:textSize="@dimen/pad_15dp"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/txt_last_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="15dp"
+                android:text=""
+                android:textSize="@dimen/pad_15dp"
+                android:textColor="#ffffff" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

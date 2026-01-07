@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_toLeftOf="@+id/right_block"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".activity_admin_main">
+
+        <RelativeLayout
+            android:id="@+id/lnrsp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ProgressBar
+                android:layout_marginTop="@dimen/margin10"
+                android:id="@+id/login_button_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:indeterminate="true"
+                android:indeterminateTint="#FFcc0000"
+                android:paddingLeft="@dimen/two_dp"
+                android:paddingRight="@dimen/two_dp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/login_bottom_tabs_size"
+                android:scrollbars="none" />
+
+            <androidx.legacy.widget.Space
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="?android:attr/listDivider" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/pad_15dp"
+                android:background="@color/blue"
+                android:scrollbars=""
+                android:visibility="gone" />
+
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_horizantal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_read_button_width"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-30dp"
+        android:layout_marginBottom="@dimen/horizantal_bottom"
+        android:background="@drawable/transparent" />
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/right_block"
+        android:layout_alignParentRight="true"
+        android:layout_width="200dp"
+        android:layout_height= "match_parent">
+        <!--<android.support.v7.widget.RecyclerView
+
+            android:layout_centerHorizontal="true"
+            android:visibility="visible"
+            android:id="@+id/recycler_horizantal"
+            android:layout_width="190dp"
+
+            android:layout_height="match_parent"
+            android:layout_above="@+id/txt_multi_voucher"
+            android:background="@drawable/transparent" />-->
+
+        <RelativeLayout
+
+            android:layout_above="@+id/rl_cancel_print"
+            android:id="@+id/rl_multi_item_view"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_centerHorizontal="true"
+
+                android:id="@+id/recycler_vouchers"
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/rl_voucher_count"
+                android:background="@drawable/transparent" />
+
+            <RelativeLayout
+                android:layout_marginTop="@dimen/margin10"
+                android:layout_marginBottom="@dimen/margin10"
+
+                android:layout_alignParentBottom="true"
+                android:background="@color/divider_grey"
+                android:id="@+id/rl_voucher_count"
+                android:layout_width="match_parent"
+                android:padding="@dimen/pad_5dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/txt_multi_item_count"
+                    android:text="Total"
+                    android:textSize="@dimen/pad_15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+                <TextView
+                    android:layout_below="@+id/txt_multi_item_count"
+                    android:id="@+id/txt_multi_amount"
+                    android:textStyle="bold"
+                    android:text="R 20.0"
+                    android:textSize="@dimen/pad_15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+        <TextView
+            android:visibility="visible"
+            android:layout_marginTop="10dp"
+            android:id="@+id/txt_multi_voucher"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/edit_bg_blue"
+            android:layout_marginBottom="100dp"
+            android:layout_alignParentBottom="true"
+            android:text="Multi Voucher"
+            android:layout_width="150dp"
+            android:layout_height="50dp"/>
+        <RelativeLayout
+            android:id="@+id/rl_cancel_print"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            android:layout_marginBottom="100dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:visibility="visible"
+                android:layout_marginTop="10dp"
+                android:id="@+id/txt_cancel_multi_voucher"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:background="@drawable/edit_bg_gray"
+                android:text="Cancel \nMulti Voucher"
+                android:layout_marginLeft="@dimen/margin10"
+
+                android:layout_width="80dp"
+                android:layout_height="70dp"/>
+            <TextView
+                android:layout_marginLeft="@dimen/margin10"
+                android:layout_toRightOf="@+id/txt_cancel_multi_voucher"
+                android:visibility="visible"
+                android:layout_marginTop="10dp"
+                android:id="@+id/txt_print_multi_voucher"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:background="@drawable/edit_bg_blue"
+                android:text="Print \nMulti Voucher"
+                android:layout_width="80dp"
+                android:layout_height="70dp"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+    
+
+</RelativeLayout>

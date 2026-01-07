@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/txt_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin20"
+        android:visibility="visible"
+        android:textSize="@dimen/pad_20dp"
+        android:text="Deposit Processed"
+        android:textStyle="bold"
+        android:textColor="@color/red_actionbar" />
+
+    <TextView
+        android:id="@+id/txt_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/pad_20dp"
+        android:text="@string/notifyText"
+        android:textColor="@color/black"
+        android:textSize="@dimen/spi_item_text_size_14dp" />
+
+
+    <TextView
+
+        android:id="@+id/txt_read"
+        android:layout_width="@dimen/one_hundred_fifty_dp"
+        android:layout_height="@dimen/pad_50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/pad_15dp"
+        android:layout_marginBottom="@dimen/margin10"
+        android:background="@drawable/btn_rounded_green"
+        android:gravity="center"
+        android:textSize="@dimen/pad_15dp"
+        android:text="OK"
+        android:textColor="@color/white" />
+
+</LinearLayout>
