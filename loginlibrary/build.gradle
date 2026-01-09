@@ -5,9 +5,12 @@ plugins {
 android {
     namespace 'com.za.toptitup.loginlibrary'
     compileSdk 34
-
+    buildFeatures {
+        buildConfig true
+    }
     defaultConfig {
         minSdk 23
+        buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -39,6 +42,7 @@ dependencies {
     //The android-app-updater libary
     implementation libs.androidappupdatelibrary
 
+    implementation "org.json:json:20240303"
 
     implementation libs.retrofit
     implementation libs.retrofit2.converter.gson
