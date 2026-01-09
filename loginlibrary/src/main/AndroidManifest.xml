@@ -1,67 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.za.topitup.loginlibrary"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    android:versionCode="1"
-    android:versionName="1.45">
-    <!-- <uses-permission android:name="android.permission.USB_PERMISSION" />
-     <uses-feature android:name="android.hardware.usb.host" />
- -->
-    <uses-permission
-        android:name="android.permission.AUTHENTICATE_ACCOUNTS"
-        android:maxSdkVersion="22" />
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission
-        android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
-        tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission
-        android:name="android.permission.CAMERA"
-        tools:ignore="PermissionImpliesUnsupportedChromeOsHardware" />
-    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- ================= Permissions ================= -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
-    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.Manifest.permission.READ_PHONE_STATE" />
-
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
-    <uses-permission android:name="READ_PRIVILEGED_PHONE_STATE " />
-
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
     <uses-feature android:name="android.hardware.usb.host" />
 
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-
-
-    <uses-permission
-        android:name="android.permission.AUTHENTICATE_ACCOUNTS"
-        android:maxSdkVersion="22" />
-    <!-- <queries>
-         <provider android:authorities="za.co.topitup.salaahapp" />
-     </queries>-->
+    <!-- ================= Application ================= -->
     <application
         android:name="com.za.toptitup.loginlibrary.utils.Topitup"
         android:allowBackup="false"
@@ -69,102 +26,39 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Top it Up"
         android:supportsRtl="false"
-
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup,android:label,android:supportsRtl">
 
-               <activity
+        <!-- Splash Screen -->
+        <activity
             android:name="com.za.toptitup.loginlibrary.activitySplashScreen"
-            android:excludeFromRecents="true"
             android:exported="true"
-            android:label="Top it Up"
-            android:launchMode="singleInstance"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.DEFAULT" />
-
-            </intent-filter>
-
-        </activity>
-
-        <provider
-            android:name="com.za.toptitup.loginlibrary.MyContentProvider"
-            android:authorities="za.co.topitup"
-            android:enabled="true"
-            android:exported="true"
-            android:grantUriPermissions="true"></provider>
-
+        <!-- Login -->
         <activity
             android:name="com.za.toptitup.loginlibrary.activity_login"
             android:exported="true"
-            android:label="Top it Up"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-
-        <activity
-            android:name="com.za.toptitup.loginlibrary.BaseActivity"
-            android:label="Base Activity TIU"
             android:theme="@style/AppTheme.FullScreen" />
 
-
-        <receiver
-            android:name="com.za.toptitup.loginlibrary.utils.AlarmReciver"
-            android:enabled="true"
-            android:exported="true" />
-
-
-        <receiver
-            android:name="com.za.toptitup.loginlibrary.utils.BatteryReceiver"
-            android:enabled="true"
-            android:exported="true" />
-        <receiver
-            android:name="com.za.toptitup.loginlibrary.utils.ScreenStateReceiver"
-            android:enabled="true"
-            android:exported="true">
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.ACTION_SCREEN_OFF" />
-                <action android:name="android.intent.action.ACTION_SCREEN_ON" />
-                <action android:name="android.intent.action.ACTION_BATTERY_CHANGED" />
-                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
-                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
-            </intent-filter>
-        </receiver>
-
-
+        <!-- Base -->
         <activity
-            android:name="com.za.toptitup.loginlibrary.activity_main"
+            android:name="com.za.toptitup.loginlibrary.BaseActivity"
+            android:theme="@style/AppTheme.FullScreen" />
 
-            android:exported="true"
-            android:hardwareAccelerated="true"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-
-
-
-        <!--
-        <receiver android:name=".utils.BootReceiver">
-            <intent-filter >
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-        </receiver>
-        -->
-         <activity android:name="com.za.toptitup.loginlibrary.admin.activity_otp" />
+        <!-- Admin -->
+        <activity android:name="com.za.toptitup.loginlibrary.admin.activity_otp" />
         <activity android:name="com.za.toptitup.loginlibrary.admin.activity_activation" />
-          <activity
-            android:name="com.za.toptitup.loginlibrary.utils.AlarmDialog"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-         <activity
-            android:name="com.za.toptitup.loginlibrary.admin.activity_quick_launch"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
 
+        <!-- Content Provider -->
+        <provider
+            android:name="com.za.toptitup.loginlibrary.MyContentProvider"
+            android:authorities="com.za.topitup.loginlibrary"
+            android:exported="true" />
+
+        <!-- File Provider -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -174,13 +68,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-        <!-- <receiver android:name=".utils.UsbBroadcastReceiver">
-             <intent-filter>
-                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-                 <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED" />
-             </intent-filter>
-         </receiver>-->
 
+        <!-- Network Receiver -->
         <receiver
             android:name="com.za.toptitup.loginlibrary.utils.NetworkChangeReceiver"
             android:exported="false">
@@ -189,42 +78,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- <service android:name="com.iposprinter.iposprinterservice.IPosPrintService" />-->
-
-        <!-- <receiver
-             android:name=".utils.UsbDeviceReceiver"
-             android:enabled="true"
-             android:exported="true">
-             <intent-filter>
-                 <action android:name="com.example.packagename.USB_PERMISSION" />
-                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-                 <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED" />
-             </intent-filter>
-             <meta-data
-                 android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-                 android:resource="@xml/device_filter" />
-         </receiver>-->
-        <!-- <service
-                android:name=".utils.EDMTKeyboard"
-                android:label="TIUKeyboard"
-                android:permission="android.permission.BIND_INPUT_METHOD">
-          <intent-filter>
-                        <action android:name="android.view.InputMethod" />
-                    </intent-filter>
-                    <meta-data
-                        android:name="android.view.im"
-                        android:resource="@xml/method" />
-                </service>-->
-
-        <provider
-            android:name="com.za.toptitup.loginlibrary.MyContentProvider"
-            android:authorities="android.example.testintent"
-            android:exported="false"
-            android:grantUriPermissions="true"></provider>
     </application>
 
-    <queries> <!-- name the required packages -->
-        <package android:name="za.co.topitup" />
-        <package android:name="com.tallorder.pocketpos" />
-    </queries>
 </manifest>
