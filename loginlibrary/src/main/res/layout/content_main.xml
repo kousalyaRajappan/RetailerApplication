@@ -16,7 +16,6 @@
         tools:context=".activity_admin_main">
 
         <RelativeLayout
-            android:id="@+id/lnrsp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ProgressBar

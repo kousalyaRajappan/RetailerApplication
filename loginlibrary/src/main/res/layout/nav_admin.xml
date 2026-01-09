@@ -25,7 +25,6 @@
 
         <customfonts.MyTextView_Montserrat_Medium
             android:layout_width="0dp"
-            android:id="@+id/tiu_title_header"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Top it Up Admin"

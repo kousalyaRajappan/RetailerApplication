@@ -8,28 +8,9 @@ import android.os.BatteryManager;
 import android.util.Log;
 
 import za.co.topitup.R;
-import com.za.toptitup.loginlibrary.RetailerPayments;
-import com.za.toptitup.loginlibrary.activity_addpay_bills;
-import com.za.toptitup.loginlibrary.activity_adpay;
-import com.za.toptitup.loginlibrary.activity_adpay_new;
-import com.za.toptitup.loginlibrary.activity_bill_payment;
-import com.za.toptitup.loginlibrary.activity_cash_management;
-import com.za.toptitup.loginlibrary.activity_cashmx;
-import com.za.toptitup.loginlibrary.activity_ding;
-import com.za.toptitup.loginlibrary.activity_elec;
-import com.za.toptitup.loginlibrary.activity_invoice;
+
 import com.za.toptitup.loginlibrary.activity_login;
 import com.za.toptitup.loginlibrary.activity_main;
-import com.za.toptitup.loginlibrary.activity_main_old;
-import com.za.toptitup.loginlibrary.activity_product_settings;
-import com.za.toptitup.loginlibrary.activity_reports;
-import com.za.toptitup.loginlibrary.activity_reprint;
-import com.za.toptitup.loginlibrary.activity_spi;
-import com.za.toptitup.loginlibrary.activity_spi_old;
-import com.za.toptitup.loginlibrary.activity_spi_test;
-import com.za.toptitup.loginlibrary.admin.activity_banktransfer;
-import com.za.toptitup.loginlibrary.admin.activity_transfer;
-import com.za.toptitup.loginlibrary.admin.activity_wallettransfer;
 
 public class BatteryReceiver extends BroadcastReceiver {
     Context con;

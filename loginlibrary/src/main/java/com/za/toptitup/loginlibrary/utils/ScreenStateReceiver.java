@@ -6,7 +6,6 @@ import android.content.Context;
 import android.util.Log;
 
 import com.za.toptitup.loginlibrary.BaseActivity;
-import com.za.toptitup.loginlibrary.BaseAdminActivity;
 
 import static com.blankj.utilcode.util.ActivityUtils.startActivity;
 

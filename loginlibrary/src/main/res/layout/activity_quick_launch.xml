@@ -63,7 +63,6 @@
 
             <TextView
                 android:paddingTop="@dimen/margin10"
-                android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/pad_15dp"

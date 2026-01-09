@@ -98,7 +98,6 @@ import com.imagpay.enums.PrintStatus;
 import com.imagpay.mpos.MposHandler;
 */
 import com.za.toptitup.loginlibrary.MyContentProvider;
-import za.co.topitup.R;
 import com.za.toptitup.loginlibrary.RetailerPayments;
 import com.za.toptitup.loginlibrary.activity_addpay_bills;
 import com.za.toptitup.loginlibrary.activity_adpay;
@@ -111,15 +110,6 @@ import com.za.toptitup.loginlibrary.activity_elec;
 import com.za.toptitup.loginlibrary.activity_invoice;
 import com.za.toptitup.loginlibrary.activity_login;
 import com.za.toptitup.loginlibrary.activity_main;
-import com.za.toptitup.loginlibrary.activity_main_old;
-import com.za.toptitup.loginlibrary.activity_product_settings;
-import com.za.toptitup.loginlibrary.activity_reports;
-import com.za.toptitup.loginlibrary.activity_reprint;
-import com.za.toptitup.loginlibrary.activity_spi;
-import com.za.toptitup.loginlibrary.activity_spi_old;
-import com.za.toptitup.loginlibrary.admin.activity_banktransfer;
-import com.za.toptitup.loginlibrary.admin.activity_transfer;
-import com.za.toptitup.loginlibrary.admin.activity_wallettransfer;
 
 
 public class Topitup extends Application implements LifecycleObserver {  // implements SwipeListener

@@ -111,8 +111,6 @@ import sdk.PrinterCommand;
 import timber.log.Timber;
 import com.za.toptitup.loginlibrary.adapters.AutoScrollAdapter;
 import com.za.toptitup.loginlibrary.adapters.MultiVoucherAdapter;
-import com.za.toptitup.loginlibrary.admin.Printingw;
-import com.za.toptitup.loginlibrary.admin.activity_settings;
 import com.za.toptitup.loginlibrary.model.GetUpdateAll;
 import com.za.toptitup.loginlibrary.model.Item;
 import com.za.toptitup.loginlibrary.model.ItemSPI;

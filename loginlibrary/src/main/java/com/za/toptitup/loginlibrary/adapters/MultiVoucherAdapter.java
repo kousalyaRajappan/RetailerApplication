@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import za.co.topitup.R;
 
+import com.za.toptitup.loginlibrary.R;
 import com.za.toptitup.loginlibrary.model.MultiVoucherSelectedItems;
 
 public class MultiVoucherAdapter extends RecyclerView.Adapter<MultiVoucherAdapter.ViewHolder> {

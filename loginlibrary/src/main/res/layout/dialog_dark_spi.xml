@@ -45,7 +45,6 @@
         android:padding="20dp">
         <RelativeLayout
             android:visibility="gone"
-            android:id="@+id/rl_image"
             android:background="@color/white"
             android:layout_width="@dimen/spi_dark_dialog_img_layout_width"
             android:layout_height="@dimen/spi_dark_dialog_img_layout_height">

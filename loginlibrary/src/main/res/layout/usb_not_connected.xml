@@ -73,7 +73,6 @@
 
     <LinearLayout
         android:layout_below="@+id/txt_desc1"
-        android:id="@+id/ll_buttons"
         android:layout_margin="@dimen/margin20"
         android:weightSum="1"
         android:layout_width="match_parent"
@@ -96,7 +95,6 @@
             android:visibility="gone"
             android:layout_weight="1"
             android:background="@drawable/background_blue"
-            android:id="@+id/txt_print_screen"
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="Display Voucher on Screen"
@@ -109,7 +107,6 @@
             android:visibility="gone"
             android:layout_weight="1"
             android:background="@drawable/back_green"
-            android:id="@+id/txt_reprint"
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="Reprint"

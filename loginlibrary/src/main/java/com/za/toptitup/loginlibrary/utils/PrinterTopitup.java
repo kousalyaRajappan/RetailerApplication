@@ -52,13 +52,9 @@ import es.dmoral.toasty.Toasty;
 import print.Print;
 import sdk.PrintPicture;
 import sdk.PrinterCommand;
-import com.za.toptitup.loginlibrary.PrinterStatusChecker;
 import za.co.topitup.R;
 import com.za.toptitup.loginlibrary.activity_login;
 import com.za.toptitup.loginlibrary.activity_main;
-import com.za.toptitup.loginlibrary.activity_print_screen;
-import com.za.toptitup.loginlibrary.admin.Printingw;
-import com.za.toptitup.loginlibrary.admin.activity_settings;
 import com.za.toptitup.loginlibrary.bluetooth.BluetoothService;
 import zj.com.customize.sdk.Other;
 

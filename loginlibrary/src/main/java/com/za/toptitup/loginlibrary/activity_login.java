@@ -6,6 +6,7 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.content.Intent.ACTION_BATTERY_CHANGED;
+import static android.os.Build.VERSION_CODES.R;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -74,7 +75,7 @@ import com.google.gson.JsonObject;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.XML;
+
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
@@ -93,10 +94,8 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import za.co.topitup.activitySplashScreen;
 
 import com.za.toptitup.loginlibrary.admin.activity_activation;
-import com.za.toptitup.loginlibrary.admin.activity_banking_detail;
 import com.za.toptitup.loginlibrary.model.GetStatusFull;
 import com.za.toptitup.loginlibrary.model.GetUpdateAll;
 import com.za.toptitup.loginlibrary.model.MessageService;
@@ -551,7 +550,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
             }
         }
 
-        ll_message.setOnClickListener(new View.OnClickListener() {
+       /* ll_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!Topitup.TIU_LICENSE.equals("")) {
@@ -573,7 +572,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 }
             }
         });
-        ll_activation.setOnClickListener(new View.OnClickListener() {
+      */  ll_activation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!Topitup.TIU_LICENSE.equals("")) {
@@ -633,11 +632,11 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public void printmethod(View view) {
+   /* public void printmethod(View view) {
         Intent intent = new Intent(activity_login.this, PrintDemo.class);
         startActivity(intent);
         Toast.makeText(activity_login.this, "print clicked", Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
     private boolean checkPermission() {
         int result4 = ContextCompat.checkSelfPermission(this, CAMERA);
@@ -1828,7 +1827,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finishAffinity();
-                Intent mStartActivity = new Intent(activity_login.this, za.co.topitup.activitySplashScreen.class);
+                Intent mStartActivity = new Intent(activity_login.this,  com.za.toptitup.loginlibrary.activitySplashScreen.class);
                 int mPendingIntentId = 123456;
                 PendingIntent mPendingIntent = PendingIntent.getActivity(activity_login.this, mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
                 AlarmManager mgr = (AlarmManager) activity_login.this.getSystemService(Context.ALARM_SERVICE);
@@ -2213,7 +2212,190 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                             selectedServer = "SERVER3LIVE";
                             Topitup.BASE_URL = "http: //tx2.topitup.co.za:25812";
                         } else {
-                            selectedServer = "SERVERLIVE";
+                org.gradle.api.InvalidUserDataException: Invalid catalog definition:
+  - Problem: In version catalog libs, alias 'extensions' is not a valid alias.
+
+* Try:
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+* Exception is:
+java.lang.RuntimeException: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
+  - Problem: In version catalog libs, alias 'extensions' is not a valid alias.
+
+    Reason: Alias 'extensions' is a reserved name in Gradle which prevents generation of accessors.
+
+    Possible solution: Use a different alias which doesn't contain any of 'convention' or 'extensions'.
+
+    For more information, please refer to https://docs.gradle.org/8.11.1/userguide/version_catalog_problems.html#reserved_alias_name in the Gradle documentation.
+	at org.gradle.api.internal.catalog.DefaultDependenciesAccessors.generateAccessors(DefaultDependenciesAccessors.java:164)
+	at org.gradle.configuration.BuildTreePreparingProjectsPreparer.generateDependenciesAccessorsAndAssignPluginVersions(BuildTreePreparingProjectsPreparer.java:92)
+	at org.gradle.configuration.BuildTreePreparingProjectsPreparer.prepareProjects(BuildTreePreparingProjectsPreparer.java:55)
+	at org.gradle.configuration.BuildOperationFiringProjectsPreparer$ConfigureBuild.run(BuildOperationFiringProjectsPreparer.java:52)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:29)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:26)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:47)
+	at org.gradle.configuration.BuildOperationFiringProjectsPreparer.prepareProjects(BuildOperationFiringProjectsPreparer.java:40)
+	at org.gradle.initialization.VintageBuildModelController.lambda$prepareProjects$2(VintageBuildModelController.java:84)
+	at org.gradle.internal.model.StateTransitionController.lambda$doTransition$14(StateTransitionController.java:255)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:254)
+	at org.gradle.internal.model.StateTransitionController.lambda$transitionIfNotPreviously$11(StateTransitionController.java:213)
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:36)
+	at org.gradle.internal.model.StateTransitionController.transitionIfNotPreviously(StateTransitionController.java:209)
+	at org.gradle.initialization.VintageBuildModelController.prepareProjects(VintageBuildModelController.java:84)
+	at org.gradle.initialization.VintageBuildModelController.getConfiguredModel(VintageBuildModelController.java:64)
+	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$withProjectsConfigured$1(DefaultBuildLifecycleController.java:133)
+	at org.gradle.internal.model.StateTransitionController.lambda$notInState$3(StateTransitionController.java:132)
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:46)
+	at org.gradle.internal.model.StateTransitionController.notInState(StateTransitionController.java:128)
+	at org.gradle.internal.build.DefaultBuildLifecycleController.withProjectsConfigured(DefaultBuildLifecycleController.java:133)
+	at org.gradle.internal.build.DefaultBuildToolingModelController.locateBuilderForTarget(DefaultBuildToolingModelController.java:58)
+	at org.gradle.internal.buildtree.DefaultBuildTreeModelCreator$DefaultBuildTreeModelController.lambda$locateBuilderForTarget$0(DefaultBuildTreeModelCreator.java:64)
+	at org.gradle.internal.build.DefaultBuildLifecycleController.withToolingModels(DefaultBuildLifecycleController.java:327)
+	at org.gradle.internal.build.AbstractBuildState.withToolingModels(AbstractBuildState.java:160)
+	at org.gradle.internal.buildtree.DefaultBuildTreeModelCreator$DefaultBuildTreeModelController.locateBuilderForTarget(DefaultBuildTreeModelCreator.java:64)
+	at org.gradle.internal.buildtree.DefaultBuildTreeModelCreator$DefaultBuildTreeModelController.locateBuilderForDefaultTarget(DefaultBuildTreeModelCreator.java:59)
+	at org.gradle.tooling.internal.provider.runner.DefaultBuildController.getTarget(DefaultBuildController.java:140)
+	at org.gradle.tooling.internal.provider.runner.DefaultBuildController.getModel(DefaultBuildController.java:111)
+	at org.gradle.tooling.internal.consumer.connection.ParameterAwareBuildControllerAdapter.getModel(ParameterAwareBuildControllerAdapter.java:40)
+	at org.gradle.tooling.internal.consumer.connection.UnparameterizedBuildController.getModel(UnparameterizedBuildController.java:116)
+	at org.gradle.tooling.internal.consumer.connection.NestedActionAwareBuildControllerAdapter.getModel(NestedActionAwareBuildControllerAdapter.java:32)
+	at org.gradle.tooling.internal.consumer.connection.UnparameterizedBuildController.getModel(UnparameterizedBuildController.java:79)
+	at org.gradle.tooling.internal.consumer.connection.NestedActionAwareBuildControllerAdapter.getModel(NestedActionAwareBuildControllerAdapter.java:32)
+	at org.gradle.tooling.internal.consumer.connection.UnparameterizedBuildController.getModel(UnparameterizedBuildController.java:64)
+	at org.gradle.tooling.internal.consumer.connection.NestedActionAwareBuildControllerAdapter.getModel(NestedActionAwareBuildControllerAdapter.java:32)
+	at com.intellij.gradle.toolingExtension.impl.modelAction.GradleModelFetchAction.lambda$initAction$6(GradleModelFetchAction.java:185)
+	at com.intellij.gradle.toolingExtension.impl.telemetry.GradleOpenTelemetry.callWithSpan(GradleOpenTelemetry.java:74)
+	at com.intellij.gradle.toolingExtension.impl.telemetry.GradleOpenTelemetry.callWithSpan(GradleOpenTelemetry.java:62)
+	at com.intellij.gradle.toolingExtension.impl.modelAction.GradleModelFetchAction.initAction(GradleModelFetchAction.java:184)
+	at com.intellij.gradle.toolingExtension.impl.modelAction.GradleModelFetchAction.doExecute(GradleModelFetchAction.java:139)
+	at com.intellij.gradle.toolingExtension.impl.modelAction.GradleModelFetchAction.lambda$execute$1(GradleModelFetchAction.java:104)
+	at com.intellij.gradle.toolingExtension.impl.telemetry.GradleOpenTelemetry.callWithSpan(GradleOpenTelemetry.java:74)
+	at com.intellij.gradle.toolingExtension.impl.telemetry.GradleOpenTelemetry.callWithSpan(GradleOpenTelemetry.java:62)
+	at com.intellij.gradle.toolingExtension.impl.modelAction.GradleModelFetchAction.lambda$execute$2(GradleModelFetchAction.java:103)
+	at com.intellij.gradle.toolingExtension.impl.modelAction.GradleModelFetchAction.withOpenTelemetry(GradleModelFetchAction.java:114)
+	at com.intellij.gradle.toolingExtension.impl.modelAction.GradleModelFetchAction.lambda$execute$3(GradleModelFetchAction.java:102)
+	at com.intellij.gradle.toolingExtension.impl.util.GradleExecutorServiceUtil.withSingleThreadExecutor(GradleExecutorServiceUtil.java:18)
+	at com.intellij.gradle.toolingExtension.impl.modelAction.GradleModelFetchAction.execute(GradleModelFetchAction.java:101)
+	at com.intellij.gradle.toolingExtension.impl.modelAction.GradleModelFetchAction.execute(GradleModelFetchAction.java:37)
+	at org.gradle.tooling.internal.consumer.connection.InternalBuildActionAdapter.execute(InternalBuildActionAdapter.java:65)
+	at org.gradle.tooling.internal.provider.runner.AbstractClientProvidedBuildActionRunner$ActionAdapter.executeAction(AbstractClientProvidedBuildActionRunner.java:109)
+	at org.gradle.tooling.internal.provider.runner.AbstractClientProvidedBuildActionRunner$ActionAdapter.runAction(AbstractClientProvidedBuildActionRunner.java:97)
+	at org.gradle.tooling.internal.provider.runner.AbstractClientProvidedBuildActionRunner$ActionAdapter.beforeTasks(AbstractClientProvidedBuildActionRunner.java:81)
+	at org.gradle.internal.buildtree.DefaultBuildTreeModelCreator.beforeTasks(DefaultBuildTreeModelCreator.java:43)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.lambda$fromBuildModel$2(DefaultBuildTreeLifecycleController.java:83)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.lambda$runBuild$4(DefaultBuildTreeLifecycleController.java:120)
+	at org.gradle.internal.model.StateTransitionController.lambda$transition$6(StateTransitionController.java:169)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
+	at org.gradle.internal.model.StateTransitionController.lambda$transition$7(StateTransitionController.java:169)
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:46)
+	at org.gradle.internal.model.StateTransitionController.transition(StateTransitionController.java:169)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.runBuild(DefaultBuildTreeLifecycleController.java:117)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.fromBuildModel(DefaultBuildTreeLifecycleController.java:82)
+	at org.gradle.tooling.internal.provider.runner.AbstractClientProvidedBuildActionRunner.runClientAction(AbstractClientProvidedBuildActionRunner.java:43)
+	at org.gradle.tooling.internal.provider.runner.ClientProvidedPhasedActionRunner.run(ClientProvidedPhasedActionRunner.java:59)
+	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)
+	at org.gradle.internal.buildtree.ProblemReportingBuildActionRunner.run(ProblemReportingBuildActionRunner.java:49)
+	at org.gradle.launcher.exec.BuildOutcomeReportingBuildActionRunner.run(BuildOutcomeReportingBuildActionRunner.java:66)
+	at org.gradle.tooling.internal.provider.FileSystemWatchingBuildActionRunner.run(FileSystemWatchingBuildActionRunner.java:140)
+	at org.gradle.launcher.exec.BuildCompletionNotifyingBuildActionRunner.run(BuildCompletionNotifyingBuildActionRunner.java:41)
+	at org.gradle.launcher.exec.RootBuildLifecycleBuildActionExecutor.lambda$execute$0(RootBuildLifecycleBuildActionExecutor.java:54)
+	at org.gradle.composite.internal.DefaultRootBuildState.run(DefaultRootBuildState.java:130)
+	at org.gradle.launcher.exec.RootBuildLifecycleBuildActionExecutor.execute(RootBuildLifecycleBuildActionExecutor.java:54)
+	at org.gradle.internal.buildtree.InitDeprecationLoggingActionExecutor.execute(InitDeprecationLoggingActionExecutor.java:62)
+	at org.gradle.internal.buildtree.InitProblems.execute(InitProblems.java:36)
+	at org.gradle.internal.buildtree.DefaultBuildTreeContext.execute(DefaultBuildTreeContext.java:40)
+	at org.gradle.launcher.exec.BuildTreeLifecycleBuildActionExecutor.lambda$execute$0(BuildTreeLifecycleBuildActionExecutor.java:71)
+	at org.gradle.internal.buildtree.BuildTreeState.run(BuildTreeState.java:60)
+	at org.gradle.launcher.exec.BuildTreeLifecycleBuildActionExecutor.execute(BuildTreeLifecycleBuildActionExecutor.java:71)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor$3.call(RunAsBuildOperationBuildActionExecutor.java:61)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor$3.call(RunAsBuildOperationBuildActionExecutor.java:57)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:209)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:166)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor.execute(RunAsBuildOperationBuildActionExecutor.java:57)
+	at org.gradle.launcher.exec.RunAsWorkerThreadBuildActionExecutor.lambda$execute$0(RunAsWorkerThreadBuildActionExecutor.java:36)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.launcher.exec.RunAsWorkerThreadBuildActionExecutor.execute(RunAsWorkerThreadBuildActionExecutor.java:36)
+	at org.gradle.tooling.internal.provider.continuous.ContinuousBuildActionExecutor.execute(ContinuousBuildActionExecutor.java:110)
+	at org.gradle.tooling.internal.provider.SubscribableBuildActionExecutor.execute(SubscribableBuildActionExecutor.java:64)
+	at org.gradle.internal.session.DefaultBuildSessionContext.execute(DefaultBuildSessionContext.java:46)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor$ActionImpl.apply(BuildSessionLifecycleBuildActionExecutor.java:92)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor$ActionImpl.apply(BuildSessionLifecycleBuildActionExecutor.java:80)
+	at org.gradle.internal.session.BuildSessionState.run(BuildSessionState.java:71)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor.execute(BuildSessionLifecycleBuildActionExecutor.java:62)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor.execute(BuildSessionLifecycleBuildActionExecutor.java:41)
+	at org.gradle.internal.buildprocess.execution.StartParamsValidatingActionExecutor.execute(StartParamsValidatingActionExecutor.java:64)
+	at org.gradle.internal.buildprocess.execution.StartParamsValidatingActionExecutor.execute(StartParamsValidatingActionExecutor.java:32)
+	at org.gradle.internal.buildprocess.execution.SessionFailureReportingActionExecutor.execute(SessionFailureReportingActionExecutor.java:51)
+	at org.gradle.internal.buildprocess.execution.SessionFailureReportingActionExecutor.execute(SessionFailureReportingActionExecutor.java:39)
+	at org.gradle.internal.buildprocess.execution.SetupLoggingActionExecutor.execute(SetupLoggingActionExecutor.java:47)
+	at org.gradle.internal.buildprocess.execution.SetupLoggingActionExecutor.execute(SetupLoggingActionExecutor.java:31)
+	at org.gradle.launcher.daemon.server.exec.ExecuteBuild.doBuild(ExecuteBuild.java:70)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.WatchForDisconnection.execute(WatchForDisconnection.java:39)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ResetDeprecationLogger.execute(ResetDeprecationLogger.java:29)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon.execute(RequestStopIfSingleUsedDaemon.java:35)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.lambda$execute$0(ForwardClientInput.java:40)
+	at org.gradle.internal.daemon.clientinput.ClientInputForwarder.forwardInput(ClientInputForwarder.java:80)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.execute(ForwardClientInput.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogAndCheckHealth.execute(LogAndCheckHealth.java:64)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogToClient.doBuild(LogToClient.java:63)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment.doBuild(EstablishBuildEnvironment.java:84)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy$1.run(StartBuildOrRespondWithBusy.java:52)
+	at org.gradle.launcher.daemon.server.DaemonStateCoordinator.lambda$runCommand$0(DaemonStateCoordinator.java:321)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
+  - Problem: In version catalog libs, alias 'extensions' is not a valid alias.
+
+    Reason: Alias 'extensions' is a reserved name in Gradle which prevents generation of accessors.
+
+    Possible solution: Use a different alias which doesn't contain any of 'convention' or 'extensions'.
+
+    For more information, please refer to https://docs.gradle.org/8.11.1/userguide/version_catalog_problems.html#reserved_alias_name in the Gradle documentation.
+	at org.gradle.api.internal.catalog.problems.DefaultCatalogProblemBuilder.throwError(DefaultCatalogProblemBuilder.java:55)
+	at org.gradle.api.internal.catalog.DefaultVersionCatalogBuilder.throwVersionCatalogProblemException(DefaultVersionCatalogBuilder.java:225)
+	at org.gradle.api.internal.catalog.DefaultVersionCatalogBuilder.throwAliasCatalogException(DefaultVersionCatalogBuilder.java:413)
+	at org.gradle.api.internal.catalog.DefaultVersionCatalogBuilder.validateNormalizedAlias(DefaultVersionCatalogBuilder.java:401)
+	at org.gradle.api.internal.catalog.DefaultVersionCatalogBuilder.normalizeAndValidateAlias(DefaultVersionCatalogBuilder.java:381)
+	at org.gradle.api.internal.catalog.DefaultVersionCatalogBuilder.library(DefaultVersionCatalogBuilder.java:352)
+	at org.gradle.api.internal.catalog.parser.TomlCatalogFileParser.registerDependency(TomlCatalogFileParser.java:535)
+	at org.gradle.api.internal.catalog.parser.TomlCatalogFileParser.parseLibrary(TomlCatalogFileParser.java:394)
+	at org.gradle.api.internal.catalog.parser.TomlCatalogFileParser.lambda$parseLibraries$7(TomlCatalogFileParser.java:236)
+	at org.gradle.api.internal.catalog.parser.TomlCatalogFileParser.parseLibraries(TomlCatalogFileParser.java:236)
+	at org.gradle.api.internal.catalog.parser.TomlCatalogFileParser.parse(TomlCatalogFileParser.java:142)
+	at org.gradle.api.internal.catalog.parser.TomlCatalogFileParser.parse(TomlCatalogFileParser.java:121)
+	at org.gradle.api.internal.catalog.DefaultVersionCatalogBuilder.importCatalogFromFile(DefaultVersionCatalogBuilder.java:311)
+	at org.gradle.api.internal.catalog.DefaultVersionCatalogBuilder.lambda$maybeImportCatalogs$3(DefaultVersionCatalogBuilder.java:254)
+	at org.gradle.api.internal.catalog.DefaultVersionCatalogBuilder.withContext(DefaultVersionCatalogBuilder.java:175)
+	at org.gradle.api.internal.catalog.DefaultVersionCatalogBuilder.maybeImportCatalogs(DefaultVersionCatalogBuilder.java:254)
+	at org.gradle.api.internal.catalog.DefaultVersionCatalogBuilder.doBuild(DefaultVersionCatalogBuilder.java:182)
+	at org.gradle.internal.lazy.UnsafeLazy.get(UnsafeLazy.java:35)
+	at org.gradle.api.internal.catalog.DefaultVersionCatalogBuilder.build(DefaultVersionCatalogBuilder.java:167)
+	at org.gradle.api.internal.catalog.DefaultDependenciesAccessors.generateAccessors(DefaultDependenciesAccessors.java:149)
+	... 137 more            selectedServer = "SERVERLIVE";
                             Topitup.BASE_URL = "http: //tx.topitup.co.za:25812";
                         }*/
                         Intent intent = new Intent(mContext, activity_login.class);
@@ -2283,7 +2465,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         }
 
       /*  switch (vIn.getId()) {
-            case za.co.topitup.R.id.one_button:
+            case  com.za.toptitup.loginlibrary.R.id.one_button:
 
                 Log.e("access code ", "length....." + this.accessCode.length());
                 if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
@@ -2293,28 +2475,28 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
 
                 break;
-            case za.co.topitup.R.id.two_button:
+            case  com.za.toptitup.loginlibrary.R.id.two_button:
                 if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                     accessCode += this.mTwoButton.getText();
 
 //                    this.mUserAccessCode.append(this.mTwoButton.getText());
                 }
                 break;
-            case za.co.topitup.R.id.three_button:
+            case  com.za.toptitup.loginlibrary.R.id.three_button:
                 if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                     accessCode += this.mThreeButton.getText();
 
 //                    this.mUserAccessCode.append(this.mThreeButton.getText());
                 }
                 break;
-            case za.co.topitup.R.id.four_button:
+            case  com.za.toptitup.loginlibrary.R.id.four_button:
                 if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                     accessCode += this.mFourButton.getText();
 
 //                    this.mUserAccessCode.append(this.mFourButton.getText());
                 }
                 break;
-            case za.co.topitup.R.id.five_button:
+            case  com.za.toptitup.loginlibrary.R.id.five_button:
 
                 if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                     accessCode += this.mFiveButton.getText();
@@ -2322,28 +2504,28 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 //                    this.mUserAccessCode.append(this.mFiveButton.getText());
                 }
                 break;
-            case za.co.topitup.R.id.six_button:
+            case  com.za.toptitup.loginlibrary.R.id.six_button:
                 if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                     accessCode += this.mSixButton.getText();
 
 //                    this.mUserAccessCode.append(this.mSixButton.getText());
                 }
                 break;
-            case za.co.topitup.R.id.seven_button:
+            case  com.za.toptitup.loginlibrary.R.id.seven_button:
                 if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                     accessCode += this.mSevenButton.getText();
 
 //                    this.mUserAccessCode.append(this.mSevenButton.getText());
                 }
                 break;
-            case za.co.topitup.R.id.eight_button:
+            case  com.za.toptitup.loginlibrary.R.id.eight_button:
                 if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                     accessCode += this.mEightButton.getText();
 
 //                    this.mUserAccessCode.append(this.mEightButton.getText());
                 }
                 break;
-            case za.co.topitup.R.id.nine_button:
+            case  com.za.toptitup.loginlibrary.R.id.nine_button:
                 if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                     accessCode += this.mNineButton.getText();
 
@@ -2352,40 +2534,40 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 break;
         }
 */
-        if (vIn.getId() == za.co.topitup.R.id.one_button) {
+        if (vIn.getId() == com.za.toptitup.loginlibrary.R.id.one_button) {
             Log.e("access code ", "length....." + this.accessCode.length());
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mOneButton.getText();
             }
-        } else if (vIn.getId() == za.co.topitup.R.id.two_button) {
+        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.two_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mTwoButton.getText();
             }
-        } else if (vIn.getId() == za.co.topitup.R.id.three_button) {
+        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.three_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mThreeButton.getText();
             }
-        } else if (vIn.getId() == za.co.topitup.R.id.four_button) {
+        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.four_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mFourButton.getText();
             }
-        } else if (vIn.getId() == za.co.topitup.R.id.five_button) {
+        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.five_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mFiveButton.getText();
             }
-        } else if (vIn.getId() == za.co.topitup.R.id.six_button) {
+        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.six_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mSixButton.getText();
             }
-        } else if (vIn.getId() == za.co.topitup.R.id.seven_button) {
+        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.seven_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mSevenButton.getText();
             }
-        } else if (vIn.getId() == za.co.topitup.R.id.eight_button) {
+        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.eight_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mEightButton.getText();
             }
-        } else if (vIn.getId() == za.co.topitup.R.id.nine_button) {
+        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.nine_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mNineButton.getText();
             }
@@ -2499,46 +2681,46 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     @Override
     public boolean onTouch(View vIn, MotionEvent eventIn) {
        /* switch (vIn.getId()) {
-            case za.co.topitup.R.id.one_button:
+            case  com.za.toptitup.loginlibrary.R.id.one_button:
                 toggleNumberColor(vIn, eventIn);
                 break;
-            case za.co.topitup.R.id.two_button:
+            case  com.za.toptitup.loginlibrary.R.id.two_button:
                 toggleNumberColor(vIn, eventIn);
                 break;
-            case za.co.topitup.R.id.three_button:
+            case  com.za.toptitup.loginlibrary.R.id.three_button:
                 toggleNumberColor(vIn, eventIn);
                 break;
-            case za.co.topitup.R.id.four_button:
+            case  com.za.toptitup.loginlibrary.R.id.four_button:
                 toggleNumberColor(vIn, eventIn);
                 break;
-            case za.co.topitup.R.id.five_button:
+            case  com.za.toptitup.loginlibrary.R.id.five_button:
                 toggleNumberColor(vIn, eventIn);
                 break;
-            case za.co.topitup.R.id.six_button:
+            case  com.za.toptitup.loginlibrary.R.id.six_button:
                 toggleNumberColor(vIn, eventIn);
                 break;
-            case za.co.topitup.R.id.seven_button:
+            case  com.za.toptitup.loginlibrary.R.id.seven_button:
                 toggleNumberColor(vIn, eventIn);
                 break;
-            case za.co.topitup.R.id.eight_button:
+            case  com.za.toptitup.loginlibrary.R.id.eight_button:
                 toggleNumberColor(vIn, eventIn);
                 break;
-            case za.co.topitup.R.id.nine_button:
+            case  com.za.toptitup.loginlibrary.R.id.nine_button:
                 toggleNumberColor(vIn, eventIn);
                 break;
-//            case za.co.topitup.R.id.zero_button:
+//            case  com.za.toptitup.loginlibrary.R.id.zero_button:
 //                toggleNumberColor(vIn, eventIn);
 //                break;
         }*/
-        if (vIn.getId() == za.co.topitup.R.id.one_button ||
-                vIn.getId() == za.co.topitup.R.id.two_button ||
-                vIn.getId() == za.co.topitup.R.id.three_button ||
-                vIn.getId() == za.co.topitup.R.id.four_button ||
-                vIn.getId() == za.co.topitup.R.id.five_button ||
-                vIn.getId() == za.co.topitup.R.id.six_button ||
-                vIn.getId() == za.co.topitup.R.id.seven_button ||
-                vIn.getId() == za.co.topitup.R.id.eight_button ||
-                vIn.getId() == za.co.topitup.R.id.nine_button) {
+        if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.one_button ||
+                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.two_button ||
+                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.three_button ||
+                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.four_button ||
+                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.five_button ||
+                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.six_button ||
+                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.seven_button ||
+                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.eight_button ||
+                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.nine_button) {
             toggleNumberColor(vIn, eventIn);
         }
 
@@ -2868,13 +3050,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onBackPressed() {
-
-
-        //App not allowed to go back to Parent activity until correct pin entered.
-
-        //super.onBackPressed();
-
-
+        super.onBackPressed();
     }
 
     @Override

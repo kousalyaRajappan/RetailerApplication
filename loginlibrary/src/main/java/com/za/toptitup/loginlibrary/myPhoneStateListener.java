@@ -343,55 +343,6 @@ public class myPhoneStateListener extends PhoneStateListener {
             }else  if(activity_login.fromScreen.equals("activity_login") ){
                 activity_login.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
 
-            }else  if(activity_login.fromScreen.equals("activity_addpay_bills") ){
-                activity_addpay_bills.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-            }else  if(activity_login.fromScreen.equals("activity_reports") ){
-                activity_reports.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-            }else  if(activity_login.fromScreen.equals("activity_adpay") ){
-                activity_adpay.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-            }else  if(activity_login.fromScreen.equals("activity_adpay_new") ){
-                activity_adpay_new.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-            }else if(activity_login.fromScreen.equals("activity_bill_payment") ){
-                activity_bill_payment.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_cash_management") ){
-                activity_cash_management.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_cashmx") ){
-                activity_cashmx.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_ding") ){
-                activity_ding.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_elec") ){
-                activity_elec.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_invoice") ){
-                activity_invoice.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_spi") ){
-                activity_spi.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_main_old") ){
-                activity_main_old.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_product_settings") ){
-                activity_product_settings.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_reprint") ){
-                activity_reprint.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_spi_old") ){
-                activity_spi_old.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
             }
         }else{
             if (signalStrength > 90) {
@@ -401,55 +352,6 @@ public class myPhoneStateListener extends PhoneStateListener {
                 }else  if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
 
-                }else  if(activity_login.fromScreen.equals("activity_addpay_bills") ){
-                    activity_addpay_bills.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_reports") ){
-                    activity_reports.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay") ){
-                    activity_adpay.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay_new") ){
-                    activity_adpay_new.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-
-                }else if(activity_login.fromScreen.equals("activity_bill_payment") ){
-                    activity_bill_payment.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_cash_management") ){
-                    activity_cash_management.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_cashmx") ){
-                    activity_cashmx.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_ding") ){
-                    activity_ding.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_elec") ){
-                    activity_elec.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_invoice") ){
-                    activity_invoice.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_spi") ){
-                    activity_spi.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_main_old") ){
-                    activity_main_old.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_product_settings") ){
-                    activity_product_settings.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_reprint") ){
-                    activity_reprint.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_spi_old") ){
-                    activity_spi_old.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
                 }
 
             } else if (signalStrength > 70 && signalStrength < 90) {
@@ -458,55 +360,6 @@ public class myPhoneStateListener extends PhoneStateListener {
 
                 }else  if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else  if(activity_login.fromScreen.equals("activity_addpay_bills") ){
-                    activity_addpay_bills.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_reports") ){
-                    activity_reports.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay") ){
-                    activity_adpay.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay_new") ){
-                    activity_adpay_new.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-
-                }else if(activity_login.fromScreen.equals("activity_bill_payment") ){
-                    activity_bill_payment.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_cash_management") ){
-                    activity_cash_management.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_cashmx") ){
-                    activity_cashmx.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_ding") ){
-                    activity_ding.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_elec") ){
-                    activity_elec.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_invoice") ){
-                    activity_invoice.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_spi") ){
-                    activity_spi.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_main_old") ){
-                    activity_main_old.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_product_settings") ){
-                    activity_product_settings.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_reprint") ){
-                    activity_reprint.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_spi_old") ){
-                    activity_spi_old.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
 
                 }
 
@@ -519,55 +372,6 @@ public class myPhoneStateListener extends PhoneStateListener {
                 }else  if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
 
-                }else  if(activity_login.fromScreen.equals("activity_addpay_bills") ){
-                    activity_addpay_bills.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_reports") ){
-                    activity_reports.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay") ){
-                    activity_adpay.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay_new") ){
-                    activity_adpay_new.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-
-                }else if(activity_login.fromScreen.equals("activity_bill_payment") ){
-                    activity_bill_payment.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_cash_management") ){
-                    activity_cash_management.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_cashmx") ){
-                    activity_cashmx.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_ding") ){
-                    activity_ding.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_elec") ){
-                    activity_elec.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_invoice") ){
-                    activity_invoice.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_spi") ){
-                    activity_spi.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_main_old") ){
-                    activity_main_old.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_product_settings") ){
-                    activity_product_settings.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_reprint") ){
-                    activity_reprint.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_spi_old") ){
-                    activity_spi_old.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
                 }
 
 
@@ -578,55 +382,6 @@ public class myPhoneStateListener extends PhoneStateListener {
 
                 }else  if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else  if(activity_login.fromScreen.equals("activity_addpay_bills") ){
-                    activity_addpay_bills.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_reports") ){
-                    activity_reports.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay") ){
-                    activity_adpay.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay_new") ){
-                    activity_adpay_new.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-                }else if(activity_login.fromScreen.equals("activity_bill_payment") ){
-                    activity_bill_payment.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_cash_management") ){
-                    activity_cash_management.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_cashmx") ){
-                    activity_cashmx.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_ding") ){
-                    activity_ding.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_elec") ){
-                    activity_elec.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_invoice") ){
-                    activity_invoice.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_spi") ){
-                    activity_spi.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_main_old") ){
-                    activity_main_old.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_product_settings") ){
-                    activity_product_settings.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_reprint") ){
-                    activity_reprint.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_spi_old") ){
-                    activity_spi_old.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
 
                 }
 
@@ -644,55 +399,6 @@ public class myPhoneStateListener extends PhoneStateListener {
             }else  if(activity_login.fromScreen.equals("activity_login") ){
                 activity_login.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
 
-            }else  if(activity_login.fromScreen.equals("activity_addpay_bills") ){
-                activity_addpay_bills.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-            }else  if(activity_login.fromScreen.equals("activity_reports") ){
-                activity_reports.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-            }else  if(activity_login.fromScreen.equals("activity_adpay") ){
-                activity_adpay.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-            }else  if(activity_login.fromScreen.equals("activity_adpay_new") ){
-                activity_adpay_new.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-            }else if(activity_login.fromScreen.equals("activity_bill_payment") ){
-                activity_bill_payment.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_cash_management") ){
-                activity_cash_management.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_cashmx") ){
-                activity_cashmx.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_ding") ){
-                activity_ding.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_elec") ){
-                activity_elec.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_invoice") ){
-                activity_invoice.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_spi") ){
-                activity_spi.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_main_old") ){
-                activity_main_old.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_product_settings") ){
-                activity_product_settings.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_reprint") ){
-                activity_reprint.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else if(activity_login.fromScreen.equals("activity_spi_old") ){
-                activity_spi_old.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
             }
         }else{
             Log.e("signal strength","...........else...."+signalStrength);
@@ -706,55 +412,6 @@ public class myPhoneStateListener extends PhoneStateListener {
                 }else  if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
 
-                }else  if(activity_login.fromScreen.equals("activity_addpay_bills") ){
-                    activity_addpay_bills.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_reports") ){
-                    activity_reports.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay") ){
-                    activity_adpay.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay_new") ){
-                    activity_adpay_new.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-
-                }else if(activity_login.fromScreen.equals("activity_bill_payment") ){
-                    activity_bill_payment.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_cash_management") ){
-                    activity_cash_management.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_cashmx") ){
-                    activity_cashmx.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_ding") ){
-                    activity_ding.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_elec") ){
-                    activity_elec.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_invoice") ){
-                    activity_invoice.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_spi") ){
-                    activity_spi.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_main_old") ){
-                    activity_main_old.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_product_settings") ){
-                    activity_product_settings.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_reprint") ){
-                    activity_reprint.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else if(activity_login.fromScreen.equals("activity_spi_old") ){
-                    activity_spi_old.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
                 }
 
             }
@@ -766,55 +423,6 @@ public class myPhoneStateListener extends PhoneStateListener {
 
                 }else  if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else  if(activity_login.fromScreen.equals("activity_addpay_bills") ){
-                    activity_addpay_bills.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_reports") ){
-                    activity_reports.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay") ){
-                    activity_adpay.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay_new") ){
-                    activity_adpay_new.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-
-                }else if(activity_login.fromScreen.equals("activity_bill_payment") ){
-                    activity_bill_payment.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_cash_management") ){
-                    activity_cash_management.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_cashmx") ){
-                    activity_cashmx.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_ding") ){
-                    activity_ding.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_elec") ){
-                    activity_elec.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_invoice") ){
-                    activity_invoice.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_spi") ){
-                    activity_spi.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_main_old") ){
-                    activity_main_old.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_product_settings") ){
-                    activity_product_settings.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_reprint") ){
-                    activity_reprint.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else if(activity_login.fromScreen.equals("activity_spi_old") ){
-                    activity_spi_old.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal3));
 
                 }
 
@@ -829,55 +437,6 @@ public class myPhoneStateListener extends PhoneStateListener {
                 }else  if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
 
-                }else  if(activity_login.fromScreen.equals("activity_addpay_bills") ){
-                    activity_addpay_bills.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_reports") ){
-                    activity_reports.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay") ){
-                    activity_adpay.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay_new") ){
-                    activity_adpay_new.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-
-                }else if(activity_login.fromScreen.equals("activity_bill_payment") ){
-                    activity_bill_payment.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_cash_management") ){
-                    activity_cash_management.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_cashmx") ){
-                    activity_cashmx.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_ding") ){
-                    activity_ding.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_elec") ){
-                    activity_elec.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_invoice") ){
-                    activity_invoice.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_spi") ){
-                    activity_spi.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_main_old") ){
-                    activity_main_old.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_product_settings") ){
-                    activity_product_settings.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_reprint") ){
-                    activity_reprint.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else if(activity_login.fromScreen.equals("activity_spi_old") ){
-                    activity_spi_old.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
                 }
 
 
@@ -891,57 +450,7 @@ public class myPhoneStateListener extends PhoneStateListener {
                 }else  if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
 
-                }else  if(activity_login.fromScreen.equals("activity_addpay_bills") ){
-                    activity_addpay_bills.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_reports") ){
-                    activity_reports.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay") ){
-                    activity_adpay.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-                }else  if(activity_login.fromScreen.equals("activity_adpay_new") ){
-                    activity_adpay_new.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-
-                }else if(activity_login.fromScreen.equals("activity_bill_payment") ){
-                    activity_bill_payment.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_cash_management") ){
-                    activity_cash_management.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_cashmx") ){
-                    activity_cashmx.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_ding") ){
-                    activity_ding.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_elec") ){
-                    activity_elec.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_invoice") ){
-                    activity_invoice.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_spi") ){
-                    activity_spi.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_main_old") ){
-                    activity_main_old.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_product_settings") ){
-                    activity_product_settings.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_reprint") ){
-                    activity_reprint.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else if(activity_login.fromScreen.equals("activity_spi_old") ){
-                    activity_spi_old.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
                 }
-
             }
         }
 

@@ -106,7 +106,6 @@
 
         <!-- ================= GOAL ACHIEVEMENT ================= -->
         <TextView
-            android:id="@+id/tvGoalTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Goal Achievement"
@@ -129,7 +128,6 @@
 
         <!-- ================= INFO TEXT (MISSED CASE) ================= -->
         <TextView
-            android:id="@+id/tvInfoText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="You achieved 57% of Target\nJoin us for the next Loyalty Programme"

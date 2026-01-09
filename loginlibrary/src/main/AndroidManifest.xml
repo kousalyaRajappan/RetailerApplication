@@ -74,47 +74,8 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup,android:label,android:supportsRtl">
 
-        <activity android:name="com.za.toptitup.loginlibrary.activity_print_screen"></activity>
-
-        <activity android:name="com.za.toptitup.loginlibrary.admin.activity_paymenthistory" />
-
-        <activity
-            android:name="com.za.toptitup.loginlibrary.admin.activity_zhistory"
-            android:theme="@style/AppTheme.FullScreen" />
-
-        <activity
-            android:name="com.za.toptitup.loginlibrary.admin.activity_credit"
-            android:exported="true"
-            android:theme="@style/AppTheme.FullScreen" />
-
-        <activity
-            android:name="com.za.toptitup.loginlibrary.admin.Printingw"
-            android:theme="@style/AppTheme.FullScreen" />
-
-
-        <activity
-            android:name="com.za.toptitup.loginlibrary.bluetooth.Main_Activity"
-            android:configChanges="orientation|keyboardHidden"
-            android:label="@string/app_name">
-
-        </activity>
-        <activity
-            android:name="com.za.toptitup.loginlibrary.bluetooth.DeviceListActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:label="@string/select_device"
-            android:theme="@android:style/Theme.Dialog" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.admin.activity_users_detail"
-            android:label="@string/title_activity_users_detail"
-            android:theme="@style/AppTheme" />
-
-        <activity
-            android:name="com.za.toptitup.loginlibrary.RetailerPayments"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name=".activitySplashScreen"
+               <activity
+            android:name="com.za.toptitup.loginlibrary.activitySplashScreen"
             android:excludeFromRecents="true"
             android:exported="true"
             android:label="Top it Up"
@@ -148,16 +109,13 @@
             android:name="com.za.toptitup.loginlibrary.BaseActivity"
             android:label="Base Activity TIU"
             android:theme="@style/AppTheme.FullScreen" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.BaseAdminActivity"
-            android:label="Base Activity TIU"
-            android:theme="@style/AppTheme.FullScreen" />
+
 
         <receiver
             android:name="com.za.toptitup.loginlibrary.utils.AlarmReciver"
             android:enabled="true"
             android:exported="true" />
-        <activity android:name="com.za.toptitup.loginlibrary.PrintDemo" />
+
 
         <receiver
             android:name="com.za.toptitup.loginlibrary.utils.BatteryReceiver"
@@ -178,12 +136,7 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_main_old"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_messaging"
-            android:exported="true" />
+
         <activity
             android:name="com.za.toptitup.loginlibrary.activity_main"
 
@@ -191,10 +144,7 @@
             android:hardwareAccelerated="true"
             android:theme="@style/AppTheme.FullScreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_reprint"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+
 
 
         <!--
@@ -204,163 +154,16 @@
             </intent-filter>
         </receiver>
         -->
-        <activity
-            android:name="com.za.toptitup.loginlibrary.admin.activity_settings"
-            android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_bill_payment"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_admin"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_cashier"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.admin.activity_transactions"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.admin.activity_depositlip"
-            android:theme="@style/AppTheme.FullScreen" />
-
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_spi_old"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_spi"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="adjustPan|adjustResize|stateHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_elec"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name="com.za.toptitup.loginlibrary.admin.activity_banking_detail" />
-        <activity android:name="com.za.toptitup.loginlibrary.admin.activity_otp" />
+         <activity android:name="com.za.toptitup.loginlibrary.admin.activity_otp" />
         <activity android:name="com.za.toptitup.loginlibrary.admin.activity_activation" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_bill_lookup"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.admin.activity_users"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.admin.activity_transfer"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.admin.activity_wallettransfer"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.admin.activity_banktransfer"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.admin.activity_paycard_terms"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_web_rica"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
+          <activity
             android:name="com.za.toptitup.loginlibrary.utils.AlarmDialog"
             android:theme="@style/AppTheme.FullScreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_cash_management"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_cashmx"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_ding"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_invoice"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_reports"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_virtual_vas"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_holywood_bet"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
+         <activity
             android:name="com.za.toptitup.loginlibrary.admin.activity_quick_launch"
             android:theme="@style/AppTheme.FullScreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_pos_calculator"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_mpos_settle_detail"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_product_settings"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            tools:ignore="Instantiatable" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_adpay"
-            android:exported="true"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_adpay_new"
-            android:exported="true"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="adjustResize">
-
-
-            <intent-filter>
-                <action android:name="com.wiseasy.transaction.call" />
-            </intent-filter>
-
-        </activity>
-
-
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_addpay_bills"
-            android:exported="true"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden">
-            <intent-filter>
-                <action android:name="com.wiseasy.transaction.call" />
-            </intent-filter>
-
-        </activity>
-
-
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_addpay_txnview"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.za.toptitup.loginlibrary.activity_spi_test"
-            android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="adjustPan" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

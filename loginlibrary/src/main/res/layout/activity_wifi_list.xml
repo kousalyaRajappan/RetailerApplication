@@ -31,7 +31,6 @@
         </RelativeLayout>
 
         <customfonts.MyTextView_Montserrat_Medium
-            android:id="@+id/textViewheader1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -42,7 +41,6 @@
             android:textSize="@dimen/pad_18dp" />
 
         <customfonts.MyTextView_Montserrat_Medium
-            android:id="@+id/back"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignBaseline="@id/textViewheader"

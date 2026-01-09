@@ -644,8 +644,8 @@ public class activitySplashScreen extends AppCompatActivity {
                     Toasty.error(mContext, "ERR : from upgra " + ex.getMessage(), 3000, true).show();
                 }
 
-                activity_product_settings product_settings = new activity_product_settings();
-                product_settings.updateSPIsettings();
+              /*  activity_product_settings product_settings = new activity_product_settings();
+                product_settings.updateSPIsettings();*/
                 complete_step_1 = true;
                 check_complete();
 

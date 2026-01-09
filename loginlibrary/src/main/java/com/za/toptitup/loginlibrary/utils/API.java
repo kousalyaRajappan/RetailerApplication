@@ -3,7 +3,7 @@ package com.za.toptitup.loginlibrary.utils;
 import android.content.Context;
 
 import io.realm.Realm;
-import za.co.topitup.BuildConfig;
+
 import com.za.toptitup.loginlibrary.model.MyApiEndpointInterface;
 
 

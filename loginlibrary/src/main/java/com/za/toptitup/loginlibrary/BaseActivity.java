@@ -39,8 +39,7 @@ import androidx.core.app.ActivityCompat;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
-import com.za.toptitup.loginlibrary.admin.activity_settings;
-import com.za.toptitup.loginlibrary.bluetooth.BluetoothService;
+
 import com.za.toptitup.loginlibrary.model.MyApiEndpointInterface;
 import com.za.toptitup.loginlibrary.utils.BatteryReceiver;
 import com.za.toptitup.loginlibrary.utils.PrinterTopitup;
@@ -283,38 +282,7 @@ public class BaseActivity extends AppCompatActivity implements LogoutListener{
     protected void onStart() {
         super.onStart();
 //        autoConnectToSavedDevice();
-        if (selectedPrinter.equals("bluetooth")) {
-//            IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
-//            registerReceiver(mReceiverbluetooth, filter);
 
-            if (!mBluetoothAdapter.isEnabled()) {
-                Intent enableIntent = new Intent(
-                        BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-
-                    return;
-                }
-                startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-
-
-                Toast.makeText(BaseActivity.this,"bluetooth 11111111",Toast.LENGTH_LONG).show();
-                if (activity_settings.mService != null && !activity_settings.isBluetoothConnected) {
-                    String lastDeviceAddress = settings.getString("last_device_address", null);
-                    if (lastDeviceAddress != null) {
-                        BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(lastDeviceAddress);
-                        activity_settings.mService.connect(device);
-                    }
-                }else{
-                    Toast.makeText(BaseActivity.this,"bluetooth 222222222",Toast.LENGTH_LONG).show();
-
-                }
-                // Otherwise, setup the session
-            } else {
-                if (activity_settings.mService == null)
-                    activity_settings.mService = new BluetoothService(this, activity_settings.mHandler);
-
-            }
-        }
 
     }
 
@@ -385,16 +353,7 @@ public class BaseActivity extends AppCompatActivity implements LogoutListener{
         batteryAlert();
         FullscreenCall();
         super.onResume();
-        if (selectedPrinter.equals("bluetooth")) {
 
-            if (activity_settings.mService != null) {
-
-                if (activity_settings.mService.getState() == BluetoothService.STATE_NONE) {
-                    // Start the Bluetooth services
-                    activity_settings.mService.start();
-                }
-            }
-        }
 
     }
 
