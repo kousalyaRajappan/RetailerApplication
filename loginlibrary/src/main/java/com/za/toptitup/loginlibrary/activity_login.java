@@ -6,7 +6,8 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.content.Intent.ACTION_BATTERY_CHANGED;
-import static android.os.Build.VERSION_CODES.R;
+import com.za.toptitup.loginlibrary.R;
+
 
 import android.Manifest;
 import android.annotation.SuppressLint;
