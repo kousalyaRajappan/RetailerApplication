@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import za.co.topitup.R;
+import com.za.toptitup.loginlibrary.R;
 
 public class ReprintListAdapter extends RecyclerView.Adapter<ReprintListAdapter.ViewHolder> {
     private final List<MyItem> mItems;

@@ -1,3 +1,4 @@
+/*
 package com.za.toptitup.loginlibrary.utils;
 
 import static com.wisepos.smartpos.errorcode.WisePosErrorCode.ERR_SUCCESS;
@@ -383,8 +384,10 @@ public final class PrinterTopitup {
     public static void print_data(final String slip_to_print) {
 
         SharedPreferences settings = Topitup.getAppContext().getSharedPreferences("TIUPREF", 0);
-       /* String value  = settings.getString("setting_print_to_screen_temp", "0");
-        Log.e("selected printer", "selected........" + value);*/
+       */
+/* String value  = settings.getString("setting_print_to_screen_temp", "0");
+        Log.e("selected printer", "selected........" + value);*//*
+
         if (settings.getString("setting_print_to_screen", "0").equals("1")) {
             Log.e("bluettooth", ",print data,   if, screen");
 
@@ -398,7 +401,8 @@ public final class PrinterTopitup {
 
 
 
-       /* if (settings.getString("setting_print_to_screen_temp", "0").equals("1")) {
+       */
+/* if (settings.getString("setting_print_to_screen_temp", "0").equals("1")) {
             Log.e("bluettooth", ",print data,   if," );
 
 
@@ -409,7 +413,8 @@ public final class PrinterTopitup {
 
             return;
 
-        }*/
+        }*//*
+
 
         int print_line_counter = 0;
 
@@ -432,10 +437,12 @@ public final class PrinterTopitup {
                 } else if (activity_login.fromScreen.equals("activity_spi")) {
                     bluetoothDataPrinter(slip_to_print);
 
-                } /*else if (activity_login.fromScreen.equals("activity_spi")) {
+                } */
+/*else if (activity_login.fromScreen.equals("activity_spi")) {
                     bluetoothDataPrinter(slip_to_print);
 
-                }*/ else {
+                }*//*
+ else {
                     if (activity_settings.mService != null) {
                         new Thread(() -> {
                             boolean isConnected = BluetoothService.isReallyConnected();
@@ -484,7 +491,8 @@ public final class PrinterTopitup {
                         Toast.makeText(getAppContext(), "Bluetooth Service null", Toast.LENGTH_LONG).show();
                     }
                 }
-                /*else if(activity_settings.isBluetoothConnected && BluetoothService.isReallyConnected()) {
+                */
+/*else if(activity_settings.isBluetoothConnected && BluetoothService.isReallyConnected()) {
 
                     Log.e("bluetooth ","if......1111...."+BluetoothService.isReallyConnected());
                     if (!activity_settings.checkPrinterStatusWithoutHandler(Topitup.getAppContext())) {
@@ -536,7 +544,8 @@ public final class PrinterTopitup {
 
                     }
 
-                }*/
+                }*//*
+
 
             } else if (selectedPrinter.equals("usb")) {
 
@@ -811,7 +820,8 @@ public final class PrinterTopitup {
                                 }
                             });
 
-                            /*TextInfo textInfo = new TextInfo();
+                            */
+/*TextInfo textInfo = new TextInfo();
 
                             textInfo.setAlign(PRINT_STYLE_CENTER);
                             textInfo.setFontSize(32);
@@ -843,12 +853,14 @@ public final class PrinterTopitup {
                                 public void onReport(int i) {
                                     //The callback method is reserved and does not need to be implemented
                                 }
-                            });*/
+                            });*//*
+
                         } catch (Exception e) {
                             e.printStackTrace();
                             Log.e("sdkdemo", "print failed" + e.toString() + "\n");
                         }
-                     /*   try {
+                     */
+/*   try {
                             Map<String, Object> map;
 //                            Printer printer = activity_settings.printerp052;
 
@@ -998,7 +1010,8 @@ public final class PrinterTopitup {
                             e.printStackTrace();
                             Toast.makeText(getAppContext(),""+e.getMessage(),Toast.LENGTH_LONG).show();
                             Log.e("sdkdemo","print failed" + e.toString() + "\n");
-                        }*/
+                        }*//*
+
                     } else {
                         if (activity_main.printScreen) {
 
@@ -1151,7 +1164,8 @@ public final class PrinterTopitup {
                 if (Topitup.DEVICE_TYPE.equals("MOBILE") || Topitup.DEVICE_TYPE.equals("TABLET")) {
                     Toast.makeText(getAppContext(), "Please connect USB or Bluetooth", Toast.LENGTH_LONG).show();
 
-                } /*else {
+                } */
+/*else {
 
                     if (Printooth.INSTANCE.hasPairedPrinter()) {
                         BluetoothPrinter bluetoothPrinter = new BluetoothPrinter();
@@ -1166,7 +1180,8 @@ public final class PrinterTopitup {
                             e.printStackTrace();
                         }
                     }
-                }*/
+                }*//*
+
             }
 
 
@@ -1184,7 +1199,8 @@ public final class PrinterTopitup {
         }
 
 
-      /*  if (Topitup.DEVICE_TYPE.equals("Q1")) {
+      */
+/*  if (Topitup.DEVICE_TYPE.equals("Q1")) {
 
 
             ThreadPoolManager.getInstance().executeTask(new Runnable() {
@@ -1315,7 +1331,8 @@ public final class PrinterTopitup {
             });
 
 
-        }*/
+        }*//*
+
 
 
         if (Topitup.DEVICE_TYPE.equals("ZKC")) {
@@ -1419,10 +1436,12 @@ public final class PrinterTopitup {
         if (Topitup.DEVICE_TYPE.equals("SUNMI")) {
 
 
-          /*  Toasty.error(getAppContext(), "I=" + SunmiPrintHelper.getInstance().getPrinterSerialNo(), 8000, true).show();
+          */
+/*  Toasty.error(getAppContext(), "I=" + SunmiPrintHelper.getInstance().getPrinterSerialNo(), 8000, true).show();
 
             SunmiPrintHelper.getInstance().printText("test", 24, true, true, "test.ttf");
-            SunmiPrintHelper.getInstance().feedPaper();*/
+            SunmiPrintHelper.getInstance().feedPaper();*//*
+
 
 
             ThreadPoolManager.getInstance().executeTask(new Runnable() {
@@ -1708,13 +1727,15 @@ public final class PrinterTopitup {
                 break;
         }
         if (dev != null) {
-           /* if (!(usbCtrl.isHasPermission(dev))) {
+           */
+/* if (!(usbCtrl.isHasPermission(dev))) {
                 //Log.d("usb调试","请求USB设备权限.");
                 usbCtrl.getPermission(dev);
             } else {
                 Toast.makeText(Topitup.getAppContext(), "permission granted",
                         Toast.LENGTH_SHORT).show();
-            }*/
+            }*//*
+
         } else {
             Toast.makeText(Topitup.getAppContext(), "usb not connected",
                     Toast.LENGTH_SHORT).show();
@@ -1723,7 +1744,8 @@ public final class PrinterTopitup {
     }
 
 
-    /* public static void initiateUsbPrinterUSB(){
+    */
+/* public static void initiateUsbPrinterUSB(){
          Log.e("initiate ","usb.....22222222.....");
 
          int[][] u_infor;
@@ -1780,7 +1802,8 @@ public final class PrinterTopitup {
                       break;
               }
           }
-      };*/
+      };*//*
+
     private static class QSPrinter {
 
         static final String data = null;
@@ -1940,3 +1963,4 @@ public final class PrinterTopitup {
 
 
 }
+*/

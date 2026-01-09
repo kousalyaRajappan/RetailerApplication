@@ -29,6 +29,7 @@ dependencies {
 
     implementation libs.appcompat
     implementation libs.material
+    implementation libs.lifecycle.process
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
@@ -72,15 +73,15 @@ dependencies {
     implementation libs.glide.annotations
     implementation libs.logging.interceptor
     implementation libs.roundedimageview
-    implementation files('libs/Android_Print_SDK_ESC_V1.11.jar')
+    implementation files('src/main/libs/Android_Print_SDK_ESC_V1.11.jar')
 
-    implementation files('libs/java-json.jar')
-    implementation files('libs/SDK4BaseBinderV2.1.5.jar')
-    implementation files('libs/SDK4EmvBinderV2.1.5.jar')
-    implementation files('libs/SDK4KeyManagerBinderV2.1.5.jar')
-    implementation files('libs/CashierInvoke_202002261912.jar')
+    implementation files('src/main/libs/java-json.jar')
+    implementation files('src/main/libs/SDK4BaseBinderV2.1.5.jar')
+    implementation files('src/main/libs/SDK4EmvBinderV2.1.5.jar')
+    implementation files('src/main/libs/SDK4KeyManagerBinderV2.1.5.jar')
+    implementation files('src/main/libs/CashierInvoke_202002261912.jar')
 
-    implementation files('libs/core-3.3.0.jar')
+    implementation files('src/main/libs/core-3.3.0.jar')
     implementation libs.android.gif.drawable
     implementation libs.realm.android.library // Correct usage
    // kapt 'io.realm:realm-annotations:10.19.0' // Correct usage

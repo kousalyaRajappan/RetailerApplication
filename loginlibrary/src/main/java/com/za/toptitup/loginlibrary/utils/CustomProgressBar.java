@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import za.co.topitup.R;
+import com.za.toptitup.loginlibrary.R;
 
 public final class CustomProgressBar {
 

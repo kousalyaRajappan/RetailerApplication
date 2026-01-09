@@ -35,7 +35,7 @@ import com.za.toptitup.loginlibrary.model.DeviceInfo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import za.co.topitup.R;
+import com.za.toptitup.loginlibrary.R;
 
 public class Tools {
 

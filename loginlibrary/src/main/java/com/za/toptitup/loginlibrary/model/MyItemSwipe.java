@@ -1,6 +1,6 @@
 package com.za.toptitup.loginlibrary.model;
 
-import za.co.topitup.R;
+import com.za.toptitup.loginlibrary.R;
 
 public class MyItemSwipe {
 

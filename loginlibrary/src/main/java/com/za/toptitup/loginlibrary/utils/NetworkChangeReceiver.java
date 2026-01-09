@@ -7,7 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-import static com.za.toptitup.loginlibrary.activity_main.dialog;
+
 
 
 public class NetworkChangeReceiver extends BroadcastReceiver
@@ -19,10 +19,10 @@ public class NetworkChangeReceiver extends BroadcastReceiver
         {
             if (isOnline(context)) {
 
-                dialog(true);
+              //  dialog(true);
                 Log.e("keshav", "Online Connect Intenet ");
             } else {
-                dialog(false);
+              //  dialog(false);
                 Log.e("keshav", "Conectivity Failure !!! ");
             }
         } catch (NullPointerException e) {

@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import za.co.topitup.activitySplashScreen;
+ import com.za.toptitup.loginlibrary.activitySplashScreen;
 
 public class BootReceiver extends BroadcastReceiver {
 

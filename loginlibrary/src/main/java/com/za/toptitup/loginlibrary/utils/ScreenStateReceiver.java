@@ -38,10 +38,10 @@ public class ScreenStateReceiver extends BroadcastReceiver {
                 BaseActivity activity = (BaseActivity) context;
                 activity.logout();
             }
-            if(context instanceof BaseAdminActivity) {
+            /*if(context instanceof BaseAdminActivity) {
                 BaseAdminActivity activity = (BaseAdminActivity) context;
                 activity.logout();
-            }
+            }*/
             //code
         }
     }

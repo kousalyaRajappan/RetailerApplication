@@ -10,7 +10,7 @@ import android.widget.ListAdapter;
 
 import java.util.ArrayList;
 
-import za.co.topitup.R;
+import com.za.toptitup.loginlibrary.R;
 
 public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
     private ArrayList<String> list = new ArrayList<String>();

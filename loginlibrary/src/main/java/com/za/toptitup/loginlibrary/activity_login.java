@@ -6,9 +6,6 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.content.Intent.ACTION_BATTERY_CHANGED;
-import com.za.toptitup.loginlibrary.R;
-
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -76,6 +73,7 @@ import com.google.gson.JsonObject;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.XML;
 
 
 import java.io.IOException;
@@ -107,7 +105,7 @@ import com.za.toptitup.loginlibrary.model.pos_user_current;
 import com.za.toptitup.loginlibrary.model.pos_users;
 import com.za.toptitup.loginlibrary.utils.BatteryReceiver;
 import com.za.toptitup.loginlibrary.utils.MyExceptionHandler;
-import com.za.toptitup.loginlibrary.utils.PrinterTopitup;
+//import com.za.toptitup.loginlibrary.utils.PrinterTopitup;
 import com.za.toptitup.loginlibrary.utils.Topitup;
 import com.za.toptitup.loginlibrary.utils.UserException;
 
@@ -2781,9 +2779,9 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
                     mLoginProgress.setVisibility(View.GONE);
                 }
             },500);*/
-            Intent i = new Intent(activity_login.this, activity_main.class);
+     /*       Intent i = new Intent(activity_login.this, activity_main.class);
             // i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);
+            startActivity(i);*/
             //
 
 
@@ -2981,9 +2979,9 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
                             Topitup.IS_ADMIN = pu.is_admin;
                             Topitup.POSUSER_NAME = pu.posuser_name;
 
-                            Intent i = new Intent(activity_login.this, activity_main.class);
+                         /*   Intent i = new Intent(activity_login.this, activity_main.class);
                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(i);
+                            startActivity(i);*/
                             //  finish();
 
                             keyPadLockedFlag = false;
@@ -3317,7 +3315,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
         btn_customer_copy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PrinterTopitup.print_data(cslip);
+              //  PrinterTopitup.print_data(cslip);
                 try {
                     if (isRunning)
                         cntdwnTimer.cancel();
@@ -3353,7 +3351,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
         btn_merchant_copy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PrinterTopitup.print_data(mslip);
+             //   PrinterTopitup.print_data(mslip);
                 try {
                     if (isRunning)
                         cntdwnTimer.cancel();
@@ -3402,7 +3400,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
 
     private void printslip() {
 
-        PrinterTopitup.print_data(cslip);
+       // PrinterTopitup.print_data(cslip);
 
         showCustomDialog("Printing", "Printing Merchant Copy!!!", false);
         try {
@@ -3412,7 +3410,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
             e.printStackTrace();
         }
 
-        PrinterTopitup.print_data(mslip);
+        //PrinterTopitup.print_data(mslip);
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {

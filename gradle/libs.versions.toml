@@ -29,7 +29,7 @@ lifecycleCommonJava8 = "2.8.6"
 loggingInterceptor = "4.12.0"
 material = "1.13.0"
 #noinspection GradleDependency
-activity = "1.10.1"
+activity = "1.9.3"
 constraintlayout = "2.2.1"
 materialRipple = "1.0.2"
 okhttp3Integration = "4.16.0"
@@ -43,6 +43,7 @@ timber = "5.0.1"
 toasty = "1.2.5"
 toastyVersion = "1.5.2"
 utilcode = "1.30.7"
+lifecycleProcess = "2.10.0"
 
 
 [libraries]
@@ -91,6 +92,7 @@ support-v4 = { module = "com.android.support:support-v4", version.ref = "design"
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 toasty-v125 = { module = "com.github.GrenderG:Toasty", version.ref = "toasty" }
 utilcode = { module = "com.blankj:utilcode", version.ref = "utilcode" }
+lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycleProcess" }
 
 
 [plugins]

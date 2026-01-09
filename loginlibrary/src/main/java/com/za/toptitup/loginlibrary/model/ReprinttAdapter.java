@@ -19,7 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import za.co.topitup.R;
+import com.za.toptitup.loginlibrary.R;
 
 public class ReprinttAdapter extends RecyclerView.Adapter<ReprinttAdapter.ViewHolder> {
     private final List<MyItem> mItems;

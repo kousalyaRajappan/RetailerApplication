@@ -20,6 +20,17 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+
+import com.za.toptitup.loginlibrary.model.GetStatusFull;
+import com.za.toptitup.loginlibrary.model.GetUpdateAll;
+import com.za.toptitup.loginlibrary.model.MessageService;
+import com.za.toptitup.loginlibrary.model.MessageServiceNotice;
+import com.za.toptitup.loginlibrary.model.credit_request;
+import com.za.toptitup.loginlibrary.model.fin_balance;
+import com.za.toptitup.loginlibrary.model.pos_user_current;
+import com.za.toptitup.loginlibrary.model.pos_users;
+import com.za.toptitup.loginlibrary.model.supplierCashmx;
+import com.za.toptitup.loginlibrary.model.voucher_response;
 import com.za.toptitup.loginlibrary.utils.Topitup;
 
 public interface MyApiEndpointInterface {

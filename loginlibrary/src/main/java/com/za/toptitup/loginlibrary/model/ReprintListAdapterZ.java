@@ -17,8 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import za.co.topitup.R;
-
+import com.za.toptitup.loginlibrary.R;
 public class ReprintListAdapterZ extends RecyclerView.Adapter<ReprintListAdapterZ.ViewHolder> {
     private final OnItemClickMain onItemClick;
 

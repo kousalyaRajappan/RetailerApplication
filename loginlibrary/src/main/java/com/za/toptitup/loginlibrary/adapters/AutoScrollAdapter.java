@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import za.co.topitup.R;
+import com.za.toptitup.loginlibrary.R;
 import com.za.toptitup.loginlibrary.model.Item;
 
 public class AutoScrollAdapter extends RecyclerView.Adapter<AutoScrollAdapter.ViewHolder> {

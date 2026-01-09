@@ -19,7 +19,7 @@ import com.google.gson.JsonObject;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import za.co.topitup.R;
+import com.za.toptitup.loginlibrary.R;
 import com.za.toptitup.loginlibrary.model.MyApiEndpointInterface;
 
 public class AlarmDialog extends AppCompatActivity {

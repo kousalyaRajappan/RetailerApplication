@@ -42,7 +42,7 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import com.za.toptitup.loginlibrary.model.MyApiEndpointInterface;
 import com.za.toptitup.loginlibrary.utils.BatteryReceiver;
-import com.za.toptitup.loginlibrary.utils.PrinterTopitup;
+
 import com.za.toptitup.loginlibrary.utils.ScreenStateReceiver;
 import com.za.toptitup.loginlibrary.utils.Topitup;
 import com.za.toptitup.loginlibrary.utils.UsbBroadcastReceiver;
@@ -79,7 +79,7 @@ public class BaseActivity extends AppCompatActivity implements LogoutListener{
     public static boolean fromVoucherSale = false;
     int bp;
 
-    PrinterTopitup printer;
+   // PrinterTopitup printer;
 
     private UsbManager usbManager;
     private UsbDeviceConnection connection;
@@ -105,7 +105,7 @@ public class BaseActivity extends AppCompatActivity implements LogoutListener{
          settings = getSharedPreferences("TIUPREF", 0);
         SharedPreferences.Editor editor = settings.edit();
         Long TIMEOUT_IN_MILLI = settings.getLong("TIMEOUT_IN_MILLI_ORI", 86400000);
-         printer= new PrinterTopitup(this);
+         //printer= new PrinterTopitup(this);
 
         editor.putLong("TIMEOUT_IN_MILLI", TIMEOUT_IN_MILLI);
         editor.commit();
@@ -387,13 +387,13 @@ public class BaseActivity extends AppCompatActivity implements LogoutListener{
             stopHandler();
             Topitup.stopTimers();
 
-            startActivity(new Intent(this, activity_main.class));
+           // startActivity(new Intent(this, activity_main.class));
 
         }if(activity_login.fromScreen.equals("supplier")){
         }else{
             fromVoucherSale = true;
             hideKeyboard();
-            startActivity(new Intent(this, activity_main.class));
+          //  startActivity(new Intent(this, activity_main.class));
 
             new Handler(Looper.getMainLooper()).postDelayed(() -> finishAffinity(), 500);
 
