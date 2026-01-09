@@ -109,7 +109,6 @@ import com.za.toptitup.loginlibrary.activity_ding;
 import com.za.toptitup.loginlibrary.activity_elec;
 import com.za.toptitup.loginlibrary.activity_invoice;
 import com.za.toptitup.loginlibrary.activity_login;
-import com.za.toptitup.loginlibrary.activity_main;
 
 
 public class Topitup extends Application implements LifecycleObserver {  // implements SwipeListener

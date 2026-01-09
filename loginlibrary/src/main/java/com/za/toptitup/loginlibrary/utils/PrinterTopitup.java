@@ -54,7 +54,6 @@ import sdk.PrintPicture;
 import sdk.PrinterCommand;
 import za.co.topitup.R;
 import com.za.toptitup.loginlibrary.activity_login;
-import com.za.toptitup.loginlibrary.activity_main;
 import com.za.toptitup.loginlibrary.bluetooth.BluetoothService;
 import zj.com.customize.sdk.Other;
 
