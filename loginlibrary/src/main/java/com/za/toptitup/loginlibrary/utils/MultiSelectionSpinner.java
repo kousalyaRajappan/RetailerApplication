@@ -214,6 +214,7 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements
         return true;
     }
 
+/*
     private void callApiUnselected(List<String> unselection) {
         ArrayList<Integer> idsList = new ArrayList<>();
 
@@ -249,12 +250,14 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements
             //int size = service_provider.size();
 
 
-            /*for (int k = 0;k<size;k++) {
+            */
+/*for (int k = 0;k<size;k++) {
                 Log.e("service","unselected..selected...k.         "+k);
                 int id = service_provider_settings.get(k).getProvider_id();
                 Log.e("ids unselected","........unselected......."+id);
                 idsList.add(id);
-            }*/
+            }*//*
+
         }
 
         String csv = idsList.toString().replace("[", "").replace("]", "");
@@ -315,6 +318,7 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements
 
 
     }
+*/
 
     @Override
     public void setAdapter(SpinnerAdapter adapter) {

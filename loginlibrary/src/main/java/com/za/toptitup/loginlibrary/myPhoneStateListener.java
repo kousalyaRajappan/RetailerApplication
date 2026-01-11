@@ -337,28 +337,19 @@ public class myPhoneStateListener extends PhoneStateListener {
 
         Log.e("signal strength","...........strength...."+signalStrength);
         if (signalStrength == 0) {
-            if(activity_login.fromScreen.equals("activity_main") ){
-                activity_main.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else  if(activity_login.fromScreen.equals("activity_login") ){
+             if(activity_login.fromScreen.equals("activity_login") ){
                 activity_login.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
 
             }
         }else{
             if (signalStrength > 90) {
-                if(activity_login.fromScreen.equals("activity_main") ){
-                    activity_main.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else  if(activity_login.fromScreen.equals("activity_login") ){
+              if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network.setImageDrawable(con.getDrawable(R.drawable.signal4));
 
                 }
 
             } else if (signalStrength > 70 && signalStrength < 90) {
-                if(activity_login.fromScreen.equals("activity_main") ){
-                    activity_main.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else  if(activity_login.fromScreen.equals("activity_login") ){
+                if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
 
                 }
@@ -366,10 +357,7 @@ public class myPhoneStateListener extends PhoneStateListener {
 
             }
             else if (signalStrength < 70 && signalStrength > 50) {
-                if(activity_login.fromScreen.equals("activity_main") ){
-                    activity_main.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else  if(activity_login.fromScreen.equals("activity_login") ){
+                 if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network.setImageDrawable(con.getDrawable(R.drawable.signal2));
 
                 }
@@ -377,10 +365,7 @@ public class myPhoneStateListener extends PhoneStateListener {
 
             }
             else if (signalStrength < 50) {
-                if(activity_login.fromScreen.equals("activity_main") ){
-                    activity_main.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else  if(activity_login.fromScreen.equals("activity_login") ){
+                 if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network.setImageDrawable(con.getDrawable(R.drawable.signal1));
 
                 }
@@ -393,10 +378,7 @@ public class myPhoneStateListener extends PhoneStateListener {
 
         Log.e("signal strength","...........strength...."+signalStrength);
         if (signalStrength == 0) {
-            if(activity_login.fromScreen.equals("activity_main") ){
-                activity_main.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-            }else  if(activity_login.fromScreen.equals("activity_login") ){
+          if(activity_login.fromScreen.equals("activity_login") ){
                 activity_login.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
 
             }
@@ -406,10 +388,7 @@ public class myPhoneStateListener extends PhoneStateListener {
             if (signalStrength > 90) {
                 Log.e("signal strength",".......2....else. 90..."+signalStrength);
 
-                if(activity_login.fromScreen.equals("activity_main") ){
-                    activity_main.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
-
-                }else  if(activity_login.fromScreen.equals("activity_login") ){
+             if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal4));
 
                 }
@@ -418,10 +397,7 @@ public class myPhoneStateListener extends PhoneStateListener {
             else if (signalStrength > 70 && signalStrength < 90) {
                 Log.e("signal strength","........2...else. 70..."+signalStrength);
 
-                if(activity_login.fromScreen.equals("activity_main") ){
-                    activity_main.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
-
-                }else  if(activity_login.fromScreen.equals("activity_login") ){
+               if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network.setImageDrawable(con.getDrawable(R.drawable.signal3));
 
                 }
@@ -430,11 +406,7 @@ public class myPhoneStateListener extends PhoneStateListener {
             }
             else if (signalStrength < 70 && signalStrength > 50) {
                 Log.e("signal strength",".....2......else. 50..."+signalStrength);
-
-                if(activity_login.fromScreen.equals("activity_main") ){
-                    activity_main.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
-
-                }else  if(activity_login.fromScreen.equals("activity_login") ){
+                      if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal2));
 
                 }
@@ -444,10 +416,7 @@ public class myPhoneStateListener extends PhoneStateListener {
             else if (signalStrength < 50) {
                 Log.e("signal strength","......2.....else. 40..."+signalStrength);
 
-                if(activity_login.fromScreen.equals("activity_main") ){
-                    activity_main.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
-
-                }else  if(activity_login.fromScreen.equals("activity_login") ){
+             if(activity_login.fromScreen.equals("activity_login") ){
                     activity_login.img_network2.setImageDrawable(con.getDrawable(R.drawable.signal1));
 
                 }

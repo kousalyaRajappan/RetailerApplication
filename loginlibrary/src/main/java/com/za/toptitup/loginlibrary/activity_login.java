@@ -73,7 +73,7 @@ import com.google.gson.JsonObject;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.XML;
+
 
 
 import java.io.IOException;
@@ -2113,7 +2113,8 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         if (res.contains("xml")) {
                             JSONObject jsonObj = null;
                             try {
-                                jsonObj = XML.toJSONObject(res);
+                              //  jsonObj = XML.toJSONObject(res);
+                                jsonObj = new JSONObject(res);
 
                                 if (res.contains("error")) {
                                     error_message = jsonObj.getJSONObject("error").getString("err");

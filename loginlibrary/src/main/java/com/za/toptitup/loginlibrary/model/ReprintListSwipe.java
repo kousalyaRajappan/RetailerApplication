@@ -40,7 +40,7 @@ public class ReprintListSwipe extends ArrayAdapter<MyItemSwipe> {
             holder.btn_description = convertView.findViewById(R.id.btn_description);
             holder.btn_date = convertView.findViewById(R.id.btn_date);
             holder.btn_user = convertView.findViewById(R.id.btn_user);
-            holder.uid = convertView.findViewById(R.id.uid);
+          //  holder.uid = convertView.findViewById(R.id.uid);
             holder.imageViewFlag = convertView.findViewById(R.id.imageViewFlag);
             holder.txnamount = convertView.findViewById(R.id.btn_txnamount);
             convertView.setTag(holder);

@@ -42,7 +42,7 @@ dependencies {
     //The android-app-updater libary
     implementation libs.androidappupdatelibrary
 
-    implementation "org.json:json:20240303"
+   // implementation "org.json:json:20240303"
 
     implementation libs.retrofit
     implementation libs.retrofit2.converter.gson
