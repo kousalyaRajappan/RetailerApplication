@@ -98,10 +98,10 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
     public static final String ACCOUNT_TYPE = "za.co.topitup";
     public static String checkServer = "";
 
-    public static String BASE_URL = "";
+    public static String BASE_URL = "http://tx1.topitup.co.za:25812/";
     public static String BASE_URL1 = "";
-    public static String BASE_URL_SYNC = "";
-    public static String BASE_URL_UPDATE = "";
+    public static String BASE_URL_SYNC = "http://sync.topitup.co.za:25815/";
+    public static String BASE_URL_UPDATE = "http://topitup.co.za/";
 
     public static String DEVICE_TYPE = "";
     public static int DEVICE_MODEL = 0;
