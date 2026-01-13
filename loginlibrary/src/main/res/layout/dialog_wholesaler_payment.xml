@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"/>
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <RelativeLayout
                 android:id="@+id/ll_amount_wrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -211,11 +211,20 @@
                             android:textSize="15dp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        android:id="@+id/txt_rand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/pad_10dp"
+                        android:text=""
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/pad_20dp"/>
 
                 </LinearLayout>
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </RelativeLayout>
 
             <!-- Button -->
             <Button

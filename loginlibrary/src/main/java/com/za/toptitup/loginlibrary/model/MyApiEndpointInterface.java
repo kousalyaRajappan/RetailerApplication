@@ -1221,5 +1221,14 @@ public interface MyApiEndpointInterface {
             @Header("license") String TIU_LICENSE,
             @Header("posuser") String POSUSER_ID
     );
-
+    @Headers({"ignore: 0", "device: android"})
+    @GET("addpay/suppliers/supplier-payment-final")
+    Call<WholesaleResponse> wholesalePayment(
+            @Query("supplier_id") String supplierId,
+            @Query("wallet") String wallet,
+            @Query("account_number") String account_number,
+            @Query("amount") String amount,
+            @Header("license") String TIU_LICENSE,
+            @Header("posuser") String POSUSER_ID
+    );
 }
