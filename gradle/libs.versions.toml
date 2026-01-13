@@ -1,5 +1,5 @@
 [versions]
-agp = "8.9.0"
+agp = "8.9.1"
 androidappupdatelibrary = "1.0.3"
 androidGifDrawable = "1.2.29"
 annotations = "4.16.0"

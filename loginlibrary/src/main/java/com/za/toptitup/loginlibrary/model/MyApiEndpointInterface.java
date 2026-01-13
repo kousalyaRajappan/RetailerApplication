@@ -1214,4 +1214,12 @@ public interface MyApiEndpointInterface {
             @Header("license") String TIU_LICENSE,
             @Query("deposit_note_id") String deposit_note_id
     );
+    @Headers({"ignore: 0", "device: android"})
+    @GET("addpay/suppliers/get-details")
+    Call<SupplierResponse> getSupplierDetails(
+            @Query("id") String supplierId,
+            @Header("license") String TIU_LICENSE,
+            @Header("posuser") String POSUSER_ID
+    );
+
 }
