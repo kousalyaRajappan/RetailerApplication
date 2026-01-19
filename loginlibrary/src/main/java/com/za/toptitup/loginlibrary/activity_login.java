@@ -745,11 +745,19 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                             return;
                         }
                         SupplierData supplier = response.body().getSupplier();
-                        if (supplier != null) {
-                            showWholesalerPaymentDialog(mContext, supplier, supplierId);
-                        }
+                        Log.e("log response", "response........" + supplier.getAddress1());
+
+//                        if (supplier != null) {
+
+
+                            showWholesalerPaymentDialog(activity_login.this, supplier, supplierId);
+
+//                        }else{
+//                            Toast.makeText(activity_login.this,"invalid supplier",Toast.LENGTH_SHORT).show();
+//                        }
 
                     } catch (Exception ex) {
+
                     }
                 }
             }
@@ -786,6 +794,73 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
             loadingDialog.dismiss();
         }
     }
+/*    public void showWholesalerPaymentDialog(Activity activity,
+                                            SupplierData supplier,
+                                            String supplierId) {
+
+//        if (activity.isFinishing() || activity.isDestroyed()) return;
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        View view = LayoutInflater.from(activity)
+                .inflate(R.layout.dialog_wholesaler_payment, null);
+
+        builder.setView(view);
+        AlertDialog dialog = builder.create();
+        dialog.setCancelable(false);
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(
+                    new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        // findViews
+        EditText etAccountNo = view.findViewById(R.id.etAccountNo);
+        AppCompatEditText amntEditText = view.findViewById(R.id.dialogEditText);
+        AppCompatEditText amntEditText_cent = view.findViewById(R.id.dialogEditText_cent);
+        Button btnConfirm = view.findViewById(R.id.btnConfirm);
+        ImageView imgClose = view.findViewById(R.id.imgClose);
+
+        // set data
+        ((TextView) view.findViewById(R.id.tvSupplierName))
+                .setText(supplier.getSupplierName());
+
+        imgClose.setOnClickListener(v -> dialog.dismiss());
+
+        btnConfirm.setOnClickListener(v -> {
+            String accountNo = etAccountNo.getText().toString().trim();
+
+            if (accountNo.isEmpty()) {
+                etAccountNo.setError("Enter account number");
+                return;
+            }
+
+            String rand = amntEditText.getText().toString();
+            String cent = amntEditText_cent.getText().toString();
+
+            if (rand.isEmpty()) {
+                amntEditText.setError("Enter amount");
+                return;
+            }
+
+            if (cent.isEmpty()) cent = "00";
+
+            double value = Double.parseDouble(rand + "." + cent);
+
+            DecimalFormat df = new DecimalFormat("0.00");
+            String wholeSaleAmount = df.format(value).replace(",", ".");
+
+            dialog.dismiss();
+            showLoading(activity);
+            doPayment(wholeSaleAmount, accountNo, supplierId);
+        });
+
+        dialog.show();
+
+        dialog.getWindow().setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+    }*/
 
     public void showWholesalerPaymentDialog(Context context, SupplierData supplier, String supplierId) {
 
@@ -817,8 +892,8 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         Button btnConfirm = view.findViewById(R.id.btnConfirm);
         ImageView imgClose = view.findViewById(R.id.imgClose);
         ImageView clearRand_Cents = view.findViewById(R.id.clearRand_Cents);
-        AppCompatEditText amntEditText = view.findViewById(R.id.dialogEditText);
-        AppCompatEditText amntEditText_cent = view.findViewById(R.id.dialogEditText_cent);
+        EditText amntEditText = view.findViewById(R.id.dialogEditText);
+        EditText amntEditText_cent = view.findViewById(R.id.dialogEditText_cent);
         // Set API data
         tvSupplierName.setText(supplier.getSupplierName());
         tvLegalName.setText("Legal Name: " + supplier.getLegalName());

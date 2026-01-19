@@ -115,113 +115,72 @@
                 android:visibility="visible">
 
 
-
                 <LinearLayout
-                    android:id="@+id/linearLayout5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:ignore="MissingConstraints">
+                    android:gravity="center_vertical">
 
+                    <!-- Clear -->
                     <ImageView
                         android:id="@+id/clearRand_Cents"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="18dp"
+                        android:layout_marginEnd="12dp"
                         android:src="@drawable/ic_delete"
-                        android:layout_gravity="center"/>
+                        android:contentDescription="Clear amount"/>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayout"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="80dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="0dp"
-                        android:layout_weight="0"
-                        app:boxStrokeColor="@color/blue"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView13"
-                        app:layout_constraintTop_toTopOf="parent">
+                    <!-- Rand -->
+                    <EditText
+                        android:id="@+id/dialogEditText"
+                        android:layout_width="120dp"
+                        android:layout_height="48dp"
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/dialogEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="53dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:hint="Rands  "
-                            android:imeOptions="actionDone"
-                            android:inputType="number"
-                            android:maxLength="4"
-                            android:text=""
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="15dp" />
+                        android:hint="Rand"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:gravity="center"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:background="@android:drawable/edit_text"
+                        android:textSize="15sp"
+                        android:importantForAccessibility="yes"/>
 
-                    </com.google.android.material.textfield.TextInputLayout>
-
+                    <!-- Dot -->
                     <TextView
-                        android:id="@+id/textView12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:gravity="center"
+                        android:layout_marginHorizontal="6dp"
                         android:text="."
-                        android:textColor="@color/black"
-                        android:textSize="35dp"
+                        android:textSize="32sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout"
-                        app:layout_constraintEnd_toStartOf="@+id/textInputLayout2"
-                        app:layout_constraintStart_toEndOf="@+id/textInputLayout"
-                        app:layout_constraintTop_toTopOf="@+id/textInputLayout" />
+                        android:importantForAccessibility="no"/>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayout2"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
+                    <!-- Cents -->
+                    <EditText
+                        android:id="@+id/dialogEditText_cent"
+                        android:layout_width="120dp"
+                        android:layout_height="48dp"
+                        android:hint="Cents"
+                        android:inputType="number"
+                        android:maxLength="2"
                         android:gravity="center"
-                        android:hint="Cents   "
-                        app:boxStrokeColor="@color/blue"
-                        app:hintEnabled="true"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView12"
-                        app:layout_constraintStart_toEndOf="@+id/textView12"
-                        app:layout_constraintTop_toTopOf="@+id/textView12">
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:background="@android:drawable/edit_text"
+                        android:textSize="15sp"
+                        android:importantForAccessibility="yes"/>
 
-                        <EditText
-                            android:id="@+id/dialogEditText_cent"
-                            android:layout_width="match_parent"
-                            android:layout_height="53dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:imeOptions="actionDone"
-                            android:inputType="number"
-                            android:maxLength="2"
-                            android:paddingStart="8dp"
-                            android:text=""
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/black"
-                            android:textSize="15dp" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
+                    <!-- Error -->
                     <TextView
                         android:id="@+id/txt_rand"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/pad_10dp"
-                        android:text=""
+                        android:layout_marginStart="8dp"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/pad_20dp"/>
-
+                        android:textSize="14sp"/>
                 </LinearLayout>
-
 
 
             </RelativeLayout>
