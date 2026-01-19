@@ -1197,24 +1197,9 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         rand_value_entered = "";
         amntEditText.addTextChangedListener(moneyTextWatcher);
         amntEditText_cent.addTextChangedListener(moneyTextWatcherCent);
-        amntEditText.setFocusableInTouchMode(true);
-        amntEditText_cent.setFocusableInTouchMode(true);
 
-        amntEditText_cent.setFocusable(true);
-        amntEditText_cent.setClickable(true);
-        /* Default focus on Rand */
         amntEditText.requestFocus();
-        amntEditText_cent.setOnClickListener(v ->
-                amntEditText_cent.requestFocusFromTouch()
-        );
-        /* Force focus when user clicks Cents */
-      /*  amntEditText_cent.setOnClickListener(v -> {
-            Log.e("focus", "focus on cent");
-//            amntEditText_cent.requestFocus();
-            amntEditText.clearFocus();
-            amntEditText_cent.requestFocusFromTouch();
 
-        });*/
 
         etAccountNo.setText(Topitup.ACCOUNT_NUMBER);
         clearRand_Cents.setOnClickListener(new View.OnClickListener() {
