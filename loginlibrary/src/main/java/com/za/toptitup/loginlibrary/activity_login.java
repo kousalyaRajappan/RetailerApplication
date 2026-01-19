@@ -1175,7 +1175,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
     private boolean checkPermission() {
 
-        int result = ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION);
+       // int result = ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION);
         int result1 = ContextCompat.checkSelfPermission(this, READ_EXTERNAL_STORAGE);
         int result2 = ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE);
         int result3 = ContextCompat.checkSelfPermission(this, READ_PHONE_STATE);
@@ -1183,7 +1183,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
 
 
-        return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED;
+        return  result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED;
     }
 
     //To request permissions
