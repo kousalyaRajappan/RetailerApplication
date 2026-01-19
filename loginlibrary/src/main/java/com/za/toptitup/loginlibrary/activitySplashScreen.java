@@ -170,9 +170,9 @@ public class activitySplashScreen extends AppCompatActivity {
                 if (checkPermission()) {
                     ///method to get Images
                     getAddslogin();
-                } else {
+                } /*else {
                     requestPermission();
-                }
+                }*/
                 //  displayAddDialog();
 
             }

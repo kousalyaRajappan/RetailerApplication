@@ -522,15 +522,15 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
                 }
 
-            } else {
+            } /*else {
                 requestPermission();
-            }
+            }*/
 
-            if (this.checkSelfPermission(ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && this.checkSelfPermission(READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+         /*   if (this.checkSelfPermission(ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && this.checkSelfPermission(READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
 
             } else {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE}, REQUEST_EXTERNALRESULT);
-            }
+            }*/
 
 
         }
@@ -1174,12 +1174,13 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     }*/
 
     private boolean checkPermission() {
-        int result4 = ContextCompat.checkSelfPermission(this, CAMERA);
 
         int result = ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION);
         int result1 = ContextCompat.checkSelfPermission(this, READ_EXTERNAL_STORAGE);
         int result2 = ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE);
         int result3 = ContextCompat.checkSelfPermission(this, READ_PHONE_STATE);
+        int result4 = ContextCompat.checkSelfPermission(this, CAMERA);
+
 
 
         return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED;
