@@ -138,7 +138,6 @@
                         android:id="@+id/dialogEditText"
                         android:layout_width="120dp"
                         android:layout_height="48dp"
-
                         android:hint="Rand"
                         android:inputType="number"
                         android:maxLength="6"
@@ -147,7 +146,7 @@
                         android:focusableInTouchMode="true"
                         android:background="@android:drawable/edit_text"
                         android:textSize="15sp"
-                        android:importantForAccessibility="yes"/>
+                      />
 
                     <!-- Dot -->
                     <TextView
@@ -172,7 +171,7 @@
                         android:focusableInTouchMode="true"
                         android:background="@android:drawable/edit_text"
                         android:textSize="15sp"
-                        android:importantForAccessibility="yes"/>
+                       />
 
                     <!-- Error -->
                     <TextView

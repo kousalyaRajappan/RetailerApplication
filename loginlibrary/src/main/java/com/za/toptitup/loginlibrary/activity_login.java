@@ -6,6 +6,7 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.content.Intent.ACTION_BATTERY_CHANGED;
+import static android.view.View.VISIBLE;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -41,6 +42,7 @@ import android.text.Html;
 import android.text.TextWatcher;
 import android.text.method.TransformationMethod;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -130,6 +132,11 @@ import com.za.toptitup.loginlibrary.utils.WordsConert;
 //SwipeListener
 public class activity_login extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
     public static final int USER_PIN_MAX_CHAR = 4;
+    EditText otp1, otp2, otp3, otp4;
+    private String pinEntered = "";
+
+    boolean isFromElse = false;
+
 
     //public static final String PREFS_NAME = "AssetForcePrefsFile";
     private static final int REQUEST_EXTERNALRESULT = 100;
@@ -258,6 +265,8 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     private Runnable runnablescreensaver;
     private String cslip, mslip;
     private BroadcastReceiver mReceiver = null;
+    private TextView txt_error;
+    private Dialog dialog_active;
 
     public static int pxToDp(int px) {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
@@ -642,39 +651,318 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     }
 
     private void showPinDialog() {
-        Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_enter_pin);
-        dialog.setCancelable(false);
+        dialog_active = new Dialog(this);
+        dialog_active.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog_active.setContentView(R.layout.dialog_enter_pin);
+        dialog_active.setCancelable(false);
+/*
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog_active.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;*/
+        otp1 = dialog_active.findViewById(R.id.otp1);
+        otp2 = dialog_active.findViewById(R.id.otp2);
+        otp3 = dialog_active.findViewById(R.id.otp3);
+        otp4 = dialog_active.findViewById(R.id.otp4);
+        TextView txt_ok = dialog_active.findViewById(R.id.txt_ok);
+        TextView txt_title = dialog_active.findViewById(R.id.txt_title);
 
-        EditText etPin = dialog.findViewById(R.id.etPin);
-        Button btnSubmit = dialog.findViewById(R.id.btnSubmit);
-        Button btnCancel = dialog.findViewById(R.id.btnCancel);
+        txt_error = dialog_active.findViewById(R.id.txt_error);
 
-        btnSubmit.setOnClickListener(v -> {
-            enteredPinQR = etPin.getText().toString().trim();
+        txt_title.setText("Welcome back " + Topitup.POSUSER_NAME.replaceAll("\\s.*", ""));
 
-            if (enteredPinQR.length() != 4) {
-                etPin.setError("Enter 4-digit PIN");
-                return;
+        // Show the dialog first
+        dialog_active.show();
+
+        // Now request focus and show keyboard after dialog is visible
+        otp1.requestFocus();
+        otp2.setFocusable(false);
+        otp2.setClickable(false);
+
+        otp3.setFocusable(false);
+        otp3.setClickable(false);
+
+        otp4.setFocusable(false);
+        otp4.setClickable(false);
+
+        // Delay showing the keyboard to ensure the dialog is open
+        otp1.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+            }
+        }, 200);  // 200ms delay
+
+        setotpinput();
+
+
+//        dialog.show();
+    }
+    private void setotpinput() {
+        otp1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
-            if (isPinCorrect(enteredPinQR)) {
-                dialog.dismiss();
-                openQrScanner();
-            } else {
-                etPin.setError("Invalid PIN");
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().trim().isEmpty()) {
+                    otp2.setFocusableInTouchMode(true);
+                    otp2.requestFocus();
+//                    otp2.setEnabled(true);
+                    isFromElse = false;
+                    otp1.setBackground(getResources().getDrawable(R.drawable.dot_red));
+                    pinEntered = otp1.getText().toString() + otp2.getText().toString() + otp3.getText().toString() + otp4.getText().toString();
+                    if (pinEntered.length() >= 4) {
+                        activateDismissDialog();
+                    }
+                } else {
+                    otp1.setBackground(getResources().getDrawable(R.drawable.dot_white));
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        otp2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                Log.e("otp", "before text");
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.e("otp", "onText text");
+                if (!s.toString().trim().isEmpty()) {
+                    isFromElse = false;
+                    otp3.setFocusableInTouchMode(true);
+                    otp3.requestFocus();
+//                    otp3.setEnabled(true);
+                    otp2.setBackground(getResources().getDrawable(R.drawable.dot_red));
+                    pinEntered = otp1.getText().toString() + otp2.getText().toString() + otp3.getText().toString() + otp4.getText().toString();
+                    if (pinEntered.length() >= 4) {
+                        activateDismissDialog();
+                    }
+                } else {
+                    otp2.setBackground(getResources().getDrawable(R.drawable.dot_white));
+                    otp1.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Log.e("otp", "after text");
+
+            }
+        });
+        otp3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().trim().isEmpty()) {
+                    isFromElse = false;
+
+                    otp3.setBackground(getResources().getDrawable(R.drawable.dot_red));
+
+//                    otp4.setEnabled(true);
+                    otp4.setFocusableInTouchMode(true);
+                    otp4.requestFocus();
+                    pinEntered = otp1.getText().toString() + otp2.getText().toString() + otp3.getText().toString() + otp4.getText().toString();
+                    if (pinEntered.length() >= 4) {
+                        activateDismissDialog();
+                    }
+                } else {
+                    otp3.setBackground(getResources().getDrawable(R.drawable.dot_white));
+
+                    otp2.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        otp4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().trim().isEmpty()) {
+                    isFromElse = true;
+                    otp4.setBackground(getResources().getDrawable(R.drawable.dot_red));
+                    pinEntered = otp1.getText().toString() + otp2.getText().toString() + otp3.getText().toString() + otp4.getText().toString();
+                    if (pinEntered.length() >= 4) {
+                        activateDismissDialog();
+                    }
+
+                } else {
+                    otp3.requestFocus();
+                    otp4.setBackground(getResources().getDrawable(R.drawable.dot_white));
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        otp1.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                Log.e("key event", "otp1..." + isFromElse);
+                if (i == KeyEvent.KEYCODE_DEL && i == KeyEvent.ACTION_DOWN) {
+
+                    if (otp1.getText().toString().equals("")) {
+                        if (!isFromElse) {
+
+                            otp1.setText("");
+                            otp1.requestFocus();
+                        } else {
+                            isFromElse = false;
+
+                        }
+                    } else {
+
+                        otp1.setText("");
+                        otp1.requestFocus();
+                    }
+
+                }
+                return false;
+            }
+        });
+        otp2.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                Log.e("key event", "otp2..." + isFromElse);
+                if (i == KeyEvent.KEYCODE_DEL) {
+
+                    if (otp2.getText().toString().equals("")) {
+                        if (!isFromElse) {
+                            isFromElse = true;
+                            otp1.setText("");
+                            otp1.requestFocus();
+                        } else {
+                            isFromElse = false;
+
+                        }
+                    } else {
+
+                        otp2.setText("");
+                        otp2.requestFocus();
+                    }
+
+                }
+                return false;
+            }
+        });
+        otp3.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                Log.e("key event", "otp3..." + isFromElse);
+                if (i == KeyEvent.KEYCODE_DEL) {
+
+                    if (otp3.getText().toString().equals("")) {
+                        if (!isFromElse) {
+                            isFromElse = true;
+                            otp2.setText("");
+                            otp2.requestFocus();
+                        } else {
+                            isFromElse = false;
+
+                        }
+                    } else {
+                        isFromElse = false;
+
+                        otp3.setText("");
+                        otp3.requestFocus();
+                    }
+
+                }
+                return false;
+            }
+        });
+        otp4.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                Log.e("key event", "otp4...");
+                if (i == KeyEvent.KEYCODE_DEL) {
+                    Log.e("key event", "otp4.1111.." + isFromElse);
+
+                    if (otp4.getText().toString().equals("")) {
+                        if (!isFromElse) {
+                            isFromElse = true;
+                            otp3.setText("");
+                            otp3.requestFocus();
+                        }
+
+                    } else {
+                        isFromElse = false;
+                        otp4.setText("");
+                        otp4.requestFocus();
+                    }
+
+                }
+                return false;
             }
         });
 
-        btnCancel.setOnClickListener(v -> dialog.dismiss());
 
-
-        // ✅ Focus on PIN field
-        etPin.requestFocus();
-        dialog.show();
     }
+    private void activateDismissDialog() {
+        pinEntered = otp1.getText().toString() + otp2.getText().toString() + otp3.getText().toString() + otp4.getText().toString();
+        pos_users pos_users = realm.where(pos_users.class).equalTo("posuser_pin", pinEntered).equalTo("posuser_status", 1).findFirst();
 
+        if (null == pos_users) {
+
+            otp1.setText("");
+            otp2.setText("");
+            otp3.setText("");
+            otp4.setText("");
+
+            otp1.requestFocus();
+            txt_error.setVisibility(VISIBLE);
+            if (txt_error.getVisibility() == VISIBLE) {
+                otp1.requestFocus();
+                otp2.setFocusable(false);
+                otp2.setClickable(false);
+
+                otp3.setFocusable(false);
+                otp3.setClickable(false);
+
+                otp4.setFocusable(false);
+                otp4.setClickable(false);
+            }
+
+        } else {
+            txt_error.setVisibility(View.GONE);
+            BaseActivity.fromVoucherSale = false;
+            ((Topitup) getApplication()).startUserSessionForActive();
+
+            Topitup.POSUSER_ID = String.valueOf(pos_users.posuser_id);
+            Topitup.IS_ADMIN = String.valueOf(pos_users.posuser_isadmin);
+            Topitup.POSUSER_NAME = pos_users.posuser_firstname + " " + pos_users.posuser_surname;
+            openQrScanner();
+           /* is_admin = String.valueOf(pos_users.posuser_isadmin);
+            setUserNameAndDesignation();
+            updateBalance(String.valueOf(pos_users.posuser_isadmin));*/
+            dialog_active.dismiss();
+        }
+    }
     private void openQrScanner() {
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);

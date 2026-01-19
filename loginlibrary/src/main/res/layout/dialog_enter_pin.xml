@@ -1,90 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="24dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="8dp"
-    app:cardUseCompatPadding="true">
+    android:background="@color/white"
+    android:orientation="vertical">
+    <TextView
+        android:layout_marginTop="@dimen/margin20"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/txt_title"
+        android:textColor="@color/color_teal"
+        android:textSize="25dp"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin20"
+
+        android:layout_below="@+id/txt_title"
         android:orientation="vertical"
-        android:padding="24dp">
-
-        <!-- Title -->
+        android:id="@+id/ll_pin"
+        android:layout_marginTop="@dimen/margin20"
+        android:visibility="visible"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <TextView
-            android:text="Enter Passcode"
-            android:textSize="20sp"
+
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20dp"
             android:textStyle="bold"
-            android:textColor="@android:color/black"
+            android:textColor="@color/black"
+            android:text="Enter Your PIN"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <!-- Subtitle -->
-        <TextView
-            android:text="Please enter your 4-digit Pos User ID"
-            android:textSize="14sp"
-            android:textColor="#666666"
-            android:layout_marginTop="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <!-- PIN Input -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusTopStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:passwordToggleEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="● ● ● ●"
-                android:inputType="numberPassword"
-                android:maxLength="4"
-                android:textAlignment="center"
-                android:textSize="22sp"
-                android:letterSpacing="0.3" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Buttons -->
+            android:layout_height="wrap_content"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="end"
-            android:layout_marginTop="24dp">
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <Button
-                android:background="@drawable/btn_red_curved"
-                android:id="@+id/btnCancel"
-                android:text="Cancel"
-                android:textColor="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/otp1"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:background="@drawable/dot_white"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:cursorVisible="false"
+                android:maxLength="1"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/light_gray"
+                android:textColorLink="@color/grey_40"
+                android:textSize="0dp"
+                android:textStyle="bold" />
 
-            <Button
-                android:background="@drawable/back_green"
-                android:textColor="@color/white"
-                android:id="@+id/btnSubmit"
-                android:text="Submit"
-                android:layout_marginStart="12dp"
-                style="?attr/materialButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/otp2"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:background="@drawable/dot_white"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:cursorVisible="false"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/gray_light"
+                android:textColorLink="@color/grey_40"
+                android:textSize="0dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/otp3"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:background="@drawable/dot_white"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/black"
+                android:cursorVisible="false"
+
+                android:textColorHighlight="@color/gray_light"
+                android:textColorLink="@color/grey_40"
+                android:textSize="0dp"
+
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/otp4"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:background="@drawable/dot_white"
+                android:gravity="center"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/light_gray"
+                android:textColorLink="@color/grey_40"
+                android:cursorVisible="false"
+
+                android:textSize="0dp"
+                android:textStyle="bold" />
+
+
         </LinearLayout>
-
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/txt_error"
+            android:textColor="@color/red"
+            android:textSize="20dp"
+            android:layout_marginTop="@dimen/margin10"
+            android:layout_gravity="center_horizontal"
+            android:text="Invalid PIN #"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+
+
+    <TextView
+
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ll_pin"
+        android:layout_marginBottom="@dimen/margin10"
+        android:background="@drawable/edit_bg_blue"
+        android:id="@+id/txt_ok"
+        android:layout_marginTop="@dimen/pad_5dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="Confirm"
+        android:textSize="20dp"
+        android:visibility="gone"
+
+        android:textColor="@color/white"
+        android:layout_width="120dp"
+        android:layout_height="50dp"/>
+
+
+</RelativeLayout>
