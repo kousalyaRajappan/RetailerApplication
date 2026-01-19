@@ -170,9 +170,9 @@ public class activitySplashScreen extends AppCompatActivity {
                 if (checkPermission()) {
                     ///method to get Images
                     getAddslogin();
-                } /*else {
+                } else {
                     requestPermission();
-                }*/
+                }
                 //  displayAddDialog();
 
             }
@@ -183,7 +183,7 @@ public class activitySplashScreen extends AppCompatActivity {
 
     private void requestPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{ACCESS_COARSE_LOCATION, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, READ_PHONE_STATE, CAMERA}, REQUEST_EXTERNALRESULT);
+            requestPermissions(new String[]{READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, READ_PHONE_STATE, CAMERA}, REQUEST_EXTERNALRESULT);
         }
     }
 

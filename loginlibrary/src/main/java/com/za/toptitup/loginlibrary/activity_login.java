@@ -522,9 +522,9 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
                 }
 
-            } /*else {
+            } else {
                 requestPermission();
-            }*/
+            }
 
          /*   if (this.checkSelfPermission(ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && this.checkSelfPermission(READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
 
@@ -1189,7 +1189,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     //To request permissions
     private void requestPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{ACCESS_COARSE_LOCATION, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, READ_PHONE_STATE, CAMERA}, REQUEST_EXTERNALRESULT);
+            requestPermissions(new String[]{ READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, READ_PHONE_STATE, CAMERA}, REQUEST_EXTERNALRESULT);
         }
     }
 
