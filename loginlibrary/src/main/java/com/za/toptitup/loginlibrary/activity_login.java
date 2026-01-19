@@ -6,6 +6,7 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.content.Intent.ACTION_BATTERY_CHANGED;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -14,6 +15,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -80,6 +82,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import androidx.appcompat.widget.AppCompatEditText;
+
 import com.google.gson.JsonObject;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -183,7 +186,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     String asset_serial = "NA";
     String merchant_no = "NA";
     String terminal_no = "NA";
-    ImageView activity_login_admin,img_gif_local;
+    ImageView activity_login_admin, img_gif_local;
     WebView img_gif;
     View view21;
     LinearLayout ll_message, ll_banking_detail, ll_activation, ll_calculator;
@@ -502,15 +505,15 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                     img_gif_.setImageDrawable(getDrawable(R.drawable.login_advertisement));
 
                 } else {
-                    if(get_adv_data.equals("local")){
-                       img_gif.setVisibility(View.GONE);
+                    if (get_adv_data.equals("local")) {
+                        img_gif.setVisibility(View.GONE);
                         img_gif_local.setVisibility(View.VISIBLE);
                         img_gif_local.setImageDrawable(getDrawable(R.drawable.global_1687363966_st));
 
                        /* String imagePath = "file:///android_res/drawable/global_1687363966_st.gif";
                         String html = "<html><body style='margin:0; padding:0;'><img src=\"" + imagePath + "\" style='width:100; height:200;'/></body></html>";
                         img_gif.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);*/
-                    }else{
+                    } else {
                         img_gif.setVisibility(View.VISIBLE);
                         img_gif_local.setVisibility(View.GONE);
                         img_gif.loadDataWithBaseURL("file:///android_asset/", get_adv_data, "text/html", "UTF-8", null);
@@ -606,7 +609,8 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 }
             }
         });
-      */  ll_activation.setOnClickListener(new View.OnClickListener() {
+      */
+        ll_activation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!Topitup.TIU_LICENSE.equals("")) {
@@ -636,6 +640,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         });
 
     }
+
     private void showPinDialog() {
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -669,6 +674,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         etPin.requestFocus();
         dialog.show();
     }
+
     private void openQrScanner() {
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
@@ -678,13 +684,14 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         integrator.setOrientationLocked(true);
         integrator.initiateScan();
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
         if (result != null && result.getContents() != null) {
             String qrData = result.getContents();
-            Log.e("data response","data..qr..."+qrData);
+            Log.e("data response", "data..qr..." + qrData);
 
 //            String qrData = result.getContents();
 
@@ -707,7 +714,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
     private void getSupplierDetails(String supplierId) {
 
-        Call<SupplierResponse> call = apiService.getSupplierDetails(supplierId,Topitup.TIU_LICENSE,Topitup.POSUSER_ID);
+        Call<SupplierResponse> call = apiService.getSupplierDetails(supplierId, Topitup.TIU_LICENSE, Topitup.POSUSER_ID);
         call.enqueue(new Callback<SupplierResponse>() {
             @Override
             public void onResponse(Call<SupplierResponse> call, Response<SupplierResponse> response) {
@@ -725,7 +732,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
                         SupplierResponse apiResponse = response.body();
 
-                        Log.e("log response","response........"+apiResponse.getStatus());
+                        Log.e("log response", "response........" + apiResponse.getStatus());
                         if (!"success".equalsIgnoreCase(apiResponse.getStatus())) {
 
                             Toasty.error(
@@ -739,7 +746,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         }
                         SupplierData supplier = response.body().getSupplier();
                         if (supplier != null) {
-                            showWholesalerPaymentDialog(mContext, supplier,supplierId);
+                            showWholesalerPaymentDialog(mContext, supplier, supplierId);
                         }
 
                     } catch (Exception ex) {
@@ -753,6 +760,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         });
 
     }
+
     private void showLoading(Context context) {
         if (loadingDialog != null && loadingDialog.isShowing()) return;
 
@@ -778,7 +786,8 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
             loadingDialog.dismiss();
         }
     }
-    public void showWholesalerPaymentDialog(Context context,SupplierData supplier,String supplierId) {
+
+    public void showWholesalerPaymentDialog(Context context, SupplierData supplier, String supplierId) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -813,7 +822,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         // Set API data
         tvSupplierName.setText(supplier.getSupplierName());
         tvLegalName.setText("Legal Name: " + supplier.getLegalName());
-        tvAddress.setText("Address: " + supplier.getAddress1()+","+supplier.getCity());
+        tvAddress.setText("Address: " + supplier.getAddress1() + "," + supplier.getCity());
         tvPhone.setText("Phone: " + supplier.getPhone());
         moneyTextWatcher = new MoneyTextWatcherRand(amntEditText);
         moneyTextWatcherCent = new MoneyTextWatcherCent(amntEditText_cent);
@@ -825,7 +834,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         clearRand_Cents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!amntEditText.getText().toString().isEmpty() || !amntEditText_cent.getText().toString().isEmpty()){
+                if (!amntEditText.getText().toString().isEmpty() || !amntEditText_cent.getText().toString().isEmpty()) {
                     amntEditText.setText("");
                     amntEditText_cent.setText("");
                     amntEditText_cent.clearFocus();
@@ -860,9 +869,9 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
 //            value = round(value * 100);
 
-            Log.e("whole sale amount",value+"...value......."+wholeSaleAmount);
+            Log.e("whole sale amount", value + "...value......." + wholeSaleAmount);
             showLoading(activity_login.this);
-            doPayment(wholeSaleAmount,accountNo,supplierId);
+            doPayment(wholeSaleAmount, accountNo, supplierId);
             // TODO: Payment logic here
 
 
@@ -878,7 +887,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     }
 
     private void doPayment(String wholeSaleAmount, String accountNo, String supplierId) {
-        Call<WholesaleResponse> call = apiService.wholesalePayment(supplierId,"1",accountNo,wholeSaleAmount,Topitup.TIU_LICENSE,Topitup.POSUSER_ID);
+        Call<WholesaleResponse> call = apiService.wholesalePayment(supplierId, "1", accountNo, wholeSaleAmount, Topitup.TIU_LICENSE, Topitup.POSUSER_ID);
         call.enqueue(new Callback<WholesaleResponse>() {
             @Override
             public void onResponse(Call<WholesaleResponse> call, Response<WholesaleResponse> response) {
@@ -897,7 +906,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
                         WholesaleResponse apiResponse = response.body();
 
-                        Log.e("log response","response........"+apiResponse.getStatus());
+                        Log.e("log response", "response........" + apiResponse.getStatus());
                         if (!"COMPLETED".equalsIgnoreCase(apiResponse.getStatus())) {
 
                             Toasty.error(
@@ -908,7 +917,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                                     Toast.LENGTH_LONG
                             ).show();
                             return;
-                        }else{
+                        } else {
                             Toast.makeText(
                                     mContext,
                                     apiResponse.getMessage() != null
@@ -922,7 +931,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                     } catch (Exception ex) {
                         hideLoading();
                     }
-                }else {
+                } else {
                     hideLoading();
                 }
             }
@@ -933,6 +942,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
             }
         });
     }
+
     public class MoneyTextWatcherCent implements TextWatcher {
         private final WeakReference<EditText> editTextWeakReference;
 
@@ -957,7 +967,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                     }
                 } else {
                     final long number = Long.parseLong(s.toString());
-                    Log.e("electricity","text watcher cent"+s.toString());
+                    Log.e("electricity", "text watcher cent" + s.toString());
 
                     cent_value_entered = WordsConert.convert(number);
                     if (rand_value_entered.equals("")) {
@@ -1028,6 +1038,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
         }
     }
+
     private boolean isPinCorrect(String pin) {
 //        SharedPreferences prefs = getSharedPreferences("SECURITY", MODE_PRIVATE);
 //        String savedPin = prefs.getString("USER_PIN", "");
@@ -1123,14 +1134,14 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         }
                         //  getAddslogin();
 
-                        if(get_adv_data.equals("local")){
+                        if (get_adv_data.equals("local")) {
                             img_gif.setVisibility(View.GONE);
                             img_gif_local.setVisibility(View.VISIBLE);
                             img_gif_local.setImageDrawable(getDrawable(R.drawable.global_1687363966_st));
                           /*  String imagePath = "file:///android_res/drawable/global_1687363966_st.gif";
                             String html = "<html><body style='margin:0; padding:0;'><img src=\"" + imagePath + "\" style='width:100%; height:auto;'/></body></html>";
                             img_gif.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);*/
-                        }else{
+                        } else {
                             img_gif.setVisibility(View.VISIBLE);
                             img_gif_local.setVisibility(View.GONE);
 
@@ -1169,8 +1180,6 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         }
         return app_installed;
     }
-
-
 
 
     private void getNotice_login() {
@@ -2061,8 +2070,6 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         }
 
 
-
-
         String license_pin = settings.getString("device_licence_pin", "");
         String device_id = settings.getString("device_id", "");
         final String SERVERSHARED = settings.getString("TIU_SERVER", "LIVE");
@@ -2177,16 +2184,16 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 txt_license_e.setVisibility(View.VISIBLE);
 
             } else {*/
-                if (Topitup.DEVICE_TYPE.equals("WPOS") ||Topitup.DEVICE_TYPE.equals("Q1")) {
-                    device_live.setVisibility(View.VISIBLE);
-                    device_demo.setVisibility(View.GONE);
-                }else{
-                    device_live.setVisibility(View.GONE);
-                    device_demo.setVisibility(View.VISIBLE);
-                }
+            if (Topitup.DEVICE_TYPE.equals("WPOS") || Topitup.DEVICE_TYPE.equals("Q1")) {
+                device_live.setVisibility(View.VISIBLE);
+                device_demo.setVisibility(View.GONE);
+            } else {
+                device_live.setVisibility(View.GONE);
+                device_demo.setVisibility(View.VISIBLE);
+            }
 
-                txt_license.setVisibility(View.VISIBLE);
-                txt_license_e.setVisibility(View.VISIBLE);
+            txt_license.setVisibility(View.VISIBLE);
+            txt_license_e.setVisibility(View.VISIBLE);
 //            }
 
 
@@ -2276,7 +2283,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finishAffinity();
-                Intent mStartActivity = new Intent(activity_login.this,  com.za.toptitup.loginlibrary.activitySplashScreen.class);
+                Intent mStartActivity = new Intent(activity_login.this, com.za.toptitup.loginlibrary.activitySplashScreen.class);
                 int mPendingIntentId = 123456;
                 PendingIntent mPendingIntent = PendingIntent.getActivity(activity_login.this, mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
                 AlarmManager mgr = (AlarmManager) activity_login.this.getSystemService(Context.ALARM_SERVICE);
@@ -2563,7 +2570,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         if (res.contains("xml")) {
                             JSONObject jsonObj = null;
                             try {
-                              //  jsonObj = XML.toJSONObject(res);
+                                //  jsonObj = XML.toJSONObject(res);
                                 jsonObj = new JSONObject(res);
 
                                 if (res.contains("error")) {
@@ -2989,41 +2996,41 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mOneButton.getText();
             }
-        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.two_button) {
+        } else if (vIn.getId() == com.za.toptitup.loginlibrary.R.id.two_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mTwoButton.getText();
             }
-        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.three_button) {
+        } else if (vIn.getId() == com.za.toptitup.loginlibrary.R.id.three_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mThreeButton.getText();
             }
-        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.four_button) {
+        } else if (vIn.getId() == com.za.toptitup.loginlibrary.R.id.four_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mFourButton.getText();
             }
-        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.five_button) {
+        } else if (vIn.getId() == com.za.toptitup.loginlibrary.R.id.five_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mFiveButton.getText();
             }
-        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.six_button) {
+        } else if (vIn.getId() == com.za.toptitup.loginlibrary.R.id.six_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mSixButton.getText();
             }
-        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.seven_button) {
+        } else if (vIn.getId() == com.za.toptitup.loginlibrary.R.id.seven_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mSevenButton.getText();
             }
-        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.eight_button) {
+        } else if (vIn.getId() == com.za.toptitup.loginlibrary.R.id.eight_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mEightButton.getText();
             }
-        } else if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.nine_button) {
+        } else if (vIn.getId() == com.za.toptitup.loginlibrary.R.id.nine_button) {
             if (this.accessCode.length() < USER_PIN_MAX_CHAR) {
                 accessCode += this.mNineButton.getText();
             }
         }
 
-        Log.e("access code","access.........."+accessCode);
+        Log.e("access code", "access.........." + accessCode);
         if (accessCode.length() == 1) {
             txt_invalid.setVisibility(View.GONE);
             clearButton.setVisibility(View.VISIBLE);
@@ -3111,7 +3118,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
             SharedPreferences.Editor editor = settings.edit();
             editor.putString("loginPin", accessCode);
             editor.commit();
-            Log.e("access code",user+"access.........."+accessCode);
+            Log.e("access code", user + "access.........." + accessCode);
 
             checkLogin(this.accessCode);
 
@@ -3162,15 +3169,15 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
 //                toggleNumberColor(vIn, eventIn);
 //                break;
         }*/
-        if (vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.one_button ||
-                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.two_button ||
-                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.three_button ||
-                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.four_button ||
-                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.five_button ||
-                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.six_button ||
-                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.seven_button ||
-                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.eight_button ||
-                vIn.getId() ==  com.za.toptitup.loginlibrary.R.id.nine_button) {
+        if (vIn.getId() == com.za.toptitup.loginlibrary.R.id.one_button ||
+                vIn.getId() == com.za.toptitup.loginlibrary.R.id.two_button ||
+                vIn.getId() == com.za.toptitup.loginlibrary.R.id.three_button ||
+                vIn.getId() == com.za.toptitup.loginlibrary.R.id.four_button ||
+                vIn.getId() == com.za.toptitup.loginlibrary.R.id.five_button ||
+                vIn.getId() == com.za.toptitup.loginlibrary.R.id.six_button ||
+                vIn.getId() == com.za.toptitup.loginlibrary.R.id.seven_button ||
+                vIn.getId() == com.za.toptitup.loginlibrary.R.id.eight_button ||
+                vIn.getId() == com.za.toptitup.loginlibrary.R.id.nine_button) {
             toggleNumberColor(vIn, eventIn);
         }
 
@@ -3224,17 +3231,15 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
             keyPadLockedFlag = false;
             get_swipe_realtime();
 
-        /*    new Handler().postDelayed(new Runnable() {
+            new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     mLoginProgress.setVisibility(View.GONE);
                 }
-            },500);*/
-     /*       Intent i = new Intent(activity_login.this, activity_main.class);
-            // i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);*/
-            //
+            }, 500);
+            openAppWebView(activity_login.this);
 
+            //
 
         }
     }
@@ -3285,7 +3290,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
             @Override
             public void onFailure(Call<List<pos_users>> call, Throwable t) {
 
-                Log.e("error","............"+t.getMessage());
+                Log.e("error", "............" + t.getMessage());
                 dialog.dismiss();
                 //Timber.i("SPLASH " +  t.getMessage());
                 //Toasty.error(mContext, t.getMessage(), 8000, true).show();
@@ -3553,9 +3558,10 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
 //        // TODO Auto-generated method stub
 //
 //    }
-////
-////
-////
+
+    /// /
+    /// /
+    /// /
 //    @Override
 //    public void onParseData(SwipeEvent event) {
 //
@@ -3614,7 +3620,6 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
 //            }
 //        });
 //    }
-
     @Override
     protected void onResume() {
         //Log.d(TAG, "activity onResume");
@@ -3766,7 +3771,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
         btn_customer_copy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  PrinterTopitup.print_data(cslip);
+                //  PrinterTopitup.print_data(cslip);
                 try {
                     if (isRunning)
                         cntdwnTimer.cancel();
@@ -3802,7 +3807,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
         btn_merchant_copy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             //   PrinterTopitup.print_data(mslip);
+                //   PrinterTopitup.print_data(mslip);
                 try {
                     if (isRunning)
                         cntdwnTimer.cancel();
@@ -3851,7 +3856,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
 
     private void printslip() {
 
-       // PrinterTopitup.print_data(cslip);
+        // PrinterTopitup.print_data(cslip);
 
         showCustomDialog("Printing", "Printing Merchant Copy!!!", false);
         try {
@@ -4054,7 +4059,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
                             st_status = "0";
                         }
 
-                        Log.e("st_status","login screen"+st_status);
+                        Log.e("st_status", "login screen" + st_status);
 
                         Topitup.ENABLE_COMMISSION = enable_commission;
                         Topitup.ONE_MAX_THRESHOLD = one_max_value;
@@ -4200,27 +4205,28 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
         }
 
     }
-/*
-    public void hideKeyboard() {
-        try {
+
+    /*
+        public void hideKeyboard() {
+            try {
 
 
-            InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-            //Find the currently focused view, so we can grab the correct window token from it.
-            View view = getCurrentFocus();
-            //If no view currently has focus, create a new one, just so we can grab a window token from it
-            if (view == null) {
-                view = new View(this);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                //Find the currently focused view, so we can grab the correct window token from it.
+                View view = getCurrentFocus();
+                //If no view currently has focus, create a new one, just so we can grab a window token from it
+                if (view == null) {
+                    view = new View(this);
+                }
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                imm.toggleSoftInput(InputMethodManager.RESULT_HIDDEN, 0);
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
             }
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            imm.toggleSoftInput(InputMethodManager.RESULT_HIDDEN, 0);
-            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+            catch (Exception var2) {
+            }
 
-        }
-        catch (Exception var2) {
-        }
-
-       */
+           */
 /* InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
 //        InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -4234,5 +4240,24 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
 
     }
 */
+    private void openAppWebView(Context context) {
+        try {
+            Intent intent = new Intent();
+            intent.setComponent(
+                    new ComponentName(
+                            "com.za.toptitup.retailerapp",
+                            "com.za.toptitup.retailerapp.MainWebViewActivity"
+                    )
+            );
+            // ✅ ADD EXTRAS
+            intent.putExtra("LICENSE", Topitup.TIU_LICENSE); // leave empty, app decides URL
+            intent.putExtra("POS_USER_ID", Topitup.POSUSER_ID);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
