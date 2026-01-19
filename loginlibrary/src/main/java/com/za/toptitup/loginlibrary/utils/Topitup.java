@@ -274,13 +274,22 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
         //File file = new File("/storage/emulated/legacy/DCIM/Camera/");
 
         Realm.init(this);
-        RealmConfiguration config = new RealmConfiguration
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .schemaVersion(1)
+                .allowWritesOnUiThread(true)
+                .allowQueriesOnUiThread(true)
+                .deleteRealmIfMigrationNeeded() // TEMP for dev
+                .build();
+
+        Realm.setDefaultConfiguration(config);
+
+        /*RealmConfiguration config = new RealmConfiguration
                 .Builder()
                 //.directory(file )
                 //.name("default.realm")
                 .deleteRealmIfMigrationNeeded()
                 .build();
-        Realm.setDefaultConfiguration(config);
+        Realm.setDefaultConfiguration(config);*/
 
         if (BuildConfig.DEBUG) {
             plant(new DebugTree());

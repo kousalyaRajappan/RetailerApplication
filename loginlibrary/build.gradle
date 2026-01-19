@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
+    id "realm-android"
 }
 
 android {
@@ -36,13 +37,13 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
-    implementation fileTree(include: ['*.jar','*.aar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
     implementation libs.rollingtext
     //The android-app-updater libary
     implementation libs.androidappupdatelibrary
 
-   // implementation "org.json:json:20240303"
+    // implementation "org.json:json:20240303"
 
     implementation libs.retrofit
     implementation libs.retrofit2.converter.gson
@@ -59,6 +60,7 @@ dependencies {
     implementation libs.design
     implementation libs.support.v4
     implementation libs.material.ripple
+
     // implementation 'io.realm:android-adapters:2.3.0'
     implementation libs.glide
     implementation libs.lifecycle.extensions
@@ -87,8 +89,10 @@ dependencies {
 
     implementation files('src/main/libs/core-3.3.0.jar')
     implementation libs.android.gif.drawable
-    implementation libs.realm.android.library // Correct usage
-   // kapt 'io.realm:realm-annotations:10.19.0' // Correct usage
+    implementation "io.realm:realm-android-library:10.19.0"
+
+   // implementation libs.realm.android.library // Correct usage
+    // kapt 'io.realm:realm-annotations:10.19.0' // Correct usage
     implementation libs.ccp // Check for the latest version
     implementation libs.libphonenumber
     implementation libs.google.firebase.crashlytics
