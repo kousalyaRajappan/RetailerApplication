@@ -1,6 +1,8 @@
 package com.za.toptitup.retailerapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.webkit.CookieManager;
 import android.webkit.WebResourceRequest;
@@ -15,6 +17,8 @@ import com.za.toptitup.loginlibrary.activity_login;
 public class MainWebViewActivity extends AppCompatActivity {
 
     private WebView webView;
+    ProgressDialog progressDialog;
+
 
     private static final String BASE_URL =
             "https://dev.topitup.co.za";
@@ -25,6 +29,9 @@ public class MainWebViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_web_view);
 
         webView = findViewById(R.id.webview);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
         Intent intent = getIntent();
 
         String license = intent.getStringExtra("LICENSE");
@@ -50,6 +57,15 @@ public class MainWebViewActivity extends AppCompatActivity {
 
         // 🔥 LOGOUT HANDLING HERE
         webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                progressDialog.show();
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                progressDialog.dismiss();
+            }
 
             @Override
             public boolean shouldOverrideUrlLoading(
