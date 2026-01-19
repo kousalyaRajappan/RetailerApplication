@@ -90,6 +90,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
     //public static Account myAccount;
     public static String IS_ADMIN = "0";
     public static String CUSTOMER_ID = "0";
+    public static String ACCOUNT_NUMBER = "0";
     public static String POSUSER_NAME = "";
     public static String RICA_REG = "";
     //public static Account myAccount;

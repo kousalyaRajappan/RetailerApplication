@@ -95,6 +95,8 @@
                 android:layout_height="48dp"
                 android:hint="Enter Account No"
                 android:background="@android:drawable/edit_text"
+                android:editable="false"
+                android:clickable="false"
                 android:padding="10dp"/>
 
             <!-- Amount -->

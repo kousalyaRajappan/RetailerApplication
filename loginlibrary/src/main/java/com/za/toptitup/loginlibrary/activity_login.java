@@ -905,7 +905,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         rand_value_entered = "";
         amntEditText.addTextChangedListener(moneyTextWatcher);
         amntEditText_cent.addTextChangedListener(moneyTextWatcherCent);
-
+        etAccountNo.setText(Topitup.ACCOUNT_NUMBER);
         clearRand_Cents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1431,6 +1431,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
             text_store_name.setText(tiu_settings.company_name);
 
             noticeid = tiu_settings.noticeid;
+            Topitup.ACCOUNT_NUMBER=tiu_settings.account_number;
             Topitup.CUSTOMER_ID = tiu_settings.customer_id;
             final fin_balance tiu_fin_balance = realm.where(fin_balance.class).findFirst();
 
