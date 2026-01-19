@@ -10,9 +10,7 @@
     card_view:cardCornerRadius="16dp"
     card_view:cardElevation="8dp">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -114,6 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
+
                 android:visibility="visible">
 
 
@@ -122,6 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal"
+
                     android:gravity="center_vertical">
 
                     <!-- Clear -->
@@ -168,6 +168,7 @@
                         android:maxLength="2"
                         android:gravity="center"
                         android:focusable="true"
+                        android:clickable="true"
                         android:focusableInTouchMode="true"
                         android:background="@android:drawable/edit_text"
                         android:textSize="15sp"
@@ -197,6 +198,6 @@
                 android:textColor="#FFFFFF"/>
 
         </LinearLayout>
-    </ScrollView>
+
 
 </androidx.cardview.widget.CardView>

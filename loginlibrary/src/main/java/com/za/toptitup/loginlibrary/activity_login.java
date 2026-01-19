@@ -686,13 +686,13 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         otp4.setClickable(false);
 
         // Delay showing the keyboard to ensure the dialog is open
-        otp1.postDelayed(new Runnable() {
+       /* otp1.postDelayed(new Runnable() {
             @Override
             public void run() {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
             }
-        }, 200);  // 200ms delay
+        }, 200); */ // 200ms delay
 
         setotpinput();
 
@@ -1160,7 +1160,11 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         builder.setView(view);
         AlertDialog dialog = builder.create();
         dialog.setCancelable(false);
-
+        /*dialog.getWindow().setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );*/
+        dialog.show();
         // Transparent background (rounded corners visible)
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawable(
@@ -1193,6 +1197,25 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         rand_value_entered = "";
         amntEditText.addTextChangedListener(moneyTextWatcher);
         amntEditText_cent.addTextChangedListener(moneyTextWatcherCent);
+        amntEditText.setFocusableInTouchMode(true);
+        amntEditText_cent.setFocusableInTouchMode(true);
+
+        amntEditText_cent.setFocusable(true);
+        amntEditText_cent.setClickable(true);
+        /* Default focus on Rand */
+        amntEditText.requestFocus();
+        amntEditText_cent.setOnClickListener(v ->
+                amntEditText_cent.requestFocusFromTouch()
+        );
+        /* Force focus when user clicks Cents */
+      /*  amntEditText_cent.setOnClickListener(v -> {
+            Log.e("focus", "focus on cent");
+//            amntEditText_cent.requestFocus();
+            amntEditText.clearFocus();
+            amntEditText_cent.requestFocusFromTouch();
+
+        });*/
+
         etAccountNo.setText(Topitup.ACCOUNT_NUMBER);
         clearRand_Cents.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1200,7 +1223,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 if (!amntEditText.getText().toString().isEmpty() || !amntEditText_cent.getText().toString().isEmpty()) {
                     amntEditText.setText("");
                     amntEditText_cent.setText("");
-                    amntEditText_cent.clearFocus();
+//                    amntEditText_cent.clearFocus();
                 }
             }
         });
@@ -1240,13 +1263,10 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
         });
 
-        dialog.show();
+
 
         // Optional: Set dialog width
-        dialog.getWindow().setLayout(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-        );
+
     }
 
     private void doPayment(String wholeSaleAmount, String accountNo, String supplierId) {
@@ -1306,7 +1326,107 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         });
     }
 
+    public class MoneyTextWatcherRand implements TextWatcher {
+
+        private final WeakReference<EditText> editTextWeakReference;
+        private boolean isEditing = false;
+
+        public MoneyTextWatcherRand(EditText editText) {
+            editTextWeakReference = new WeakReference<>(editText);
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            // ❌ DO NOTHING HERE (important for focus)
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (isEditing) return;
+            isEditing = true;
+
+            try {
+                String str = s.toString();
+
+                if (str.isEmpty()) {
+                    rand_value_entered = "";
+                    if (cent_value_entered.isEmpty()) {
+                        txt_rand.setText("");
+                    } else {
+                        txt_rand.setText(cent_value_entered + " Cent");
+                    }
+                } else {
+                    long number = Long.parseLong(str);
+                    rand_value_entered = WordsConert.convert(number);
+
+                    if (cent_value_entered.isEmpty()) {
+                        txt_rand.setText(rand_value_entered + " Rand");
+                    } else {
+                        txt_rand.setText(rand_value_entered + " Rand " + cent_value_entered + " Cent");
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            isEditing = false;
+        }
+    }
     public class MoneyTextWatcherCent implements TextWatcher {
+
+        private final WeakReference<EditText> editTextWeakReference;
+        private boolean isEditing = false;
+
+        public MoneyTextWatcherCent(EditText editText) {
+            editTextWeakReference = new WeakReference<>(editText);
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            // ❌ DO NOTHING HERE
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (isEditing) return;
+            isEditing = true;
+
+            try {
+                String str = s.toString();
+
+                if (str.isEmpty()) {
+                    cent_value_entered = "";
+                    if (rand_value_entered.isEmpty()) {
+                        txt_rand.setText("");
+                    } else {
+                        txt_rand.setText(rand_value_entered + " Rand");
+                    }
+                } else {
+                    long number = Long.parseLong(str);
+                    cent_value_entered = WordsConert.convert(number);
+
+                    if (rand_value_entered.isEmpty()) {
+                        txt_rand.setText(cent_value_entered + " Cent");
+                    } else {
+                        txt_rand.setText(rand_value_entered + " Rand " + cent_value_entered + " Cent");
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            isEditing = false;
+        }
+    }
+
+
+  /*  public class MoneyTextWatcherCent implements TextWatcher {
         private final WeakReference<EditText> editTextWeakReference;
 
         public MoneyTextWatcherCent(EditText editText) {
@@ -1400,7 +1520,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         public void afterTextChanged(Editable editable) {
 
         }
-    }
+    }*/
 
     private boolean isPinCorrect(String pin) {
 //        SharedPreferences prefs = getSharedPreferences("SECURITY", MODE_PRIVATE);
