@@ -25,6 +25,7 @@ import com.za.toptitup.loginlibrary.model.GetStatusFull;
 import com.za.toptitup.loginlibrary.model.GetUpdateAll;
 import com.za.toptitup.loginlibrary.model.MessageService;
 import com.za.toptitup.loginlibrary.model.MessageServiceNotice;
+import com.za.toptitup.loginlibrary.model.SupplierResponse;
 import com.za.toptitup.loginlibrary.model.credit_request;
 import com.za.toptitup.loginlibrary.model.fin_balance;
 import com.za.toptitup.loginlibrary.model.pos_user_current;
@@ -1225,4 +1226,5 @@ public interface MyApiEndpointInterface {
             @Header("license") String TIU_LICENSE,
             @Query("deposit_note_id") String deposit_note_id
     );
+
 }

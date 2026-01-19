@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.za.toptitup.retailerapp'
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.za.toptitup.retailerapp"

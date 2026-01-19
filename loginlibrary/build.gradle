@@ -106,5 +106,7 @@ dependencies {
     //room db
     implementation libs.room.runtime
     //kapt "androidx.room:room-compiler:2.6.1"
-
+    implementation ('com.journeyapps:zxing-android-embedded:4.3.0') {
+        exclude group: 'com.google.zxing', module: 'core'
+    }
 }

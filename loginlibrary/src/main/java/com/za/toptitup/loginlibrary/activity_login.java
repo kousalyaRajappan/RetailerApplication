@@ -10,6 +10,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -23,6 +24,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -32,9 +34,12 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.provider.Settings;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.text.method.TransformationMethod;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -74,11 +79,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
+import androidx.appcompat.widget.AppCompatEditText;
+import com.google.gson.JsonObject;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.net.SocketTimeoutException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -100,6 +110,9 @@ import com.za.toptitup.loginlibrary.model.GetUpdateAll;
 import com.za.toptitup.loginlibrary.model.MessageService;
 import com.za.toptitup.loginlibrary.model.MessageServiceNotice;
 import com.za.toptitup.loginlibrary.model.MyApiEndpointInterface;
+import com.za.toptitup.loginlibrary.model.SupplierData;
+import com.za.toptitup.loginlibrary.model.SupplierResponse;
+import com.za.toptitup.loginlibrary.model.WholesaleResponse;
 import com.za.toptitup.loginlibrary.model.fin_balance;
 import com.za.toptitup.loginlibrary.model.pos_user_current;
 import com.za.toptitup.loginlibrary.model.pos_users;
@@ -108,6 +121,7 @@ import com.za.toptitup.loginlibrary.utils.MyExceptionHandler;
 //import com.za.toptitup.loginlibrary.utils.PrinterTopitup;
 import com.za.toptitup.loginlibrary.utils.Topitup;
 import com.za.toptitup.loginlibrary.utils.UserException;
+import com.za.toptitup.loginlibrary.utils.WordsConert;
 
 
 //SwipeListener
@@ -125,6 +139,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     private final OvershootInterpolator mAnimationSlideInterpolator = new OvershootInterpolator(1.0f);
     public String accessCode = "";
     public boolean wasScreenOn;
+
     protected Topitup app;
     Realm realm;
     Context mContext;
@@ -145,6 +160,12 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     pos_users user;
     String noticeid;
     ImageView newImageView;
+    private TextView txt_rand;
+    private String rand_value_entered = "";
+    private String cent_value_entered = "";
+    private MoneyTextWatcherRand moneyTextWatcher;
+    private MoneyTextWatcherCent moneyTextWatcherCent;
+
     MyApiEndpointInterface apiService = MyApiEndpointInterface.retrofit.create(MyApiEndpointInterface.class);
     Dialog dialogp;
     Button btn_merchant_copy, btn_customer_copy, btn_email, bt_merchant_customer_copy;
@@ -200,6 +221,8 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     private TextView mSevenButton;
     private TextView mEightButton;
     private TextView mNineButton;
+    private String enteredPinQR;
+    private AlertDialog loadingDialog;
     //private TextView mZeroButton;
     // private TextView mDeleteButton;
     private TextView mIsDemo, textView3, textLastSale, text_store_name;
@@ -512,7 +535,19 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+        ImageView scan_pay = findViewById(R.id.scan_pay);
+        if (Topitup.TIU_LICENSE != "") {
+            scan_pay.setVisibility(View.VISIBLE);
+        } else {
+            scan_pay.setVisibility(View.GONE);
 
+        }
+        scan_pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPinDialog();
+            }
+        });
         refreshHandlerscreensaver = new Handler();
         runnablescreensaver = new Runnable() {
 
@@ -599,6 +634,421 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
             }
         });
+
+    }
+    private void showPinDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_enter_pin);
+        dialog.setCancelable(false);
+
+        EditText etPin = dialog.findViewById(R.id.etPin);
+        Button btnSubmit = dialog.findViewById(R.id.btnSubmit);
+        Button btnCancel = dialog.findViewById(R.id.btnCancel);
+
+        btnSubmit.setOnClickListener(v -> {
+            enteredPinQR = etPin.getText().toString().trim();
+
+            if (enteredPinQR.length() != 4) {
+                etPin.setError("Enter 4-digit PIN");
+                return;
+            }
+
+            if (isPinCorrect(enteredPinQR)) {
+                dialog.dismiss();
+                openQrScanner();
+            } else {
+                etPin.setError("Invalid PIN");
+            }
+        });
+
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
+
+
+        // ✅ Focus on PIN field
+        etPin.requestFocus();
+        dialog.show();
+    }
+    private void openQrScanner() {
+        IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
+        integrator.setPrompt("Scan QR Code");
+        integrator.setCameraId(0);
+        integrator.setBeepEnabled(true);
+        integrator.setOrientationLocked(true);
+        integrator.initiateScan();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
+        if (result != null && result.getContents() != null) {
+            String qrData = result.getContents();
+            Log.e("data response","data..qr..."+qrData);
+
+//            String qrData = result.getContents();
+
+            // Extract last path segment
+            Uri uri = Uri.parse(qrData);
+            String lastSegment = uri.getLastPathSegment();
+
+            if (lastSegment != null && lastSegment.contains("_")) {
+
+                String[] parts = lastSegment.split("_");
+
+                String supplierId = parts[0];   // "6"
+                getSupplierDetails(supplierId);
+            }
+//            Toast.makeText(this, "QR: " + qrData, Toast.LENGTH_LONG).show();
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    private void getSupplierDetails(String supplierId) {
+
+        Call<SupplierResponse> call = apiService.getSupplierDetails(supplierId,Topitup.TIU_LICENSE,Topitup.POSUSER_ID);
+        call.enqueue(new Callback<SupplierResponse>() {
+            @Override
+            public void onResponse(Call<SupplierResponse> call, Response<SupplierResponse> response) {
+
+                if (response.isSuccessful()) {
+                    if (!response.headers().get("Server").equals("TIU")) {
+                        Toasty.error(mContext, "Internet Data Issue, please contact Top it Up.", 8000, true).show();
+                        return;
+                    }
+
+                    try {
+                        if (!response.headers().get("Server").equals("TIU")) {
+                            throw new UserException("Please check your internet connection!");
+                        }
+
+                        SupplierResponse apiResponse = response.body();
+
+                        Log.e("log response","response........"+apiResponse.getStatus());
+                        if (!"success".equalsIgnoreCase(apiResponse.getStatus())) {
+
+                            Toasty.error(
+                                    mContext,
+                                    apiResponse.getMessage() != null
+                                            ? apiResponse.getMessage()
+                                            : "Supplier not found",
+                                    Toast.LENGTH_LONG
+                            ).show();
+                            return;
+                        }
+                        SupplierData supplier = response.body().getSupplier();
+                        if (supplier != null) {
+                            showWholesalerPaymentDialog(mContext, supplier,supplierId);
+                        }
+
+                    } catch (Exception ex) {
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SupplierResponse> call, Throwable t) {
+            }
+        });
+
+    }
+    private void showLoading(Context context) {
+        if (loadingDialog != null && loadingDialog.isShowing()) return;
+
+        ProgressBar progressBar = new ProgressBar(context);
+        progressBar.setIndeterminate(true);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setView(progressBar);
+        builder.setCancelable(false);
+
+        loadingDialog = builder.create();
+
+        if (loadingDialog.getWindow() != null) {
+            loadingDialog.getWindow()
+                    .setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        loadingDialog.show();
+    }
+
+    private void hideLoading() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
+    }
+    public void showWholesalerPaymentDialog(Context context,SupplierData supplier,String supplierId) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.dialog_wholesaler_payment, null);
+
+
+        builder.setView(view);
+        AlertDialog dialog = builder.create();
+        dialog.setCancelable(false);
+
+        // Transparent background (rounded corners visible)
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(
+                    new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        TextView tvSupplierName = view.findViewById(R.id.tvSupplierName);
+        TextView tvLegalName = view.findViewById(R.id.tvLegalName);
+        TextView tvAddress = view.findViewById(R.id.tvAddress);
+        TextView tvPhone = view.findViewById(R.id.tvPhone);
+        txt_rand = view.findViewById(R.id.txt_rand);
+
+        // Initialize Views
+        EditText etAccountNo = view.findViewById(R.id.etAccountNo);
+//        EditText etAmount = view.findViewById(R.id.etAmount);
+//        EditText etPaise = view.findViewById(R.id.etPaise);
+        Button btnConfirm = view.findViewById(R.id.btnConfirm);
+        ImageView imgClose = view.findViewById(R.id.imgClose);
+        ImageView clearRand_Cents = view.findViewById(R.id.clearRand_Cents);
+        AppCompatEditText amntEditText = view.findViewById(R.id.dialogEditText);
+        AppCompatEditText amntEditText_cent = view.findViewById(R.id.dialogEditText_cent);
+        // Set API data
+        tvSupplierName.setText(supplier.getSupplierName());
+        tvLegalName.setText("Legal Name: " + supplier.getLegalName());
+        tvAddress.setText("Address: " + supplier.getAddress1()+","+supplier.getCity());
+        tvPhone.setText("Phone: " + supplier.getPhone());
+        moneyTextWatcher = new MoneyTextWatcherRand(amntEditText);
+        moneyTextWatcherCent = new MoneyTextWatcherCent(amntEditText_cent);
+        cent_value_entered = "";
+        rand_value_entered = "";
+        amntEditText.addTextChangedListener(moneyTextWatcher);
+        amntEditText_cent.addTextChangedListener(moneyTextWatcherCent);
+
+        clearRand_Cents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!amntEditText.getText().toString().isEmpty() || !amntEditText_cent.getText().toString().isEmpty()){
+                    amntEditText.setText("");
+                    amntEditText_cent.setText("");
+                    amntEditText_cent.clearFocus();
+                }
+            }
+        });
+
+        imgClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        btnConfirm.setOnClickListener(v -> {
+            dialog.dismiss();
+
+            String accountNo = etAccountNo.getText().toString().trim();
+
+            if (accountNo.isEmpty()) {
+                etAccountNo.setError("Enter account number");
+                return;
+            }
+
+            String amountEnter = amntEditText.getText() + "." + amntEditText_cent.getText().toString();
+
+
+            double value = Double.parseDouble(amountEnter);
+
+            DecimalFormat decimalFormat = new DecimalFormat("0.00");
+            String wholeSaleAmount = decimalFormat.format(value).replace(",", ".");
+
+//            value = round(value * 100);
+
+            Log.e("whole sale amount",value+"...value......."+wholeSaleAmount);
+            showLoading(activity_login.this);
+            doPayment(wholeSaleAmount,accountNo,supplierId);
+            // TODO: Payment logic here
+
+
+        });
+
+        dialog.show();
+
+        // Optional: Set dialog width
+        dialog.getWindow().setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+    }
+
+    private void doPayment(String wholeSaleAmount, String accountNo, String supplierId) {
+        Call<WholesaleResponse> call = apiService.wholesalePayment(supplierId,"1",accountNo,wholeSaleAmount,Topitup.TIU_LICENSE,Topitup.POSUSER_ID);
+        call.enqueue(new Callback<WholesaleResponse>() {
+            @Override
+            public void onResponse(Call<WholesaleResponse> call, Response<WholesaleResponse> response) {
+
+                if (response.isSuccessful()) {
+
+                    if (!response.headers().get("Server").equals("TIU")) {
+                        Toasty.error(mContext, "Internet Data Issue, please contact Top it Up.", 8000, true).show();
+                        return;
+                    }
+
+                    try {
+                        if (!response.headers().get("Server").equals("TIU")) {
+                            throw new UserException("Please check your internet connection!");
+                        }
+
+                        WholesaleResponse apiResponse = response.body();
+
+                        Log.e("log response","response........"+apiResponse.getStatus());
+                        if (!"COMPLETED".equalsIgnoreCase(apiResponse.getStatus())) {
+
+                            Toasty.error(
+                                    mContext,
+                                    apiResponse.getMessage() != null
+                                            ? apiResponse.getMessage()
+                                            : "Transaction Failed",
+                                    Toast.LENGTH_LONG
+                            ).show();
+                            return;
+                        }else{
+                            Toast.makeText(
+                                    mContext,
+                                    apiResponse.getMessage() != null
+                                            ? apiResponse.getMessage()
+                                            : "Transaction Successfull",
+                                    Toast.LENGTH_LONG
+                            ).show();
+                        }
+
+                        hideLoading();
+                    } catch (Exception ex) {
+                        hideLoading();
+                    }
+                }else {
+                    hideLoading();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WholesaleResponse> call, Throwable t) {
+                hideLoading();
+            }
+        });
+    }
+    public class MoneyTextWatcherCent implements TextWatcher {
+        private final WeakReference<EditText> editTextWeakReference;
+
+        public MoneyTextWatcherCent(EditText editText) {
+            editTextWeakReference = new WeakReference<EditText>(editText);
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            try {
+                String str = s.toString();
+                if (str.equals("")) {
+                    if (rand_value_entered.equals("")) {
+                        txt_rand.setText("");
+                    } else {
+                        cent_value_entered = "";
+                        txt_rand.setText(rand_value_entered + " Rand ");
+                    }
+                } else {
+                    final long number = Long.parseLong(s.toString());
+                    Log.e("electricity","text watcher cent"+s.toString());
+
+                    cent_value_entered = WordsConert.convert(number);
+                    if (rand_value_entered.equals("")) {
+                        txt_rand.setText(cent_value_entered + " Cent2");
+                    } else {
+                        txt_rand.setText(rand_value_entered + " Rand " + cent_value_entered + " Cent");
+                    }
+                }
+            } catch (NumberFormatException e) {
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    }
+
+    public class MoneyTextWatcherRand implements TextWatcher {
+        private final WeakReference<EditText> editTextWeakReference;
+
+        public MoneyTextWatcherRand(EditText editText) {
+            editTextWeakReference = new WeakReference<EditText>(editText);
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            try {
+                String str = s.toString();
+                if (str.equals("")) {
+
+                    if (cent_value_entered.equals("")) {
+                        txt_rand.setText("");
+
+                    } else {
+                        txt_rand.setText(" " + cent_value_entered + " Cent1");
+                    }
+                } else {
+                    String trimmed = s.toString().trim();
+                    long number = 0;
+                    if (!trimmed.isEmpty()) {
+                        try {
+                            number = Long.parseLong(trimmed);
+                            // Use the number safely
+                        } catch (NumberFormatException e) {
+                            Log.e("electricity", "Invalid number: " + trimmed);
+                        }
+                    }
+                    rand_value_entered = WordsConert.convert(number);
+                    if (cent_value_entered.equals("")) {
+                        txt_rand.setText(rand_value_entered + " Rand");
+
+                    } else {
+                        txt_rand.setText(rand_value_entered + " Rand " + cent_value_entered + " Cent");
+                    }
+                }
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    }
+    private boolean isPinCorrect(String pin) {
+//        SharedPreferences prefs = getSharedPreferences("SECURITY", MODE_PRIVATE);
+//        String savedPin = prefs.getString("USER_PIN", "");
+        pos_users userqr = realm.where(pos_users.class).equalTo("posuser_pin", pin).equalTo("posuser_status", 1).findFirst();
+
+        if (null == userqr) {
+
+            return false;
+        } else {
+            Topitup.POSUSER_ID = String.valueOf(userqr.posuser_id);
+
+            return true;
+            //            mLoginProgress.setVisibility(View.VISIBLE);
+//            Topitup.IS_ADMIN = String.valueOf(userqr.posuser_isadmin);
+//            Topitup.POSUSER_NAME = user.posuser_firstname + " " + user.posuser_surname;
+//            Topitup.RICA_REG = user.rica_registered;
+//            keyPadLockedFlag = false;
+//            get_swipe_realtime();
+
+        }
+
 
     }
 
