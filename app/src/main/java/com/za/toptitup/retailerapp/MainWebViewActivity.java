@@ -3,20 +3,22 @@ package com.za.toptitup.retailerapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.CookieManager;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.za.toptitup.loginlibrary.activity_login;
+
 public class MainWebViewActivity extends AppCompatActivity {
 
     private WebView webView;
+
     private static final String BASE_URL =
             "https://dev.topitup.co.za";
 
-    //Live URL
-    //https://admin.topitup.co.za/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +29,13 @@ public class MainWebViewActivity extends AppCompatActivity {
 
         String license = intent.getStringExtra("LICENSE");
         String pos_user_id = intent.getStringExtra("POS_USER_ID");
-        // Enable JavaScript
+
+        if (license == null || pos_user_id == null) {
+            finish();
+            return;
+        }
+
+        // WebView settings
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
@@ -35,34 +43,75 @@ public class MainWebViewActivity extends AppCompatActivity {
         webSettings.setAllowContentAccess(true);
         webSettings.setAllowFileAccess(true);
 
-        // Accept all cookies
+        // Cookies
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
         cookieManager.setAcceptThirdPartyCookies(webView, true);
 
-        // Ensure links open within WebView
-        webView.setWebViewClient(new WebViewClient());
-//LiveUrl
-        // String url ="https://admin.topitup.co.za/retailerscan/retailer_app_login/{"+license+}"/{"+ pos_user_id+"}"
-        // https://dev.topitup.co.za/retailerscan/retailer_app_login/DEMO972e-e247-11f0-9493-ac1f6b9740b4/5248
-        // Example: Load your URL
-        String url = "https://dev.topitup.co.za/Retailer"; // Replace with your URL
-        if (license == null || pos_user_id == null) {
-            finish();
-            return;
-        }
+        // 🔥 LOGOUT HANDLING HERE
+        webView.setWebViewClient(new WebViewClient() {
 
+            @Override
+            public boolean shouldOverrideUrlLoading(
+                    WebView view,
+                    WebResourceRequest request
+            ) {
+                String url = request.getUrl().toString();
+
+                if (url.contains("/logout")) {
+                    handleLogout();
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(
+                    WebView view,
+                    String url
+            ) {
+                if (url.contains("/logout")) {
+                    handleLogout();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        // Build final URL
         String finalUrl =
                 BASE_URL +
                         "/retailerscan/retailer_app_login/" +
                         license + "/" +
                         pos_user_id;
+
         webView.loadUrl(finalUrl);
+    }
+
+    private void handleLogout() {
+
+        // Clear WebView data
+        webView.clearCache(true);
+        webView.clearHistory();
+
+        CookieManager.getInstance().removeAllCookies(null);
+        CookieManager.getInstance().flush();
+
+        // Go back to login (library)
+        Intent intent = new Intent(
+                this,
+                activity_login.class
+        );
+        intent.addFlags(
+                Intent.FLAG_ACTIVITY_NEW_TASK |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK
+        );
+        startActivity(intent);
+        finish();
     }
 
     @Override
     public void onBackPressed() {
-        // Allow back navigation inside WebView
         if (webView.canGoBack()) {
             webView.goBack();
         } else {
@@ -70,4 +119,3 @@ public class MainWebViewActivity extends AppCompatActivity {
         }
     }
 }
-
