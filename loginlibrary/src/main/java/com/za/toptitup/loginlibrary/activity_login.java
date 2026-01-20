@@ -1004,7 +1004,6 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 String supplierId = parts[0];   // "6"
                 getSupplierDetails(supplierId);
             }
-            Log.e("data response", "data..qr..." + qrResult);
 
             // Use QR result here
         }else {
@@ -1069,14 +1068,14 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         SupplierData supplier = response.body().getSupplier();
                         Log.e("log response", "response........" + supplier.getAddress1());
 
-//                        if (supplier != null) {
+                        if (supplier != null) {
 
 
                             showWholesalerPaymentDialog(activity_login.this, supplier, supplierId);
 
-//                        }else{
-//                            Toast.makeText(activity_login.this,"invalid supplier",Toast.LENGTH_SHORT).show();
-//                        }
+                        }else{
+                            Toast.makeText(activity_login.this,"invalid supplier",Toast.LENGTH_SHORT).show();
+                        }
 
                     } catch (Exception ex) {
 
@@ -1320,13 +1319,8 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                             ).show();
                             return;
                         } else {
-                            Toast.makeText(
-                                    mContext,
-                                    apiResponse.getMessage() != null
-                                            ? apiResponse.getMessage()
-                                            : "Transaction Successfull",
-                                    Toast.LENGTH_LONG
-                            ).show();
+//                            hideLoading();
+                            showPaymentSuccessDialog(apiResponse);
                         }
 
                         hideLoading();
@@ -1343,6 +1337,29 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 hideLoading();
             }
         });
+    }
+
+    private void showPaymentSuccessDialog(WholesaleResponse apiResponse) {
+
+        Dialog dialog = new Dialog(mContext);
+        dialog.setContentView(R.layout.dialog_payment_success);
+        dialog.setCancelable(false);
+
+        TextView tvMessage = dialog.findViewById(R.id.tvMessage);
+        Button btnOk = dialog.findViewById(R.id.btnOk);
+
+        tvMessage.setText(
+                apiResponse.getMessage() != null
+                        ? apiResponse.getMessage()
+                        : "Payment Successful"
+        );
+
+        btnOk.setOnClickListener(v -> {
+            dialog.dismiss();
+//            finish(); // or navigate to next screen
+        });
+
+        dialog.show();
     }
 
     public class MoneyTextWatcherRand implements TextWatcher {
