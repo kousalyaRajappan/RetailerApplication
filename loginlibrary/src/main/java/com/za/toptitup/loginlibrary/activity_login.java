@@ -964,27 +964,27 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         }
     }
     private void openQrScanner() {
-        IntentIntegrator integrator = new IntentIntegrator(this);
+        Intent intent = new Intent(this, CustomQrScannerActivity.class);
+        startActivityForResult(intent, 101);
+       /* IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
         integrator.setPrompt("Scan QR Code");
         integrator.setCameraId(0);
         integrator.setBeepEnabled(true);
         integrator.setOrientationLocked(true);
-        integrator.initiateScan();
+        integrator.initiateScan();*/
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.e("data response", resultCode+"data..qr...on response"+requestCode );
 
-        if (result != null && result.getContents() != null) {
-            String qrData = result.getContents();
-            Log.e("data response", "data..qr..." + qrData);
+        if (requestCode == 101 ) {
 
-//            String qrData = result.getContents();
+                String qrResult = data.getStringExtra("QR_RESULT");
 
-            // Extract last path segment
-            Uri uri = Uri.parse(qrData);
+            Uri uri = Uri.parse(qrResult);
             String lastSegment = uri.getLastPathSegment();
 
             if (lastSegment != null && lastSegment.contains("_")) {
@@ -994,9 +994,33 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 String supplierId = parts[0];   // "6"
                 getSupplierDetails(supplierId);
             }
+            Log.e("data response", "data..qr..." + qrResult);
+
+            // Use QR result here
+        }else {
+            IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
+            if (result != null && result.getContents() != null) {
+                String qrData = result.getContents();
+                Log.e("data response", "data..qr..." + qrData);
+
+//            String qrData = result.getContents();
+
+                // Extract last path segment
+                Uri uri = Uri.parse(qrData);
+                String lastSegment = uri.getLastPathSegment();
+
+                if (lastSegment != null && lastSegment.contains("_")) {
+
+                    String[] parts = lastSegment.split("_");
+
+                    String supplierId = parts[0];   // "6"
+                    getSupplierDetails(supplierId);
+                }
 //            Toast.makeText(this, "QR: " + qrData, Toast.LENGTH_LONG).show();
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
+            } else {
+                super.onActivityResult(requestCode, resultCode, data);
+            }
         }
     }
 

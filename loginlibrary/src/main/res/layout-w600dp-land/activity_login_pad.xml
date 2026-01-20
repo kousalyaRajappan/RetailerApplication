@@ -592,17 +592,27 @@
         android:layout_toRightOf="@+id/ll_banking_detail"
         android:orientation="vertical"
         android:layout_width="0dp"
-        android:layout_height="85dp">
+        android:layout_height="100dp">
 
         <ImageView
             android:id="@+id/scan_pay"
 
             android:layout_gravity="center"
-            android:layout_width="88dp"
+            android:layout_width="65dp"
             android:scaleType="fitXY"
 
-            android:src="@drawable/scan_qr"
-            android:layout_height="82dp"            />
+            android:src="@drawable/qr_code_"
+            android:layout_height="60dp"            />
+        <TextView
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center"
+
+            android:textStyle="bold"
+            android:textColor="@color/blue"
+            android:text="Scan To Pay"
+            android:textSize="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_gravity="bottom"
