@@ -81,6 +81,24 @@
                 android:text="3.0"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/headtextSize" />
+            <View
+                android:id="@+id/view_d1"
+                android:layout_toRightOf="@+id/txt_app_version"
+                android:layout_width="@dimen/headerViewwidth"
+                android:layout_height="@dimen/headerViewHeight"
+                android:background="#FFFF00"
+                android:layout_marginTop="@dimen/headerViewMarginTop"
+                android:layout_marginLeft="4dp"/>
+            <TextView
+                android:id="@+id/activity_retailer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:text="WHOLE SALER"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@+id/view_d1"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/headtextSize" />
 
             <RelativeLayout
                 android:layout_alignParentRight="true"
