@@ -547,7 +547,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        ImageView scan_pay = findViewById(R.id.scan_pay);
+        Button scan_pay = findViewById(R.id.scan_pay);
         if (Topitup.TIU_LICENSE != "") {
             scan_pay.setVisibility(View.VISIBLE);
         } else {
