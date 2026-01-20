@@ -981,6 +981,16 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         Log.e("data response", resultCode+"data..qr...on response"+requestCode );
 
         if (requestCode == 101 ) {
+            if (resultCode != RESULT_OK) {
+                Log.e("QR", "Scan cancelled or failed");
+                return;
+            }
+
+            // ❌ Data is null
+            if (data == null) {
+                Log.e("QR", "Intent data is null");
+                return;
+            }
 
                 String qrResult = data.getStringExtra("QR_RESULT");
 
