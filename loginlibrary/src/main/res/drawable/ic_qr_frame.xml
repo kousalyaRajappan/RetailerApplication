@@ -5,16 +5,16 @@
     android:viewportWidth="300"
     android:viewportHeight="300">
 
-    <path android:strokeColor="#FFFFFF" android:strokeWidth="4"
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
         android:pathData="M20,80 L20,20 L80,20"/>
 
-    <path android:strokeColor="#FFFFFF" android:strokeWidth="4"
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
         android:pathData="M220,20 L280,20 L280,80"/>
 
-    <path android:strokeColor="#FFFFFF" android:strokeWidth="4"
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
         android:pathData="M20,220 L20,280 L80,280"/>
 
-    <path android:strokeColor="#FFFFFF" android:strokeWidth="4"
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="2"
         android:pathData="M220,280 L280,280 L280,220"/>
 </vector>
 
