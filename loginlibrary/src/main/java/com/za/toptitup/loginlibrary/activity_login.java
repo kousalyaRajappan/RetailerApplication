@@ -360,7 +360,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
         tiu_title_bar_new = findViewById(R.id.tiu_title_bar_new);
 
-        tiu_title_bar_new.setOnClickListener(new View.OnClickListener() {
+        /*tiu_title_bar_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                displayDialog();
@@ -369,7 +369,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 Topitup.checkServiceRunning();
 
             }
-        });
+        });*/
 
         stopAlarm = true;
         img_close.setOnClickListener(new View.OnClickListener() {
@@ -1178,7 +1178,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         txt_rand = view.findViewById(R.id.txt_rand);
 
         // Initialize Views
-        EditText etAccountNo = view.findViewById(R.id.etAccountNo);
+        TextView etAccountNo = view.findViewById(R.id.etAccountNo);
 //        EditText etAmount = view.findViewById(R.id.etAmount);
 //        EditText etPaise = view.findViewById(R.id.etPaise);
         Button btnConfirm = view.findViewById(R.id.btnConfirm);

@@ -80,26 +80,33 @@
             </LinearLayout>
 
             <!-- Account No -->
-            <TextView
-                android:text="RETAILER ACCOUNT NO"
-                android:textStyle="bold"
+            <LinearLayout
                 android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
-            <EditText
-                android:id="@+id/etAccountNo"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="Enter Account No"
-                android:background="@android:drawable/edit_text"
-                android:editable="false"
-                android:clickable="false"
-                android:padding="10dp"/>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Retailer Account No : "
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/etAccountNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/pad_15dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="@dimen/margin10"
+                    android:text=""/>
+
+            </LinearLayout>
+
+
 
             <!-- Amount -->
             <TextView
-                android:text="AMOUNT (ZAR)"
+                android:text="Amount (ZAR)"
                 android:textStyle="bold"
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
