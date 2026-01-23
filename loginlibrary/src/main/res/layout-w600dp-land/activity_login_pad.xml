@@ -31,7 +31,6 @@
 
 
         <ImageView
-            android:layout_toRightOf="@+id/scan_pay"
             android:layout_marginRight="@dimen/pad_5dp"
             android:src="@drawable/ic_call_icon"
             android:id="@+id/img_call"
@@ -49,7 +48,6 @@
         <ImageView
             android:layout_below="@+id/txt_call"
             android:layout_marginRight="@dimen/pad_5dp"
-            android:layout_toRightOf="@+id/scan_pay"
 
             android:src="@drawable/ic_whatsapp"
             android:id="@+id/img_watsapp"
@@ -87,7 +85,7 @@
             android:paddingRight="5dp"
             android:text=" Store Name"
             android:textStyle="bold"
-            android:textColor="@color/indigo_500"
+            android:textColor="@color/red"
             android:textSize="@dimen/loginStoreTextSize"/>
         <Button
             android:visibility="gone"
@@ -385,16 +383,7 @@
         </TableRow>
 
     </TableLayout>
-    <Button
-        android:id="@+id/scan_pay"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/background_green"
-        android:text="SCAN QR"
-        android:layout_margin="20dp"
-        android:layout_below="@+id/activity_login_pad_table_layout"
-        android:textColor="@color/white" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -447,7 +436,7 @@
             android:layout_marginLeft="@dimen/margin10"
             android:id="@+id/img_gif_"
             android:layout_width="270dp"
-            android:layout_height="300dp"
+            android:layout_height="280dp"
             android:layout_below="@+id/newImageView"
             android:layout_weight="1"
 
@@ -477,6 +466,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <RelativeLayout
+            android:visibility="gone"
             android:layout_marginTop="@dimen/margin10"
             android:id="@+id/rl_msg"
             android:background="@drawable/button_back_mes"
@@ -501,7 +491,7 @@
             
         </RelativeLayout>
         <RelativeLayout
-
+            android:visibility="gone"
             android:layout_below="@+id/rl_msg"
             android:layout_marginTop="@dimen/margin10"
             android:layout_width="300dp"
@@ -528,7 +518,22 @@
                 android:text="Electricity  \n Airtime \u2022 Data \u2022 RICA   \n Bill Payments \u2022 Water      "
                 android:textSize="@dimen/pad_15dp" />
         </RelativeLayout>
+        <ImageView
+            android:id="@+id/img_pay"
+            android:layout_margin="@dimen/margin10"
+            android:src="@drawable/pay_now_logo"
+            android:layout_width="300dp"
+            android:layout_height="180dp"/>
+        <Button
 
+            android:id="@+id/scan_pay"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/background_green"
+            android:text="SCAN QR"
+            android:layout_below="@+id/img_pay"
+            android:textColor="@color/white" />
 
     </RelativeLayout>
 
@@ -545,7 +550,7 @@
         android:src="@drawable/bottom" />
 
 <LinearLayout
-    android:weightSum="8"
+    android:weightSum="6"
     android:layout_alignParentBottom="true"
     android:layout_width="match_parent"
     android:layout_height="100dp">
@@ -594,35 +599,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_gravity="bottom"
 
-        android:layout_weight="2"
-        android:layout_toRightOf="@+id/ll_banking_detail"
-        android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_height="100dp">
-
-        <!--<ImageView
-            android:id="@+id/scan_pay"
-
-            android:layout_gravity="center"
-            android:layout_width="65dp"
-            android:scaleType="fitXY"
-
-            android:src="@drawable/qr_code_"
-            android:layout_height="60dp"            />-->
-        <TextView
-            android:layout_marginBottom="5dp"
-            android:layout_gravity="center"
-android:visibility="gone"
-            android:textStyle="bold"
-            android:textColor="@color/blue"
-            android:text="Scan To Pay"
-            android:textSize="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"/>
-    </LinearLayout>
     <LinearLayout
         android:layout_gravity="bottom"
 

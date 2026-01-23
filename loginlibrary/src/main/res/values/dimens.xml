@@ -75,7 +75,7 @@
 
     <dimen name="topitIconSize">30dp</dimen>
     <dimen name="topitIconWidthSize">160dp</dimen>
-    <dimen name="loginStoreTextSize">18sp</dimen>
+    <dimen name="loginStoreTextSize">20sp</dimen>
     <dimen name="login_read_button_width">100dp</dimen>
 
 
