@@ -112,7 +112,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
     public static Double ONE_WARNING_THRESHOLD = 0.0;
     public static Integer RETAILER_TYPE = 0;
     public static String ST_STATUS = "0";
-
+    public static String DISPLAY_BALANCE = "0";
     public static String ENABLE_COMMISSION = "1";
 
 

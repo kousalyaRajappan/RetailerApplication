@@ -474,9 +474,10 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         tiu_title_balance.setLayoutParams(params);*/
 //        tiu_title_balance.setLayoutParams();
         final TextView tiu_title_balance_cash = findViewById(R.id.tiu_title_balance_cash);
-//        img_gif = findViewById(R.id.img_gif);
-
-        update_balance();
+        img_gif = findViewById(R.id.img_gif);
+        if (Topitup.DISPLAY_BALANCE.equalsIgnoreCase("1")) {
+            update_balance();
+        }
         /* END HEADER */
 
         configureViews();
@@ -699,6 +700,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
 //        dialog.show();
     }
+
     private void setotpinput() {
         otp1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -923,6 +925,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
 
     }
+
     private void activateDismissDialog() {
         pinEntered = otp1.getText().toString() + otp2.getText().toString() + otp3.getText().toString() + otp4.getText().toString();
         pos_users pos_users = realm.where(pos_users.class).equalTo("posuser_pin", pinEntered).equalTo("posuser_status", 1).findFirst();
@@ -963,6 +966,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
             dialog_active.dismiss();
         }
     }
+
     private void openQrScanner() {
         Intent intent = new Intent(this, CustomQrScannerActivity.class);
         startActivityForResult(intent, 101);
@@ -978,9 +982,9 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e("data response", resultCode+"data..qr...on response"+requestCode );
+        Log.e("data response", resultCode + "data..qr...on response" + requestCode);
 
-        if (requestCode == 101 ) {
+        if (requestCode == 101) {
             if (resultCode != RESULT_OK) {
                 Log.e("QR", "Scan cancelled or failed");
                 return;
@@ -992,7 +996,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 return;
             }
 
-                String qrResult = data.getStringExtra("QR_RESULT");
+            String qrResult = data.getStringExtra("QR_RESULT");
 
             Uri uri = Uri.parse(qrResult);
             String lastSegment = uri.getLastPathSegment();
@@ -1006,7 +1010,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
             }
 
             // Use QR result here
-        }else {
+        } else {
             IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
             if (result != null && result.getContents() != null) {
@@ -1073,8 +1077,8 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
                             showWholesalerPaymentDialog(activity_login.this, supplier, supplierId);
 
-                        }else{
-                            Toast.makeText(activity_login.this,"invalid supplier",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(activity_login.this, "invalid supplier", Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (Exception ex) {
@@ -1282,7 +1286,6 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         });
 
 
-
         // Optional: Set dialog width
 
     }
@@ -1372,7 +1375,8 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         }
 
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -1411,6 +1415,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
             isEditing = false;
         }
     }
+
     public class MoneyTextWatcherCent implements TextWatcher {
 
         private final WeakReference<EditText> editTextWeakReference;
@@ -1421,7 +1426,8 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         }
 
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -1619,21 +1625,20 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
     private boolean checkPermission() {
 
-       // int result = ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION);
+        // int result = ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION);
         int result1 = ContextCompat.checkSelfPermission(this, READ_EXTERNAL_STORAGE);
         int result2 = ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE);
         int result3 = ContextCompat.checkSelfPermission(this, READ_PHONE_STATE);
         int result4 = ContextCompat.checkSelfPermission(this, CAMERA);
 
 
-
-        return  result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED;
+        return result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED;
     }
 
     //To request permissions
     private void requestPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{ READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, READ_PHONE_STATE, CAMERA}, REQUEST_EXTERNALRESULT);
+            requestPermissions(new String[]{READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, READ_PHONE_STATE, CAMERA}, REQUEST_EXTERNALRESULT);
         }
     }
 
@@ -1875,7 +1880,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
             text_store_name.setText(tiu_settings.company_name);
 
             noticeid = tiu_settings.noticeid;
-            Topitup.ACCOUNT_NUMBER=tiu_settings.account_number;
+            Topitup.ACCOUNT_NUMBER = tiu_settings.account_number;
             Topitup.CUSTOMER_ID = tiu_settings.customer_id;
             final fin_balance tiu_fin_balance = realm.where(fin_balance.class).findFirst();
 
@@ -3751,7 +3756,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
             Topitup.RICA_REG = user.rica_registered;
             keyPadLockedFlag = false;
             get_swipe_realtime();
-
+//Topitup.DISPLAY_BALANCE="0";
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -4147,7 +4152,10 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
         if (!Topitup.TIU_LICENSE.equalsIgnoreCase("")) {
             get_balance();
         } else {
-            update_balance();
+            if (Topitup.DISPLAY_BALANCE.equalsIgnoreCase("1")) {
+                update_balance();
+            }
+
         }
         FullscreenCall();
         SharedPreferences settings = getSharedPreferences("TIUPREF", 0);
@@ -4421,7 +4429,10 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
                         realm.beginTransaction();
                         realm.copyToRealmOrUpdate(res);
                         realm.commitTransaction();
-                        update_balance();
+                        if (Topitup.DISPLAY_BALANCE.equalsIgnoreCase("1")) {
+                            update_balance();
+                        }
+
                     } catch (Exception ex) {
 
                         //Toasty.error(mContext,"Unable to fetch Balance. Check internet connection.", 4000, true).show();
@@ -4581,7 +4592,13 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
                         }
 
                         Log.e("st_status", "login screen" + st_status);
-
+                        String display_balance = "0";
+                        if (!reader.isNull("display_balance")) {
+                            display_balance = reader.getString("display_balance");
+                        } else {
+                            display_balance = "0";
+                        }
+                        Log.e("display_balance", "login screen" + display_balance);
                         Topitup.ENABLE_COMMISSION = enable_commission;
                         Topitup.ONE_MAX_THRESHOLD = one_max_value;
                         Topitup.ONE_WARNING_THRESHOLD = one_warning_value;
@@ -4589,7 +4606,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
                         Topitup.cashUp = cash_up;
                         Topitup.ST_STATUS = st_status;
 
-
+                        Topitup.DISPLAY_BALANCE = display_balance;
                         Topitup.BLUE_MAX_THRESHOLD = blue_max_value;
                         Topitup.BLUE_WARNING_THRESHOLD = blue_warning_value;
 
