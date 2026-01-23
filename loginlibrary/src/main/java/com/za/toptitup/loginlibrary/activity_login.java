@@ -474,7 +474,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         tiu_title_balance.setLayoutParams(params);*/
 //        tiu_title_balance.setLayoutParams();
         final TextView tiu_title_balance_cash = findViewById(R.id.tiu_title_balance_cash);
-        img_gif = findViewById(R.id.img_gif);
+//        img_gif = findViewById(R.id.img_gif);
         if (Topitup.DISPLAY_BALANCE.equalsIgnoreCase("1")) {
             update_balance();
         }
