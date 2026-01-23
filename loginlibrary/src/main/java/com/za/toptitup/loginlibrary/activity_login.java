@@ -193,6 +193,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     String asset_serial = "NA";
     String merchant_no = "NA";
     String terminal_no = "NA";
+
     ImageView activity_login_admin, img_gif_local;
     WebView img_gif;
     View view21;
@@ -4581,7 +4582,13 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
                         }
 
                         Log.e("st_status", "login screen" + st_status);
-
+                        String display_balance = "0";
+                        if (!reader.isNull("display_balance")) {
+                            display_balance = reader.getString("display_balance");
+                        } else {
+                            display_balance = "0";
+                        }
+                        Log.e("display_balance", "login screen" + display_balance);
                         Topitup.ENABLE_COMMISSION = enable_commission;
                         Topitup.ONE_MAX_THRESHOLD = one_max_value;
                         Topitup.ONE_WARNING_THRESHOLD = one_warning_value;
@@ -4589,7 +4596,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
                         Topitup.cashUp = cash_up;
                         Topitup.ST_STATUS = st_status;
 
-
+                        Topitup.DISPLAY_BALANCE = display_balance;
                         Topitup.BLUE_MAX_THRESHOLD = blue_max_value;
                         Topitup.BLUE_WARNING_THRESHOLD = blue_warning_value;
 
