@@ -58,6 +58,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
+
 import com.za.toptitup.loginlibrary.model.GetUpdateAll;
 import com.za.toptitup.loginlibrary.model.MyApiEndpointInterface;
 import com.za.toptitup.loginlibrary.model.fin_balance;
@@ -128,7 +129,7 @@ public class activitySplashScreen extends AppCompatActivity {
         editor.putString("printer", "inner");
         editor.commit();*/
         advertId = settings.getString("advert_id", "");
-      //  settings.getString("printer", "inner");
+        //  settings.getString("printer", "inner");
 
         try {
             PackageInfo pInfo = mContext.getPackageManager().getPackageInfo(getPackageName(), 0);
@@ -190,7 +191,7 @@ public class activitySplashScreen extends AppCompatActivity {
     private boolean checkPermission() {
         int result4 = ContextCompat.checkSelfPermission(this, CAMERA);
 
-      //  int result = ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION);
+        //  int result = ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION);
         int result1 = ContextCompat.checkSelfPermission(this, READ_EXTERNAL_STORAGE);
         int result2 = ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE);
         int result3 = ContextCompat.checkSelfPermission(this, READ_PHONE_STATE);
@@ -198,7 +199,6 @@ public class activitySplashScreen extends AppCompatActivity {
 
         return result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED && result4 == PackageManager.PERMISSION_GRANTED;
     }
-
 
 
     private void getAddslogin() {
@@ -226,7 +226,7 @@ public class activitySplashScreen extends AppCompatActivity {
                                 String advert_id = response.body().get("advert_id").toString().replace("\"", "");
                                 String ad_path = response.body().get("ad_path").toString().replace("\"", "");
 
-                                Log.e("ad path ","............"+ad_path);
+                                Log.e("ad path ", "............" + ad_path);
                                 if (advertId.equals("")) {
                                     doAdvertAdd(ad_path, advert_id);
                                 } else {
@@ -261,7 +261,7 @@ public class activitySplashScreen extends AppCompatActivity {
                                             if (file.exists()) {
                                                 Log.i("files" + height, "if.........." + file.getAbsolutePath());
                                                 String data;
-                                                if(Topitup.DEVICE_TYPE.equals("TABLET")){
+                                                if (Topitup.DEVICE_TYPE.equals("TABLET")) {
                                                     data = "<body> <img   src = \"" + file.getAbsolutePath() + "\"  width=\"280\" height=\"200\"/></body>";
                                                 } else {
                                                     data = "<body> <img   src = \"" + file.getAbsolutePath() + "\"  width=\"360\" height=\"100\"/></body>";
@@ -308,19 +308,21 @@ public class activitySplashScreen extends AppCompatActivity {
         byte[] decodedString = Base64.decode(ad_path, Base64.DEFAULT);
         String img_path = new String(decodedString);
 
-        if(isValidUrl(img_path)){
+        if (isValidUrl(img_path)) {
             downloadBitmap(img_path);
 
-        }else{
+        } else {
             SharedPreferences.Editor editor1 = settings.edit();
             editor1.putString("get_advs", "local");
             editor1.commit();
         }
     }
+
     public boolean isValidUrl(String url) {
         String urlPattern = "^(http|https)://.*$";
         return url != null && url.matches(urlPattern);
     }
+
     private void downloadBitmap(String url) {
         Glide.with(this)
                 .download(url)
@@ -423,7 +425,7 @@ public class activitySplashScreen extends AppCompatActivity {
                     final Bitmap b = BitmapFactory.decodeFile(file.getAbsolutePath());
                     String data = "";
 
-                    if(Topitup.DEVICE_TYPE.equals("TABLET")){
+                    if (Topitup.DEVICE_TYPE.equals("TABLET")) {
                         data = "<body> <img   src = \"" + file.getAbsolutePath() + "\"  width=\"100\" height=\"360\"/></body>";
                     } else {
                         data = "<body> <img   src = \"" + file.getAbsolutePath() + "\"  width=\"360\" height=\"100\"/></body>";
@@ -467,7 +469,7 @@ public class activitySplashScreen extends AppCompatActivity {
                         GetUpdateAll res = response.body();
 
                     } catch (Exception ex) {
-                        if (response.raw()!= null)
+                        if (response.raw() != null)
                             response.raw().close();
                         //Toasty.error(mContext,"Unable to fetch Balance. Check internet connection.", 4000, true).show();
 
@@ -552,9 +554,9 @@ public class activitySplashScreen extends AppCompatActivity {
 
                 //Timber.i("SPLASH " +  t.getMessage());
                 //Toasty.error(mContext, t.getMessage(), 8000, true).show();
-                Log.e("result response","posuser.......444444444444444.......");
+                Log.e("result response", "posuser.......444444444444444.......");
 
-                Log.e("error",".....11111111111111111......."+t.getMessage());
+                Log.e("error", ".....11111111111111111......." + t.getMessage());
 
                 complete_step_2 = true;
                 check_complete();
@@ -632,7 +634,7 @@ public class activitySplashScreen extends AppCompatActivity {
                         realm.commitTransaction();
 
                         update_spi(service_provider_data);
-
+                        Topitup.ACCOUNT_NUMBER = result.account_number;
 
                     }
 
@@ -656,8 +658,8 @@ public class activitySplashScreen extends AppCompatActivity {
                 if (isNetworkAvailable(activitySplashScreen.this)) {
 
                     Toasty.error(mContext, t.getMessage(), 100000, true).show();
-                }else {
-                    Toasty.error(mContext,"Please check your internet connection! ", 100000, true).show();
+                } else {
+                    Toasty.error(mContext, "Please check your internet connection! ", 100000, true).show();
 
                 }
                 Timber.e("GetUpdateAll error: " + t.getMessage());
@@ -682,7 +684,7 @@ public class activitySplashScreen extends AppCompatActivity {
                     // Toasty.info(mContext, "Saved! Logged out after 3 minutes on inactivity", 20000, true).show();
 
 //                    call_endpoints_config();
-                 //   printmethod();
+                    //   printmethod();
 
 
                     Intent i = new Intent(activitySplashScreen.this, activity_login.class);
@@ -733,7 +735,7 @@ public class activitySplashScreen extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<fin_balance> call, Throwable t) {
-                Log.i("filepath", "file....balance...1111111111...."+t.getMessage());
+                Log.i("filepath", "file....balance...1111111111...." + t.getMessage());
 
                 complete_step_3 = true;
                 check_complete();
