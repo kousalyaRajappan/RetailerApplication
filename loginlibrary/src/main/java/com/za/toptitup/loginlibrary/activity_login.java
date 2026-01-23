@@ -474,7 +474,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         tiu_title_balance.setLayoutParams(params);*/
 //        tiu_title_balance.setLayoutParams();
         final TextView tiu_title_balance_cash = findViewById(R.id.tiu_title_balance_cash);
-        img_gif = findViewById(R.id.img_gif);
+//        img_gif = findViewById(R.id.img_gif);
 
         update_balance();
         /* END HEADER */
@@ -511,22 +511,22 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
-                    img_gif_.setImageDrawable(getDrawable(R.drawable.login_advertisement));
+//                    img_gif_.setImageDrawable(getDrawable(R.drawable.login_advertisement));
 
                 } else {
                     if (get_adv_data.equals("local")) {
-                        img_gif.setVisibility(View.GONE);
-                        img_gif_local.setVisibility(View.VISIBLE);
-                        img_gif_local.setImageDrawable(getDrawable(R.drawable.global_1687363966_st));
+//                        img_gif.setVisibility(View.GONE);
+//                        img_gif_local.setVisibility(View.VISIBLE);
+//                        img_gif_local.setImageDrawable(getDrawable(R.drawable.global_1687363966_st));
 
                        /* String imagePath = "file:///android_res/drawable/global_1687363966_st.gif";
                         String html = "<html><body style='margin:0; padding:0;'><img src=\"" + imagePath + "\" style='width:100; height:200;'/></body></html>";
                         img_gif.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);*/
                     } else {
-                        img_gif.setVisibility(View.VISIBLE);
+                       /* img_gif.setVisibility(View.VISIBLE);
                         img_gif_local.setVisibility(View.GONE);
                         img_gif.loadDataWithBaseURL("file:///android_asset/", get_adv_data, "text/html", "UTF-8", null);
-                        img_gif.setBackgroundColor(Color.TRANSPARENT);
+                        img_gif.setBackgroundColor(Color.TRANSPARENT);*/
                     }
 
                 }
@@ -1655,18 +1655,18 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         //  getAddslogin();
 
                         if (get_adv_data.equals("local")) {
-                            img_gif.setVisibility(View.GONE);
-                            img_gif_local.setVisibility(View.VISIBLE);
-                            img_gif_local.setImageDrawable(getDrawable(R.drawable.global_1687363966_st));
+//                            img_gif.setVisibility(View.GONE);
+//                            img_gif_local.setVisibility(View.VISIBLE);
+//                            img_gif_local.setImageDrawable(getDrawable(R.drawable.global_1687363966_st));
                           /*  String imagePath = "file:///android_res/drawable/global_1687363966_st.gif";
                             String html = "<html><body style='margin:0; padding:0;'><img src=\"" + imagePath + "\" style='width:100%; height:auto;'/></body></html>";
                             img_gif.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);*/
                         } else {
-                            img_gif.setVisibility(View.VISIBLE);
-                            img_gif_local.setVisibility(View.GONE);
-
-                            img_gif.loadDataWithBaseURL("file:///android_asset/", get_adv_data, "text/html", "UTF-8", null);
-                            img_gif.setBackgroundColor(Color.TRANSPARENT);
+//                            img_gif.setVisibility(View.VISIBLE);
+//                            img_gif_local.setVisibility(View.GONE);
+//
+//                            img_gif.loadDataWithBaseURL("file:///android_asset/", get_adv_data, "text/html", "UTF-8", null);
+//                            img_gif.setBackgroundColor(Color.TRANSPARENT);
                         }
 
                     } else {

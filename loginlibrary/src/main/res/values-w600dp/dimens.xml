@@ -53,7 +53,7 @@
     <dimen name="headtextSize">15dp</dimen>
 
     <dimen name="loginHeader">60dp</dimen>
-    <dimen name="loginMarginHeader">70dp</dimen>
+    <dimen name="loginMarginHeader">78dp</dimen>
     <dimen name="headerFirstRow">20dp</dimen>
     <dimen name="headerViewHeight">20dp</dimen>
     <dimen name="headerViewwidth">4dp</dimen>
@@ -68,7 +68,7 @@
     <dimen name="loginWatsapptext">20dp</dimen>
     <dimen name="topitIconSize">50dp</dimen>
     <dimen name="topitIconWidthSize">200dp</dimen>
-    <dimen name="loginStoreTextSize">20sp</dimen>
+    <dimen name="loginStoreTextSize">25sp</dimen>
     <dimen name="loginEdittextSize">60dp</dimen>
     <dimen name="login_add_dialog">200dp</dimen>
     <dimen name="login_add_dialog_hight">380dp</dimen>
