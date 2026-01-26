@@ -1238,6 +1238,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         amntEditText.requestFocus();
 
 
+        Log.e("account number","acc........."+supplier.getAccount_number());
         etAccountNo.setText(Topitup.ACCOUNT_NUMBER);
         clearRand_Cents.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1256,7 +1257,15 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 dialog.dismiss();
             }
         });
-
+        if(supplier.getAccount_number().equals(Topitup.ACCOUNT_NUMBER)){
+            btnConfirm.setEnabled(false);
+            btnConfirm.setAlpha(0.5f);        // faded look
+            Toast.makeText(
+                    context,
+                    "You cannot transfer funds to your own account.",
+                    Toast.LENGTH_LONG
+            ).show();
+        }
         btnConfirm.setOnClickListener(v -> {
             dialog.dismiss();
 

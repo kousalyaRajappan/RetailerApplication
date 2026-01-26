@@ -23,6 +23,11 @@ public class SupplierData {
         private String country;
         @SerializedName("city")
         private String city;
+
+        @SerializedName("account_number")
+        private String account_number;
+
+
         // Getters
         public String getSupplierName() { return supplierName; }
         public String getLegalName() { return legalName; }
@@ -33,5 +38,8 @@ public class SupplierData {
 
         public String getCity() {
                 return city;
+        }
+        public String getAccount_number() {
+                return account_number;
         }
 }
