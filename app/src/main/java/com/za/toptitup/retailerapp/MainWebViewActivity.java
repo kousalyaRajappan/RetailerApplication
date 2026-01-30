@@ -131,6 +131,7 @@ public class MainWebViewActivity extends AppCompatActivity {
         if (webView.canGoBack()) {
             webView.goBack();
         } else {
+            handleLogout();
             super.onBackPressed();
         }
     }
