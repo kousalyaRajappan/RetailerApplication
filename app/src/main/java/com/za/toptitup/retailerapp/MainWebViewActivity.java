@@ -9,6 +9,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -73,7 +74,40 @@ public class MainWebViewActivity extends AppCompatActivity {
                     WebResourceRequest request
             ) {
                 String url = request.getUrl().toString();
+                if (url.contains("/printslip")) {
+                    // String url = "https://dev.topitup.co.za/Retailerscan/printslip/0/395242/20";
 
+// 1. Split the URL by "/"
+                    String[] parts = url.split("/");
+
+// 2. Find index of "printslip"
+                    int indexPrintslip = -1;
+                    for (int i = 0; i < parts.length; i++) {
+                        if (parts[i].equals("printslip")) {
+                            indexPrintslip = i;
+                            break;
+                        }
+                    }
+
+// 3. If found, extract the next values
+                    if (indexPrintslip != -1 && parts.length > indexPrintslip + 3) {
+                        String type = parts[indexPrintslip + 1]; // "0"
+                        String txid = parts[indexPrintslip + 2]; // "395242"
+                        String amount = parts[indexPrintslip + 3]; // "20"
+
+                        // 4. Show a Toast with the results
+                        Toast.makeText(getApplicationContext(),
+                                "transaction type: " + type +
+                                        "**** transaction id: " + txid +
+                                        "**** transaction amount: " + amount,
+                                Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(),
+                                "URL format unexpected",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                }
                 if (url.contains("/logout")) {
                     handleLogout();
                     return true;
