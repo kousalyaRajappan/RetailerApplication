@@ -45,10 +45,10 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Hashtable;
 
-import com.za.toptitup.loginlibraryR;
-import com.za.toptitup.loginlibrarycommand.sdk.Command;
-import com.za.toptitup.loginlibrarycommand.sdk.PrintPicture;
-import com.za.toptitup.loginlibrarycommand.sdk.PrinterCommand;
+import com.za.toptitup.loginlibrary.R;
+import com.za.toptitup.loginlibrary.command.sdk.Command;
+import com.za.toptitup.loginlibrary.command.sdk.PrintPicture;
+import com.za.toptitup.loginlibrary.command.sdk.PrinterCommand;
 import zj.com.customize.sdk.Other;
 
 public class Main_Activity extends AppCompatActivity implements OnClickListener{

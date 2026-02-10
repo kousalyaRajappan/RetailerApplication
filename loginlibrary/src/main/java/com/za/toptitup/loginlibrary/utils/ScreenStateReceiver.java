@@ -7,7 +7,6 @@ import android.util.Log;
 
 import com.za.toptitup.loginlibrary.BaseActivity;
 
-import static com.blankj.utilcode.util.ActivityUtils.startActivity;
 
 public class ScreenStateReceiver extends BroadcastReceiver {
 

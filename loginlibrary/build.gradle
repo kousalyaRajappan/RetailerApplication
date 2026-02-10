@@ -61,10 +61,15 @@ dependencies {
     implementation files('src/main/libs/SDK4KeyManagerBinderV2.1.5.jar')
     implementation files('src/main/libs/CashierInvoke_202002261912.jar')
     implementation files('src/main/libs/core-3.3.0.jar')
-//    implementation files('libs/core-3.3.0.jar')
-    implementation files('src/main/libs/core-3.3.0.jar')  // If file is in src/main/libs
+    implementation files('src/main/libs/core-3.3.0.jar')
+    implementation files('src/main/libs/core-3.3.0.jar')
+    implementation files('src/main/libs/core-3.3.0.jar')
 
-
+    // WiseSdk AAR files
+//    implementation(name: 'WiseSdk_D_1.09_00a_240325', ext: 'aar')
+//    implementation(name: 'WiseSdk_P_1.29_00a_24041501', ext: 'aar')
+    implementation files('src/main/libs/WiseSdk_D_1.09_00a_240325.aar')
+    implementation files('src/main/libs/WiseSdk_P_1.29_00a_24041501.aar')
     // AndroidX Core Libraries
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.core:core-ktx:1.12.0'
