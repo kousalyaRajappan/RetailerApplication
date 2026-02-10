@@ -46,6 +46,8 @@ toastyVersion = "1.5.2"
 utilcode = "1.30.7"
 lifecycleProcess = "2.10.0"
 zxingAndroidEmbedded = "4.3.0"
+lifecycleCommonJvm = "2.10.0"
+annotationJvm = "1.9.1"
 
 
 [libraries]
@@ -95,6 +97,8 @@ toasty-v125 = { module = "com.github.GrenderG:Toasty", version.ref = "toasty" }
 utilcode = { module = "com.blankj:utilcode", version.ref = "utilcode" }
 lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycleProcess" }
 zxing-android-embedded = { module = "com.journeyapps:zxing-android-embedded", version.ref = "zxingAndroidEmbedded" }
+lifecycle-common-jvm = { group = "androidx.lifecycle", name = "lifecycle-common-jvm", version.ref = "lifecycleCommonJvm" }
+annotation-jvm = { group = "androidx.annotation", name = "annotation-jvm", version.ref = "annotationJvm" }
 
 
 [plugins]

@@ -1,4 +1,4 @@
-package com.za.toptitup.loginlibrary.sdk;
+package com.za.toptitup.loginlibrary.command.sdk;
 
 public class Command {
 
@@ -119,7 +119,7 @@ public class Command {
 	 * 状态指令
 	 */
 	//实时状态传送指令
-	public static byte[] DLE_eot = new byte[] {DLE, 0x04, 0x00 ,0x00};
+	public static byte[] DLE_eot = new byte[] {DLE, 0x04, 0x00 };
 	
 	//实时弹钱箱指令
 	public static byte[] DLE_DC4 = new byte[] {DLE, DC4, 0x00, 0x00, 0x00 };

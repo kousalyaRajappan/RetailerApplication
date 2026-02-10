@@ -28,12 +28,18 @@ android {
         targetCompatibility JavaVersion.VERSION_11
     }
 }
-
+repositories {
+    flatDir {
+        dirs 'src/main/libs'
+    }
+}
 dependencies {
 
     implementation libs.appcompat
     implementation libs.material
     implementation libs.lifecycle.process
+    implementation libs.lifecycle.common.jvm
+    implementation libs.annotation.jvm
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
@@ -63,7 +69,7 @@ dependencies {
 
     // implementation 'io.realm:android-adapters:2.3.0'
     implementation libs.glide
-    implementation libs.lifecycle.extensions
+  //  implementation libs.lifecycle.extensions
 
 
     // implementation libs.extensions
@@ -98,6 +104,9 @@ dependencies {
     implementation libs.google.firebase.crashlytics
     implementation libs.firebase.analytics // optional but recommended
     implementation libs.grenderg.toasty
+    implementation(name: 'WiseSdk_D_1.09_00a_240325', ext: 'aar')
+    implementation(name: 'WiseSdk_P_1.29_00a_24041501', ext: 'aar')
+
 
     api libs.grenderg.toasty
     // Check for the latest version
@@ -109,4 +118,11 @@ dependencies {
     implementation (libs.zxing.android.embedded) {
         exclude group: 'com.google.zxing', module: 'core'
     }
+    implementation "androidx.annotation:annotation:1.7.1"
+    implementation "androidx.core:core-ktx:1.12.0"
+    implementation "androidx.lifecycle:lifecycle-runtime:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.5.1"
+
+
+
 }

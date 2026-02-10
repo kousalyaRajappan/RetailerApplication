@@ -1,4 +1,3 @@
-/*
 package com.za.toptitup.loginlibrary.utils;
 
 import static com.wisepos.smartpos.errorcode.WisePosErrorCode.ERR_SUCCESS;
@@ -22,6 +21,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbDeviceConnection;
+import android.hardware.usb.UsbEndpoint;
+import android.hardware.usb.UsbInterface;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -44,6 +46,7 @@ import com.zj.usbsdk.UsbController;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,8 +56,14 @@ import es.dmoral.toasty.Toasty;
 import print.Print;
 import sdk.PrintPicture;
 import sdk.PrinterCommand;
-import za.co.topitup.R;
+import com.za.toptitup.loginlibrary.PrinterStatusChecker;
+import com.za.toptitup.loginlibrary.R;
 import com.za.toptitup.loginlibrary.activity_login;
+import com.za.toptitup.loginlibrary.activity_main;
+import com.za.toptitup.loginlibrary.activity_print_screen;
+import com.za.toptitup.loginlibrary.activity_printer_animation;
+import com.za.toptitup.loginlibrary.admin.Printingw;
+import com.za.toptitup.loginlibrary.admin.activity_settings;
 import com.za.toptitup.loginlibrary.bluetooth.BluetoothService;
 import zj.com.customize.sdk.Other;
 
@@ -293,7 +302,7 @@ public final class PrinterTopitup {
         String line = null;
 
         try {
-            activity_settings.printLogobluetooth(getAppContext());
+//            activity_settings.printLogobluetooth(getAppContext());
             while ((line = bufReader.readLine()) != null) {
 
                 String prnt_line = "";
@@ -383,11 +392,25 @@ public final class PrinterTopitup {
 
     public static void print_data(final String slip_to_print) {
 
-        SharedPreferences settings = Topitup.getAppContext().getSharedPreferences("TIUPREF", 0);
-       */
-/* String value  = settings.getString("setting_print_to_screen_temp", "0");
-        Log.e("selected printer", "selected........" + value);*//*
 
+        // ========== ✨ NEW CODE - ANIMATION INTERCEPTOR ✨ ==========
+        SharedPreferences settings = Topitup.getAppContext().getSharedPreferences("TIUPREF", 0);
+        boolean showPrintAnimation = settings.getBoolean("show_print_animation", true);
+
+        Log.e("printer animation",showPrintAnimation+"animation"+isCalledFromAnimationActivity());
+        // Check if we should show animation
+        if (showPrintAnimation && !isCalledFromAnimationActivity()) {
+            Log.e("animation","printer animation inside");
+            // Launch animation activity
+            Intent intent = new Intent(Topitup.getAppContext(), activity_printer_animation.class);
+            intent.putExtra("slip_to_print", slip_to_print);
+            intent.putExtra("auto_print", true); // Will trigger actual print after animation
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            Topitup.getAppContext().startActivity(intent);
+            return;
+        }
+
+        settings = Topitup.getAppContext().getSharedPreferences("TIUPREF", 0);
         if (settings.getString("setting_print_to_screen", "0").equals("1")) {
             Log.e("bluettooth", ",print data,   if, screen");
 
@@ -400,20 +423,6 @@ public final class PrinterTopitup {
         }
 
 
-
-       */
-/* if (settings.getString("setting_print_to_screen_temp", "0").equals("1")) {
-            Log.e("bluettooth", ",print data,   if," );
-
-
-            Intent intent = new Intent(Topitup.getAppContext(), activity_print_screen.class);
-            intent.putExtra("slip_to_print", slip_to_print);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            Topitup.getAppContext().startActivity(intent);
-
-            return;
-
-        }*//*
 
 
         int print_line_counter = 0;
@@ -437,19 +446,18 @@ public final class PrinterTopitup {
                 } else if (activity_login.fromScreen.equals("activity_spi")) {
                     bluetoothDataPrinter(slip_to_print);
 
-                } */
-/*else if (activity_login.fromScreen.equals("activity_spi")) {
+                } /*else if (activity_login.fromScreen.equals("activity_spi")) {
                     bluetoothDataPrinter(slip_to_print);
 
-                }*//*
- else {
+                }*/ else {
                     if (activity_settings.mService != null) {
+                        SharedPreferences finalSettings = settings;
                         new Thread(() -> {
                             boolean isConnected = BluetoothService.isReallyConnected();
 
                             if (!isConnected) {
                                 // Try reconnecting
-                                String lastDeviceAddress = settings.getString("last_device_address", null);
+                                String lastDeviceAddress = finalSettings.getString("last_device_address", null);
                                 if (lastDeviceAddress != null) {
                                     if (activity_settings.mBluetoothAdapter == null) {
                                         activity_settings.mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -491,63 +499,10 @@ public final class PrinterTopitup {
                         Toast.makeText(getAppContext(), "Bluetooth Service null", Toast.LENGTH_LONG).show();
                     }
                 }
-                */
-/*else if(activity_settings.isBluetoothConnected && BluetoothService.isReallyConnected()) {
 
-                    Log.e("bluetooth ","if......1111...."+BluetoothService.isReallyConnected());
-                    if (!activity_settings.checkPrinterStatusWithoutHandler(Topitup.getAppContext())) {
-                        showUsbNotConnectedDialog(mContext);
-                    }else {
-                        bluetoothDataPrinter(slip_to_print);
+            }
+            else if (selectedPrinter.equals("usb")) {
 
-                    }
-
-                }
-                else{
-                    Log.e("bluetooth ","if......3333. 5454545...");
-
-                    if (activity_settings.mService != null)  {
-                        String lastDeviceAddress = settings.getString("last_device_address", null);
-                        if (lastDeviceAddress != null) {
-                            if (activity_settings.mBluetoothAdapter == null) {
-                                activity_settings.mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-                            }
-                            activity_settings.bluetoothMsg = "";
-                            BluetoothDevice device = activity_settings.mBluetoothAdapter.getRemoteDevice(lastDeviceAddress);
-                            activity_settings.mService.connect(device);
-
-                            final Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                public void run() {
-                                    if(activity_settings.isBluetoothConnected){
-                                        bluetoothDataPrinter(slip_to_print);
-                                    }else{
-                                        if (!BluetoothService.isReallyConnected()) {
-                                            showUsbNotConnectedDialog(mContext);
-
-                                        }else {
-                                            Toast.makeText(getAppContext(),"Please try again ",Toast.LENGTH_LONG).show();
-
-                                        }
-
-                                    }
-                                }
-                            }, 3000);
-
-
-                        }else{
-                            Toast.makeText(getAppContext(),"bluetooth last Address null",Toast.LENGTH_LONG).show();
-
-                        }
-                    }else{
-                        Toast.makeText(getAppContext(),"bluetooth Service null",Toast.LENGTH_LONG).show();
-
-                    }
-
-                }*//*
-
-
-            } else if (selectedPrinter.equals("usb")) {
 
                 if (dev != null && usbCtrl != null) {
 
@@ -565,7 +520,7 @@ public final class PrinterTopitup {
 
                             if (checkPrinerStatus(dev, mContext)) {
                                 Log.e("print image", "image print");
-                                printDrawableOverUSB(mContext, dev, usbCtrl);
+//                                printDrawableOverUSB(mContext, dev, usbCtrl);
                                 BufferedReader bufReader = new BufferedReader(new StringReader(slip_to_print));
                                 String line = null;
                                 try {
@@ -681,337 +636,24 @@ public final class PrinterTopitup {
                 }
 
 
-            } else if (selectedPrinter.equals("inner")) {
+            }
+            else if (selectedPrinter.equals("inner")) {
                 if (Topitup.DEVICE_TYPE.equals("MOBILE") || Topitup.DEVICE_TYPE.equals("TABLET")) {
                     Toast.makeText(getAppContext(), "Please connect USB or Bluetooth", Toast.LENGTH_LONG).show();
 
-                } else if (Topitup.DEVICE_TYPE.equals("WPOS")) {
+                }
+                else if (Topitup.DEVICE_TYPE.equals("WPOS")) {
+
 
                     if (android.os.Build.MODEL.equals("P052")) {
-                        Toast.makeText(mContext, "p052 selected", Toast.LENGTH_LONG).show();
-
-                        try {
-                            Map<String, Object> map;
-                            Printer printer = WisePosSdk.getInstance().getPrinter();
-                            printer.initPrinter();  //Initializing the printer.
-//                            String SANS_SERIF_LIGHT = "sans-serif-light";
-                            String SANS_SERIF_LIGHT = "sans-serif";
-
-                            int PRINT_STYLE_CENTER = 0x02;
-                            int PRINT_STYLE_LEFT = 0x01;
-
-                            int gray = 5; // Try safe value between 1-5
-                            int ret = printer.setGrayLevel(gray);
-
-
-                            if (ret != ERR_SUCCESS) {
-                                Log.e("sdkdemo", "startCaching failed errCode = " + Integer.toHexString(ret));
-                                return;
-                            } else {
-                                Log.e("sdkdemo", " gray value success  ");
-
+                        new Thread(() -> {
+                            try {
+                                P052PrinterUtil p052Printer = new P052PrinterUtil(mContext);
+                                p052Printer.printData(slip_to_print);
+                            } catch (Exception e) {
+                                Log.e("P052 Print", "Print failed", e);
                             }
-
-                            map = printer.getPrinterStatus();   //Gets the current status of the printer.
-                            if (map == null) {
-                                Log.e("sdkdemo", "getStatus failed" + String.format(" errCode = 0x%x\n", 0));
-                                return;
-                            } else {
-                                Log.e("sdkdemo", "getStatus " + String.format(" errCode = 0x%x\n", 0));
-
-                            }
-                            //Gets whether the printer is out of paper from the map file.
-                            if ((byte) map.get("paper") == 1) {
-                                Log.e("sdkdemo", "IsHavePaper = false\n");
-                                return;
-                            } else {
-                                Log.e("sdkdemo", "IsHavePaper = true\n");
-                            }
-
-                            //When printing text information, the program needs to set the printing font. The current setting is the default font.
-                            Bundle bundle1 = new Bundle();
-                            if (android.os.Build.MODEL.equals("P5SE") || android.os.Build.MODEL.equals("P5MAX") || android.os.Build.MODEL.equals("P052")) {
-                                bundle1.putString("font", SANS_SERIF_LIGHT);
-                            } else {
-                                bundle1.putString("font", "DEFAULT");
-                            }
-
-                            printer.setPrintFont(bundle1);
-                            //When printing text information, the program needs to set the printing font. The current setting is the default font.
-                            BufferedReader bufReader = new BufferedReader(new StringReader(slip_to_print));
-
-                            String line;
-
-                            printer.setLineSpacing(1); // Set global line spacing
-                            Bundle fontBundle = new Bundle();
-                            if (android.os.Build.MODEL.equals("P5SE") || android.os.Build.MODEL.equals("P5MAX") || android.os.Build.MODEL.equals("P052")) {
-                                fontBundle.putString("font", SANS_SERIF_LIGHT);
-                            } else {
-                                fontBundle.putString("font", "DEFAULT");
-                            }
-                            printer.setPrintFont(fontBundle);
-
-                            while ((line = bufReader.readLine()) != null) {
-                                if (line.length() == 0) continue;
-
-                                String prnt_line = "";
-                                String first = line.substring(0, 1);
-
-                                TextInfo textInfo = new TextInfo();
-                                textInfo.setFontSize(25); // Default font size
-                                textInfo.setBold(false);
-                                textInfo.setAlign(PRINT_STYLE_LEFT);
-
-                                if (line.startsWith("BARCODE:")) {
-                                    if (Topitup.PRINT_BARCODE.equals("1")) {
-
-                                        // Wiseasy SDK might not support raw ESC commands.
-                                        // If barcode printing is supported natively, use printer.printBarcode API.
-                                        String barcodeData = line.replace("BARCODE:", "").trim();
-                                        // Add Code128 barcode
-                                        printer.addBarCode(BarcodeType.BARCODE_TYPE_BARCODE_128, 380, 90, barcodeData);
-                                    }
-                                    // Add PDF417 barcode
-//                                printer.printBarcode(barcodeData, BarcodeFormat.CODE_128, 2, 100); // adjust type/width/height
-                                } else if (first.equals("0") || first.equals("1")) {
-                                    prnt_line = line.substring(1);
-
-                                    // Optional text wrap logic (you need to implement wrapText() separately)
-                                    List<String> wrappedLines = wrapText(prnt_line, 32);
-                                    for (String wrappedLine : wrappedLines) {
-                                        textInfo.setText(wrappedLine);
-                                        textInfo.setBold(true);
-
-                                        printer.addSingleText(textInfo);
-                                    }
-                                } else {
-                                    // Bold & larger size for other lines
-                                    prnt_line = line.substring(1);
-                                    textInfo.setBold(true);
-                                    textInfo.setFontSize(33);
-                                    textInfo.setAlign(PRINT_STYLE_CENTER);
-                                    textInfo.setText(prnt_line);
-                                    printer.addSingleText(textInfo);
-                                }
-                            }
-
-                            Bundle printerOption = new Bundle();
-                            //Start printing
-                            printer.startPrinting(printerOption, new PrinterListener() {
-                                @Override
-                                public void onError(int i) {
-                                    Log.e("sdkdemo", "startPrinting failed errCode = " + i);
-                                }
-
-                                @Override
-                                public void onFinish() {
-                                    Log.e("sdkdemo", "print success\n");
-                                    try {
-                                        //After printing, Feed the paper.
-                                        printer.feedPaper(30);
-                                    } catch (WisePosException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-                                @Override
-                                public void onReport(int i) {
-                                    //The callback method is reserved and does not need to be implemented
-                                }
-                            });
-
-                            */
-/*TextInfo textInfo = new TextInfo();
-
-                            textInfo.setAlign(PRINT_STYLE_CENTER);
-                            textInfo.setFontSize(32);
-                            printer.setLineSpacing(1);
-
-                            textInfo.setText("topitup \n welcomes you");
-                            printer.addSingleText(textInfo);
-
-                            Bundle printerOption = new Bundle();
-                            //Start printing
-                            printer.startPrinting(printerOption, new PrinterListener() {
-                                @Override
-                                public void onError(int i) {
-                                    Log.e("sdkdemo","startPrinting failed errCode = " + i);
-                                }
-
-                                @Override
-                                public void onFinish() {
-                                    Log.e("sdkdemo","print success\n");
-                                    try {
-                                        //After printing, Feed the paper.
-                                        printer.feedPaper(30);
-                                    } catch (WisePosException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-                                @Override
-                                public void onReport(int i) {
-                                    //The callback method is reserved and does not need to be implemented
-                                }
-                            });*//*
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            Log.e("sdkdemo", "print failed" + e.toString() + "\n");
-                        }
-                     */
-/*   try {
-                            Map<String, Object> map;
-//                            Printer printer = activity_settings.printerp052;
-
-                            Printer printer = activity_settings.printerp052;
-
-                            if (printer == null) {
-                                printer = WisePosSdk.getInstance().getPrinter();
-                                printer.initPrinter();
-                                activity_settings.printerp052 = printer;
-                            } else {
-                                try {
-                                    printer.getPrinterStatus(); // Check if it’s still valid
-                                } catch (Exception e) {
-                                    printer = WisePosSdk.getInstance().getPrinter();
-                                    printer.initPrinter();
-                                    activity_settings.printerp052 = printer;
-                                }
-                            }
-//                            Printer printer = WisePosSdk.getInstance().getPrinter();
-//                            printer.initPrinter(); //Initializing the printer.
-//                            String SANS_SERIF_LIGHT = "DEFAULT";
-                            String SANS_SERIF_LIGHT = "sans-serif";
-//                            String SANS_SERIF_LIGHT = "sans-serif-light";
-
-                            int PRINT_STYLE_CENTER = 0x02;
-                            int PRINT_STYLE_LEFT = 0x01;
-
-                            int gray = 5; // Try safe value between 1-5
-                            int ret = printer.setGrayLevel(gray);
-
-
-                            if (ret != ERR_SUCCESS) {
-                                Log.e("sdkdemo","startCaching failed errCode = " + Integer.toHexString(ret));
-                                return;
-                            }else{
-                                Log.e("sdkdemo"," gray value success " );
-                            }
-
-                            map = printer.getPrinterStatus(); //Gets the current status of the printer.
-                            if (map == null) {
-                                Log.e("sdkdemo","getStatus failed" + String.format(" errCode = 0x%x\n",0));
-                                return;
-                            }else{
-                                Log.e("sdkdemo","getStatus " + String.format(" errCode = 0x%x\n",0));
-                            }
-
-                            //Gets whether the printer is out of paper from the map file.
-                            if ((byte) map.get("paper") == 1) {
-                                Toast.makeText(mContext,"Out of Paper",Toast.LENGTH_LONG).show();
-                                Log.e("sdkdemo","IsHavePaper = false\n");
-                                return;
-                            } else {
-                                Log.e("sdkdemo","IsHavePaper = true\n");
-                            }
-
-                            //When printing text information, the program needs to set the printing font. The current setting is the default font.
-                            Bundle bundle1 = new Bundle();
-                            if (android.os.Build.MODEL.equals("P5SE") ||android.os.Build.MODEL.equals("P5MAX") ||android.os.Build.MODEL.equals("P052")){
-                                bundle1.putString("font", SANS_SERIF_LIGHT);
-                            } else {
-                                bundle1.putString("font", "DEFAULT");
-                            }
-
-                            printer.setPrintFont(bundle1);
-
-                            //When printing text information, the program needs to set the printing font. The current setting is the default font.
-                            BufferedReader bufReader = new BufferedReader(new StringReader(slip_to_print));
-
-                            String line;
-
-                            printer.setLineSpacing(1); // Set global line spacing
-                            Bundle fontBundle = new Bundle();
-                            if (android.os.Build.MODEL.equals("P5SE") || android.os.Build.MODEL.equals("P5MAX") || android.os.Build.MODEL.equals("P052")) {
-                                fontBundle.putString("font", SANS_SERIF_LIGHT);
-                            } else {
-                                fontBundle.putString("font", "DEFAULT");
-                            }
-                            printer.setPrintFont(fontBundle);
-
-                            while ((line = bufReader.readLine()) != null) {
-                                if (line.length() == 0) continue;
-
-                                String prnt_line = "";
-                                String first = line.substring(0, 1);
-
-                                TextInfo textInfo = new TextInfo();
-                                textInfo.setFontSize(25); // Default font size
-                                textInfo.setBold(false);
-                                textInfo.setAlign(PRINT_STYLE_LEFT);
-
-                                if (line.startsWith("BARCODE:")) {
-                                    // Wiseasy SDK might not support raw ESC commands.
-                                    // If barcode printing is supported natively, use printer.printBarcode API.
-                                    String barcodeData = line.replace("BARCODE:", "").trim();
-                                    // Add Code128 barcode
-                                    printer.addBarCode(BarcodeType.BARCODE_TYPE_BARCODE_128, 380, 90, barcodeData);
-                                    // Add PDF417 barcode
-//                                printer.printBarcode(barcodeData, BarcodeFormat.CODE_128, 2, 100); // adjust type/width/height
-                                } else if (first.equals("0") || first.equals("1")) {
-                                    prnt_line = line.substring(1);
-
-                                    // Optional text wrap logic (you need to implement wrapText() separately)
-                                    List<String> wrappedLines = wrapText(prnt_line, 32);
-                                    for (String wrappedLine : wrappedLines) {
-                                        textInfo.setText(wrappedLine);
-                                        textInfo.setBold(true);
-
-                                        printer.addSingleText(textInfo);
-                                    }
-                                } else {
-                                    // Bold & larger size for other lines
-                                    prnt_line = line.substring(1);
-                                    textInfo.setBold(true);
-                                    textInfo.setFontSize(33);
-                                    textInfo.setAlign(PRINT_STYLE_CENTER);
-                                    textInfo.setText(prnt_line);
-                                    printer.addSingleText(textInfo);
-                                }
-                            }
-
-                            Bundle printerOption = new Bundle();
-                            //Start printing
-                            Printer finalPrinter = printer;
-                            printer.startPrinting(printerOption, new PrinterListener() {
-                                @Override
-                                public void onError(int i) {
-                                    Log.e("sdkdemo","startPrinting failed errCode = " + i);
-                                }
-
-                                @Override
-                                public void onFinish() {
-                                    Log.e("sdkdemo","print success\n");
-                                    try {
-                                        //After printing, Feed the paper.
-                                        finalPrinter.feedPaper(30);
-                                    } catch (WisePosException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-                                @Override
-                                public void onReport(int i) {
-                                    //The callback method is reserved and does not need to be implemented
-                                }
-                            });
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            Toast.makeText(getAppContext(),""+e.getMessage(),Toast.LENGTH_LONG).show();
-                            Log.e("sdkdemo","print failed" + e.toString() + "\n");
-                        }*//*
-
+                        }).start();
                     } else {
                         if (activity_main.printScreen) {
 
@@ -1021,10 +663,19 @@ public final class PrinterTopitup {
                             Topitup.getAppContext().startActivity(intent);
 
                         } else {
-                            Printingw wpos = new Printingw();
+                            Log.e("printing animatio","wpos........"+slip_to_print);
+                           /* Printingw wpos = new Printingw();
                             wpos.data = slip_to_print;
                             wpos.init();
-                            wpos.printStart();
+                            wpos.printStart();*/
+                            new Thread(() -> {
+                                try {
+                                    WPosPrinterUtil wposPrinter = new WPosPrinterUtil(mContext);
+                                    wposPrinter.printData(slip_to_print);
+                                } catch (Exception e) {
+                                    Log.e("printing animation", "WPos print failed", e);
+                                }
+                            }).start();
                         }
 
                     }
@@ -1164,8 +815,7 @@ public final class PrinterTopitup {
                 if (Topitup.DEVICE_TYPE.equals("MOBILE") || Topitup.DEVICE_TYPE.equals("TABLET")) {
                     Toast.makeText(getAppContext(), "Please connect USB or Bluetooth", Toast.LENGTH_LONG).show();
 
-                } */
-/*else {
+                } /*else {
 
                     if (Printooth.INSTANCE.hasPairedPrinter()) {
                         BluetoothPrinter bluetoothPrinter = new BluetoothPrinter();
@@ -1180,8 +830,7 @@ public final class PrinterTopitup {
                             e.printStackTrace();
                         }
                     }
-                }*//*
-
+                }*/
             }
 
 
@@ -1199,8 +848,7 @@ public final class PrinterTopitup {
         }
 
 
-      */
-/*  if (Topitup.DEVICE_TYPE.equals("Q1")) {
+      /*  if (Topitup.DEVICE_TYPE.equals("Q1")) {
 
 
             ThreadPoolManager.getInstance().executeTask(new Runnable() {
@@ -1331,8 +979,7 @@ public final class PrinterTopitup {
             });
 
 
-        }*//*
-
+        }*/
 
 
         if (Topitup.DEVICE_TYPE.equals("ZKC")) {
@@ -1436,12 +1083,10 @@ public final class PrinterTopitup {
         if (Topitup.DEVICE_TYPE.equals("SUNMI")) {
 
 
-          */
-/*  Toasty.error(getAppContext(), "I=" + SunmiPrintHelper.getInstance().getPrinterSerialNo(), 8000, true).show();
+          /*  Toasty.error(getAppContext(), "I=" + SunmiPrintHelper.getInstance().getPrinterSerialNo(), 8000, true).show();
 
             SunmiPrintHelper.getInstance().printText("test", 24, true, true, "test.ttf");
-            SunmiPrintHelper.getInstance().feedPaper();*//*
-
+            SunmiPrintHelper.getInstance().feedPaper();*/
 
 
             ThreadPoolManager.getInstance().executeTask(new Runnable() {
@@ -1592,6 +1237,21 @@ public final class PrinterTopitup {
         return status;
     }
 
+
+    private static boolean isCalledFromAnimationActivity() {
+        try {
+            StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+            for (StackTraceElement element : stackTrace) {
+                if (element.getClassName().contains("activity_printer_animation")) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            // If we can't determine, assume it's not from animation activity
+        }
+        return false;
+    }
+
     public static List<String> wrapText(String text, int maxChars) {
         List<String> result = new ArrayList<>();
         while (text.length() > maxChars) {
@@ -1727,15 +1387,13 @@ public final class PrinterTopitup {
                 break;
         }
         if (dev != null) {
-           */
-/* if (!(usbCtrl.isHasPermission(dev))) {
+           /* if (!(usbCtrl.isHasPermission(dev))) {
                 //Log.d("usb调试","请求USB设备权限.");
                 usbCtrl.getPermission(dev);
             } else {
                 Toast.makeText(Topitup.getAppContext(), "permission granted",
                         Toast.LENGTH_SHORT).show();
-            }*//*
-
+            }*/
         } else {
             Toast.makeText(Topitup.getAppContext(), "usb not connected",
                     Toast.LENGTH_SHORT).show();
@@ -1744,8 +1402,7 @@ public final class PrinterTopitup {
     }
 
 
-    */
-/* public static void initiateUsbPrinterUSB(){
+    /* public static void initiateUsbPrinterUSB(){
          Log.e("initiate ","usb.....22222222.....");
 
          int[][] u_infor;
@@ -1802,8 +1459,7 @@ public final class PrinterTopitup {
                       break;
               }
           }
-      };*//*
-
+      };*/
     private static class QSPrinter {
 
         static final String data = null;
@@ -1935,18 +1591,23 @@ public final class PrinterTopitup {
 
     }
 
-    public static void showUsbNotConnectedDialog(Context conn) {
+    public static void showUsbNotConnectedDialog(Activity conn) {
+        if (conn == null || conn.isFinishing() || conn.isDestroyed()) {
+            Toast.makeText(getAppContext(), "Please connect Printer", Toast.LENGTH_LONG).show();
+
+            return;
+        }
         Dialog dialog = new Dialog(conn);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.usb_not_connected);
         dialog.setCancelable(true);
 
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+       /* WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         //getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-
+*/
 
         TextView txt_ok = dialog.findViewById(R.id.txt_ok);
 
@@ -1963,4 +1624,3 @@ public final class PrinterTopitup {
 
 
 }
-*/

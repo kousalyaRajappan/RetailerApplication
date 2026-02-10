@@ -95,7 +95,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
     public static String RICA_REG = "";
     //public static Account myAccount;
 
-    public static final String AUTHORITY = "za.co.topitup.app";
+    public static final String AUTHORITY = "com.za.toptitup.loginlibraryapp";
     public static final String ACCOUNT_TYPE = "za.co.topitup";
     public static String checkServer = "";
 
