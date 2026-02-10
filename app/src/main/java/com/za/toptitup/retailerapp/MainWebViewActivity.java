@@ -1,6 +1,7 @@
 package com.za.toptitup.retailerapp;
 
 import static com.za.toptitup.loginlibrary.utils.Topitup.bluetoothOperation;
+import static com.za.toptitup.loginlibrary.utils.Topitup.connectBluetooth;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -85,13 +86,15 @@ public class MainWebViewActivity extends AppCompatActivity {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                         if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
                             // Proceed with Bluetooth operations
-                            bluetoothOperation(getApplicationContext());
+                            connectBluetooth(MainWebViewActivity.this);
+                           // bluetoothOperation(MainWebViewActivity.this);
                         } else {
                             requestBluetoothPermissions();
                         }
                     } else {
                         // For older Android versions, directly perform Bluetooth operations
-                        bluetoothOperation(getApplicationContext());
+                       // bluetoothOperation(MainWebViewActivity.this);
+                        connectBluetooth(MainWebViewActivity.this);
                     }
 // 1. Split the URL by "/"
                     String[] parts = url.split("/");
@@ -130,7 +133,18 @@ String slip="transaction type: \" + type +\n" +
 
                 }
                 if (url.contains("/logout")) {
-                    handleLogout();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                        if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
+                            // Proceed with Bluetooth operations
+                            bluetoothOperation(getApplicationContext());
+                        } else {
+                            requestBluetoothPermissions();
+                        }
+                    } else {
+                        // For older Android versions, directly perform Bluetooth operations
+                        bluetoothOperation(getApplicationContext());
+                    }
+                  //  handleLogout();
                     return true;
                 }
                 return false;

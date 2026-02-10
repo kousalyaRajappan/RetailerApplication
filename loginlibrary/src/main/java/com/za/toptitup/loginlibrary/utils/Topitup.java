@@ -402,8 +402,41 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
     public static void connectBluetooth(Activity activity) {
         bluetoothOperation(activity);
     }
-
     public static void bluetoothOperation(Context context) {
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        if (mBluetoothAdapter == null) {
+            Toast.makeText(context, "Bluetooth is not available", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (!mBluetoothAdapter.isEnabled()) {
+            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // Request permission if needed
+                if (context instanceof Activity) {
+                    ActivityCompat.requestPermissions((Activity) context,
+                            new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1001);
+                }
+                return;
+            }
+            if (context instanceof Activity) {
+                ((Activity) context).startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+            }
+        } else {
+            if (mService == null) {
+                mService = new BluetoothService(context, mBluetoothHandler);
+            }
+        }
+
+        if (context instanceof Activity) {
+            Intent serverIntent = new Intent(context, DeviceListActivity.class);
+            ((Activity) context).startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
+        }
+    }
+
+/*    public static void bluetoothOperation(Context context) {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         if (mBluetoothAdapter == null) {
@@ -431,7 +464,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
 
         Intent serverIntent = new Intent(context, DeviceListActivity.class);
         ((Activity)context).startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
-    }
+    }*/
 
 
     // SendDataByte method - you'll need to implement this based on your PrinterCommand class
