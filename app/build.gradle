@@ -38,9 +38,7 @@ dependencies {
     // ✅ REALM (DO NOT USE VERSION CATALOG)
 
     implementation "io.realm:realm-android-library:10.19.0"
-    testImplementation libs.junit
-    androidTestImplementation libs.ext.junit
-    androidTestImplementation libs.espresso.core
+    testImplementation(libs.junit) // Instrumented Android tests androidTestImplementation(libs.androidx.junit) androidTestImplementation(libs.espresso.core)
     implementation project(":loginlibrary")
 
 }
