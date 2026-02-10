@@ -133,18 +133,7 @@ String slip="transaction type: \" + type +\n" +
 
                 }
                 if (url.contains("/logout")) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                        if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
-                            // Proceed with Bluetooth operations
-                            bluetoothOperation(getApplicationContext());
-                        } else {
-                            requestBluetoothPermissions();
-                        }
-                    } else {
-                        // For older Android versions, directly perform Bluetooth operations
-                        bluetoothOperation(getApplicationContext());
-                    }
-                  //  handleLogout();
+                   handleLogout();
                     return true;
                 }
                 return false;
