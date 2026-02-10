@@ -36,6 +36,7 @@ dependencies {
     implementation libs.activity
     implementation libs.constraintlayout
     // ✅ REALM (DO NOT USE VERSION CATALOG)
+
     implementation "io.realm:realm-android-library:10.19.0"
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit

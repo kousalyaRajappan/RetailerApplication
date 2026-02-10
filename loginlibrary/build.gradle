@@ -6,11 +6,14 @@ plugins {
 android {
     namespace 'com.za.toptitup.loginlibrary'
     compileSdk 34
+
     buildFeatures {
         buildConfig true
     }
+
     defaultConfig {
         minSdk 23
+        targetSdk 34
         buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -23,106 +26,113 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
-}
-repositories {
-    flatDir {
-        dirs 'src/main/libs'
+
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/DEPENDENCIES', 'META-INF/LICENSE', 'META-INF/LICENSE.txt', 'META-INF/license.txt', 'META-INF/NOTICE', 'META-INF/NOTICE.txt', 'META-INF/notice.txt', 'META-INF/ASL2.0']
+        }
     }
 }
+
+repositories {
+    google()
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+    flatDir {
+        dirs 'src/main/libs', 'libs'
+    }
+}
+
 dependencies {
-
-    implementation libs.appcompat
-    implementation libs.material
-    implementation libs.lifecycle.process
-    implementation libs.lifecycle.common.jvm
-    implementation libs.annotation.jvm
-    testImplementation libs.junit
-    androidTestImplementation libs.ext.junit
-    androidTestImplementation libs.espresso.core
+    // Local AAR/JAR files
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-
-    implementation libs.rollingtext
-    //The android-app-updater libary
-    implementation libs.androidappupdatelibrary
-
-    // implementation "org.json:json:20240303"
-
-    implementation libs.retrofit
-    implementation libs.retrofit2.converter.gson
-    implementation libs.retrofit
-    implementation libs.toasty.v125
-    implementation libs.gson
-
-    implementation libs.constraint.layout
-    implementation libs.constraint.layout
-    implementation libs.timber
-    implementation libs.commons.lang3
-    implementation libs.utilcode
-    api libs.guava
-    implementation libs.design
-    implementation libs.support.v4
-    implementation libs.material.ripple
-
-    // implementation 'io.realm:android-adapters:2.3.0'
-    implementation libs.glide
-  //  implementation libs.lifecycle.extensions
-
-
-    // implementation libs.extensions
-    implementation libs.cardview.v7
-    //  annotationProcessor "android.arch.lifecycle:compiler:1.1.1"// alternately-if using Java8, use following instead of compiler
-    //  implementation "androidx. lifecycle:lifecycle-common-java8:*version*"
-    implementation libs.lifecycle.common.java8 // Use the latest version
-    implementation libs.android.common.java8
-    implementation libs.glide.okhttp3.integration
-    implementation libs.recyclerview
-    implementation libs.firebase.crashlytics.v2003
-    annotationProcessor libs.compiler
-    implementation libs.glide.annotations
-    implementation libs.logging.interceptor
-    implementation libs.roundedimageview
+    implementation files('src/main/libs/btsdk.jar')
+    implementation files('src/main/libs/zixng.jar')
+    implementation files('src/main/libs/usbsdk.jar')
     implementation files('src/main/libs/Android_Print_SDK_ESC_V1.11.jar')
-
     implementation files('src/main/libs/java-json.jar')
     implementation files('src/main/libs/SDK4BaseBinderV2.1.5.jar')
     implementation files('src/main/libs/SDK4EmvBinderV2.1.5.jar')
     implementation files('src/main/libs/SDK4KeyManagerBinderV2.1.5.jar')
     implementation files('src/main/libs/CashierInvoke_202002261912.jar')
-
     implementation files('src/main/libs/core-3.3.0.jar')
-    implementation libs.android.gif.drawable
-    implementation "io.realm:realm-android-library:10.19.0"
+    implementation files('libs/core-3.3.0.jar')
 
-   // implementation libs.realm.android.library // Correct usage
-    // kapt 'io.realm:realm-annotations:10.19.0' // Correct usage
-    implementation libs.ccp // Check for the latest version
-    implementation libs.libphonenumber
-    implementation libs.google.firebase.crashlytics
-    implementation libs.firebase.analytics // optional but recommended
-    implementation libs.grenderg.toasty
+    // WiseSdk AAR files
     implementation(name: 'WiseSdk_D_1.09_00a_240325', ext: 'aar')
     implementation(name: 'WiseSdk_P_1.29_00a_24041501', ext: 'aar')
 
+    // AndroidX Core Libraries
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.annotation:annotation:1.7.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.cardview:cardview:1.0.0'
 
-    api libs.grenderg.toasty
-    // Check for the latest version
-    //  implementation 'io.realm:android-adapters:3.1.0'
+    // Lifecycle Components
+    implementation 'androidx.lifecycle:lifecycle-process:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-common:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
-    //room db
-    implementation libs.room.runtime
-    //kapt "androidx.room:room-compiler:2.6.1"
-    implementation (libs.zxing.android.embedded) {
+    // Room Database
+    implementation 'androidx.room:room-runtime:2.6.1'
+    annotationProcessor 'androidx.room:room-compiler:2.6.1'
+
+    // Realm Database
+    implementation "io.realm:realm-android-library:10.19.0"
+
+    // Networking
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    // Image Loading
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+    implementation 'com.github.bumptech.glide:annotations:4.16.0'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.16.0'
+
+    // UI Libraries
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.28'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.github.GrenderG:Toasty:1.5.2'
+    api 'com.github.GrenderG:Toasty:1.5.2'
+
+    // Utilities
+    implementation 'org.apache.commons:commons-lang3:3.14.0'
+    implementation 'com.google.guava:guava:33.0.0-android'
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    // Phone Number
+    implementation 'com.hbb20:ccp:2.7.3'
+    implementation 'com.googlecode.libphonenumber:libphonenumber:8.13.27'
+
+    // Barcode/QR Scanner
+    implementation('com.journeyapps:zxing-android-embedded:4.3.0') {
         exclude group: 'com.google.zxing', module: 'core'
     }
-    implementation "androidx.annotation:annotation:1.7.1"
-    implementation "androidx.core:core-ktx:1.12.0"
-    implementation "androidx.lifecycle:lifecycle-runtime:2.5.1"
-    implementation "androidx.lifecycle:lifecycle-common-java8:2.5.1"
+    implementation 'com.google.zxing:core:3.5.3'
 
+    // Firebase
+    implementation 'com.google.firebase:firebase-crashlytics:18.6.1'
+    implementation 'com.google.firebase:firebase-analytics:21.5.0'
 
-
+    // Testing
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
+
+// Apply Google Services plugin if using Firebase
+// Make sure this is at the bottom of the file
+// apply plugin: 'com.google.gms.google-services'

@@ -5,7 +5,6 @@ import static java.lang.Thread.sleep;
 import static sdk.PrinterCommand.POS_Set_Cashbox;
 import static com.za.toptitup.loginlibrary.bluetooth.BluetoothService.extractPureBlackContent;
 import static com.za.toptitup.loginlibrary.utils.Topitup.getAppContext;
-import static com.za.toptitup.loginlibrary.utils.Topitup.mIzkcService;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -52,18 +51,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import es.dmoral.toasty.Toasty;
 import print.Print;
 import sdk.PrintPicture;
 import sdk.PrinterCommand;
 import com.za.toptitup.loginlibrary.PrinterStatusChecker;
 import com.za.toptitup.loginlibrary.R;
 import com.za.toptitup.loginlibrary.activity_login;
-import com.za.toptitup.loginlibrary.activity_main;
 import com.za.toptitup.loginlibrary.activity_print_screen;
-import com.za.toptitup.loginlibrary.activity_printer_animation;
-import com.za.toptitup.loginlibrary.admin.Printingw;
-import com.za.toptitup.loginlibrary.admin.activity_settings;
 import com.za.toptitup.loginlibrary.bluetooth.BluetoothService;
 import zj.com.customize.sdk.Other;
 
@@ -107,7 +101,7 @@ public final class PrinterTopitup {
 
         if (last_reprint.length() == 0) {
 
-            Toasty.error(mContext, "Nothing to reprint", Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, "Nothing to reprint", Toast.LENGTH_LONG).show();
 
         } else {
             print_data(last_reprint);
@@ -116,44 +110,7 @@ public final class PrinterTopitup {
     }
 
 
-    public static boolean check_paper(Context mContext) {
 
-        SharedPreferences settings = mContext.getSharedPreferences("TIUPREF", 0);
-        String selectedPrinter = settings.getString("printer", "inner");
-        int is_out_of_paper = -1;
-
-        if (selectedPrinter.equals("inner")) {
-
-
-            if (settings.getString("setting_print_to_screen", "0").equals("1")) {
-                return true;
-            }
-
-            if(android.os.Build.MODEL.equals("P052")) {
-                return true;
-            }
-
-            Topitup.resetPaperStatus();
-            Topitup.checkOutOfPaper();
-
-            try {
-                while (is_out_of_paper == -1) {
-                    sleep(250);
-                    is_out_of_paper = Topitup.getPaperStatus();
-                }
-            } catch (Exception ex) {
-                //
-            }
-
-
-            //Toasty.error(Topitup.getAppContext(), "Out of Paper!", Toast.LENGTH_LONG).show();
-            return is_out_of_paper != 0;
-        }
-
-
-        return is_out_of_paper != 0;
-
-    }
 
 
     public static void printmethod(Activity mContextt) {
@@ -235,14 +192,14 @@ public final class PrinterTopitup {
         try {
             // Step 1: Cut the paper (check printer documentation for proper command)
             byte[] cutPaperCommand = new byte[]{0x1D, 0x56, 0x01}; // Full cut
-            activity_settings.SendDataByte(cutPaperCommand, getAppContext());
+            Topitup.SendDataByte(cutPaperCommand, getAppContext());
 
             // Optional: Add a delay to ensure the cut command is processed
             Thread.sleep(50);
 
             // Step 2: Reset the printer
             byte[] resetCommand = new byte[]{0x1B, 0x40}; // Printer reset command
-            activity_settings.SendDataByte(resetCommand, getAppContext());
+            Topitup.SendDataByte(resetCommand, getAppContext());
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -278,22 +235,7 @@ public final class PrinterTopitup {
         }
     };
 
-    public static boolean checkQ1Printer() {
 
-        int is_printer_sts = -1;
-        try {
-            while (is_printer_sts == -1) {
-                sleep(250);
-                is_printer_sts = Topitup.getQ1PrinterSts();
-            }
-        } catch (Exception ex) {
-            //
-        }
-
-        return is_printer_sts != 0;
-
-
-    }
 
     public static void bluetoothDataPrinter(String slip_to_print) {
         SharedPreferences settings = Topitup.getAppContext().getSharedPreferences("TIUPREF", 0);
@@ -316,9 +258,9 @@ public final class PrinterTopitup {
 
                                 prnt_line += line.replace("BARCODE:", "");
                                 byte[] code = PrinterCommand.getCodeBarCommand(prnt_line, 67, 3, 68, 0, 2);
-                                activity_settings.SendDataString("\n", getAppContext());
-                                activity_settings.SendDataByte(new byte[]{0x1b, 0x61, 0x00}, getAppContext());
-                                activity_settings.SendDataByte(code, getAppContext());
+                                Topitup.SendDataString("\n", getAppContext());
+                                Topitup.SendDataByte(new byte[]{0x1b, 0x61, 0x00}, getAppContext());
+                                Topitup.SendDataByte(code, getAppContext());
 
                             }
                         }
@@ -331,13 +273,13 @@ public final class PrinterTopitup {
 
                             if (prnt_line.equals("")) {
 
-                                activity_settings.SendDataString(prnt_line, getAppContext());
+                                Topitup.SendDataString(prnt_line, getAppContext());
                             } else {
                                 int maxCharsPerLine = 32; // Adjust this based on printer width
 
                                 // Split text into wrapped lines
                                 List<String> wrappedLines = wrapText(prnt_line, maxCharsPerLine);
-                                activity_settings.SendDataString(prnt_line, getAppContext());
+                                Topitup.SendDataString(prnt_line, getAppContext());
                                 // Print each wrapped line
                                 for (String wrappedLine : wrappedLines) {
                                     //   activity_settings.SendDataString(wrappedLine, getAppContext());
@@ -350,18 +292,18 @@ public final class PrinterTopitup {
                             prnt_line = line.substring(1) + "\n";
 
                             byte[] boldOn = {0x1B, 0x45, 0x01}; // ESC E 1
-                            activity_settings.SendDataByte(boldOn, getAppContext());
+                            Topitup.SendDataByte(boldOn, getAppContext());
 
                             byte[] textSizeMedium = {0x1D, 0x21, 0x01}; // GS ! n (n = 0x01 for double-height only)
-                            activity_settings.SendDataByte(textSizeMedium, getAppContext());
+                            Topitup.SendDataByte(textSizeMedium, getAppContext());
 
-                            activity_settings.SendDataByte(prnt_line.getBytes(), getAppContext());
+                            Topitup.SendDataByte(prnt_line.getBytes(), getAppContext());
 
                             byte[] textSizeNormal = {0x1D, 0x21, 0x00}; // GS ! 0
-                            activity_settings.SendDataByte(textSizeNormal, getAppContext());
+                            Topitup.SendDataByte(textSizeNormal, getAppContext());
 
                             byte[] boldOff = {0x1B, 0x45, 0x00}; // ESC E 0
-                            activity_settings.SendDataByte(boldOff, getAppContext());
+                            Topitup.SendDataByte(boldOff, getAppContext());
 
                         }
 
@@ -372,11 +314,11 @@ public final class PrinterTopitup {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        activity_settings.SendDataString("\n \n \n", getAppContext());
+        Topitup.SendDataString("\n \n \n", getAppContext());
 
         if (settings.getString("printer_cash_drawer", "0").equals("1")) {
 
-            activity_settings.SendDataByte(PrinterCommand.POS_Set_PrtInit(), getAppContext());
+            Topitup.SendDataByte(PrinterCommand.POS_Set_PrtInit(), getAppContext());
 
             if (activity_login.fromScreen.equals("activity_spi") || activity_login.fromScreen.equals("activity_elec") || activity_login.fromScreen.equals("activity_bill_payment")) {
                 openCashDrawerBluetooth();
@@ -436,8 +378,8 @@ public final class PrinterTopitup {
 
             Log.e("selected printer", "selected........" + selectedPrinter);
             if (selectedPrinter.equals("bluetooth")) {
-                Log.e("print screen bluetooth", "........print......." + activity_main.printScreen);
-                if (activity_main.printScreen) {
+//                Log.e("print screen bluetooth", "........print......." + activity_main.printScreen);
+               /* if (activity_main.printScreen) {
 
                     Intent intent = new Intent(Topitup.getAppContext(), activity_print_screen.class);
                     intent.putExtra("slip_to_print", slip_to_print);
@@ -446,11 +388,11 @@ public final class PrinterTopitup {
                 } else if (activity_login.fromScreen.equals("activity_spi")) {
                     bluetoothDataPrinter(slip_to_print);
 
-                } /*else if (activity_login.fromScreen.equals("activity_spi")) {
+                } *//*else if (activity_login.fromScreen.equals("activity_spi")) {
                     bluetoothDataPrinter(slip_to_print);
 
-                }*/ else {
-                    if (activity_settings.mService != null) {
+                }*//* else {*/
+                    if (Topitup.mService != null) {
                         SharedPreferences finalSettings = settings;
                         new Thread(() -> {
                             boolean isConnected = BluetoothService.isReallyConnected();
@@ -459,11 +401,11 @@ public final class PrinterTopitup {
                                 // Try reconnecting
                                 String lastDeviceAddress = finalSettings.getString("last_device_address", null);
                                 if (lastDeviceAddress != null) {
-                                    if (activity_settings.mBluetoothAdapter == null) {
-                                        activity_settings.mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+                                    if (Topitup.mBluetoothAdapter == null) {
+                                        Topitup.mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
                                     }
-                                    BluetoothDevice device = activity_settings.mBluetoothAdapter.getRemoteDevice(lastDeviceAddress);
-                                    activity_settings.mService.connect(device);
+                                    BluetoothDevice device = Topitup.mBluetoothAdapter.getRemoteDevice(lastDeviceAddress);
+                                    Topitup.mService.connect(device);
 
                                     // Wait for connection (non-blocking)
                                     int attempts = 0;
@@ -482,7 +424,7 @@ public final class PrinterTopitup {
                             new Handler(Looper.getMainLooper()).post(() -> {
                                 if (finalIsConnected) {
                                     // Check printer status asynchronously
-                                    activity_settings.mService.checkPrinterStatusAsync(hasPaper -> {
+                                    Topitup.mService.checkPrinterStatusAsync(hasPaper -> {
                                         if (hasPaper) {
                                             bluetoothDataPrinter(slip_to_print);
                                         } else {
@@ -498,7 +440,7 @@ public final class PrinterTopitup {
                     } else {
                         Toast.makeText(getAppContext(), "Bluetooth Service null", Toast.LENGTH_LONG).show();
                     }
-                }
+//                }
 
             }
             else if (selectedPrinter.equals("usb")) {
@@ -655,14 +597,14 @@ public final class PrinterTopitup {
                             }
                         }).start();
                     } else {
-                        if (activity_main.printScreen) {
-
-                            Intent intent = new Intent(Topitup.getAppContext(), activity_print_screen.class);
-                            intent.putExtra("slip_to_print", slip_to_print);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            Topitup.getAppContext().startActivity(intent);
-
-                        } else {
+//                        if (activity_main.printScreen) {
+//
+//                            Intent intent = new Intent(Topitup.getAppContext(), activity_print_screen.class);
+//                            intent.putExtra("slip_to_print", slip_to_print);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                            Topitup.getAppContext().startActivity(intent);
+//
+//                        } else {
                             Log.e("printing animatio","wpos........"+slip_to_print);
                            /* Printingw wpos = new Printingw();
                             wpos.data = slip_to_print;
@@ -676,11 +618,12 @@ public final class PrinterTopitup {
                                     Log.e("printing animation", "WPos print failed", e);
                                 }
                             }).start();
-                        }
+//                        }
 
                     }
 
-                } else if (Topitup.DEVICE_TYPE.equals("Q1")) {
+                }
+               /* else if (Topitup.DEVICE_TYPE.equals("Q1")) {
 
                     ThreadPoolManager.getInstance().executeTask(new Runnable() {
                         @Override
@@ -808,7 +751,7 @@ public final class PrinterTopitup {
                     });
 
 
-                }
+                }*/
 
             } else {
 
@@ -982,245 +925,7 @@ public final class PrinterTopitup {
         }*/
 
 
-        if (Topitup.DEVICE_TYPE.equals("ZKC")) {
 
-            try {
-
-                mIzkcService.sendRAWData("printer", new byte[]{0x1b, 0x4e, 0x04, 0x01});
-
-                BufferedReader bufReader = new BufferedReader(new StringReader(slip_to_print));
-                String line = null;
-                boolean size_normal = true;
-
-                if (mIzkcService != null && mIzkcService.checkPrinterAvailable()) {
-
-                    while ((line = bufReader.readLine()) != null) {
-
-                        String prnt_line = "";
-                        String size = "";
-
-                        if (line.length() > 1) {
-                            prnt_line = line.substring(1);
-                            size = "" + line.charAt(0);
-                        }
-
-                        //Timber.i("LINE: " + line);
-                        // Timber.i("SIZE: " + size);
-
-                        if (prnt_line.length() == 0) {
-
-                            //Topitup.setting.mPosPrintLn();
-
-                            if (!size_normal) {
-                                mIzkcService.setFontSize(0);
-                            }
-                            size_normal = true;
-
-                            print_line_counter++;
-                            if (print_line_counter < 2) {
-                                mIzkcService.printGBKText("\n");
-                            }
-
-                        } else if (size.equals("1")) {
-
-                            print_line_counter = 0;
-
-                            if (!size_normal) {
-                                mIzkcService.setFontSize(0);
-                            }
-                            size_normal = true;
-                            //Topitup.setting.mPosPrnStr(prnt_line);
-
-                            mIzkcService.printGBKText(prnt_line + "\n");
-
-                        } else {
-
-                            print_line_counter = 0;
-
-                            if (size_normal) {
-                                mIzkcService.setFontSize(1);
-                            }
-                            size_normal = false;
-
-                            mIzkcService.printGBKText(prnt_line + "\n");
-
-                        }
-
-                    }
-
-                    mIzkcService.printGBKText("\n\n\n");
-
-                    is_busy_with_voucher = false;
-
-                } else {
-
-                    //Timber.i("PRINTER: no BB...");
-
-                    Message msg = new Message();
-                    msg.what = 500;
-                    // mContext.mHandler.sendMessage(msg);
-
-                    is_busy_with_voucher = false;
-
-                }
-
-            } catch (Exception e) {
-                Message msg = new Message();
-                msg.what = 500;
-                // mContext.mHandler.sendMessage(msg);
-
-                is_busy_with_voucher = false;
-            }
-
-
-            try {
-                mIzkcService.setFontSize(0);
-            } catch (Exception e) {
-                //
-            }
-        }
-        //Toasty.error(Topitup.getAppContext(), Topitup.DEVICE_TYPE, Toast.LENGTH_LONG).show();
-        if (Topitup.DEVICE_TYPE.equals("SUNMI")) {
-
-
-          /*  Toasty.error(getAppContext(), "I=" + SunmiPrintHelper.getInstance().getPrinterSerialNo(), 8000, true).show();
-
-            SunmiPrintHelper.getInstance().printText("test", 24, true, true, "test.ttf");
-            SunmiPrintHelper.getInstance().feedPaper();*/
-
-
-            ThreadPoolManager.getInstance().executeTask(new Runnable() {
-                @Override
-                public void run() {
-
-
-                    int print_line_counter = 0;
-                    String prnt_all = "";
-
-                    BufferedReader bufReader = new BufferedReader(new StringReader(slip_to_print));
-                    String line = null;
-
-                    try {
-
-                        // Topitup.mIPosPrinterService.printerInit(Topitup.callback);
-
-                        // Topitup.mIPosPrinterService.PrintSpecFormatText("\n", "ST", 12, 0, Topitup.callback);
-
-                        while ((line = bufReader.readLine()) != null) {
-
-                            String prnt_line = "";
-                            String size = "";
-
-
-                            //  Timber.e("BARCODE: " + prnt_line);
-
-                            if (line.length() >= 8 && line.startsWith("BARCODE:")) {
-
-                                if (Topitup.PRINT_BARCODE.equals("1")) {
-
-                                    size = "1";
-                                    if (line.contains("BARCODE")) {
-
-                                        prnt_line = line.replace("BARCODE:", "");
-                                    }
-
-
-                                }
-
-                            } else {
-
-                                if (line.length() > 1) {
-                                    prnt_line = line.substring(1);
-                                    size = "" + line.charAt(0);
-                                }
-
-                                prnt_line = prnt_line.trim();
-
-                                if (prnt_line.length() == 0) {
-
-                                    print_line_counter++;
-                                    if (print_line_counter < 2) {
-                                        //prnt_all = prnt_all +  "\n";
-
-                                        // Topitup.mIPosPrinterService.printBlankLines(2, 8, Topitup.callback);
-                                        //  SunmiPrintHelper.getInstance().printText("test", 24, true, true, "test.ttf");
-                                        //Topitup.mIPosPrinterService.printerPerformPrint(40, Topitup.callback);
-                                    }
-
-                                } else if (size.equals("1")) {
-
-                                    print_line_counter = 0;
-
-                                    //Topitup.mIPosPrinterService.printBlankLines(1, 8, Topitup.callback);
-//                                    Topitup.mIPosPrinterService.printSpecifiedTypeText(prnt_line, "ST", 24, Topitup.callback);
-
-                                    //prnt_all = prnt_all + prnt_line + "\n";
-
-                                    //Topitup.mIPosPrinterService.printText(prnt_line + "\n", Topitup.callback);
-                                    // SunmiPrintHelper.getInstance().printText(prnt_line + "\n", 24, false, false, "test.ttf");
-
-                                    //  SunmiPrintHelper.getInstance().feedPaper();
-
-
-                                } else {
-
-                                    print_line_counter = 0;
-
-                                    //Topitup.mIPosPrinterService.printBlankLines(1, 8, Topitup.callback);
-                                    //Topitup.mIPosPrinterService.printSpecifiedTypeText(prnt_line, "ST", 48, Topitup.callback);
-                                    //Topitup.mIPosPrinterService.printText(prnt_line,  Topitup.callback);
-
-                                    //System.out.println(prnt_line.substring(0, 16));
-                                    //System.out.println(prnt_line.substring(14, 32));
-
-                                    if (prnt_line.length() <= 16) {
-
-                                        //Topitup.mIPosPrinterService.printSpecifiedTypeText(prnt_line + "\n", "ST", 48, Topitup.callback);
-                                        //  SunmiPrintHelper.getInstance().printText(prnt_line + "\n", 36, true, false, "test.ttf");
-
-                                    } else {
-                                        // SunmiPrintHelper.getInstance().printText(prnt_line.substring(0, 16) + "\n", 36, false, true, "test.ttf");
-                                        //SunmiPrintHelper.getInstance().printText(prnt_line.substring(16) + "\n", 36, true, false, "test.ttf");
-                                        // Topitup.mIPosPrinterService.printSpecifiedTypeText(prnt_line.substring(0, 16) + "\n", "ST", 48, Topitup.callback);
-                                        //Topitup.mIPosPrinterService.printSpecifiedTypeText(prnt_line.substring(16, prnt_line.length()) + "\n", "ST", 48, Topitup.callback);
-                                    }
-
-                                    //prnt_all = prnt_all + prnt_line + "\n";
-
-
-                                }
-
-                            }
-
-                        }
-
-
-//                            Topitup.mIPosPrinterService.printerInit(Topitup.callback);
-//
-//                            Topitup.mIPosPrinterService.printSpecifiedTypeText("Top it Up Slip\nDate    User\n2019-10-21     Shaun Tesr\nasdf asfd fasfasf asdf\nasdfa sfas fsafas fas fasf\n\n", "ST", 32, Topitup.callback);
-//                            Topitup.mIPosPrinterService.printSpecifiedTypeText("123 123 144\n   12323\n", "ST", 48, Topitup.callback);
-//
-//                            Topitup.mIPosPrinterService.printSpecifiedTypeText("asdf asfd fasfasf asdf\nasdfa sfas fsafas fas fasf\n\n", "ST", 32, Topitup.callback);
-//                            Topitup.mIPosPrinterService.printSpecifiedTypeText("     Top it Up\n    www.topitup.co.za", "ST", 32, Topitup.callback);
-
-
-                        //Topitup.mIPosPrinterService.printText(prnt_all,  Topitup.callback);
-
-                        //   Topitup.mIPosPrinterService.printerPerformPrint(80,  Topitup.callback);
-                        // SunmiPrintHelper.getInstance().feedPaper();
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-
-
-        }
-        if (Topitup.DEVICE_TYPE.equals("Z91")) {
-
-
-        }
 
 
     }
@@ -1327,7 +1032,7 @@ public final class PrinterTopitup {
     }
 
     public static void openCashDrawerBluetooth() {
-        if (activity_settings.isBluetoothConnected) {
+        if (Topitup.isBluetoothConnected) {
 
             int mode = 0;     // Mode to control the cash drawer (usually 0 or 1 depending on the printer)
             int time1 = 100;  // Pulse on time in milliseconds (adjust based on your printer requirements)
@@ -1339,7 +1044,7 @@ public final class PrinterTopitup {
             if (command != null) {
                 try {
                     // Send the command to the Bluetooth printer to open the cash drawer
-                    activity_settings.SendDataByte(command, getAppContext());
+                    Topitup.SendDataByte(command, getAppContext());
 
                 } catch (Exception e) {
                     Log.e("Bluetooth Error", "Failed to send cash drawer command", e);
@@ -1468,21 +1173,21 @@ public final class PrinterTopitup {
 
             String device = getAppContext().getString(R.string.print_device);
             String baudrate = getAppContext().getString(R.string.print_baudrate);
-            Toasty.error(getAppContext(), "Device=" + device, Toast.LENGTH_LONG).show();
+            Toast.makeText(getAppContext(), "Device=" + device, Toast.LENGTH_LONG).show();
 
             try {
 
                 int portOpen = Print.PortOpen(getAppContext(), "Serial," + device + "," + baudrate);
                 if (portOpen == 0) {
                     // stopCustomDialog("printer","printer sucess");
-                    Toasty.error(getAppContext(), "Printer Success", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getAppContext(), "Printer Success", Toast.LENGTH_LONG).show();
 
 
                     // Print.PrintText(slip_to_print, 1, 0, 14);
 
                 }
             } catch (Exception e) {
-                Toasty.error(getAppContext(), "Printer Problem", Toast.LENGTH_LONG).show();
+                Toast.makeText(getAppContext(), "Printer Problem", Toast.LENGTH_LONG).show();
                 // stopCustomDialog("printer","printer problem");
             }
         }
