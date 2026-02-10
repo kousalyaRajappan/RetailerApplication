@@ -182,12 +182,10 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
     private ConnectivityManager connectivityManager;
 
     // Bluetooth related variables
-    private static boolean isBluetoothConnected = false;
     private static String bluetoothMsg = "";
     private static final int MESSAGE_STATE_CHANGE = 1;
     private static final int REQUEST_ENABLE_BT = 2;
     private static final int REQUEST_CONNECT_DEVICE = 3;
-    private static final int CHINESE = 0;
 
     // Bluetooth Message Handler
     public static final Handler mBluetoothHandler = new Handler() {
@@ -414,6 +412,16 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
         }
         if (!mBluetoothAdapter.isEnabled()) {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             ((Activity)context).startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
         } else {
             if (mService == null) {
