@@ -1,8 +1,12 @@
 package com.za.toptitup.retailerapp;
 
+import static com.za.toptitup.loginlibrary.utils.Topitup.bluetoothOperation;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.webkit.CookieManager;
 import android.webkit.WebResourceRequest;
@@ -14,12 +18,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.za.toptitup.loginlibrary.activity_login;
+import com.za.toptitup.loginlibrary.utils.PrinterTopitup;
 
 public class MainWebViewActivity extends AppCompatActivity {
 
     private WebView webView;
     ProgressDialog progressDialog;
-
+    private int REQUEST_BLUETOOTH_PERMISSIONS = 121;
 
     private static final String BASE_URL =
             "https://dev.topitup.co.za";
@@ -77,6 +82,17 @@ public class MainWebViewActivity extends AppCompatActivity {
                 if (url.contains("/printslip")) {
                     // String url = "https://dev.topitup.co.za/Retailerscan/printslip/0/395242/20";
 
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                        if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
+                            // Proceed with Bluetooth operations
+                            bluetoothOperation(getApplicationContext());
+                        } else {
+                            requestBluetoothPermissions();
+                        }
+                    } else {
+                        // For older Android versions, directly perform Bluetooth operations
+                        bluetoothOperation(getApplicationContext());
+                    }
 // 1. Split the URL by "/"
                     String[] parts = url.split("/");
 
@@ -94,13 +110,18 @@ public class MainWebViewActivity extends AppCompatActivity {
                         String type = parts[indexPrintslip + 1]; // "0"
                         String txid = parts[indexPrintslip + 2]; // "395242"
                         String amount = parts[indexPrintslip + 3]; // "20"
-
+String slip="transaction type: \" + type +\n" +
+        "                                        \"**** transaction id: \" + txid +\n" +
+        "                                        \"**** transaction amount: \" + amount,";
                         // 4. Show a Toast with the results
                         Toast.makeText(getApplicationContext(),
                                 "transaction type: " + type +
                                         "**** transaction id: " + txid +
                                         "**** transaction amount: " + amount,
                                 Toast.LENGTH_LONG).show();
+                        PrinterTopitup.print_data("transaction type: " + type +
+                                "**** transaction id: " + txid +
+                                "**** transaction amount: " + amount);
                     } else {
                         Toast.makeText(getApplicationContext(),
                                 "URL format unexpected",
@@ -169,4 +190,19 @@ public class MainWebViewActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+    private void requestBluetoothPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED ||
+                    checkSelfPermission(android.Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(
+                        new String[]{
+                                android.Manifest.permission.BLUETOOTH_CONNECT,
+                                android.Manifest.permission.BLUETOOTH_SCAN
+                        },
+                        REQUEST_BLUETOOTH_PERMISSIONS
+                );
+            }
+        }
+    }
+
 }

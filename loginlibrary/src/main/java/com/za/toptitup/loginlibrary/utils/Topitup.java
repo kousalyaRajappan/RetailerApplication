@@ -403,7 +403,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
         bluetoothOperation(activity);
     }
 
-    private static void bluetoothOperation(Context context) {
+    public static void bluetoothOperation(Context context) {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         if (mBluetoothAdapter == null) {
