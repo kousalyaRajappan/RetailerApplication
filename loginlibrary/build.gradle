@@ -43,97 +43,91 @@ repositories {
     google()
     mavenCentral()
     maven { url 'https://jitpack.io' }
-    flatDir {
-        dirs 'src/main/libs', 'libs'
-    }
+    flatDir { dirs 'libs' }
 }
 
 dependencies {
     // Local AAR/JAR files
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-    implementation files('src/main/libs/btsdk.jar')
-    implementation files('src/main/libs/zixng.jar')
-    implementation files('src/main/libs/usbsdk.jar')
-    implementation files('src/main/libs/Android_Print_SDK_ESC_V1.11.jar')
-    implementation files('src/main/libs/java-json.jar')
-    implementation files('src/main/libs/SDK4BaseBinderV2.1.5.jar')
-    implementation files('src/main/libs/SDK4EmvBinderV2.1.5.jar')
-    implementation files('src/main/libs/SDK4KeyManagerBinderV2.1.5.jar')
-    implementation files('src/main/libs/CashierInvoke_202002261912.jar')
-    implementation files('src/main/libs/core-3.3.0.jar')
-    implementation files('src/main/libs/core-3.3.0.jar')
-    implementation files('src/main/libs/core-3.3.0.jar')
-    implementation files('src/main/libs/core-3.3.0.jar')
+    implementation files('libs/btsdk.jar')
+    implementation files('libs/zixng.jar')
+    implementation files('libs/usbsdk.jar')
+    implementation files('libs/Android_Print_SDK_ESC_V1.11.jar')
+    implementation files('libs/java-json.jar')
+    implementation files('libs/SDK4BaseBinderV2.1.5.jar')
+    implementation files('libs/SDK4EmvBinderV2.1.5.jar')
+    implementation files('libs/SDK4KeyManagerBinderV2.1.5.jar')
+    implementation files('libs/CashierInvoke_202002261912.jar')
+    implementation files('libs/core-3.3.0.jar')
 
     // WiseSdk AAR files
-//    implementation(name: 'WiseSdk_D_1.09_00a_240325', ext: 'aar')
-//    implementation(name: 'WiseSdk_P_1.29_00a_24041501', ext: 'aar')
-    implementation files('src/main/libs/WiseSdk_D_1.09_00a_240325.aar')
-    implementation files('src/main/libs/WiseSdk_P_1.29_00a_24041501.aar')
+   implementation(name: 'WiseSdk_D_1.09_00a_240325', ext: 'aar')
+    implementation(name: 'WiseSdk_P_1.29_00a_24041501', ext: 'aar')
+
     // AndroidX Core Libraries
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.core:core-ktx:1.12.0'
-    implementation 'androidx.annotation:annotation:1.7.1'
-    implementation 'com.google.android.material:material:1.11.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.recyclerview:recyclerview:1.3.2'
-    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation libs.appcompat.v161
+    implementation libs.core.ktx
+    implementation libs.annotation
+    implementation libs.material.v1110
+    implementation libs.constraintlayout.v214
+    implementation libs.recyclerview.v132
+    implementation libs.cardview
 
     // Lifecycle Components
-    implementation 'androidx.lifecycle:lifecycle-process:2.7.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime:2.7.0'
-    implementation 'androidx.lifecycle:lifecycle-common:2.7.0'
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.7.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation libs.lifecycle.process.v270
+    implementation libs.lifecycle.runtime
+    implementation libs.lifecycle.common
+    implementation libs.lifecycle.common.java8.v270
+    implementation libs.androidx.lifecycle.extensions
 
     // Room Database
-    implementation 'androidx.room:room-runtime:2.6.1'
-    annotationProcessor 'androidx.room:room-compiler:2.6.1'
+    implementation libs.room.runtime
+    annotationProcessor libs.androidx.room.compiler
 
     // Realm Database
-    implementation "io.realm:realm-android-library:10.19.0"
+    implementation libs.realm.android.library
 
     // Networking
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
-    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation libs.retrofit.v290
+    implementation libs.converter.gson.v290
+    implementation libs.logging.interceptor
+    implementation libs.gson.v2101
 
     // Image Loading
-    implementation 'com.github.bumptech.glide:glide:4.16.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
-    implementation 'com.github.bumptech.glide:annotations:4.16.0'
-    implementation 'com.github.bumptech.glide:okhttp3-integration:4.16.0'
+    implementation libs.glide
+    annotationProcessor libs.compiler
+    implementation libs.glide.annotations
+    implementation libs.glide.okhttp3.integration
 
     // UI Libraries
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.28'
-    implementation 'com.makeramen:roundedimageview:2.3.0'
-    implementation 'com.github.GrenderG:Toasty:1.5.2'
-    api 'com.github.GrenderG:Toasty:1.5.2'
+    implementation libs.android.gif.drawable.v1228
+    implementation libs.roundedimageview
+    implementation libs.grenderg.toasty
+    api libs.grenderg.toasty
 
     // Utilities
-    implementation 'org.apache.commons:commons-lang3:3.14.0'
-    implementation 'com.google.guava:guava:33.0.0-android'
-    implementation 'com.jakewharton.timber:timber:5.0.1'
+    implementation libs.commons.lang3.v3140
+    implementation libs.guava
+    implementation libs.timber
 
     // Phone Number
-    implementation 'com.hbb20:ccp:2.7.3'
-    implementation 'com.googlecode.libphonenumber:libphonenumber:8.13.27'
+    implementation libs.ccp
+    implementation libs.libphonenumber.v81327
 
     // Barcode/QR Scanner
-    implementation('com.journeyapps:zxing-android-embedded:4.3.0') {
+    implementation(libs.zxing.android.embedded) {
         exclude group: 'com.google.zxing', module: 'core'
     }
-    implementation 'com.google.zxing:core:3.5.3'
+    implementation libs.zxing.core
 
     // Firebase
-    implementation 'com.google.firebase:firebase-crashlytics:18.6.1'
-    implementation 'com.google.firebase:firebase-analytics:21.5.0'
+    implementation libs.firebase.crashlytics.v1861
+    implementation libs.firebase.analytics.v2150
 
     // Testing
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit.v115
+    androidTestImplementation libs.androidx.espresso.core.v351
 }
 
 // Apply Google Services plugin if using Firebase
