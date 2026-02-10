@@ -61,7 +61,8 @@ dependencies {
     implementation files('src/main/libs/SDK4KeyManagerBinderV2.1.5.jar')
     implementation files('src/main/libs/CashierInvoke_202002261912.jar')
     implementation files('src/main/libs/core-3.3.0.jar')
-    implementation files('libs/core-3.3.0.jar')
+//    implementation files('libs/core-3.3.0.jar')
+    implementation files('src/main/libs/core-3.3.0.jar')  // If file is in src/main/libs
 
 
     // AndroidX Core Libraries

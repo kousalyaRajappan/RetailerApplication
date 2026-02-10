@@ -17,6 +17,9 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
+import com.za.toptitup.loginlibrary.command.sdk.PrintPicture;
+import com.za.toptitup.loginlibrary.command.sdk.PrinterCommand;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -25,8 +28,6 @@ import java.util.Arrays;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-import com.za.toptitup.loginlibrarysdk.PrintPicture;
-import com.za.toptitup.loginlibrarysdk.PrinterCommand;
 import zj.com.customize.sdk.Other;
 
 public class BluetoothService {
