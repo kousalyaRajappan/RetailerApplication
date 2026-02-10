@@ -50,7 +50,7 @@ dependencies {
     // Local AAR/JAR files
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation files('libs/btsdk.jar')
-    implementation files('libs/zixng.jar')
+    //implementation files('libs/zixng.jar')
     implementation files('libs/usbsdk.jar')
     implementation files('libs/Android_Print_SDK_ESC_V1.11.jar')
     implementation files('libs/java-json.jar')
@@ -58,11 +58,11 @@ dependencies {
     implementation files('libs/SDK4EmvBinderV2.1.5.jar')
     implementation files('libs/SDK4KeyManagerBinderV2.1.5.jar')
     implementation files('libs/CashierInvoke_202002261912.jar')
-    implementation files('libs/core-3.3.0.jar')
+   // implementation files('libs/core-3.3.0.jar')
 
     // WiseSdk AAR files
-   implementation(name: 'WiseSdk_D_1.09_00a_240325', ext: 'aar')
-    implementation(name: 'WiseSdk_P_1.29_00a_24041501', ext: 'aar')
+  /* implementation(name: 'WiseSdk_D_1.09_00a_240325', ext: 'aar')
+    implementation(name: 'WiseSdk_P_1.29_00a_24041501', ext: 'aar')*/
 
     // AndroidX Core Libraries
     implementation libs.appcompat.v161
