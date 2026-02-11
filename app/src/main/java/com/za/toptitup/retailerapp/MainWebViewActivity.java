@@ -1,5 +1,6 @@
 package com.za.toptitup.retailerapp;
 
+import static android.widget.Toast.LENGTH_LONG;
 import static com.za.toptitup.loginlibrary.utils.Topitup.connectBluetooth;
 
 import android.app.ProgressDialog;
@@ -34,9 +35,11 @@ public class MainWebViewActivity extends AppCompatActivity {
     Realm realm;
     ProgressDialog progressDialog;
     private int REQUEST_BLUETOOTH_PERMISSIONS = 121;
-
-    private static final String BASE_URL =
+    private static String BASE_URL = "";
+    private static final String BASE_URL_DEMO =
             "https://dev.topitup.co.za";
+    private static final String BASE_URL_LIVE =
+            "https://admin.topitup.co.za";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,13 +137,13 @@ public class MainWebViewActivity extends AppCompatActivity {
 
                         final GetUpdateAll tiu_settings = realm.where(GetUpdateAll.class).findFirst();
                         //tiu_title_outlet.setText(tiu_settings.account_number);
-                       // text_store_name.setText(tiu_settings.company_name);
+                        // text_store_name.setText(tiu_settings.company_name);
 
-                        String slip = "2"+ tiu_settings.company_name+"\n"+"transaction type: " + copyType + "\n" + "transaction id: " + txid + "\n" + "transaction amount: R" + amount;
+                        String slip = "2" + tiu_settings.company_name + "\n" + "transaction type: " + copyType + "\n" + "transaction id: " + txid + "\n" + "transaction amount: R" + amount;
                         // 4. Show a Toast with the results
                         Toast.makeText(getApplicationContext(),
                                 slip,
-                                Toast.LENGTH_LONG).show();
+                                LENGTH_LONG).show();
                         if (Topitup.isBluetoothConnected) {
                             PrinterTopitup.print_data(slip);
                             Toast.makeText(getApplicationContext(), "Printing...", Toast.LENGTH_SHORT).show();
@@ -176,12 +179,19 @@ public class MainWebViewActivity extends AppCompatActivity {
         });
 
         // Build final URL
+        if (Topitup.SERVER_BASED_URL.equalsIgnoreCase("LIVE")) {
+            BASE_URL = BASE_URL_LIVE;
+        } else {
+            BASE_URL = BASE_URL_DEMO;
+
+        }
         String finalUrl =
                 BASE_URL +
                         "/retailerscan/retailer_app_login/" +
                         license + "/" +
                         pos_user_id;
-
+        Toast.makeText(getApplicationContext(), finalUrl, LENGTH_LONG).show();
+        Log.e("url",finalUrl);
         webView.loadUrl(finalUrl);
     }
 
@@ -194,7 +204,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                 // Permission granted, proceed with Bluetooth connection
                 connectBluetooth(MainWebViewActivity.this);
             } else {
-                Toast.makeText(this, "Bluetooth permissions are required for printing", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Bluetooth permissions are required for printing", LENGTH_LONG).show();
             }
         }
     }
