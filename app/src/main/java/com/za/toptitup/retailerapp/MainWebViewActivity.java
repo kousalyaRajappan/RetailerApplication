@@ -333,7 +333,7 @@ public class MainWebViewActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void handleLogout() {
 //        final GetUpdateAll tiu_settings = realm.where(GetUpdateAll.class).findFirst();
-        LocalDateTime now = LocalDateTime.now();
+        /*LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         String transactionDate = now.format(dateFormatter);
@@ -391,9 +391,9 @@ public class MainWebViewActivity extends AppCompatActivity {
             Toast.makeText(this, "Printing...", Toast.LENGTH_SHORT).show();
         } else {
             Topitup.connectBluetooth(MainWebViewActivity.this, mslip);
-        }
+        }*/
         // Clear WebView data
-      /*  webView.clearCache(true);
+        webView.clearCache(true);
         webView.clearHistory();
 
         CookieManager.getInstance().removeAllCookies(null);
@@ -409,7 +409,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_CLEAR_TASK
         );
         startActivity(intent);
-        finish();*/
+        finish();
     }
 
     @Override
