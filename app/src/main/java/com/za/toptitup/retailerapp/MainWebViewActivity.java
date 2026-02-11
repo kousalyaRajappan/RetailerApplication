@@ -42,7 +42,7 @@ public class MainWebViewActivity extends AppCompatActivity {
     private int REQUEST_BLUETOOTH_PERMISSIONS = 121;
 
     private String BASE_URL =
-            "https://dev.topitup.co.za";
+            "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,11 +154,11 @@ public class MainWebViewActivity extends AppCompatActivity {
                         String cslip =
                                 "1       CUSTOMER RECEIPT\n" +
                                         "1\n" +
-                                        "1" + tiu_settings.company_name+"\n" +
+                                        "1" + tiu_settings.company_name + "\n" +
 
-                                        "1Acc No :  " + Topitup.ACCOUNT_NUMBER +"\n"+
+                                        "1Acc No :  " + Topitup.ACCOUNT_NUMBER + "\n" +
                                         "1\n" +
-                                        "1TID :" + txid+ "\n" +
+                                        "1TID :" + txid + "\n" +
 
                                         "1Date       Time     POS User \n" +
 
@@ -177,11 +177,11 @@ public class MainWebViewActivity extends AppCompatActivity {
                         String mslip =
                                 "1       MERCHANT RECEIPT\n" +
                                         "1\n" +
-                                        "1" + tiu_settings.company_name+"\n" +
+                                        "1" + tiu_settings.company_name + "\n" +
 
-                                        "1Acc No :  " + Topitup.ACCOUNT_NUMBER +"\n"+
+                                        "1Acc No :  " + Topitup.ACCOUNT_NUMBER + "\n" +
                                         "1\n" +
-                                        "1TID :" + txid+ "\n" +
+                                        "1TID :" + txid + "\n" +
 
                                         "1Date       Time     POS User \n" +
 
@@ -232,6 +232,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                 return false;
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public boolean shouldOverrideUrlLoading(
                     WebView view,
@@ -244,9 +245,9 @@ public class MainWebViewActivity extends AppCompatActivity {
                 return false;
             }
         });
-        if (Topitup.SERVER_BASED_URL.equalsIgnoreCase("DEMO"))
+         if (Topitup.TIU_SERVER.equalsIgnoreCase("DEMO"))
             BASE_URL = "https://dev.topitup.co.za";
-        else if (Topitup.SERVER_BASED_URL.equalsIgnoreCase("LIVE"))
+        else if (Topitup.TIU_SERVER.equalsIgnoreCase("LIVE"))
             BASE_URL = "https://admin.topitup.co.za";
         // Build final URL
         String finalUrl =

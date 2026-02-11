@@ -2865,7 +2865,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
         btnSaveNumber.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Topitup.serverURL(SERVER);
+
 
                 if (Topitup.DEVICE_TYPE.equals("TABLET")) {
                     if (tv_device_id.getText().toString().length() == 0) {
@@ -2891,7 +2891,6 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         return;
                     }
 
-                    Toasty.error(mContext, "serverurl!" + Topitup.SERVER_BASED_URL, 3000, true).show();
 
                     //Clear old info
                     SharedPreferences settings = getSharedPreferences("TIUPREF", 0);
