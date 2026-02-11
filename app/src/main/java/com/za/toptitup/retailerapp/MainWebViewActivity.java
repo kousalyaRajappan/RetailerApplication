@@ -150,43 +150,53 @@ public class MainWebViewActivity extends AppCompatActivity {
                         }
                         String slip;
 
-                        String cslip = "1CUSTOMER RECEIPT\n" +
-                                "1\n" +
-                                "2" + "Allied Cash and Carry" + "\n" +
-                                "1\n" +
-                                "2Approved:R " + amount + "\n" +
-                                "1\n" +
-                                "1Date       Time     POS User \n" +
 
-                                "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "" +
-                                "1\n" +
-                                "1Tid #:" + txid + "\n" +
-                                "1\n" +
-                                "1    Top it Up | 0860 111 723\n" +
-                                "1    Whatsapp | 064 121 9970\n" +
-                                "1    After Hours 23h00-07h00\n" +
-                                "1         021 300 0121\n" +
-                                "1       www.topitup.co.za\n" +
-                                "1";
-                        String mslip = "1MERCHANT RECEIPT\n" +
-                                "1\n" +
-                                "2" + "Allied Cash and Carry" + "\n" +
-                                "1\n" +
+                        String cslip =
+                                "1       CUSTOMER RECEIPT\n" +
+                                        "1\n" +
+                                        "1" + tiu_settings.company_name+"\n" +
 
-                                "2Approved:  R " + amount + "\n" +
-                                "1\n" +
-                                "1Date       Time     POS User \n" +
+                                        "1Acc No :" + Topitup.ACCOUNT_NUMBER +"\n"+
+                                        "1\n" +
+                                        "1TID :" + txid+ "\n" +
 
-                                "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "\n" +
-                                "1\n" +
-                                "1Tid #:" + txid + "\n" +
-                                "1\n" +
-                                "1    Top it Up | 0860 111 723\n" +
-                                "1    Whatsapp | 064 121 9970\n" +
-                                "1    After Hours 23h00-07h00\n" +
-                                "1         021 300 0121\n" +
-                                "1       www.topitup.co.za\n" +
-                                "1";
+                                        "1Date       Time     POS User \n" +
+
+                                        "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "\n" +
+                                        "1\n" +
+                                        "1\n" +
+                                        "2       Approved  R " + amount + "\n" +
+                                        "1\n" +
+
+                                        "1           Thank You\n" +
+                                        "1\n" +
+                                        "1    Top it Up | 0860 111 723\n" +
+                                        "1    Whatsapp | 064 121 9970\n" +
+                                        "1       www.topitup.co.za\n" +
+                                        "1";
+                        String mslip =
+                                "1       MERCHANT RECEIPT\n" +
+                                        "1\n" +
+                                        "1" + tiu_settings.company_name+"\n" +
+
+                                        "1Acc No :" + Topitup.ACCOUNT_NUMBER +"\n"+
+                                        "1\n" +
+                                        "1TID :" + txid+ "\n" +
+
+                                        "1Date       Time     POS User \n" +
+
+                                        "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "\n" +
+                                        "1\n" +
+                                        "1\n" +
+                                        "2       Approved  R " + amount + "\n" +
+                                        "1\n" +
+
+                                        "1           Thank You\n" +
+                                        "1\n" +
+                                        "1    Top it Up | 0860 111 723\n" +
+                                        "1    Whatsapp | 064 121 9970\n" +
+                                        "1       www.topitup.co.za\n" +
+                                        "1";
                         if ("1".equals(type)) {
                             copyType = "Merchant copy";
                             slip = mslip;
@@ -200,7 +210,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                         // 4. Show a Toast with the results
                         Toast.makeText(getApplicationContext(),
                                 slip,
-                                LENGTH_LONG).show();
+                                Toast.LENGTH_LONG).show();
                         if (Topitup.isBluetoothConnected) {
                             PrinterTopitup.print_data(slip);
                             Toast.makeText(getApplicationContext(), "Printing...", Toast.LENGTH_SHORT).show();
@@ -257,7 +267,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                 // Permission granted, proceed with Bluetooth connection
                 connectBluetooth(MainWebViewActivity.this, "");
             } else {
-                Toast.makeText(this, "Bluetooth permissions are required for printing", LENGTH_LONG).show();
+                Toast.makeText(this, "Bluetooth permissions are required for printing", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -324,13 +334,67 @@ public class MainWebViewActivity extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void handleLogout() {
+//        final GetUpdateAll tiu_settings = realm.where(GetUpdateAll.class).findFirst();
+        /*LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String transactionDate = now.format(dateFormatter);
+        String transactionTime = now.format(timeFormatter);
 
-        /*if (Topitup.isBluetoothConnected) {
+
+        String cslip =
+                        "1       CUSTOMER RECEIPT\n" +
+                        "1\n" +
+                        "1" + "Allied Cash and Carry\n" +
+
+                        "1Acc No :" + Topitup.ACCOUNT_NUMBER +
+                        "1\n" +
+                        "1Tid :" + "123456" + "\n" +
+
+                        "1Date       Time     POS User \n" +
+
+                        "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "" +
+                        "1\n" +
+                        "1\n" +
+                        "2       Approved  R " + "10.00" + "\n" +
+                        "1\n" +
+
+                        "1           Thank You\n" +
+                        "1\n" +
+                        "1    Top it Up | 0860 111 723\n" +
+                        "1    Whatsapp | 064 121 9970\n" +
+                        "1       www.topitup.co.za\n" +
+                        "1";
+        String mslip =
+                                 "1       MERCHANT RECEIPT\n" +
+                                 "1\n" +
+                                 "1" + "Allied Cash and Carry\n" +
+
+                                 "1Acc No :" + Topitup.ACCOUNT_NUMBER +
+                                 "1\n" +
+                                 "1Tid :" + "123456" + "\n" +
+
+                                 "1Date       Time     POS User \n" +
+
+                                 "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "" +
+                                 "1\n" +
+                                 "1\n" +
+                                 "2       Approved  R " + "10.00" + "\n" +
+                                 "1\n" +
+
+                                 "1           Thank You\n" +
+                                 "1\n" +
+                                 "1    Top it Up | 0860 111 723\n" +
+                                 "1    Whatsapp | 064 121 9970\n" +
+                                 "1       www.topitup.co.za\n" +
+                                 "1";
+        if (Topitup.isBluetoothConnected) {
             PrinterTopitup.print_data(cslip);
             Toast.makeText(this, "Printing...", Toast.LENGTH_SHORT).show();
         } else {
-            Topitup.connectBluetooth(MainWebViewActivity.this,mslip);
+            Topitup.connectBluetooth(MainWebViewActivity.this, mslip);
         }*/
         // Clear WebView data
         webView.clearCache(true);
