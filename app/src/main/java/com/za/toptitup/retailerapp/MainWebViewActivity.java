@@ -178,13 +178,13 @@ public class MainWebViewActivity extends AppCompatActivity {
                                         "1\n" +
                                         "1" + tiu_settings.company_name+"\n" +
 
-                                        "1Acc No :" + Topitup.ACCOUNT_NUMBER +
+                                        "1Acc No :" + Topitup.ACCOUNT_NUMBER +"\n"+
                                         "1\n" +
-                                        "1TID :" + txid + "\n" +
+                                        "1TID :" + txid+ "\n" +
 
                                         "1Date       Time     POS User \n" +
 
-                                        "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "" +
+                                        "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "\n" +
                                         "1\n" +
                                         "1\n" +
                                         "2       Approved  R " + amount + "\n" +
