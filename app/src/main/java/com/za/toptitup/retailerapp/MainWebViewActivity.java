@@ -320,58 +320,15 @@ public class MainWebViewActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void handleLogout() {
-//        final GetUpdateAll tiu_settings = realm.where(GetUpdateAll.class).findFirst();
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        String transactionDate = now.format(dateFormatter);
-        String transactionTime = now.format(timeFormatter);
 
-
-        String cslip = "2" + "Allied Cash and Carry" + "\n" +
-                "1\n" +
-                "1CUSTOMER RECEIPT\n" +
-                "1\n" +
-                "2Approved:R " + "10" + "\n" +
-                "1\n" +
-                "1Date       Time     POS User \n" +
-
-                "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME+ "" +
-                "1\n" +
-                "1TId #:" + "123456" + "\n" +
-                "1\n" +
-                "1    Top it Up | 0860 111 723\n" +
-                "1    Whatsapp | 064 121 9970\n" +
-                "1    After Hours 23h00-07h00\n" +
-                "1         021 300 0121\n" +
-                "1       www.topitup.co.za\n" +
-                "1";
-        String mslip = "2" + "Allied Cash and Carry" + "\n" +
-                "1\n" +
-                "1MERCHANT RECEIPT\n" +
-                "1\n" +
-                "2Approved:  R " + "10" + "\n" +
-                "1\n" +
-                "1Date       Time     POS User \n" +
-
-                "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME+ "\n" +
-                "1\n" +
-                "1T Id #:" + "123456" + "\n" +
-                "1\n" +
-                "1    Top it Up | 0860 111 723\n" +
-                "1    Whatsapp | 064 121 9970\n" +
-                "1    After Hours 23h00-07h00\n" +
-                "1         021 300 0121\n" +
-                "1       www.topitup.co.za\n" +
-                "1";
-        if (Topitup.isBluetoothConnected) {
+        /*if (Topitup.isBluetoothConnected) {
             PrinterTopitup.print_data(cslip);
             Toast.makeText(this, "Printing...", Toast.LENGTH_SHORT).show();
         } else {
             Topitup.connectBluetooth(MainWebViewActivity.this,mslip);
-        }
+        }*/
         // Clear WebView data
-      /*  webView.clearCache(true);
+        webView.clearCache(true);
         webView.clearHistory();
 
         CookieManager.getInstance().removeAllCookies(null);
@@ -387,7 +344,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_CLEAR_TASK
         );
         startActivity(intent);
-        finish();*/
+        finish();
     }
 
     @Override
