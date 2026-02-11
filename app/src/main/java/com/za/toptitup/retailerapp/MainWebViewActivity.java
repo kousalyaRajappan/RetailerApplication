@@ -208,12 +208,12 @@ public class MainWebViewActivity extends AppCompatActivity {
                             slip = mslip;
                         }
                         // 4. Show a Toast with the results
-                        Toast.makeText(getApplicationContext(),
-                                slip,
-                                Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getApplicationContext(),
+//                                slip,
+//                                Toast.LENGTH_LONG).show();
                         if (Topitup.isBluetoothConnected) {
                             PrinterTopitup.print_data(slip);
-                            Toast.makeText(getApplicationContext(), "Printing...", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getApplicationContext(), "Printing...", Toast.LENGTH_SHORT).show();
                         } else {
                             Topitup.connectBluetooth(MainWebViewActivity.this, slip);
                         }
@@ -277,7 +277,7 @@ public class MainWebViewActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.d("MainWebViewActivity", "onActivityResult: requestCode=" + requestCode + ", resultCode=" + resultCode);
+//        Log.d("MainWebViewActivity", "onActivityResult: requestCode=" + requestCode + ", resultCode=" + resultCode);
 
         switch (requestCode) {
             case 3: // REQUEST_CONNECT_DEVICE
@@ -299,7 +299,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                         // Connect to the device using Topitup's Bluetooth service
                         if (Topitup.mService != null) {
                             Topitup.mService.connect(device);
-                            Toast.makeText(this, "Connecting to printer...", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(this, "Connecting to printer...", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(this, "Bluetooth service not initialized", Toast.LENGTH_SHORT).show();
                         }
@@ -338,7 +338,7 @@ public class MainWebViewActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void handleLogout() {
 //        final GetUpdateAll tiu_settings = realm.where(GetUpdateAll.class).findFirst();
-        /*LocalDateTime now = LocalDateTime.now();
+       /* LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         String transactionDate = now.format(dateFormatter);

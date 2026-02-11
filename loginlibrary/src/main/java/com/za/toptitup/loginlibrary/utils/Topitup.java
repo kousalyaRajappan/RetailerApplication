@@ -204,7 +204,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
                         case BluetoothService.STATE_CONNECTED:
                             PrinterTopitup.print_data(finalSlip+"\n\n\n\n");
 
-                            Toast.makeText(Topitup.getAppContext(), "bluetooth connected", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(Topitup.getAppContext(), "bluetooth connected", Toast.LENGTH_LONG).show();
                             editor.putString("printer", "bluetooth");
                             editor.commit();
                             isBluetoothConnected = true;
@@ -219,7 +219,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
                         case BluetoothService.STATE_CONNECTING:
                             isBluetoothConnected = false;
 
-                            Toast.makeText(Topitup.getAppContext(), "bluetooth connecting", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(Topitup.getAppContext(), "bluetooth connecting", Toast.LENGTH_LONG).show();
                             break;
 
                         case BluetoothService.STATE_LISTEN:
