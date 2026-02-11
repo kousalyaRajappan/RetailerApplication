@@ -101,6 +101,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
     public static String ACCOUNT_NUMBER = "0";
     public static String POSUSER_NAME = "";
     public static String RICA_REG = "";
+    public static String finalSlip ="";
     //public static Account myAccount;
     private static final String CHINESE = "GBK";
     public static boolean isBluetoothConnected = false;
@@ -201,7 +202,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
                         Log.i("TAG", "MESSAGE_STATE_CHANGE: " + msg.arg1);
                     switch (msg.arg1) {
                         case BluetoothService.STATE_CONNECTED:
-                            PrinterTopitup.print_data("2welcome to retailer app\n\n\n\n");
+                            PrinterTopitup.print_data(finalSlip+"\n\n\n\n");
 
                             Toast.makeText(Topitup.getAppContext(), "bluetooth connected", Toast.LENGTH_LONG).show();
                             editor.putString("printer", "bluetooth");
@@ -403,7 +404,8 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
         return Topitup.context;
     }
 
-    public static void connectBluetooth(Activity activity) {
+    public static void connectBluetooth(Activity activity,String slip) {
+        finalSlip = slip;
         bluetoothOperation(activity);
     }
     public static void bluetoothOperation(Context context) {

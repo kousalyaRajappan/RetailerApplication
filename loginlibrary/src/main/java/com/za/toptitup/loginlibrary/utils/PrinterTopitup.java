@@ -238,6 +238,7 @@ public final class PrinterTopitup {
 
 
     public static void bluetoothDataPrinter(String slip_to_print) {
+        Log.e("print slip","print slip......"+slip_to_print);
         SharedPreferences settings = Topitup.getAppContext().getSharedPreferences("TIUPREF", 0);
 
         BufferedReader bufReader = new BufferedReader(new StringReader(slip_to_print));
@@ -267,7 +268,10 @@ public final class PrinterTopitup {
 
                     } else {
 
-                        if (first.equals("1") || first.equals("0")) {
+                        Log.e("first line of print slip","prin t slip....."+first);
+                        if (first.equals("1") || first.equals("0") ||first.equals("")) {
+                            Log.e("first line of print slip","prin t slip..if..."+first);
+
                             // prnt_line = line.substring(1) + "\n";
                             prnt_line = line.substring(1) + "\r\n";
 
@@ -288,6 +292,7 @@ public final class PrinterTopitup {
                             }
 
                         } else {
+                            Log.e("first line of print slip","prin t slip..else..."+first);
 
                             prnt_line = line.substring(1) + "\n";
 
