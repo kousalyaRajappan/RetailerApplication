@@ -22,12 +22,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.za.toptitup.loginlibrary.activity_login;
+import com.za.toptitup.loginlibrary.model.GetUpdateAll;
 import com.za.toptitup.loginlibrary.utils.PrinterTopitup;
 import com.za.toptitup.loginlibrary.utils.Topitup;
+
+import io.realm.Realm;
 
 public class MainWebViewActivity extends AppCompatActivity {
 
     private WebView webView;
+    Realm realm;
     ProgressDialog progressDialog;
     private int REQUEST_BLUETOOTH_PERMISSIONS = 121;
 
@@ -91,13 +95,13 @@ public class MainWebViewActivity extends AppCompatActivity {
                         if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
                             // Proceed with Bluetooth operations
                             connectBluetooth(MainWebViewActivity.this);
-                           // bluetoothOperation(MainWebViewActivity.this);
+                            // bluetoothOperation(MainWebViewActivity.this);
                         } else {
                             requestBluetoothPermissions();
                         }
                     } else {
                         // For older Android versions, directly perform Bluetooth operations
-                       // bluetoothOperation(MainWebViewActivity.this);
+                        // bluetoothOperation(MainWebViewActivity.this);
                         connectBluetooth(MainWebViewActivity.this);
                     }
 // 1. Split the URL by "/"
@@ -117,18 +121,33 @@ public class MainWebViewActivity extends AppCompatActivity {
                         String type = parts[indexPrintslip + 1]; // "0"
                         String txid = parts[indexPrintslip + 2]; // "395242"
                         String amount = parts[indexPrintslip + 3]; // "20"
-String slip="transaction type: \" + type +\n" +
-        "                                        \"**** transaction id: \" + txid +\n" +
-        "                                        \"**** transaction amount: \" + amount,";
+                        String copyType;
+                        if ("1".equals(type)) {
+                            copyType = "Merchant copy";
+                        } else if ("0".equals(type)) {
+                            copyType = "Customer copy";
+                        } else {
+                            copyType = "Unknown copy type";
+                        }
+                        Realm.init(getApplicationContext());
+                        realm = Realm.getDefaultInstance();
+
+                        final GetUpdateAll tiu_settings = realm.where(GetUpdateAll.class).findFirst();
+                        //tiu_title_outlet.setText(tiu_settings.account_number);
+                       // text_store_name.setText(tiu_settings.company_name);
+
+                        String slip = "2"+ tiu_settings.company_name+"\n"+"transaction type: " + copyType + "\n" + "transaction id: " + txid + "\n" + "transaction amount: R" + amount;
                         // 4. Show a Toast with the results
                         Toast.makeText(getApplicationContext(),
-                                "transaction type: " + type +
-                                        "**** transaction id: " + txid +
-                                        "**** transaction amount: " + amount,
+                                slip,
                                 Toast.LENGTH_LONG).show();
-                        PrinterTopitup.print_data("transaction type: " + type +
-                                "**** transaction id: " + txid +
-                                "**** transaction amount: " + amount);
+                        if (Topitup.isBluetoothConnected) {
+                            PrinterTopitup.print_data(slip);
+                            Toast.makeText(getApplicationContext(), "Printing...", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Topitup.connectBluetooth(MainWebViewActivity.this);
+                        }
+
                     } else {
                         Toast.makeText(getApplicationContext(),
                                 "URL format unexpected",
@@ -137,7 +156,7 @@ String slip="transaction type: \" + type +\n" +
 
                 }
                 if (url.contains("/logout")) {
-                   handleLogout();
+                    handleLogout();
                     return true;
                 }
                 return false;
@@ -165,6 +184,7 @@ String slip="transaction type: \" + type +\n" +
 
         webView.loadUrl(finalUrl);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -178,6 +198,7 @@ String slip="transaction type: \" + type +\n" +
             }
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -239,16 +260,17 @@ String slip="transaction type: \" + type +\n" +
                 break;
         }
     }
+
     private void handleLogout() {
 
-        if (Topitup.isBluetoothConnected) {
+     /*   if (Topitup.isBluetoothConnected) {
             PrinterTopitup.print_data("2welcome to Retailer app\n\n\n\n");
             Toast.makeText(this, "Printing...", Toast.LENGTH_SHORT).show();
         } else {
             Topitup.connectBluetooth(MainWebViewActivity.this);
-        }
+        }*/
         // Clear WebView data
-        /*webView.clearCache(true);
+        webView.clearCache(true);
         webView.clearHistory();
 
         CookieManager.getInstance().removeAllCookies(null);
@@ -264,7 +286,7 @@ String slip="transaction type: \" + type +\n" +
                         Intent.FLAG_ACTIVITY_CLEAR_TASK
         );
         startActivity(intent);
-        finish();*/
+        finish();
     }
 
     @Override
@@ -276,6 +298,7 @@ String slip="transaction type: \" + type +\n" +
             super.onBackPressed();
         }
     }
+
     private void requestBluetoothPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED ||
