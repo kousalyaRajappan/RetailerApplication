@@ -255,7 +255,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                         "/retailerscan/retailer_app_login/" +
                         license + "/" +
                         pos_user_id;
-        Toast.makeText(getApplicationContext(), finalUrl, LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), finalUrl, LENGTH_LONG).show();
         webView.loadUrl(finalUrl);
     }
 

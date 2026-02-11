@@ -73,11 +73,11 @@ dependencies {
     //     exclude group: 'com.google.zxing', module: 'core'
     // }
     // implementation(name: 'WiseSdk_P_1.29_00a_24041501', ext: 'aar')
-    implementation 'androidx.core:core-ktx:1.12.0'
+    //implementation 'androidx.core:core-ktx:1.12.0'
 
     // AndroidX Core Libraries
     implementation libs.appcompat
-//    implementation libs.core.ktx
+   implementation libs.core.ktx
     implementation libs.annotation
     implementation libs.material
     implementation libs.constraintlayout
