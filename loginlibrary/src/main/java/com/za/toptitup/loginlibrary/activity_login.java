@@ -1238,7 +1238,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         amntEditText.requestFocus();
 
 
-        Log.e("account number","acc........."+supplier.getAccount_number());
+        Log.e("account number", "acc........." + supplier.getAccount_number());
         etAccountNo.setText(Topitup.ACCOUNT_NUMBER);
         clearRand_Cents.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1257,7 +1257,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 dialog.dismiss();
             }
         });
-        if(supplier.getAccount_number().equals(Topitup.ACCOUNT_NUMBER)){
+        if (supplier.getAccount_number().equals(Topitup.ACCOUNT_NUMBER)) {
             btnConfirm.setEnabled(false);
             btnConfirm.setAlpha(0.5f);        // faded look
             Toast.makeText(
@@ -2764,7 +2764,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                     // Toast.makeText(activity_login.this,"DEMO",Toast.LENGTH_SHORT).show();
                 } else {
                     SERVER = "LIVE";
-
+                   // Topitup.SERVER_BASED_URL = SERVER;
                     editor.putString("TIU_SERVER", "LIVE");
                     editor.putString("device_licence_pin", "");
                     editor.putString("device_id", "");
@@ -2865,6 +2865,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
         btnSaveNumber.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Topitup.SERVER_BASED_URL = SERVER;
                 if (Topitup.DEVICE_TYPE.equals("TABLET")) {
                     if (tv_device_id.getText().toString().length() == 0) {
                         Toasty.error(mContext, "Please enter the device ID!", 3000, true).show();

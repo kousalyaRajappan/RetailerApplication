@@ -109,6 +109,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
     public static final String AUTHORITY = "com.za.toptitup.loginlibraryapp";
     public static final String ACCOUNT_TYPE = "za.co.topitup";
     public static String checkServer = "";
+    public static  String SERVER_BASED_URL="";
 
     public static String BASE_URL = "http://tx1.topitup.co.za:25812/";
     public static String BASE_URL1 = "";
