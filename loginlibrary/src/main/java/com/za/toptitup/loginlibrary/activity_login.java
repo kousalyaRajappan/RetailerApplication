@@ -260,7 +260,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     private RadioButton radiolve;
     private RadioButton radiodemo;
     //NFCEmvHandler nfc;
-    private String SERVER;
+    public String SERVER = "";
     private Handler refreshHandler, refreshHandlerscreensaver;
     private Runnable runnablescreensaver;
     private String cslip, mslip;
@@ -2764,7 +2764,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                     // Toast.makeText(activity_login.this,"DEMO",Toast.LENGTH_SHORT).show();
                 } else {
                     SERVER = "LIVE";
-                   // Topitup.SERVER_BASED_URL = SERVER;
+                    // Topitup.SERVER_BASED_URL = SERVER;
                     editor.putString("TIU_SERVER", "LIVE");
                     editor.putString("device_licence_pin", "");
                     editor.putString("device_id", "");
@@ -2865,7 +2865,8 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
         btnSaveNumber.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Topitup.SERVER_BASED_URL = SERVER;
+                Topitup.serverURL(SERVER);
+
                 if (Topitup.DEVICE_TYPE.equals("TABLET")) {
                     if (tv_device_id.getText().toString().length() == 0) {
                         Toasty.error(mContext, "Please enter the device ID!", 3000, true).show();
@@ -2890,6 +2891,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         return;
                     }
 
+                    Toasty.error(mContext, "serverurl!" + Topitup.SERVER_BASED_URL, 3000, true).show();
 
                     //Clear old info
                     SharedPreferences settings = getSharedPreferences("TIUPREF", 0);

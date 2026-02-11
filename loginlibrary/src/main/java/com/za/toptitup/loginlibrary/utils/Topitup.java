@@ -403,7 +403,10 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
     public static Context getAppContext() {
         return Topitup.context;
     }
-
+public  static  void serverURL(String serverurl)
+{
+    SERVER_BASED_URL=serverurl;
+}
     public static void connectBluetooth(Activity activity,String slip) {
         finalSlip = slip;
         bluetoothOperation(activity);

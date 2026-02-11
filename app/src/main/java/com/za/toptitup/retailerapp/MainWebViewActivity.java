@@ -1,5 +1,6 @@
 package com.za.toptitup.retailerapp;
 
+import static android.widget.Toast.LENGTH_LONG;
 import static com.za.toptitup.loginlibrary.utils.Topitup.connectBluetooth;
 
 import android.app.ProgressDialog;
@@ -21,7 +22,9 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import java.time.LocalDateTime; import java.time.format.DateTimeFormatter;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 import com.za.toptitup.loginlibrary.activity_login;
@@ -38,7 +41,7 @@ public class MainWebViewActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     private int REQUEST_BLUETOOTH_PERMISSIONS = 121;
 
-    private static final String BASE_URL =
+    private String BASE_URL =
             "https://dev.topitup.co.za";
 
     @Override
@@ -137,7 +140,7 @@ public class MainWebViewActivity extends AppCompatActivity {
 
                         final GetUpdateAll tiu_settings = realm.where(GetUpdateAll.class).findFirst();
                         //tiu_title_outlet.setText(tiu_settings.account_number);
-                       // text_store_name.setText(tiu_settings.company_name);
+                        // text_store_name.setText(tiu_settings.company_name);
                         String amount;
                         try {
                             double amountValue = Double.parseDouble(amountStr);
@@ -151,11 +154,11 @@ public class MainWebViewActivity extends AppCompatActivity {
                                 "1\n" +
                                 "2" + "Allied Cash and Carry" + "\n" +
                                 "1\n" +
-                                "2Approved:R " + amount+ "\n" +
+                                "2Approved:R " + amount + "\n" +
                                 "1\n" +
                                 "1Date       Time     POS User \n" +
 
-                                "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME+ "" +
+                                "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "" +
                                 "1\n" +
                                 "1Tid #:" + txid + "\n" +
                                 "1\n" +
@@ -165,7 +168,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                                 "1         021 300 0121\n" +
                                 "1       www.topitup.co.za\n" +
                                 "1";
-                        String mslip =  "1MERCHANT RECEIPT\n" +
+                        String mslip = "1MERCHANT RECEIPT\n" +
                                 "1\n" +
                                 "2" + "Allied Cash and Carry" + "\n" +
                                 "1\n" +
@@ -174,7 +177,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                                 "1\n" +
                                 "1Date       Time     POS User \n" +
 
-                                "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME+ "\n" +
+                                "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "\n" +
                                 "1\n" +
                                 "1Tid #:" + txid + "\n" +
                                 "1\n" +
@@ -189,20 +192,20 @@ public class MainWebViewActivity extends AppCompatActivity {
                             slip = mslip;
                         } else if ("0".equals(type)) {
                             copyType = "Customer copy";
-                            slip =cslip;
+                            slip = cslip;
                         } else {
                             copyType = "Unknown copy type";
-                            slip= mslip;
+                            slip = mslip;
                         }
                         // 4. Show a Toast with the results
                         Toast.makeText(getApplicationContext(),
                                 slip,
-                                Toast.LENGTH_LONG).show();
+                                LENGTH_LONG).show();
                         if (Topitup.isBluetoothConnected) {
                             PrinterTopitup.print_data(slip);
                             Toast.makeText(getApplicationContext(), "Printing...", Toast.LENGTH_SHORT).show();
                         } else {
-                            Topitup.connectBluetooth(MainWebViewActivity.this,slip);
+                            Topitup.connectBluetooth(MainWebViewActivity.this, slip);
                         }
 
                     } else {
@@ -231,14 +234,17 @@ public class MainWebViewActivity extends AppCompatActivity {
                 return false;
             }
         });
-
+        if (Topitup.SERVER_BASED_URL.equalsIgnoreCase("DEMO"))
+            BASE_URL = "https://dev.topitup.co.za";
+        else if (Topitup.SERVER_BASED_URL.equalsIgnoreCase("LIVE"))
+            BASE_URL = "https://admin.topitup.co.za";
         // Build final URL
         String finalUrl =
                 BASE_URL +
                         "/retailerscan/retailer_app_login/" +
                         license + "/" +
                         pos_user_id;
-
+        Toast.makeText(getApplicationContext(), finalUrl, LENGTH_LONG).show();
         webView.loadUrl(finalUrl);
     }
 
@@ -249,9 +255,9 @@ public class MainWebViewActivity extends AppCompatActivity {
         if (requestCode == REQUEST_BLUETOOTH_PERMISSIONS) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted, proceed with Bluetooth connection
-                connectBluetooth(MainWebViewActivity.this,"");
+                connectBluetooth(MainWebViewActivity.this, "");
             } else {
-                Toast.makeText(this, "Bluetooth permissions are required for printing", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Bluetooth permissions are required for printing", LENGTH_LONG).show();
             }
         }
     }
@@ -318,7 +324,6 @@ public class MainWebViewActivity extends AppCompatActivity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void handleLogout() {
 
         /*if (Topitup.isBluetoothConnected) {
