@@ -156,7 +156,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                                         "1\n" +
                                         "1" + tiu_settings.company_name+"\n" +
 
-                                        "1Acc No :" + Topitup.ACCOUNT_NUMBER +"\n"+
+                                        "1Acc No :  " + Topitup.ACCOUNT_NUMBER +"\n"+
                                         "1\n" +
                                         "1TID :" + txid+ "\n" +
 
@@ -179,7 +179,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                                         "1\n" +
                                         "1" + tiu_settings.company_name+"\n" +
 
-                                        "1Acc No :" + Topitup.ACCOUNT_NUMBER +"\n"+
+                                        "1Acc No :  " + Topitup.ACCOUNT_NUMBER +"\n"+
                                         "1\n" +
                                         "1TID :" + txid+ "\n" +
 
