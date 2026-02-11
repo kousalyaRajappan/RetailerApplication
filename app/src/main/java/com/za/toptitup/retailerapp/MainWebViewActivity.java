@@ -1,14 +1,17 @@
 package com.za.toptitup.retailerapp;
 
-import static com.za.toptitup.loginlibrary.utils.Topitup.bluetoothOperation;
 import static com.za.toptitup.loginlibrary.utils.Topitup.connectBluetooth;
 
 import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.CookieManager;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -20,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.za.toptitup.loginlibrary.activity_login;
 import com.za.toptitup.loginlibrary.utils.PrinterTopitup;
+import com.za.toptitup.loginlibrary.utils.Topitup;
 
 public class MainWebViewActivity extends AppCompatActivity {
 
@@ -161,11 +165,85 @@ String slip="transaction type: \" + type +\n" +
 
         webView.loadUrl(finalUrl);
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
+        if (requestCode == REQUEST_BLUETOOTH_PERMISSIONS) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, proceed with Bluetooth connection
+                connectBluetooth(MainWebViewActivity.this);
+            } else {
+                Toast.makeText(this, "Bluetooth permissions are required for printing", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.d("MainWebViewActivity", "onActivityResult: requestCode=" + requestCode + ", resultCode=" + resultCode);
+
+        switch (requestCode) {
+            case 3: // REQUEST_CONNECT_DEVICE
+                if (resultCode == RESULT_OK && data != null) {
+                    // Get the device MAC address
+                    String address = data.getExtras().getString("device_address"); // DeviceListActivity.EXTRA_DEVICE_ADDRESS
+
+                    if (address != null && BluetoothAdapter.checkBluetoothAddress(address)) {
+                        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+                        BluetoothDevice device = bluetoothAdapter.getRemoteDevice(address);
+
+                        // Save the last connected device
+                        SharedPreferences settings = getSharedPreferences("TIUPREF", MODE_PRIVATE);
+                        settings.edit()
+                                .putString("last_device_address", address)
+                                .putString("printer", "bluetooth")
+                                .apply();
+
+                        // Connect to the device using Topitup's Bluetooth service
+                        if (Topitup.mService != null) {
+                            Topitup.mService.connect(device);
+                            Toast.makeText(this, "Connecting to printer...", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "Bluetooth service not initialized", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(this, "Invalid Bluetooth address", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(this, "No Bluetooth device selected", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case 2: // REQUEST_ENABLE_BT
+                if (resultCode == RESULT_OK) {
+                    // Bluetooth is now enabled
+                    Toast.makeText(this, "Bluetooth enabled", Toast.LENGTH_SHORT).show();
+
+                    // Initialize Bluetooth service if needed
+                    if (Topitup.mService == null) {
+                        Topitup.mService = new com.za.toptitup.loginlibrary.bluetooth.BluetoothService(
+                                this,
+                                Topitup.mBluetoothHandler
+                        );
+                    }
+
+                    // Now show device list
+                    Intent serverIntent = new Intent(this, com.za.toptitup.loginlibrary.bluetooth.DeviceListActivity.class);
+                    startActivityForResult(serverIntent, 3); // REQUEST_CONNECT_DEVICE
+                } else {
+                    // User did not enable Bluetooth
+                    Toast.makeText(this, "Bluetooth is required for printing", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }
     private void handleLogout() {
 
+        Topitup.connectBluetooth(MainWebViewActivity.this);
         // Clear WebView data
-        webView.clearCache(true);
+        /*webView.clearCache(true);
         webView.clearHistory();
 
         CookieManager.getInstance().removeAllCookies(null);
@@ -181,7 +259,7 @@ String slip="transaction type: \" + type +\n" +
                         Intent.FLAG_ACTIVITY_CLEAR_TASK
         );
         startActivity(intent);
-        finish();
+        finish();*/
     }
 
     @Override

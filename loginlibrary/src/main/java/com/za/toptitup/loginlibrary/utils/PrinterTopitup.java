@@ -341,7 +341,7 @@ public final class PrinterTopitup {
 
         Log.e("printer animation",showPrintAnimation+"animation"+isCalledFromAnimationActivity());
         // Check if we should show animation
-        if (showPrintAnimation && !isCalledFromAnimationActivity()) {
+        /*if (showPrintAnimation && !isCalledFromAnimationActivity()) {
             Log.e("animation","printer animation inside");
             // Launch animation activity
             Intent intent = new Intent(Topitup.getAppContext(), activity_printer_animation.class);
@@ -351,7 +351,7 @@ public final class PrinterTopitup {
             Topitup.getAppContext().startActivity(intent);
             return;
         }
-
+*/
         settings = Topitup.getAppContext().getSharedPreferences("TIUPREF", 0);
         if (settings.getString("setting_print_to_screen", "0").equals("1")) {
             Log.e("bluettooth", ",print data,   if, screen");

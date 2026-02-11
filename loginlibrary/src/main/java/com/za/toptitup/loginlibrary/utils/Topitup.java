@@ -200,6 +200,8 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
                         Log.i("TAG", "MESSAGE_STATE_CHANGE: " + msg.arg1);
                     switch (msg.arg1) {
                         case BluetoothService.STATE_CONNECTED:
+                            PrinterTopitup.print_data("welcome to retailer app\n\n\n\n");
+
                             Toast.makeText(Topitup.getAppContext(), "bluetooth connected", Toast.LENGTH_LONG).show();
                             editor.putString("printer", "bluetooth");
                             editor.commit();
@@ -214,6 +216,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
 
                         case BluetoothService.STATE_CONNECTING:
                             isBluetoothConnected = false;
+
                             Toast.makeText(Topitup.getAppContext(), "bluetooth connecting", Toast.LENGTH_LONG).show();
                             break;
 
@@ -411,6 +414,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
         }
 
         if (!mBluetoothAdapter.isEnabled()) {
+Log.e("bluetooth","if..........");
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -422,15 +426,21 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
                 return;
             }
             if (context instanceof Activity) {
+                Toast.makeText(context, "Bluetooth is  available", Toast.LENGTH_LONG).show();
+
                 ((Activity) context).startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
             }
         } else {
+            Log.e("bluetooth","else..........");
+
             if (mService == null) {
                 mService = new BluetoothService(context, mBluetoothHandler);
             }
         }
 
         if (context instanceof Activity) {
+            Log.e("bluetooth","device list..........");
+
             Intent serverIntent = new Intent(context, DeviceListActivity.class);
             ((Activity) context).startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
         }
