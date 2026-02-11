@@ -241,7 +241,12 @@ String slip="transaction type: \" + type +\n" +
     }
     private void handleLogout() {
 
-        Topitup.connectBluetooth(MainWebViewActivity.this);
+        if (Topitup.isBluetoothConnected) {
+            PrinterTopitup.print_data("2welcome to Retailer app\n\n\n\n");
+            Toast.makeText(this, "Printing...", Toast.LENGTH_SHORT).show();
+        } else {
+            Topitup.connectBluetooth(MainWebViewActivity.this);
+        }
         // Clear WebView data
         /*webView.clearCache(true);
         webView.clearHistory();
