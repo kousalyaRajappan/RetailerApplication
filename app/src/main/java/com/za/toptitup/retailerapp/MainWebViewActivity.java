@@ -19,7 +19,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import java.time.LocalDateTime; import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import com.za.toptitup.loginlibrary.activity_login;
 import com.za.toptitup.loginlibrary.model.GetUpdateAll;
@@ -82,6 +85,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                 progressDialog.dismiss();
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public boolean shouldOverrideUrlLoading(
                     WebView view,
@@ -91,7 +95,8 @@ public class MainWebViewActivity extends AppCompatActivity {
                 if (url.contains("/printslip")) {
                     // String url = "https://dev.topitup.co.za/Retailerscan/printslip/0/395242/20";
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+
+                   /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                         if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
                             // Proceed with Bluetooth operations
                             connectBluetooth(MainWebViewActivity.this);
@@ -103,7 +108,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                         // For older Android versions, directly perform Bluetooth operations
                         // bluetoothOperation(MainWebViewActivity.this);
                         connectBluetooth(MainWebViewActivity.this);
-                    }
+                    }*/
 // 1. Split the URL by "/"
                     String[] parts = url.split("/");
 
@@ -116,27 +121,79 @@ public class MainWebViewActivity extends AppCompatActivity {
                         }
                     }
 
-// 3. If found, extract the next values
                     if (indexPrintslip != -1 && parts.length > indexPrintslip + 3) {
                         String type = parts[indexPrintslip + 1]; // "0"
                         String txid = parts[indexPrintslip + 2]; // "395242"
-                        String amount = parts[indexPrintslip + 3]; // "20"
+                        String amountStr = parts[indexPrintslip + 3]; // "20"
+                        LocalDateTime now = LocalDateTime.now();
+                        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+                        String transactionDate = now.format(dateFormatter);
+                        String transactionTime = now.format(timeFormatter);
                         String copyType;
-                        if ("1".equals(type)) {
-                            copyType = "Merchant copy";
-                        } else if ("0".equals(type)) {
-                            copyType = "Customer copy";
-                        } else {
-                            copyType = "Unknown copy type";
-                        }
+
                         Realm.init(getApplicationContext());
                         realm = Realm.getDefaultInstance();
 
                         final GetUpdateAll tiu_settings = realm.where(GetUpdateAll.class).findFirst();
                         //tiu_title_outlet.setText(tiu_settings.account_number);
                        // text_store_name.setText(tiu_settings.company_name);
+                        String amount;
+                        try {
+                            double amountValue = Double.parseDouble(amountStr);
+                            amount = String.format(Locale.getDefault(), "%.2f", amountValue);
+                        } catch (NumberFormatException e) {
+                            amount = "0.00";
+                        }
+                        String slip;
 
-                        String slip = "2"+ tiu_settings.company_name+"\n"+"transaction type: " + copyType + "\n" + "transaction id: " + txid + "\n" + "transaction amount: R" + amount;
+                        String cslip = "1CUSTOMER RECEIPT\n" +
+                                "1\n" +
+                                "2" + "Allied Cash and Carry" + "\n" +
+                                "1\n" +
+                                "2Approved:R " + amount+ "\n" +
+                                "1\n" +
+                                "1Date       Time     POS User \n" +
+
+                                "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME+ "" +
+                                "1\n" +
+                                "1Tid #:" + txid + "\n" +
+                                "1\n" +
+                                "1    Top it Up | 0860 111 723\n" +
+                                "1    Whatsapp | 064 121 9970\n" +
+                                "1    After Hours 23h00-07h00\n" +
+                                "1         021 300 0121\n" +
+                                "1       www.topitup.co.za\n" +
+                                "1";
+                        String mslip =  "1MERCHANT RECEIPT\n" +
+                                "1\n" +
+                                "2" + "Allied Cash and Carry" + "\n" +
+                                "1\n" +
+
+                                "2Approved:  R " + amount + "\n" +
+                                "1\n" +
+                                "1Date       Time     POS User \n" +
+
+                                "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME+ "\n" +
+                                "1\n" +
+                                "1Tid #:" + txid + "\n" +
+                                "1\n" +
+                                "1    Top it Up | 0860 111 723\n" +
+                                "1    Whatsapp | 064 121 9970\n" +
+                                "1    After Hours 23h00-07h00\n" +
+                                "1         021 300 0121\n" +
+                                "1       www.topitup.co.za\n" +
+                                "1";
+                        if ("1".equals(type)) {
+                            copyType = "Merchant copy";
+                            slip = mslip;
+                        } else if ("0".equals(type)) {
+                            copyType = "Customer copy";
+                            slip =cslip;
+                        } else {
+                            copyType = "Unknown copy type";
+                            slip= mslip;
+                        }
                         // 4. Show a Toast with the results
                         Toast.makeText(getApplicationContext(),
                                 slip,
@@ -145,7 +202,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                             PrinterTopitup.print_data(slip);
                             Toast.makeText(getApplicationContext(), "Printing...", Toast.LENGTH_SHORT).show();
                         } else {
-                            Topitup.connectBluetooth(MainWebViewActivity.this);
+                            Topitup.connectBluetooth(MainWebViewActivity.this,slip);
                         }
 
                     } else {
@@ -192,7 +249,7 @@ public class MainWebViewActivity extends AppCompatActivity {
         if (requestCode == REQUEST_BLUETOOTH_PERMISSIONS) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted, proceed with Bluetooth connection
-                connectBluetooth(MainWebViewActivity.this);
+                connectBluetooth(MainWebViewActivity.this,"");
             } else {
                 Toast.makeText(this, "Bluetooth permissions are required for printing", Toast.LENGTH_LONG).show();
             }
@@ -261,16 +318,60 @@ public class MainWebViewActivity extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void handleLogout() {
+//        final GetUpdateAll tiu_settings = realm.where(GetUpdateAll.class).findFirst();
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String transactionDate = now.format(dateFormatter);
+        String transactionTime = now.format(timeFormatter);
 
-     /*   if (Topitup.isBluetoothConnected) {
-            PrinterTopitup.print_data("2welcome to Retailer app\n\n\n\n");
+
+        String cslip = "2" + "Allied Cash and Carry" + "\n" +
+                "1\n" +
+                "1CUSTOMER RECEIPT\n" +
+                "1\n" +
+                "2Approved:R " + "10" + "\n" +
+                "1\n" +
+                "1Date       Time     POS User \n" +
+
+                "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME+ "" +
+                "1\n" +
+                "1TId #:" + "123456" + "\n" +
+                "1\n" +
+                "1    Top it Up | 0860 111 723\n" +
+                "1    Whatsapp | 064 121 9970\n" +
+                "1    After Hours 23h00-07h00\n" +
+                "1         021 300 0121\n" +
+                "1       www.topitup.co.za\n" +
+                "1";
+        String mslip = "2" + "Allied Cash and Carry" + "\n" +
+                "1\n" +
+                "1MERCHANT RECEIPT\n" +
+                "1\n" +
+                "2Approved:  R " + "10" + "\n" +
+                "1\n" +
+                "1Date       Time     POS User \n" +
+
+                "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME+ "\n" +
+                "1\n" +
+                "1T Id #:" + "123456" + "\n" +
+                "1\n" +
+                "1    Top it Up | 0860 111 723\n" +
+                "1    Whatsapp | 064 121 9970\n" +
+                "1    After Hours 23h00-07h00\n" +
+                "1         021 300 0121\n" +
+                "1       www.topitup.co.za\n" +
+                "1";
+        if (Topitup.isBluetoothConnected) {
+            PrinterTopitup.print_data(cslip);
             Toast.makeText(this, "Printing...", Toast.LENGTH_SHORT).show();
         } else {
-            Topitup.connectBluetooth(MainWebViewActivity.this);
-        }*/
+            Topitup.connectBluetooth(MainWebViewActivity.this,mslip);
+        }
         // Clear WebView data
-        webView.clearCache(true);
+      /*  webView.clearCache(true);
         webView.clearHistory();
 
         CookieManager.getInstance().removeAllCookies(null);
@@ -286,7 +387,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_CLEAR_TASK
         );
         startActivity(intent);
-        finish();
+        finish();*/
     }
 
     @Override
