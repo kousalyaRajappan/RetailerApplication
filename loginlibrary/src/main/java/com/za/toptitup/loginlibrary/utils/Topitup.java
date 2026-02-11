@@ -200,7 +200,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
                         Log.i("TAG", "MESSAGE_STATE_CHANGE: " + msg.arg1);
                     switch (msg.arg1) {
                         case BluetoothService.STATE_CONNECTED:
-                            PrinterTopitup.print_data("welcome to retailer app\n\n\n\n");
+                            PrinterTopitup.print_data("2welcome to retailer app\n\n\n\n");
 
                             Toast.makeText(Topitup.getAppContext(), "bluetooth connected", Toast.LENGTH_LONG).show();
                             editor.putString("printer", "bluetooth");
@@ -414,7 +414,6 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
         }
 
         if (!mBluetoothAdapter.isEnabled()) {
-Log.e("bluetooth","if..........");
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT)
                     != PackageManager.PERMISSION_GRANTED) {

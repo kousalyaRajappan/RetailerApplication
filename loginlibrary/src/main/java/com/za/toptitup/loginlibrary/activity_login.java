@@ -550,7 +550,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
         Button scan_pay = findViewById(R.id.scan_pay);
         if (Topitup.TIU_LICENSE != "") {
-            scan_pay.setVisibility(View.VISIBLE);
+            scan_pay.setVisibility(View.GONE);
         } else {
             scan_pay.setVisibility(View.GONE);
 
