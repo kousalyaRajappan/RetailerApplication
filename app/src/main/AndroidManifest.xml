@@ -6,9 +6,9 @@
         android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/topitupretailer"
+        android:icon="@drawable/ic_wholesale_logo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/topitupretailer"
+        android:roundIcon="@drawable/ic_wholesale_logo"
         tools:targetApi="31">
         <activity
             android:name="com.za.toptitup.loginlibrary.activitySplashScreen"

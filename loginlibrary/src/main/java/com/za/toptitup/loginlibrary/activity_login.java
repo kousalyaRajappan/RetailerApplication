@@ -247,7 +247,8 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
                 mIsDemo.setText("DEMO");
             } else {
-                mIsDemo.setVisibility(View.INVISIBLE);
+                mIsDemo.setText("PROD");
+               // mIsDemo.setVisibility(View.INVISIBLE);
             }
 
 
@@ -2369,7 +2370,9 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
         ll_demo.setVisibility(View.VISIBLE);
 
+/*
         if (!Topitup.DEBUG) mIsDemo.setVisibility(View.INVISIBLE);
+*/
 
 
         ImageView mLogo = findViewById(R.id.activity_login_admin);
@@ -3646,7 +3649,8 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
                 if (Topitup.DEBUG) {
                     mIsDemo.setText("DEMO");
                 } else {
-                    mIsDemo.setVisibility(View.INVISIBLE);
+                    mIsDemo.setText("PROD");
+                  //  mIsDemo.setVisibility(View.INVISIBLE);
                 }
             }
 
