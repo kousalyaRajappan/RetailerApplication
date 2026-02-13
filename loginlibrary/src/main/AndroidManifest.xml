@@ -46,7 +46,9 @@
         </activity>
         <activity android:name=".CustomQrScannerActivity" />
         <activity android:name=".bluetooth.DeviceListActivity"/>
+        <activity android:name=".activity_print_screen"/>
 
+        <activity android:name=".utils.activity_printer_animation"/>
         <!-- Login -->
         <activity
             android:name="com.za.toptitup.loginlibrary.activity_login"

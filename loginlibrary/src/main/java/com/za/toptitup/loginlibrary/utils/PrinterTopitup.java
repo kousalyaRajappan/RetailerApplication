@@ -346,7 +346,7 @@ public final class PrinterTopitup {
 
         Log.e("printer animation",showPrintAnimation+"animation"+isCalledFromAnimationActivity());
         // Check if we should show animation
-        /*if (showPrintAnimation && !isCalledFromAnimationActivity()) {
+        if (showPrintAnimation && !isCalledFromAnimationActivity()) {
             Log.e("animation","printer animation inside");
             // Launch animation activity
             Intent intent = new Intent(Topitup.getAppContext(), activity_printer_animation.class);
@@ -356,7 +356,7 @@ public final class PrinterTopitup {
             Topitup.getAppContext().startActivity(intent);
             return;
         }
-*/
+
         settings = Topitup.getAppContext().getSharedPreferences("TIUPREF", 0);
         if (settings.getString("setting_print_to_screen", "0").equals("1")) {
             Log.e("bluettooth", ",print data,   if, screen");
@@ -383,20 +383,7 @@ public final class PrinterTopitup {
 
             Log.e("selected printer", "selected........" + selectedPrinter);
             if (selectedPrinter.equals("bluetooth")) {
-//                Log.e("print screen bluetooth", "........print......." + activity_main.printScreen);
-               /* if (activity_main.printScreen) {
 
-                    Intent intent = new Intent(Topitup.getAppContext(), activity_print_screen.class);
-                    intent.putExtra("slip_to_print", slip_to_print);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    Topitup.getAppContext().startActivity(intent);
-                } else if (activity_login.fromScreen.equals("activity_spi")) {
-                    bluetoothDataPrinter(slip_to_print);
-
-                } *//*else if (activity_login.fromScreen.equals("activity_spi")) {
-                    bluetoothDataPrinter(slip_to_print);
-
-                }*//* else {*/
                     if (Topitup.mService != null) {
                         SharedPreferences finalSettings = settings;
                         new Thread(() -> {
@@ -445,7 +432,7 @@ public final class PrinterTopitup {
                     } else {
                         Toast.makeText(getAppContext(), "Bluetooth Service null", Toast.LENGTH_LONG).show();
                     }
-//                }
+
 
             }
             else if (selectedPrinter.equals("usb")) {
@@ -602,14 +589,7 @@ public final class PrinterTopitup {
                             }
                         }).start();
                     } else {
-//                        if (activity_main.printScreen) {
-//
-//                            Intent intent = new Intent(Topitup.getAppContext(), activity_print_screen.class);
-//                            intent.putExtra("slip_to_print", slip_to_print);
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                            Topitup.getAppContext().startActivity(intent);
-//
-//                        } else {
+
                             Log.e("printing animatio","wpos........"+slip_to_print);
                            /* Printingw wpos = new Printingw();
                             wpos.data = slip_to_print;
@@ -623,162 +603,18 @@ public final class PrinterTopitup {
                                     Log.e("printing animation", "WPos print failed", e);
                                 }
                             }).start();
-//                        }
+                        }
 
-                    }
+
 
                 }
-               /* else if (Topitup.DEVICE_TYPE.equals("Q1")) {
-
-                    ThreadPoolManager.getInstance().executeTask(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            int print_line_counter = 0;
-                            String prnt_all = "";
-
-                            BufferedReader bufReader = new BufferedReader(new StringReader(slip_to_print));
-                            String line = null;
-
-                            try {
-
-                                Topitup.mIPosPrinterService.printerInit(Topitup.callback);
-
-                                Topitup.mIPosPrinterService.PrintSpecFormatText("\n", "ST", 12, 0, Topitup.callback);
-
-                                while ((line = bufReader.readLine()) != null) {
-
-                                    String prnt_line = "";
-                                    String size = "";
-
-                                    //  Timber.e("BARCODE: " + prnt_line);
-
-                                    if (line.length() >= 8 && line.startsWith("BARCODE:")) {
-
-                                        if (Topitup.PRINT_BARCODE.equals("1")) {
-
-                                            size = "1";
-                                            if (line.contains("BARCODE")) {
-
-                                                prnt_line = line.replace("BARCODE:", "");
-                                            }
-
-                                            Topitup.mIPosPrinterService.setPrinterPrintAlignment(1, Topitup.callback);
-                                            Topitup.mIPosPrinterService.printBarCode(prnt_line, 2, 6, 14, 2, Topitup.callback);
-                                            //Topitup.mIPosPrinterService.printBarCode(prnt_line, 8, 6, 14, 2, Topitup.callback);
-                                            Topitup.mIPosPrinterService.printBlankLines(1, 25, Topitup.callback);
-                                            //Topitup.mIPosPrinterService.PrintSpecFormatText(prnt_line + "\n", "ST", 24, 0, Topitup.callback);
-                                            //Topitup.mIPosPrinterService.printBlankLines(1, 25, Topitup.callback);
-
-                                        }
-
-                                    } else {
-
-                                        if (line.length() > 1) {
-                                            prnt_line = line.substring(1);
-                                            size = "" + line.charAt(0);
-                                        }
-
-                                        prnt_line = prnt_line.trim();
-
-                                        if (prnt_line.length() == 0) {
-
-                                            print_line_counter++;
-                                            if (print_line_counter < 2) {
-                                                //prnt_all = prnt_all +  "\n";
-
-                                                Topitup.mIPosPrinterService.printBlankLines(2, 8, Topitup.callback);
-
-                                                //Topitup.mIPosPrinterService.printerPerformPrint(40, Topitup.callback);
-                                            }
-
-                                        } else if (size.equals("1")) {
-
-                                            print_line_counter = 0;
-
-                                            //Topitup.mIPosPrinterService.printBlankLines(1, 8, Topitup.callback);
-//                                    Topitup.mIPosPrinterService.printSpecifiedTypeText(prnt_line, "ST", 24, Topitup.callback);
-
-                                            //prnt_all = prnt_all + prnt_line + "\n";
-
-                                            //Topitup.mIPosPrinterService.printText(prnt_line + "\n", Topitup.callback);
-                                            Topitup.mIPosPrinterService.PrintSpecFormatText(prnt_line + "\n", "ST", 24, 0, Topitup.callback);
-
-
-                                        } else {
-
-                                            print_line_counter = 0;
-
-                                            //Topitup.mIPosPrinterService.printBlankLines(1, 8, Topitup.callback);
-                                            //Topitup.mIPosPrinterService.printSpecifiedTypeText(prnt_line, "ST", 48, Topitup.callback);
-                                            //Topitup.mIPosPrinterService.printText(prnt_line,  Topitup.callback);
-
-                                            //System.out.println(prnt_line.substring(0, 16));
-                                            //System.out.println(prnt_line.substring(14, 32));
-
-                                            if (prnt_line.length() <= 16) {
-
-                                                Topitup.mIPosPrinterService.printSpecifiedTypeText(prnt_line + "\n", "ST", 48, Topitup.callback);
-
-                                            } else {
-                                                Topitup.mIPosPrinterService.printSpecifiedTypeText(prnt_line.substring(0, 16) + "\n", "ST", 48, Topitup.callback);
-                                                Topitup.mIPosPrinterService.printSpecifiedTypeText(prnt_line.substring(16) + "\n", "ST", 48, Topitup.callback);
-                                            }
-
-                                            //prnt_all = prnt_all + prnt_line + "\n";
-
-
-                                        }
-
-                                    }
-
-                                }
-
-
-//                            Topitup.mIPosPrinterService.printerInit(Topitup.callback);
-//
-//                            Topitup.mIPosPrinterService.printSpecifiedTypeText("Top it Up Slip\nDate    User\n2019-10-21     Shaun Tesr\nasdf asfd fasfasf asdf\nasdfa sfas fsafas fas fasf\n\n", "ST", 32, Topitup.callback);
-//                            Topitup.mIPosPrinterService.printSpecifiedTypeText("123 123 144\n   12323\n", "ST", 48, Topitup.callback);
-//
-//                            Topitup.mIPosPrinterService.printSpecifiedTypeText("asdf asfd fasfasf asdf\nasdfa sfas fsafas fas fasf\n\n", "ST", 32, Topitup.callback);
-//                            Topitup.mIPosPrinterService.printSpecifiedTypeText("     Top it Up\n    www.topitup.co.za", "ST", 32, Topitup.callback);
-
-
-                                //Topitup.mIPosPrinterService.printText(prnt_all,  Topitup.callback);
-
-                                Topitup.mIPosPrinterService.printerPerformPrint(80, Topitup.callback);
-
-
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-
-
-                }*/
 
             } else {
 
                 if (Topitup.DEVICE_TYPE.equals("MOBILE") || Topitup.DEVICE_TYPE.equals("TABLET")) {
                     Toast.makeText(getAppContext(), "Please connect USB or Bluetooth", Toast.LENGTH_LONG).show();
 
-                } /*else {
-
-                    if (Printooth.INSTANCE.hasPairedPrinter()) {
-                        BluetoothPrinter bluetoothPrinter = new BluetoothPrinter();
-
-                        bluetoothPrinter.initView();
-                        Timber.i("PRINTER: printing...");
-                        try {
-                            bluetoothPrinter.printdata = slip_to_print;
-                            bluetoothPrinter.printData();
-                            bluetoothPrinter.print();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }*/
+                }
             }
 
 
@@ -792,145 +628,7 @@ public final class PrinterTopitup {
             QSPrinter QSP = new QSPrinter();
             QSPrinter.print(slip_to_print);
 
-
         }
-
-
-      /*  if (Topitup.DEVICE_TYPE.equals("Q1")) {
-
-
-            ThreadPoolManager.getInstance().executeTask(new Runnable() {
-                @Override
-                public void run() {
-
-
-                    int print_line_counter = 0;
-                    String prnt_all = "";
-
-                    BufferedReader bufReader = new BufferedReader(new StringReader(slip_to_print));
-                    String line = null;
-
-                    try {
-
-                        Topitup.mIPosPrinterService.printerInit(Topitup.callback);
-
-                        Topitup.mIPosPrinterService.PrintSpecFormatText("\n", "ST", 12, 0, Topitup.callback);
-
-                        while ((line = bufReader.readLine()) != null) {
-
-                            String prnt_line = "";
-                            String size = "";
-
-
-                            //  Timber.e("BARCODE: " + prnt_line);
-
-                            if (line.length() >= 8 && line.startsWith("BARCODE:")) {
-
-                                if (Topitup.PRINT_BARCODE.equals("1")) {
-
-                                    size = "1";
-                                    if (line.contains("BARCODE")) {
-
-                                        prnt_line = line.replace("BARCODE:", "");
-                                    }
-
-                                    Topitup.mIPosPrinterService.setPrinterPrintAlignment(1, Topitup.callback);
-                                    Topitup.mIPosPrinterService.printBarCode(prnt_line, 2, 6, 14, 2, Topitup.callback);
-                                    //Topitup.mIPosPrinterService.printBarCode(prnt_line, 8, 6, 14, 2, Topitup.callback);
-                                    Topitup.mIPosPrinterService.printBlankLines(1, 25, Topitup.callback);
-                                    //Topitup.mIPosPrinterService.PrintSpecFormatText(prnt_line + "\n", "ST", 24, 0, Topitup.callback);
-                                    //Topitup.mIPosPrinterService.printBlankLines(1, 25, Topitup.callback);
-
-                                }
-
-                            } else {
-
-                                if (line.length() > 1) {
-                                    prnt_line = "" + line.substring(1);
-                                    size = "" + line.charAt(0);
-                                }
-
-                                prnt_line = prnt_line.trim();
-
-                                if (prnt_line.length() == 0) {
-
-                                    print_line_counter++;
-                                    if (print_line_counter < 2) {
-                                        //prnt_all = prnt_all +  "\n";
-
-                                        Topitup.mIPosPrinterService.printBlankLines(2, 8, Topitup.callback);
-
-                                        //Topitup.mIPosPrinterService.printerPerformPrint(40, Topitup.callback);
-                                    }
-
-                                } else if (size.equals("1")) {
-
-                                    print_line_counter = 0;
-
-                                    //Topitup.mIPosPrinterService.printBlankLines(1, 8, Topitup.callback);
-//                                    Topitup.mIPosPrinterService.printSpecifiedTypeText(prnt_line, "ST", 24, Topitup.callback);
-
-                                    //prnt_all = prnt_all + prnt_line + "\n";
-
-                                    //Topitup.mIPosPrinterService.printText(prnt_line + "\n", Topitup.callback);
-                                    Topitup.mIPosPrinterService.PrintSpecFormatText(prnt_line + "\n", "ST", 24, 0, Topitup.callback);
-
-
-                                } else {
-
-                                    print_line_counter = 0;
-
-                                    //Topitup.mIPosPrinterService.printBlankLines(1, 8, Topitup.callback);
-                                    //Topitup.mIPosPrinterService.printSpecifiedTypeText(prnt_line, "ST", 48, Topitup.callback);
-                                    //Topitup.mIPosPrinterService.printText(prnt_line,  Topitup.callback);
-
-                                    //System.out.println(prnt_line.substring(0, 16));
-                                    //System.out.println(prnt_line.substring(14, 32));
-
-                                    if (prnt_line.length() <= 16) {
-
-                                        Topitup.mIPosPrinterService.printSpecifiedTypeText(prnt_line + "\n", "ST", 48, Topitup.callback);
-
-                                    } else {
-                                        Topitup.mIPosPrinterService.printSpecifiedTypeText(prnt_line.substring(0, 16) + "\n", "ST", 48, Topitup.callback);
-                                        Topitup.mIPosPrinterService.printSpecifiedTypeText(prnt_line.substring(16) + "\n", "ST", 48, Topitup.callback);
-                                    }
-
-                                    //prnt_all = prnt_all + prnt_line + "\n";
-
-
-                                }
-
-                            }
-
-                        }
-
-
-//                            Topitup.mIPosPrinterService.printerInit(Topitup.callback);
-//
-//                            Topitup.mIPosPrinterService.printSpecifiedTypeText("Top it Up Slip\nDate    User\n2019-10-21     Shaun Tesr\nasdf asfd fasfasf asdf\nasdfa sfas fsafas fas fasf\n\n", "ST", 32, Topitup.callback);
-//                            Topitup.mIPosPrinterService.printSpecifiedTypeText("123 123 144\n   12323\n", "ST", 48, Topitup.callback);
-//
-//                            Topitup.mIPosPrinterService.printSpecifiedTypeText("asdf asfd fasfasf asdf\nasdfa sfas fsafas fas fasf\n\n", "ST", 32, Topitup.callback);
-//                            Topitup.mIPosPrinterService.printSpecifiedTypeText("     Top it Up\n    www.topitup.co.za", "ST", 32, Topitup.callback);
-
-
-                        //Topitup.mIPosPrinterService.printText(prnt_all,  Topitup.callback);
-
-                        Topitup.mIPosPrinterService.printerPerformPrint(80, Topitup.callback);
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-
-
-        }*/
-
-
-
 
 
     }

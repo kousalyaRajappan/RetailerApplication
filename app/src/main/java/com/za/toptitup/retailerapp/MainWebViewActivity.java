@@ -46,6 +46,7 @@ public class MainWebViewActivity extends AppCompatActivity {
 
     private String BASE_URL =
             "";
+    PrinterTopitup printer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class MainWebViewActivity extends AppCompatActivity {
         String license = intent.getStringExtra("LICENSE");
         String pos_user_id = intent.getStringExtra("POS_USER_ID");
 
+        printer = new PrinterTopitup(MainWebViewActivity.this);
         if (license == null || pos_user_id == null) {
             finish();
             return;
@@ -378,7 +380,7 @@ public class MainWebViewActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void handleLogout() {
 //        final GetUpdateAll tiu_settings = realm.where(GetUpdateAll.class).findFirst();
-       /* LocalDateTime now = LocalDateTime.now();
+        /*LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         String transactionDate = now.format(dateFormatter);
