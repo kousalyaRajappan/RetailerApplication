@@ -14,7 +14,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.webkit.CookieManager;
-import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -30,11 +29,9 @@ import java.util.Locale;
 
 import com.za.toptitup.loginlibrary.activity_login;
 import com.za.toptitup.loginlibrary.model.GetUpdateAll;
-import com.za.toptitup.loginlibrary.utils.NetworkUtils;
 import com.za.toptitup.loginlibrary.utils.PrinterTopitup;
 import com.za.toptitup.loginlibrary.utils.Topitup;
 
-import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
 
 public class MainWebViewActivity extends AppCompatActivity {
@@ -83,18 +80,6 @@ public class MainWebViewActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                if (!NetworkUtils.isNetworkAvailable(MainWebViewActivity.this)) {
-
-                    progressDialog.dismiss();
-                    view.stopLoading();
-
-                    Toasty.error(MainWebViewActivity.this,
-                            "Please check your internet connection!",
-                            Toast.LENGTH_LONG,
-                            true).show();
-
-                    return;
-                }
                 progressDialog.show();
             }
 
@@ -103,42 +88,13 @@ public class MainWebViewActivity extends AppCompatActivity {
                 progressDialog.dismiss();
             }
 
-            @Override
-            public void onReceivedError(WebView view,
-                                        WebResourceRequest request,
-                                        WebResourceError error) {
-                super.onReceivedError(view, request, error);
-
-                progressDialog.dismiss();
-
-                if (!NetworkUtils.isNetworkAvailable(MainWebViewActivity.this)) {
-
-                    Toasty.error(MainWebViewActivity.this,
-                            "Please check your internet connection!",
-                            Toast.LENGTH_LONG,
-                            true).show();
-                }
-            }
-
-
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public boolean shouldOverrideUrlLoading(
                     WebView view,
                     WebResourceRequest request
             ) {
-                if (!NetworkUtils.isNetworkAvailable(MainWebViewActivity.this)) {
-
-                    progressDialog.dismiss();
-                    view.stopLoading();
-
-                    Toasty.error(MainWebViewActivity.this,
-                            "Please check your internet connection!",
-                            Toast.LENGTH_LONG,
-                            true).show();
-
-                    return true;
-                }                String url = request.getUrl().toString();
+                String url = request.getUrl().toString();
                 if (url.contains("/printslip")) {
                     // String url = "https://dev.topitup.co.za/Retailerscan/printslip/0/395242/20";
 
@@ -289,7 +245,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                 return false;
             }
         });
-        if (Topitup.TIU_SERVER.equalsIgnoreCase("DEMO"))
+         if (Topitup.TIU_SERVER.equalsIgnoreCase("DEMO"))
             BASE_URL = "https://dev.topitup.co.za";
         else if (Topitup.TIU_SERVER.equalsIgnoreCase("LIVE"))
             BASE_URL = "https://admin.topitup.co.za";
