@@ -265,7 +265,18 @@ public class MainWebViewActivity extends AppCompatActivity {
                             PrinterTopitup.print_data(slip);
 //                            Toast.makeText(getApplicationContext(), "Printing...", Toast.LENGTH_SHORT).show();
                         } else {
-                            Topitup.connectBluetooth(MainWebViewActivity.this, slip);
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                                if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
+                                    // Proceed with Bluetooth operations
+                                    Topitup.connectBluetooth(MainWebViewActivity.this, slip);
+                                } else {
+                                    requestBluetoothPermissions();
+                                }
+                            } else {
+                                // For older Android versions, directly perform Bluetooth operations
+                                Topitup.connectBluetooth(MainWebViewActivity.this, slip);
+                            }
                         }
 
                     } else {
@@ -326,9 +337,6 @@ public class MainWebViewActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-//        Log.d("MainWebViewActivity", "onActivityResult: requestCode=" + requestCode + ", resultCode=" + resultCode);
-
         switch (requestCode) {
             case 3: // REQUEST_CONNECT_DEVICE
                 if (resultCode == RESULT_OK && data != null) {
@@ -388,7 +396,7 @@ public class MainWebViewActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void handleLogout() {
 //        final GetUpdateAll tiu_settings = realm.where(GetUpdateAll.class).findFirst();
-        /*LocalDateTime now = LocalDateTime.now();
+      /*  LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         String transactionDate = now.format(dateFormatter);
@@ -445,7 +453,18 @@ public class MainWebViewActivity extends AppCompatActivity {
             PrinterTopitup.print_data(cslip);
             Toast.makeText(this, "Printing...", Toast.LENGTH_SHORT).show();
         } else {
-            Topitup.connectBluetooth(MainWebViewActivity.this, mslip);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
+                    // Proceed with Bluetooth operations
+                    Topitup.connectBluetooth(MainWebViewActivity.this, mslip);
+                } else {
+                    requestBluetoothPermissions();
+                }
+            } else {
+                // For older Android versions, directly perform Bluetooth operations
+                Topitup.connectBluetooth(MainWebViewActivity.this, mslip);
+            }
         }*/
         // Clear WebView data
         webView.clearCache(true);
