@@ -24,6 +24,8 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -121,7 +123,7 @@ public class MainWebViewActivity extends AppCompatActivity {
             }
 
 
-            @RequiresApi(api = Build.VERSION_CODES.O)
+            @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
             @Override
             public boolean shouldOverrideUrlLoading(
                     WebView view,
@@ -188,7 +190,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                         String amount;
                         try {
                             double amountValue = Double.parseDouble(amountStr);
-                            amount = String.format(Locale.getDefault(), "%.2f", amountValue);
+                            amount = String.format(Locale.US, "%.2f", amountValue);
                         } catch (NumberFormatException e) {
                             amount = "0.00";
                         }
@@ -203,13 +205,13 @@ public class MainWebViewActivity extends AppCompatActivity {
                                         "1Acc No :  " + Topitup.ACCOUNT_NUMBER + "\n" +
                                         "1\n" +
                                         "1TID :" + txid + "\n" +
-                                        "1Payer Name :  " + payer_name + "\n" +
-                                        "1\n" +
-                                        "Payer Acc No :" + payer_accno + "\n" +
-                                        "1Date       Time     POS User \n" +
+                                       "1Date       Time     POS User \n" +
 
                                         "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "\n" +
                                         "1\n" +
+                                        "1Payer Name :  " + URLDecoder.decode(payer_name, StandardCharsets.UTF_8) + "\n" +
+                                        "1Payer Acc No : " + payer_accno + "\n" +
+
                                         "1\n" +
                                         "2       Approved  R " + amount + "\n" +
                                         "1\n" +
@@ -228,13 +230,13 @@ public class MainWebViewActivity extends AppCompatActivity {
                                         "1Acc No :  " + Topitup.ACCOUNT_NUMBER + "\n" +
                                         "1\n" +
                                         "1TID :" + txid + "\n" +
-                                        "1Payer Name :  " + payer_name + "\n" +
-                                        "1\n" +
-                                        "Payer Acc No :" + payer_accno + "\n" +
+
                                         "1Date       Time     POS User \n" +
 
                                         "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "\n" +
                                         "1\n" +
+                                        "1Payer Name :  " + URLDecoder.decode(payer_name, StandardCharsets.UTF_8) + "\n" +
+                                        "1Payer Acc No : " + payer_accno + "\n" +
                                         "1\n" +
                                         "2       Approved  R " + amount + "\n" +
                                         "1\n" +
