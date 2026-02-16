@@ -139,7 +139,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                 }
                 if (url.contains("/printslip")) {
                     // String url = "https://dev.topitup.co.za/Retailerscan/printslip/0/395242/20";
-
+                    Log.e("data", url);
 
                    /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                         if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
@@ -170,6 +170,8 @@ public class MainWebViewActivity extends AppCompatActivity {
                         String type = parts[indexPrintslip + 1]; // "0"
                         String txid = parts[indexPrintslip + 2]; // "395242"
                         String amountStr = parts[indexPrintslip + 3]; // "20"
+                        String payer_accno = parts[indexPrintslip + 4];
+                        String payer_name = parts[indexPrintslip + 5];
                         LocalDateTime now = LocalDateTime.now();
                         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -201,7 +203,9 @@ public class MainWebViewActivity extends AppCompatActivity {
                                         "1Acc No :  " + Topitup.ACCOUNT_NUMBER + "\n" +
                                         "1\n" +
                                         "1TID :" + txid + "\n" +
-
+                                        "1Payer Name :  " + payer_name + "\n" +
+                                        "1\n" +
+                                        "Payer Acc No :" + payer_accno + "\n" +
                                         "1Date       Time     POS User \n" +
 
                                         "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "\n" +
@@ -224,7 +228,9 @@ public class MainWebViewActivity extends AppCompatActivity {
                                         "1Acc No :  " + Topitup.ACCOUNT_NUMBER + "\n" +
                                         "1\n" +
                                         "1TID :" + txid + "\n" +
-
+                                        "1Payer Name :  " + payer_name + "\n" +
+                                        "1\n" +
+                                        "Payer Acc No :" + payer_accno + "\n" +
                                         "1Date       Time     POS User \n" +
 
                                         "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "\n" +
@@ -459,6 +465,7 @@ public class MainWebViewActivity extends AppCompatActivity {
         finish();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBackPressed() {
         if (webView.canGoBack()) {
