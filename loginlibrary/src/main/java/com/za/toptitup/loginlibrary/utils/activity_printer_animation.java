@@ -44,6 +44,8 @@ public class activity_printer_animation extends Activity {
     private LinearLayout contentContainer;
     private FrameLayout printerViewport;
     private ImageView ivBarcode,ivQrCode;
+    private TextView tvQrLabel;
+
     private String qrData = null;
 
     private String receiptData, receiptDatacopy;
@@ -60,6 +62,7 @@ public class activity_printer_animation extends Activity {
         receiptData = getIntent().getStringExtra("slip_to_print");
         txid = getIntent().getStringExtra("txid");
 
+        Log.e("txid","txid........"+txid);
 
         if (receiptData == null || receiptData.isEmpty()) {
             finish();
@@ -71,6 +74,7 @@ public class activity_printer_animation extends Activity {
         printerViewport = findViewById(R.id.printerViewport);
         ivBarcode = findViewById(R.id.ivBarcode);
         ivQrCode = findViewById(R.id.ivQrCode);
+        tvQrLabel = findViewById(R.id.tvQrLabel);
 
         setupReceiptText();
 
@@ -156,9 +160,13 @@ public class activity_printer_animation extends Activity {
         }
         if (txid != null && !txid.isEmpty()) {
             ivQrCode.setVisibility(View.VISIBLE);
+            tvQrLabel.setVisibility(View.VISIBLE); // show label
+
             generateQRCode(txid);
         } else {
             ivQrCode.setVisibility(View.GONE);
+            tvQrLabel.setVisibility(View.VISIBLE); // show label
+
         }
         // Setup paper size and position based on content length
         contentContainer.post(this::setupPaperSizeAndPosition);
@@ -278,6 +286,11 @@ public class activity_printer_animation extends Activity {
         if (ivQrCode.getVisibility() == View.VISIBLE) {
             int qrDp = 150;
             qrHeight = (int) (qrDp * getResources().getDisplayMetrics().density) + 32; // 32 = margins
+            tvQrLabel.measure(
+                    View.MeasureSpec.makeMeasureSpec(contentContainer.getWidth(), View.MeasureSpec.EXACTLY),
+                    View.MeasureSpec.UNSPECIFIED
+            );
+            qrHeight += tvQrLabel.getMeasuredHeight() + 16;
         }
 
         int totalContentHeight = textHeight + paddingTop + paddingBottom + barcodeHeight + qrHeight;
@@ -390,32 +403,6 @@ public class activity_printer_animation extends Activity {
         }
     }
 
-    /*private long getPrinterSpeed() {
-        Log.e("printer animation","animation wpos speed out side"+Topitup.DEVICE_TYPE);
-
-        if (Topitup.DEVICE_TYPE.equals("TABLET")) {
-            return 80;
-        } else if (Topitup.DEVICE_TYPE.equals("WPOS")) {
-
-                Log.e("printer animation","animation wpos speed");
-                return 300; // Slow WPOS model
-
-        } else {
-            return 80; // Default
-        }
-    }
-
-    private long getMinDuration() {
-        if (Topitup.DEVICE_TYPE.equals("TABLET")) {
-            return 1500;
-        } else if (Topitup.DEVICE_TYPE.equals("WPOS")) {
-
-                return 4500; // Slow WPOS model
-
-        } else {
-            return 1500; // Default
-        }
-    }*/
 
     private void triggerActualPrint() {
         if (printingStarted) return;

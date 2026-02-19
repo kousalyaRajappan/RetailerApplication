@@ -263,7 +263,7 @@ public class MainWebViewActivity extends AppCompatActivity {
 //                                Toast.LENGTH_LONG).show();
                         if (Topitup.isBluetoothConnected) {
                             Log.e("qr code","qr........."+txid);
-                            PrinterTopitup.print_data(slip,Topitup.BASE_URL+"/"+txid);
+                            PrinterTopitup.print_data(slip,txid);
 //                            Toast.makeText(getApplicationContext(), "Printing...", Toast.LENGTH_SHORT).show();
                         } else {
                             Log.e("qr code","qr.....else...."+txid);

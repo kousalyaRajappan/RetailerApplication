@@ -279,11 +279,7 @@ public final class PrinterTopitup {
                                 // Split text into wrapped lines
                                 List<String> wrappedLines = wrapText(prnt_line, maxCharsPerLine);
                                 Topitup.SendDataString(prnt_line, getAppContext());
-                                // Print each wrapped line
-                                for (String wrappedLine : wrappedLines) {
-                                    //   activity_settings.SendDataString(wrappedLine, getAppContext());
-                                    //activity_settings.SendDataString(prnt_line , getAppContext());
-                                }
+
                             }
 
                         } else {
@@ -313,10 +309,11 @@ public final class PrinterTopitup {
             }
             Log.e("transaction id","txid ..."+txid);
            Topitup.printQrCode(txid);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Topitup.SendDataString("\n \n \n", getAppContext());
+//        Topitup.SendDataString("\n \n \n", getAppContext());
 
         if (settings.getString("printer_cash_drawer", "0").equals("1")) {
 

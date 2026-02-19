@@ -114,6 +114,8 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
     public static String POSUSER_NAME = "";
     public static String RICA_REG = "";
     public static String finalSlip ="";
+    public static String finalTxid ="";
+
     //public static Account myAccount;
     private static final String CHINESE = "GBK";
     public static boolean isBluetoothConnected = false;
@@ -214,7 +216,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
                         Log.i("TAG", "MESSAGE_STATE_CHANGE: " + msg.arg1);
                     switch (msg.arg1) {
                         case BluetoothService.STATE_CONNECTED:
-                            PrinterTopitup.print_data(finalSlip+"\n\n\n\n","txid");
+                            PrinterTopitup.print_data(finalSlip+"\n\n\n\n",finalTxid);
 
 //                            Toast.makeText(Topitup.getAppContext(), "bluetooth connected", Toast.LENGTH_LONG).show();
                             editor.putString("printer", "bluetooth");
@@ -418,6 +420,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
 
     public static void connectBluetooth(Activity activity,String slip,String txid) {
         finalSlip = slip;
+        finalTxid = txid;
         bluetoothOperation(activity,txid);
     }
     public static void bluetoothOperation(Context context,String txid) {
@@ -534,7 +537,21 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
 
                 // Print using existing printLogo method
                 mService.printLogo(bitmap);
+                Thread.sleep(500); // Wait for QR to finish printing
 
+                // Center align
+                mService.write(new byte[]{0x1B, 0x61, 0x01});
+                Thread.sleep(30);
+
+                // Print text below QR
+                mService.write("Scan QR to query transaction".getBytes("UTF-8"));
+                mService.write("\n\n\n".getBytes("UTF-8"));
+
+                Thread.sleep(30);
+
+                // New lines + left align
+                mService.write(new byte[]{0x0A, 0x0A, 0x0A});
+                mService.write(new byte[]{0x1B, 0x61, 0x00});
             } catch (Exception e) {
                 Log.e("QR", "Failed: " + e.getMessage());
             }
