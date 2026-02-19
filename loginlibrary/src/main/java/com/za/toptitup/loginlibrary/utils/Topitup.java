@@ -2,6 +2,7 @@ package com.za.toptitup.loginlibrary.utils;
 
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static android.content.Intent.ACTION_BATTERY_CHANGED;
+import static com.za.toptitup.loginlibrary.utils.PrinterTopitup.generateQRBitmap;
 import static timber.log.Timber.DebugTree;
 import static timber.log.Timber.i;
 
@@ -21,6 +22,8 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.Network;
@@ -56,6 +59,11 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.za.toptitup.loginlibrary.BuildConfig;
 import com.za.toptitup.loginlibrary.LogoutAdminListener;
 import com.za.toptitup.loginlibrary.LogoutListener;
@@ -69,11 +77,15 @@ import com.za.toptitup.loginlibrary.command.sdk.PrinterCommand;
 
 import androidx.lifecycle.ProcessLifecycleOwner;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Executors;
@@ -202,7 +214,7 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
                         Log.i("TAG", "MESSAGE_STATE_CHANGE: " + msg.arg1);
                     switch (msg.arg1) {
                         case BluetoothService.STATE_CONNECTED:
-                            PrinterTopitup.print_data(finalSlip+"\n\n\n\n");
+                            PrinterTopitup.print_data(finalSlip+"\n\n\n\n","txid");
 
 //                            Toast.makeText(Topitup.getAppContext(), "bluetooth connected", Toast.LENGTH_LONG).show();
                             editor.putString("printer", "bluetooth");
@@ -404,11 +416,11 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
         return Topitup.context;
     }
 
-    public static void connectBluetooth(Activity activity,String slip) {
+    public static void connectBluetooth(Activity activity,String slip,String txid) {
         finalSlip = slip;
-        bluetoothOperation(activity);
+        bluetoothOperation(activity,txid);
     }
-    public static void bluetoothOperation(Context context) {
+    public static void bluetoothOperation(Context context,String txid) {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         if (mBluetoothAdapter == null) {
@@ -494,6 +506,53 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
         }
         mService.write(data);
     }
+    public static void SendRawBytes(byte[] data, Context con) {
+        if (mService.getState() != BluetoothService.STATE_CONNECTED) {
+            return;
+        }
+        mService.write(data); // No encoding, pure raw bytes
+    }
+    public static void printQrCode(String txid) {
+        if (txid == null || txid.isEmpty()) return;
+
+        new Thread(() -> {
+            try {
+                // Generate QR bitmap
+                Map<EncodeHintType, Object> hints = new HashMap<>();
+                hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+                hints.put(EncodeHintType.MARGIN, 2);
+
+                QRCodeWriter writer = new QRCodeWriter();
+                BitMatrix bitMatrix = writer.encode(txid, BarcodeFormat.QR_CODE, 300, 300, hints);
+
+                Bitmap bitmap = Bitmap.createBitmap(300, 300, Bitmap.Config.ARGB_8888);
+                for (int x = 0; x < 300; x++) {
+                    for (int y = 0; y < 300; y++) {
+                        bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+                    }
+                }
+
+                // Print using existing printLogo method
+                mService.printLogo(bitmap);
+
+            } catch (Exception e) {
+                Log.e("QR", "Failed: " + e.getMessage());
+            }
+        }).start();
+    }
+    /*public static void printQrCode(String txid){
+        if(!txid.equals("")){
+            Bitmap qrBitmap = generateQRBitmap(txid, 200);
+            if (qrBitmap != null) {
+                try {
+                    mService.printLogo(qrBitmap); // reuses your existing bitmap print method
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+
+    }*/
     public static void SendDataString(String data, Context con) {
 
 //      BluetoothService  mServiceNew = new BluetoothService(con, mHandler);

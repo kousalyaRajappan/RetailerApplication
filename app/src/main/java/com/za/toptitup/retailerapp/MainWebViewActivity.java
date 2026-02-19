@@ -262,20 +262,22 @@ public class MainWebViewActivity extends AppCompatActivity {
 //                                slip,
 //                                Toast.LENGTH_LONG).show();
                         if (Topitup.isBluetoothConnected) {
-                            PrinterTopitup.print_data(slip);
+                            Log.e("qr code","qr........."+txid);
+                            PrinterTopitup.print_data(slip,Topitup.BASE_URL+"/"+txid);
 //                            Toast.makeText(getApplicationContext(), "Printing...", Toast.LENGTH_SHORT).show();
                         } else {
+                            Log.e("qr code","qr.....else...."+txid);
 
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                                 if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
                                     // Proceed with Bluetooth operations
-                                    Topitup.connectBluetooth(MainWebViewActivity.this, slip);
+                                    Topitup.connectBluetooth(MainWebViewActivity.this, slip,txid);
                                 } else {
                                     requestBluetoothPermissions();
                                 }
                             } else {
                                 // For older Android versions, directly perform Bluetooth operations
-                                Topitup.connectBluetooth(MainWebViewActivity.this, slip);
+                                Topitup.connectBluetooth(MainWebViewActivity.this, slip,txid);
                             }
                         }
 
@@ -327,7 +329,7 @@ public class MainWebViewActivity extends AppCompatActivity {
         if (requestCode == REQUEST_BLUETOOTH_PERMISSIONS) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted, proceed with Bluetooth connection
-                connectBluetooth(MainWebViewActivity.this, "");
+                connectBluetooth(MainWebViewActivity.this, "","");
             } else {
                 Toast.makeText(this, "Bluetooth permissions are required for printing", Toast.LENGTH_LONG).show();
             }

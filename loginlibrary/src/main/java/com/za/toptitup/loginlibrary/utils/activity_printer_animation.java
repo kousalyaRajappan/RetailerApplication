@@ -24,12 +24,16 @@ import android.widget.TextView;
 
 
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.za.toptitup.loginlibrary.R;
 
 import java.io.BufferedReader;
 import java.io.StringReader;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class activity_printer_animation extends Activity {
@@ -39,11 +43,13 @@ public class activity_printer_animation extends Activity {
     private TextView tvReceiptContent;
     private LinearLayout contentContainer;
     private FrameLayout printerViewport;
-    private ImageView ivBarcode;
+    private ImageView ivBarcode,ivQrCode;
+    private String qrData = null;
 
     private String receiptData, receiptDatacopy;
     private boolean printingStarted = false;
     private String barcodeData = null;
+    private String txid="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,8 @@ public class activity_printer_animation extends Activity {
 
         receiptDatacopy = getIntent().getStringExtra("slip_to_print");
         receiptData = getIntent().getStringExtra("slip_to_print");
+        txid = getIntent().getStringExtra("txid");
+
 
         if (receiptData == null || receiptData.isEmpty()) {
             finish();
@@ -62,6 +70,7 @@ public class activity_printer_animation extends Activity {
         contentContainer = findViewById(R.id.contentContainer);
         printerViewport = findViewById(R.id.printerViewport);
         ivBarcode = findViewById(R.id.ivBarcode);
+        ivQrCode = findViewById(R.id.ivQrCode);
 
         setupReceiptText();
 
@@ -145,14 +154,67 @@ public class activity_printer_animation extends Activity {
         } else {
             ivBarcode.setVisibility(View.GONE);
         }
-
+        if (txid != null && !txid.isEmpty()) {
+            ivQrCode.setVisibility(View.VISIBLE);
+            generateQRCode(txid);
+        } else {
+            ivQrCode.setVisibility(View.GONE);
+        }
         // Setup paper size and position based on content length
         contentContainer.post(this::setupPaperSizeAndPosition);
     }
+  /*  private void generateQRCode(String data) {
+        try {
+            int size = 400;
+            MultiFormatWriter writer = new MultiFormatWriter();
+            BitMatrix bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE, size, size);
 
-    /**
-     * Generate barcode bitmap and display it
-     */
+            Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+            for (int x = 0; x < size; x++) {
+                for (int y = 0; y < size; y++) {
+                    bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+                }
+            }
+
+            ivQrCode.setImageBitmap(bitmap);
+            ivQrCode.setVisibility(View.VISIBLE);
+
+            Log.d(TAG, "QR code generated successfully: " + data);
+
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to generate QR code: " + e.getMessage());
+            ivQrCode.setVisibility(View.GONE);
+        }
+    }*/
+  private void generateQRCode(String data) {
+      try {
+          int size = 500;
+
+          Map<EncodeHintType, Object> hints = new HashMap<>();
+          hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+          hints.put(EncodeHintType.MARGIN, 2);
+
+          MultiFormatWriter writer = new MultiFormatWriter();
+          BitMatrix bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE, size, size, hints);
+
+          Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+          for (int x = 0; x < size; x++) {
+              for (int y = 0; y < size; y++) {
+                  bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+              }
+          }
+
+          ivQrCode.setImageBitmap(bitmap);
+          ivQrCode.setScaleType(ImageView.ScaleType.FIT_CENTER);
+          ivQrCode.setVisibility(View.VISIBLE);
+
+          Log.d(TAG, "QR code generated successfully: " + data);
+
+      } catch (Exception e) {
+          Log.e(TAG, "Failed to generate QR code: " + e.getMessage());
+          ivQrCode.setVisibility(View.GONE);
+      }
+  }
     private void generateBarcode(String data) {
         try {
             // Use EAN13 format (13 digits) or CODE128 for alphanumeric
@@ -212,8 +274,13 @@ public class activity_printer_animation extends Activity {
             );
             barcodeHeight = ivBarcode.getMeasuredHeight() + 32; // 16dp margin top + bottom
         }
+        int qrHeight = 0;
+        if (ivQrCode.getVisibility() == View.VISIBLE) {
+            int qrDp = 150;
+            qrHeight = (int) (qrDp * getResources().getDisplayMetrics().density) + 32; // 32 = margins
+        }
 
-        int totalContentHeight = textHeight + paddingTop + paddingBottom + barcodeHeight;
+        int totalContentHeight = textHeight + paddingTop + paddingBottom + barcodeHeight + qrHeight;
 
         // Set container height to actual content height
         ViewGroup.LayoutParams params = contentContainer.getLayoutParams();
@@ -356,9 +423,9 @@ public class activity_printer_animation extends Activity {
 
         new Thread(() -> {
             try {
-                Log.e(TAG, "Print triggered");
+                Log.e(TAG, "Print triggered"+txid);
                 // This now fires exactly when the paper starts moving upward
-                PrinterTopitup.print_data(receiptDatacopy);
+                PrinterTopitup.print_data(receiptDatacopy,txid);
             } catch (Exception e) {
                 Log.e(TAG, "Print error: " + e.getMessage());
             }

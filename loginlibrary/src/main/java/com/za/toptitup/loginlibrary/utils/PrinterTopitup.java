@@ -35,6 +35,10 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.wisepos.smartpos.WisePosException;
 import com.wisepos.smartpos.WisePosSdk;
 import com.wisepos.smartpos.printer.BarcodeType;
@@ -44,9 +48,11 @@ import com.wisepos.smartpos.printer.TextInfo;
 import com.zj.usbsdk.UsbController;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -97,17 +103,6 @@ public final class PrinterTopitup {
 
     }
 
-    public static void do_last_reprint(Context mContext) {
-
-        if (last_reprint.length() == 0) {
-
-            Toast.makeText(mContext, "Nothing to reprint", Toast.LENGTH_LONG).show();
-
-        } else {
-            print_data(last_reprint);
-        }
-
-    }
 
 
 
@@ -237,8 +232,8 @@ public final class PrinterTopitup {
 
 
 
-    public static void bluetoothDataPrinter(String slip_to_print) {
-        Log.e("print slip","print slip......"+slip_to_print);
+    public static void bluetoothDataPrinter(String slip_to_print,String txid) {
+        Log.e("print slip",txid+"print slip......"+slip_to_print);
         SharedPreferences settings = Topitup.getAppContext().getSharedPreferences("TIUPREF", 0);
 
         BufferedReader bufReader = new BufferedReader(new StringReader(slip_to_print));
@@ -316,6 +311,8 @@ public final class PrinterTopitup {
                     }
                 }
             }
+            Log.e("transaction id","txid ..."+txid);
+           Topitup.printQrCode(txid);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -336,15 +333,30 @@ public final class PrinterTopitup {
         endPrintJobAndReset();
     }
 
-
-    public static void print_data(final String slip_to_print) {
+    public static Bitmap generateQRBitmap(String content, int size) {
+        try {
+            QRCodeWriter writer = new QRCodeWriter();
+            BitMatrix bitMatrix = writer.encode(content, BarcodeFormat.QR_CODE, size, size);
+            Bitmap bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.RGB_565);
+            for (int x = 0; x < size; x++) {
+                for (int y = 0; y < size; y++) {
+                    bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+                }
+            }
+            return bitmap;
+        } catch (WriterException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public static void print_data(final String slip_to_print,String txid) {
 
 
         // ========== ✨ NEW CODE - ANIMATION INTERCEPTOR ✨ ==========
         SharedPreferences settings = Topitup.getAppContext().getSharedPreferences("TIUPREF", 0);
         boolean showPrintAnimation = settings.getBoolean("show_print_animation", true);
 
-        Log.e("printer animation",showPrintAnimation+"animation"+isCalledFromAnimationActivity());
+        Log.e("printer animation",txid+"animation"+isCalledFromAnimationActivity());
         // Check if we should show animation
         if (showPrintAnimation && !isCalledFromAnimationActivity()) {
             Log.e("animation","printer animation inside");
@@ -352,6 +364,7 @@ public final class PrinterTopitup {
             Intent intent = new Intent(Topitup.getAppContext(), activity_printer_animation.class);
             intent.putExtra("slip_to_print", slip_to_print);
             intent.putExtra("auto_print", true); // Will trigger actual print after animation
+            intent.putExtra("txid", txid);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Topitup.getAppContext().startActivity(intent);
             return;
@@ -418,7 +431,7 @@ public final class PrinterTopitup {
                                     // Check printer status asynchronously
                                     Topitup.mService.checkPrinterStatusAsync(hasPaper -> {
                                         if (hasPaper) {
-                                            bluetoothDataPrinter(slip_to_print);
+                                            bluetoothDataPrinter(slip_to_print,txid);
                                         } else {
                                             showUsbNotConnectedDialog(mContext);
 
