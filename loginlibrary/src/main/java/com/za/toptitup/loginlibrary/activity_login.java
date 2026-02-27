@@ -476,10 +476,10 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 //        tiu_title_balance.setLayoutParams();
         final TextView tiu_title_balance_cash = findViewById(R.id.tiu_title_balance_cash);
 //        img_gif = findViewById(R.id.img_gif);
-        /*if (Topitup.DISPLAY_BALANCE.equalsIgnoreCase("1")) {
+        if (Topitup.DISPLAY_BALANCE.equalsIgnoreCase("1")) {
             update_balance();
-        }*/
-        update_balance();
+        }
+        //update_balance();
         /* END HEADER */
 
         configureViews();
@@ -4168,10 +4168,10 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
         if (!Topitup.TIU_LICENSE.equalsIgnoreCase("")) {
             get_balance();
         } else {
-          /*  if (Topitup.DISPLAY_BALANCE.equalsIgnoreCase("1")) {
+            if (Topitup.DISPLAY_BALANCE.equalsIgnoreCase("1")) {
                 update_balance();
-            }*/
-            update_balance();
+            }
+          //  update_balance();
 
         }
         FullscreenCall();
@@ -4446,10 +4446,10 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
                         realm.beginTransaction();
                         realm.copyToRealmOrUpdate(res);
                         realm.commitTransaction();
-                        /*if (Topitup.DISPLAY_BALANCE.equalsIgnoreCase("1")) {
+                        if (Topitup.DISPLAY_BALANCE.equalsIgnoreCase("1")) {
                             update_balance();
-                        }*/
-                        update_balance();
+                        }
+                        //update_balance();
 
                     } catch (Exception ex) {
 
