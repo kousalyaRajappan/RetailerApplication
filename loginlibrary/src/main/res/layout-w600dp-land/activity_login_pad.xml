@@ -460,7 +460,7 @@
         </LinearLayout>
     </RelativeLayout>
     <RelativeLayout
-        android:layout_marginRight="@dimen/margin10"
+        android:layout_marginRight="@dimen/pad_5dp"
         android:layout_below="@id/login_text_button_layout"
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
@@ -519,14 +519,16 @@
                 android:textSize="@dimen/pad_15dp" />
         </RelativeLayout>
         <ImageView
+            android:layout_marginLeft="10dp"
             android:id="@+id/img_gif_local"
             android:layout_margin="@dimen/margin10"
-            android:layout_width="400dp"
-            android:layout_height="280dp"
+            android:layout_width="300dp"
+            android:layout_height="250dp"
             android:adjustViewBounds="true"
-            android:scaleType="fitCenter"/>
+            android:scaleType="fitXY"/>
         <Button
 
+            android:visibility="gone"
             android:id="@+id/scan_pay"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
