@@ -521,9 +521,10 @@
         <ImageView
             android:id="@+id/img_pay"
             android:layout_margin="@dimen/margin10"
-            android:src="@drawable/pay_now_logo"
             android:layout_width="300dp"
-            android:layout_height="180dp"/>
+            android:layout_height="180dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"/>
         <Button
 
             android:id="@+id/scan_pay"

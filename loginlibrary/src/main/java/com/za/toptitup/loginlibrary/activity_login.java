@@ -77,6 +77,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.JsonObject;
 
 import org.apache.commons.lang3.StringUtils;
@@ -360,7 +361,12 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         img_gif_local = findViewById(R.id.img_gif_local);
 
         tiu_title_bar_new = findViewById(R.id.tiu_title_bar_new);
+        ImageView img = findViewById(R.id.img_gif_local);
 
+        Glide.with(this)
+                .asGif()
+                .load(R.drawable.ic_wholesaler_pay)
+                .into(img);
         /*tiu_title_bar_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

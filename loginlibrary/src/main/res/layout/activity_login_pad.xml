@@ -422,9 +422,8 @@
                 android:id="@+id/img_gif_local"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/pay_now_logo_por"
                 android:adjustViewBounds="true"
-
+                android:scaleType="fitCenter"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/scan_pay"
                 app:layout_constraintTop_toTopOf="parent"
