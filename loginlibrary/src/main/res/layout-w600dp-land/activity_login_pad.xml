@@ -519,7 +519,7 @@
                 android:textSize="@dimen/pad_15dp" />
         </RelativeLayout>
         <ImageView
-            android:id="@+id/img_pay"
+            android:id="@+id/img_gif_local"
             android:layout_margin="@dimen/margin10"
             android:layout_width="300dp"
             android:layout_height="180dp"
@@ -533,7 +533,7 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/background_green"
             android:text="SCAN QR"
-            android:layout_below="@+id/img_pay"
+            android:layout_below="@+id/img_gif_local"
             android:textColor="@color/white" />
 
     </RelativeLayout>
