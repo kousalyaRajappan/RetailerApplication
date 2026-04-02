@@ -2597,7 +2597,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         Toast.makeText(getApplicationContext(), apiServer, Toast.LENGTH_SHORT).show();
         // setupSpinnerData();
         String selectedServer = "";
-        if (apiServer.contains("http://dev.topitup.co.za:25812")) {
+        if (apiServer.contains("http://demo.topitup.co.za:25812")) {
             selectedServer = "DEMO";
             //     Topitup.BASE_URL = "http: //dev.topitup.co.za:25812";
         } else if (apiServer.contains("http://tx1.topitup.co.za:25812")) {

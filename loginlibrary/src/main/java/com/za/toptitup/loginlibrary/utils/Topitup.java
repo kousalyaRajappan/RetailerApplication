@@ -274,14 +274,14 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
                 BASE_URL = "http://demo.topitup.co.za:25812/";
                 BASE_URL_SYNC = "http://demo.topitup.co.za:25815/";
                 BASE_URL_UPDATE = "http://demo.topitup.co.za/";
-            } else if (API_SERVER.equalsIgnoreCase("http://dev.topitup.co.za:25812/")) {
+            } else if (API_SERVER.equalsIgnoreCase("http://demo.topitup.co.za:25812/")) {
 //            BASE_URL = "http://tx.topitup.co.za:25812/";
-                BASE_URL = "http://dev.topitup.co.za:25812/";
+                BASE_URL = "http://demo.topitup.co.za:25812/";
                 BASE_URL_SYNC = "http://demo.topitup.co.za:25815/";
                 BASE_URL_UPDATE = "http://demo.topitup.co.za/";
 
             } else {
-                BASE_URL = "http://dev.topitup.co.za:25812/";
+                BASE_URL = "http://demo.topitup.co.za:25812/";
                 BASE_URL_SYNC = "http://demo.topitup.co.za:25815/";
                 BASE_URL_UPDATE = "http://demo.topitup.co.za/";
             }
