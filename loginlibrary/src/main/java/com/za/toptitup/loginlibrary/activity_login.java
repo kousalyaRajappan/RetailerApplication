@@ -2503,6 +2503,14 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         final TextView tv_cell_number = dialog.findViewById(R.id.tv_cell_number);
         final TextView tv_device_id = dialog.findViewById(R.id.tv_device_id);
         RadioGroup radioserver = dialog.findViewById(R.id.rdpserver);
+        RadioButton radioDemo = dialog.findViewById(R.id.radio_demo);
+        RadioButton radioLive = dialog.findViewById(R.id.radio_live);
+
+// Set default selected
+        radioserver.check(R.id.radio_demo);
+
+// Disable Live option
+        radioLive.setEnabled(false);
         Spinner spinner = dialog.findViewById(R.id.spinnerServer);
         spinner.setOnTouchListener((v, event) -> true); // Prevents touch events
         spinner.setOnItemSelectedListener(null);
@@ -2743,6 +2751,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
 
             radioserver.check(R.id.radio_live);
+
          /*   spinner.setVisibility(View.VISIBLE);
             header1.setVisibility(View.VISIBLE);*/
         } else {

@@ -309,7 +309,7 @@ public class MainWebViewActivity extends AppCompatActivity {
             }
         });
         if (Topitup.TIU_SERVER.equalsIgnoreCase("DEMO"))
-            BASE_URL = "https://dev.topitup.co.za";
+            BASE_URL = "https://demo.topitup.co.za";
         else if (Topitup.TIU_SERVER.equalsIgnoreCase("LIVE"))
             BASE_URL = "https://admin.topitup.co.za";
         // Build final URL
