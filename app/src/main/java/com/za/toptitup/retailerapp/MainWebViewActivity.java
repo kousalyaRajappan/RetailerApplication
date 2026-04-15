@@ -1,11 +1,13 @@
 package com.za.toptitup.retailerapp;
 
+import static android.net.Uri.decode;
 import static android.widget.Toast.LENGTH_LONG;
 import static com.za.toptitup.loginlibrary.utils.Topitup.connectBluetooth;
 
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -24,6 +26,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.InputStream;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
@@ -35,6 +38,8 @@ import com.za.toptitup.loginlibrary.model.GetUpdateAll;
 import com.za.toptitup.loginlibrary.utils.NetworkUtils;
 import com.za.toptitup.loginlibrary.utils.PrinterTopitup;
 import com.za.toptitup.loginlibrary.utils.Topitup;
+
+import org.json.JSONObject;
 
 import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
@@ -49,7 +54,7 @@ public class MainWebViewActivity extends AppCompatActivity {
     private String BASE_URL =
             "";
     PrinterTopitup printer;
-
+    public static String bankslip_tid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -205,7 +210,7 @@ public class MainWebViewActivity extends AppCompatActivity {
                                         "1Acc No :  " + Topitup.ACCOUNT_NUMBER + "\n" +
                                         "1\n" +
                                         "1TID :" + txid + "\n" +
-                                       "1Date       Time     POS User \n" +
+                                        "1Date       Time     POS User \n" +
 
                                         "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "\n" +
                                         "1\n" +
@@ -262,22 +267,22 @@ public class MainWebViewActivity extends AppCompatActivity {
 //                                slip,
 //                                Toast.LENGTH_LONG).show();
                         if (Topitup.isBluetoothConnected) {
-                            Log.e("qr code","qr........."+txid);
-                            PrinterTopitup.print_data(slip,txid);
+                            Log.e("qr code", "qr........." + txid);
+                            PrinterTopitup.print_data(slip, txid);
 //                            Toast.makeText(getApplicationContext(), "Printing...", Toast.LENGTH_SHORT).show();
                         } else {
-                            Log.e("qr code","qr.....else...."+txid);
+                            Log.e("qr code", "qr.....else...." + txid);
 
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                                 if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
                                     // Proceed with Bluetooth operations
-                                    Topitup.connectBluetooth(MainWebViewActivity.this, slip,txid);
+                                    Topitup.connectBluetooth(MainWebViewActivity.this, slip, txid);
                                 } else {
                                     requestBluetoothPermissions();
                                 }
                             } else {
                                 // For older Android versions, directly perform Bluetooth operations
-                                Topitup.connectBluetooth(MainWebViewActivity.this, slip,txid);
+                                Topitup.connectBluetooth(MainWebViewActivity.this, slip, txid);
                             }
                         }
 
@@ -291,6 +296,34 @@ public class MainWebViewActivity extends AppCompatActivity {
                 if (url.contains("/logout")) {
                     handleLogout();
                     return true;
+                }
+                //https://dev.topitup.co.za/Retailerscan/printslipbank/{ret_name}/{transfer_type}/{date_time}/{from_account}/{to_account}/{reference}/{amount}/{fees}/{total}
+                if (url.contains("/printslipbank")) {
+                    PrintSlipBankData data = parsePrintSlipBankUrl(url);
+                    String slipData = getSlipFromAssets(getApplicationContext());
+                    String updatedSlip = buildSlipFromTemplate(slipData, data);
+
+                    System.out.println(updatedSlip);
+                    if (Topitup.isBluetoothConnected) {
+
+                        PrinterTopitup.print_data(updatedSlip, bankslip_tid);
+//                            Toast.makeText(getApplicationContext(), "Printing...", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Log.e("qr code", "qr.....else...." + bankslip_tid);
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                            if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
+                                // Proceed with Bluetooth operations
+                                Topitup.connectBluetooth(MainWebViewActivity.this, updatedSlip, bankslip_tid);
+                            } else {
+                                requestBluetoothPermissions();
+                            }
+                        } else {
+                            // For older Android versions, directly perform Bluetooth operations
+                            Topitup.connectBluetooth(MainWebViewActivity.this, updatedSlip, bankslip_tid);
+                        }
+                    }
+                    Log.e("data", url);
                 }
                 return false;
             }
@@ -329,7 +362,7 @@ public class MainWebViewActivity extends AppCompatActivity {
         if (requestCode == REQUEST_BLUETOOTH_PERMISSIONS) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted, proceed with Bluetooth connection
-                connectBluetooth(MainWebViewActivity.this, "","");
+                connectBluetooth(MainWebViewActivity.this, "", "");
             } else {
                 Toast.makeText(this, "Bluetooth permissions are required for printing", Toast.LENGTH_LONG).show();
             }
@@ -497,6 +530,133 @@ public class MainWebViewActivity extends AppCompatActivity {
             handleLogout();
             super.onBackPressed();
         }
+    }
+
+    public static String getSlipFromAssets(Context context) {
+        try {
+            // Read file
+            InputStream is = context.getAssets().open("data.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+
+            String json = new String(buffer, "UTF-8");
+
+            // Convert to JSONObject
+            JSONObject obj = new JSONObject(json);
+
+            // Get slip value
+            return obj.optString("slip");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static PrintSlipBankData parsePrintSlipBankUrl(String url) {
+        try {
+            String[] parts = url.split("/");
+
+            int index = -1;
+            for (int i = 0; i < parts.length; i++) {
+                if ("printslipbank".equals(parts[i])) {
+                    index = i;
+                    break;
+                }
+            }
+
+            if (index == -1 || parts.length <= index + 9) {
+                return null; // invalid URL
+            }
+
+            PrintSlipBankData data = new PrintSlipBankData();
+
+            data.retName = decode(parts[index + 1]);
+            data.transferType = decode(parts[index + 2]);
+            data.dateTime = decode(parts[index + 3]);
+            data.fromAccount = decode(parts[index + 4]);
+            data.toAccount = decode(parts[index + 5]);
+            data.reference = decode(parts[index + 6]);
+            data.amount = decode(parts[index + 7]);
+            data.fees = decode(parts[index + 8]);
+            data.total = decode(parts[index + 9]);
+            bankslip_tid=data.reference = decode(parts[index + 6]);
+            // Current date & time
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+            data.transactionDate = now.format(dateFormatter);
+            data.transactionTime = now.format(timeFormatter);
+
+            data.copyType = "CUSTOMER COPY";
+
+            return data;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static String buildSlipFromTemplate(String slipTemplate, PrintSlipBankData data) {
+
+        if (slipTemplate == null || data == null) return slipTemplate;
+
+        String[] lines = slipTemplate.split("\n");
+        StringBuilder result = new StringBuilder();
+
+        for (String line : lines) {
+
+            if (line.trim().isEmpty()) {
+                result.append(line).append("\n");
+                continue;
+            }
+
+            // Extract prefix (first char like 1 or 2)
+            String prefix = line.substring(0, 1);
+            String content = line.substring(1).trim();
+
+            // Replace dynamically based on content
+            if (content.equalsIgnoreCase("Demo Test Account")) {
+                content = data.retName;
+
+            } else if (content.equalsIgnoreCase("Bank Card Transfer")) {
+                content = data.transferType;
+
+            } else if (content.startsWith("Date")) {
+                // Keep header as is
+
+            } else if (content.matches("\\d{2}/\\d{2}/\\d{4}.*")) {
+                content = data.transactionDate + "   " + data.transactionTime;
+
+            } else if (content.startsWith("Top it Up From#")) {
+                content = "Top it Up From#: " + data.fromAccount;
+
+            } else if (content.startsWith("Top it Up To#")) {
+                content = "Top it Up To#: " + data.toAccount;
+
+            } else if (content.startsWith("Ref #")) {
+                content = "Ref #: " + data.reference;
+
+            } else if (content.startsWith("Amount")) {
+                content = "Amount: R " + data.amount;
+
+            } else if (content.startsWith("Fees")) {
+                content = "Fees: R " + data.fees;
+
+            } else if (content.startsWith("Total")) {
+                content = "Total: R " + data.total;
+            }
+
+            // Rebuild line with SAME prefix
+            result.append(prefix).append(content).append("\n");
+        }
+
+        return result.toString();
     }
 
     private void requestBluetoothPermissions() {
