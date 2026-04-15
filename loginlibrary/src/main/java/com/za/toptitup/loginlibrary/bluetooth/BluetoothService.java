@@ -457,7 +457,7 @@ public class BluetoothService {
     public void  printLogo(Bitmap bmp) throws IOException {
 
         int printerWidth = 384; // Full width in pixels for your printer
-        int logoWidth = 284;
+        int logoWidth = 150;
 
         // Resize original bitmap
         Bitmap resized = Other.resizeImage(bmp, logoWidth, bmp.getHeight() * logoWidth / bmp.getWidth());
@@ -480,7 +480,8 @@ public class BluetoothService {
         OutputStream out = bluetoothSocket.getOutputStream();
         out.write(PrinterCommand.POS_Set_PrtInit());
         out.write(data);
-        out.write(new byte[]{0x0A, 0x0A, 0x0A});
+        out.write(new byte[]{0x0A, 0x0A});
+//        out.write(new byte[]{0x0A, 0x0A, 0x0A});
         // Restore left alignment for following text
         out.write(new byte[]{0x1B, 0x61, 0x00});
     }
