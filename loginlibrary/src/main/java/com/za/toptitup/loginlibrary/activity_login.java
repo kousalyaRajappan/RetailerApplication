@@ -122,6 +122,7 @@ import com.za.toptitup.loginlibrary.model.WholesaleResponse;
 import com.za.toptitup.loginlibrary.model.fin_balance;
 import com.za.toptitup.loginlibrary.model.pos_user_current;
 import com.za.toptitup.loginlibrary.model.pos_users;
+import com.za.toptitup.loginlibrary.retailerFragments.RetailerDashboardActivity;
 import com.za.toptitup.loginlibrary.utils.BatteryReceiver;
 import com.za.toptitup.loginlibrary.utils.MyExceptionHandler;
 //import com.za.toptitup.loginlibrary.utils.PrinterTopitup;
@@ -3785,7 +3786,14 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
                     mLoginProgress.setVisibility(View.GONE);
                 }
             }, 500);
-            openAppWebView(activity_login.this);
+//            openAppWebView(activity_login.this);
+            Intent intent = new Intent(this, RetailerDashboardActivity.class);
+            intent.putExtra("LICENSE", Topitup.TIU_LICENSE);
+            intent.putExtra("POS_USER_ID", Topitup.POSUSER_ID);
+            intent.putExtra("IS_ADMIN", Topitup.IS_ADMIN);
+            intent.putExtra("POSUSER_NAME", Topitup.POSUSER_NAME);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
 
             //
 

@@ -27,6 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
         </activity>
+        <activity
+            android:name="com.za.toptitup.loginlibrary.retailerFragments.RetailerDashboardActivity"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

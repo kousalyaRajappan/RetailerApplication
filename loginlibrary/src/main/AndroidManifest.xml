@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.za.toptitup.loginlibrary">
-
     <!-- ================= Permissions ================= -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -10,73 +9,63 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
-    <!-- Bluetooth (Android 12+) -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- Bluetooth (Android 12+) -->
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-
-    <!-- Location -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" /> <!-- Location -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <uses-feature
         android:name="android.hardware.usb.host"
         android:required="false" />
 
-    <!-- ================= Application ================= -->
     <application
-        android:name="com.za.toptitup.loginlibrary.utils.Topitup"
+        android:name=".utils.Topitup"
         android:allowBackup="false"
         android:hardwareAccelerated="true"
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup,android:supportsRtl">
-
+        <activity
+            android:name=".retailerFragments.RetailerDashboardActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
         <!-- Splash Screen -->
         <activity
-            android:name="com.za.toptitup.loginlibrary.activitySplashScreen"
+            android:name=".activitySplashScreen"
             android:exported="true"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme">
-         <!--   <intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity android:name=".CustomQrScannerActivity" />
-        <activity android:name=".bluetooth.DeviceListActivity"/>
-        <activity android:name=".activity_print_screen"/>
-
-        <activity android:name=".utils.activity_printer_animation"/>
-        <!-- Login -->
+        <activity android:name=".bluetooth.DeviceListActivity" />
+        <activity android:name=".activity_print_screen" />
+        <activity android:name=".utils.activity_printer_animation" /> <!-- Login -->
         <activity
-            android:name="com.za.toptitup.loginlibrary.activity_login"
+            android:name=".activity_login"
             android:exported="true"
-            android:theme="@style/AppTheme.FullScreen" />
-
-        <!-- Base -->
+            android:theme="@style/AppTheme.FullScreen" /> <!-- Base -->
         <activity
-            android:name="com.za.toptitup.loginlibrary.BaseActivity"
+            android:name=".BaseActivity"
             android:exported="false"
-            android:theme="@style/AppTheme.FullScreen" />
-
-        <!-- Admin -->
+            android:theme="@style/AppTheme.FullScreen" /> <!-- Admin -->
         <activity
-            android:name="com.za.toptitup.loginlibrary.admin.activity_otp"
+            android:name=".admin.activity_otp"
             android:exported="false" />
-
         <activity
-            android:name="com.za.toptitup.loginlibrary.admin.activity_activation"
-            android:exported="false" />
-
-        <!-- Content Provider -->
+            android:name=".admin.activity_activation"
+            android:exported="false" /> <!-- Content Provider -->
         <provider
-            android:name="com.za.toptitup.loginlibrary.MyContentProvider"
+            android:name=".MyContentProvider"
             android:authorities="${applicationId}.loginlibrary.provider"
-            android:exported="false" />
-
-        <!-- File Provider (AndroidX ONLY) -->
+            android:exported="false" /> <!-- File Provider (AndroidX ONLY) -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -85,17 +74,14 @@
             <meta-data
                 android:name="androidx.core.content.FileProvider"
                 android:resource="@xml/provider_paths" />
-        </provider>
-
-        <!-- Network Receiver -->
+        </provider> <!-- Network Receiver -->
         <receiver
-            android:name="com.za.toptitup.loginlibrary.utils.NetworkChangeReceiver"
+            android:name=".utils.NetworkChangeReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>

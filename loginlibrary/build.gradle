@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     id "realm-android"
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -28,8 +29,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
     }
 
     packagingOptions {
@@ -53,6 +57,13 @@ repositories {
     mavenCentral()
     maven { url 'https://jitpack.io' }
     flatDir { dirs 'libs' }
+}
+
+android {
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
 }
 
 dependencies {
@@ -91,6 +102,9 @@ dependencies {
 
     // Room Database
     implementation libs.room.runtime
+    implementation libs.activity
+    implementation libs.androidx.navigation.fragment.ktx
+    implementation libs.androidx.navigation.ui.ktx
     annotationProcessor libs.androidx.room.compiler
 
     // Realm Database

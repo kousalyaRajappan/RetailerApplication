@@ -65,9 +65,6 @@
     <string name="mpos_disclaimer">I Confirm that by saving the MPOS Password in the "Key" field, I am fully responsible for all transactions processed in the event of theft or fraud</string>
 
 
-
-
-
     <!--主界面-->
 
     <!--消费-->
@@ -98,6 +95,8 @@
     <string name="btn_prtbmp">Print Picture</string>
     <string name="btn_scqr">Generate QR Code Print</string>
     <string name="btn_dyca">Turn on the camera</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

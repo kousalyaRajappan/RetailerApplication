@@ -35,6 +35,9 @@ utilcode = "1.30.7"
 zxingAndroidEmbedded = "4.3.0"
 zxingCore = "3.5.3"
 gson = "2.11.0"
+kotlin = "2.0.21"
+navigationFragmentKtx = "2.9.8"
+navigationUiKtx = "2.9.8"
 [libraries]
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 android-gif-drawable = { module = "pl.droidsonroids.gif:android-gif-drawable", version.ref = "androidGifDrawable" }
@@ -74,7 +77,10 @@ utilcode = { module = "com.blankj:utilcode", version.ref = "utilcode" }
 zxing-android-embedded = { module = "com.journeyapps:zxing-android-embedded", version.ref = "zxingAndroidEmbedded" }
 zxing-core = { module = "com.google.zxing:core", version.ref = "zxingCore" }
 core = { group = "androidx.core", name = "core", version.ref = "core" }
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

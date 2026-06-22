@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/dashboardHomeFragment">
+
+    <fragment
+        android:id="@+id/dashboardHomeFragment"
+        android:name="com.za.toptitup.loginlibrary.retailerFragments.fragments.DashboardHomeFragment" />
+
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.za.toptitup.loginlibrary.retailerFragments.fragments.products.ProductDetailFragment">
+
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+
+        <argument
+            android:name="productName"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
