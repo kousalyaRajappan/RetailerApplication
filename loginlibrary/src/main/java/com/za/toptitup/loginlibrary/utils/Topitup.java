@@ -271,28 +271,33 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
         if (DEBUG) {
             if (API_SERVER.equalsIgnoreCase("")) {
 //            BASE_URL = "http://tx.topitup.co.za:25812/";
-                BASE_URL = "http://demo.topitup.co.za:25812/";
+                //BASE_URL = "http://demo.topitup.co.za:25812/";
+                BASE_URL = "http://api.topitup.co.za/";
                 BASE_URL_SYNC = "http://demo.topitup.co.za:25815/";
                 BASE_URL_UPDATE = "http://demo.topitup.co.za/";
-            } else if (API_SERVER.equalsIgnoreCase("http://dev.topitup.co.za:25812/")) {
+            } else if (API_SERVER.equalsIgnoreCase("http://api.topitup.co.za/")) {
 //            BASE_URL = "http://tx.topitup.co.za:25812/";
-                BASE_URL = "http://dev.topitup.co.za:25812/";
+               // BASE_URL = "http://dev.topitup.co.za:25812/";
+                BASE_URL = "http://api.topitup.co.za/";
                 BASE_URL_SYNC = "http://demo.topitup.co.za:25815/";
                 BASE_URL_UPDATE = "http://demo.topitup.co.za/";
 
             } else {
-                BASE_URL = "http://dev.topitup.co.za:25812/";
+                BASE_URL = "http://api.topitup.co.za/";
+                //BASE_URL = "http://dev.topitup.co.za:25812/";
                 BASE_URL_SYNC = "http://demo.topitup.co.za:25815/";
                 BASE_URL_UPDATE = "http://demo.topitup.co.za/";
             }
         } else {
             if (Topitup.TIU_SERVER.equalsIgnoreCase("SERVER3LIVE")) {
-                BASE_URL = "http://tx2.topitup.co.za:25812/";
+               // BASE_URL = "http://tx2.topitup.co.za:25812/";
+                BASE_URL = "http://api.topitup.co.za/";
                 // BASE_URL1 = "http://41.203.10.186:25812/";
                 BASE_URL_SYNC = "http://sync.topitup.co.za:25815/";
                 BASE_URL_UPDATE = "http://topitup.co.za/";
             } else if (Topitup.TIU_SERVER.equalsIgnoreCase("SERVER2LIVE")) {
-                BASE_URL = "http://tx1.topitup.co.za:25812/";
+                BASE_URL = "http://api.topitup.co.za/";
+               // BASE_URL = "http://tx1.topitup.co.za:25812/";
                 // BASE_URL1 = "http://41.203.10.186:25812/";
                 BASE_URL_SYNC = "http://sync.topitup.co.za:25815/";
                 BASE_URL_UPDATE = "http://topitup.co.za/";
@@ -300,11 +305,13 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
 //                BASE_URL = "http://tx1.topitup.co.za:25812/";
                 if(! Build.ID.equals("MRA58K")){
                     Log.e("~~~~~~","one"+ Build.ID);
-                    BASE_URL = "https://tx2.topitup.co.za/";
+                    //BASE_URL = "https://tx2.topitup.co.za/";
+                    BASE_URL = "http://api.topitup.co.za/";
 
                 } else {
                     Log.e("~~~~~~","two"+ Build.ID);
-                    BASE_URL = "http://tx1.topitup.co.za:25812/";
+                    //BASE_URL = "http://tx1.topitup.co.za:25812/";
+                    BASE_URL = "http://api.topitup.co.za/";
                 }
                 // BASE_URL1 = "http://41.203.10.186:25812/";
                 BASE_URL_SYNC = "http://sync.topitup.co.za:25815/";

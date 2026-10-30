@@ -344,14 +344,16 @@ public class MainWebViewActivity extends AppCompatActivity {
         if (Topitup.TIU_SERVER.equalsIgnoreCase("DEMO"))
             BASE_URL = "https://dev.topitup.co.za";
         else if (Topitup.TIU_SERVER.equalsIgnoreCase("LIVE"))
-            BASE_URL = "https://admin.topitup.co.za";
+            BASE_URL =  "http://topitupportal.co.za";
         // Build final URL
         String finalUrl =
                 BASE_URL +
-                        "/retailerscan/retailer_app_login/" +
+                        "/public/wholesaler-app-login/" +
                         license + "/" +
                         pos_user_id;
         //Toast.makeText(getApplicationContext(), finalUrl, LENGTH_LONG).show();
+
+        http://topitupportal.co.za/public/wholesaler-app-login/{licensecode}/{posuserid}
         webView.loadUrl(finalUrl);
     }
 
