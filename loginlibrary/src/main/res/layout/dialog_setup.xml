@@ -164,8 +164,7 @@
                     android:foreground="@color/white"
                     android:gravity="center"
                     android:inputType="text"
-                    android:maxLength="10"
-                    android:textAlignment="center"
+                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="@dimen/licence_edit_txt_size"
                     android:visibility="visible" />
@@ -212,7 +211,6 @@
                     android:foreground="@color/white"
                     android:gravity="center"
                     android:inputType="text"
-                    android:maxLength="10"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="@dimen/licence_edit_txt_size"
