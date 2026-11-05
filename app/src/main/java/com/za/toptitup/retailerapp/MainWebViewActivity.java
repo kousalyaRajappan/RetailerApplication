@@ -1,7 +1,6 @@
 package com.za.toptitup.retailerapp;
 
 import static android.net.Uri.decode;
-import static android.widget.Toast.LENGTH_LONG;
 import static com.za.toptitup.loginlibrary.utils.Topitup.connectBluetooth;
 
 import android.app.ProgressDialog;
@@ -26,13 +25,6 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.InputStream;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-
 import com.za.toptitup.loginlibrary.activity_login;
 import com.za.toptitup.loginlibrary.model.GetUpdateAll;
 import com.za.toptitup.loginlibrary.utils.NetworkUtils;
@@ -40,6 +32,13 @@ import com.za.toptitup.loginlibrary.utils.PrinterTopitup;
 import com.za.toptitup.loginlibrary.utils.Topitup;
 
 import org.json.JSONObject;
+
+import java.io.InputStream;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
@@ -55,6 +54,7 @@ public class MainWebViewActivity extends AppCompatActivity {
             "";
     PrinterTopitup printer;
     public static String bankslip_tid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +68,8 @@ public class MainWebViewActivity extends AppCompatActivity {
 
         String license = intent.getStringExtra("LICENSE");
         String pos_user_id = intent.getStringExtra("POS_USER_ID");
+        String base_url_connect = intent.getStringExtra("BASE_URL_CONNECT");
+
 
         printer = new PrinterTopitup(MainWebViewActivity.this);
         if (license == null || pos_user_id == null) {
@@ -341,10 +343,11 @@ public class MainWebViewActivity extends AppCompatActivity {
                 return false;
             }
         });
-        if (Topitup.TIU_SERVER.equalsIgnoreCase("DEMO"))
+       /* if (Topitup.TIU_SERVER.equalsIgnoreCase("DEMO"))
             BASE_URL = "https://dev.topitup.co.za";
         else if (Topitup.TIU_SERVER.equalsIgnoreCase("LIVE"))
-            BASE_URL =  "http://topitupportal.co.za";
+            BASE_URL =  "http://topitupportal.co.za";*/
+        BASE_URL = base_url_connect;
         // Build final URL
         String finalUrl =
                 BASE_URL +
@@ -353,7 +356,8 @@ public class MainWebViewActivity extends AppCompatActivity {
                         pos_user_id;
         //Toast.makeText(getApplicationContext(), finalUrl, LENGTH_LONG).show();
 
-        http://topitupportal.co.za/public/wholesaler-app-login/{licensecode}/{posuserid}
+        http:
+//topitupportal.co.za/public/wholesaler-app-login/{licensecode}/{posuserid}
         webView.loadUrl(finalUrl);
     }
 
@@ -585,7 +589,7 @@ public class MainWebViewActivity extends AppCompatActivity {
             data.amount = decode(parts[index + 7]);
             data.fees = decode(parts[index + 8]);
             data.total = decode(parts[index + 9]);
-            bankslip_tid=data.reference = decode(parts[index + 6]);
+            bankslip_tid = data.reference = decode(parts[index + 6]);
             // Current date & time
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

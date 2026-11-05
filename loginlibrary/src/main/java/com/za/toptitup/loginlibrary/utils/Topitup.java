@@ -107,6 +107,8 @@ public class Topitup extends Application implements LifecycleObserver {  // impl
     public static String TIU_SERVER = "";
     public static String API_SERVER = "";
     public static String POSUSER_ID = "0";
+    public static String BASE_URL_CONNECT = "0";
+
     //public static Account myAccount;
     public static String IS_ADMIN = "0";
     public static String CUSTOMER_ID = "0";

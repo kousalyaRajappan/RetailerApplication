@@ -1,6 +1,5 @@
 package com.za.toptitup.loginlibrary;
 
-import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.READ_PHONE_STATE;
@@ -8,7 +7,6 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.content.Intent.ACTION_BATTERY_CHANGED;
 import static android.view.View.VISIBLE;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -79,16 +77,29 @@ import androidx.core.text.HtmlCompat;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.JsonObject;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+import com.za.toptitup.loginlibrary.admin.activity_activation;
+import com.za.toptitup.loginlibrary.model.GetStatusFull;
+import com.za.toptitup.loginlibrary.model.GetUpdateAll;
+import com.za.toptitup.loginlibrary.model.MessageService;
+import com.za.toptitup.loginlibrary.model.MessageServiceNotice;
+import com.za.toptitup.loginlibrary.model.MyApiEndpointInterface;
+import com.za.toptitup.loginlibrary.model.SupplierData;
+import com.za.toptitup.loginlibrary.model.SupplierResponse;
+import com.za.toptitup.loginlibrary.model.WholesaleResponse;
+import com.za.toptitup.loginlibrary.model.fin_balance;
+import com.za.toptitup.loginlibrary.model.pos_user_current;
+import com.za.toptitup.loginlibrary.model.pos_users;
+import com.za.toptitup.loginlibrary.utils.BatteryReceiver;
+import com.za.toptitup.loginlibrary.utils.MyExceptionHandler;
+import com.za.toptitup.loginlibrary.utils.Topitup;
+import com.za.toptitup.loginlibrary.utils.UserException;
+import com.za.toptitup.loginlibrary.utils.WordsConert;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import androidx.appcompat.widget.AppCompatEditText;
-
-import com.google.gson.JsonObject;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -109,25 +120,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import com.za.toptitup.loginlibrary.admin.activity_activation;
-import com.za.toptitup.loginlibrary.model.GetStatusFull;
-import com.za.toptitup.loginlibrary.model.GetUpdateAll;
-import com.za.toptitup.loginlibrary.model.MessageService;
-import com.za.toptitup.loginlibrary.model.MessageServiceNotice;
-import com.za.toptitup.loginlibrary.model.MyApiEndpointInterface;
-import com.za.toptitup.loginlibrary.model.SupplierData;
-import com.za.toptitup.loginlibrary.model.SupplierResponse;
-import com.za.toptitup.loginlibrary.model.WholesaleResponse;
-import com.za.toptitup.loginlibrary.model.fin_balance;
-import com.za.toptitup.loginlibrary.model.pos_user_current;
-import com.za.toptitup.loginlibrary.model.pos_users;
-import com.za.toptitup.loginlibrary.utils.BatteryReceiver;
-import com.za.toptitup.loginlibrary.utils.MyExceptionHandler;
-//import com.za.toptitup.loginlibrary.utils.PrinterTopitup;
-import com.za.toptitup.loginlibrary.utils.Topitup;
-import com.za.toptitup.loginlibrary.utils.UserException;
-import com.za.toptitup.loginlibrary.utils.WordsConert;
 
 
 //SwipeListener
@@ -249,7 +241,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                 mIsDemo.setText("DEMO");
             } else {
                 mIsDemo.setText("PROD");
-               // mIsDemo.setVisibility(View.INVISIBLE);
+                // mIsDemo.setVisibility(View.INVISIBLE);
             }
 
 
@@ -2502,6 +2494,8 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;*/
         final TextView tv_cell_number = dialog.findViewById(R.id.tv_cell_number);
         final TextView tv_device_id = dialog.findViewById(R.id.tv_device_id);
+        final TextView tv_base_url = dialog.findViewById(R.id.tv_base_url);
+        final TextView tv_base_url_live = dialog.findViewById(R.id.tv_base_url_live);
         RadioGroup radioserver = dialog.findViewById(R.id.rdpserver);
         Spinner spinner = dialog.findViewById(R.id.spinnerServer);
         spinner.setOnTouchListener((v, event) -> true); // Prevents touch events
@@ -2622,9 +2616,13 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View view) {
                 String SERVERSHARED = settings.getString("TIU_SERVER", "LIVE");
+                if (tv_base_url_live.getText().toString().length() == 0) {
+                    Toasty.error(mContext, "Please enter a valid URL!", 3000, true).show();
+                    return;
+                }
 
                 //  get_setup_information("4677217", "24559", SERVERSHARED);
-                get_approved_licence(SERVERSHARED);
+                get_approved_licence(SERVERSHARED,tv_base_url_live.getText().toString());
             }
         });
         btn_deactivate.setOnClickListener(new View.OnClickListener() {
@@ -2883,7 +2881,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                     } else {
                         String SERVERSHARED = settings.getString("TIU_SERVER", "LIVE");
 
-                        get_approved_by_Device_id(tv_device_id.getText().toString(), SERVERSHARED);
+                        get_approved_by_Device_id(tv_device_id.getText().toString(), SERVERSHARED,tv_base_url.getText().toString());
 //                        get_setup_information(tv_cell_number.getText().toString(), tv_device_id.getText().toString(), SERVERSHARED);
 
                     }
@@ -2900,7 +2898,10 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         Toasty.error(mContext, "Please enter the device ID!", 3000, true).show();
                         return;
                     }
-
+                    if (tv_base_url.getText().toString().length() == 0) {
+                        Toasty.error(mContext, "Please enter a valid URL!", 3000, true).show();
+                        return;
+                    }
 
                     //Clear old info
                     SharedPreferences settings = getSharedPreferences("TIUPREF", 0);
@@ -2946,7 +2947,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         Toasty.error(mContext, "Could not clear database", 3000, true).show();
                     }
 
-                    get_setup_information(tv_cell_number.getText().toString(), tv_device_id.getText().toString(), SERVERSHARED);
+                    get_setup_information(tv_cell_number.getText().toString(), tv_device_id.getText().toString(), tv_base_url.getText().toString(), SERVERSHARED);
 
                     //tech_cell_number = tv_cell_number.getText().toString();
 
@@ -2987,7 +2988,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
     }*/
 
-    private void get_approved_by_Device_id(String deviceId, String SERVERSHARED) {
+    private void get_approved_by_Device_id(String deviceId, String SERVERSHARED, String base_url) {
       /*  String android_id = Settings.Secure.getString(getContentResolver(),
                 Settings.Secure.ANDROID_ID);*/
 //        final Call<JsonObject> call = apiService.get_approve_licence("DEMO99c4-1999-11e9-84ad-001e6779cd30", "PP35272137000044");
@@ -3010,6 +3011,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         editor.putString("device_id", "");
                         editor.putString("TIU_SERVER", "");
                         editor.putString("TIU_LICENSE", "");
+                        editor.putString("BASE_URL", "");
                         // editor.putString("TIU_SERVER", "DEMO");
                         editor.commit();
 
@@ -3047,7 +3049,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                             Toasty.error(mContext, "Could not clear database", 3000, true).show();
                         }
 
-                        get_setup_information(licence, device_id, SERVERSHARED);
+                        get_setup_information(licence, device_id, SERVERSHARED, base_url);
 
                         //tech_cell_number = tv_cell_number.getText().toString();
 
@@ -3080,7 +3082,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    public void get_setup_information(final String pin, final String device_id, final String SERVERSHARED) {
+    public void get_setup_information(final String pin, final String device_id, final String SERVERSHARED, String base_url) {
 
         final Call<ResponseBody> call = apiService.get_asset_upgrade(pin, device_id);
 
@@ -3152,6 +3154,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         editor.putString("TIU_LICENSE", "");
                         editor.putString("API_SERVER", "");
                         //   editor.putString("TIU_SERVER", "DEMO");
+                        editor.putString("BASE_URL", "");
                         editor.commit();
 
                     } else {        //Response OK
@@ -3165,10 +3168,11 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         editor.putString("device_id", device_id);
                         editor.putString("TIU_SERVER", SERVERSHARED);
                         editor.putString("API_SERVER", "");
+                        editor.putString("BASE_URL", base_url);
 
                         //String SERVERSHARED = settings.getString("TIU_SERVER","DEMO");
 
-
+Topitup.BASE_URL_CONNECT=base_url;
                         // Toasty.info(mContext, "s=."+SERVERSHARED, 3000, true).show();
 
                         String[] parts = res.split("\\^");
@@ -3656,7 +3660,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
                     mIsDemo.setText("DEMO");
                 } else {
                     mIsDemo.setText("PROD");
-                  //  mIsDemo.setVisibility(View.INVISIBLE);
+                    //  mIsDemo.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -3850,7 +3854,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
 
     }
 
-    private void get_approved_licence(String SERVERSHARED) {
+    private void get_approved_licence(String SERVERSHARED,String base_url) {
       /*  String android_id = Settings.Secure.getString(getContentResolver(),
                 Settings.Secure.ANDROID_ID);*/
 //        final Call<JsonObject> call = apiService.get_approve_licence("DEMO99c4-1999-11e9-84ad-001e6779cd30", "PP35272137000044");
@@ -3909,7 +3913,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
                     }
 
 
-                    get_setup_information(licence, device_id, SERVERSHARED);
+                    get_setup_information(licence, device_id, SERVERSHARED, base_url);
                 }
 
 
@@ -4177,7 +4181,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
             if (Topitup.DISPLAY_BALANCE.equalsIgnoreCase("1")) {
                 update_balance();
             }
-          //  update_balance();
+            //  update_balance();
 
         }
         FullscreenCall();
@@ -4814,6 +4818,8 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
             // ✅ ADD EXTRAS
             intent.putExtra("LICENSE", Topitup.TIU_LICENSE); // leave empty, app decides URL
             intent.putExtra("POS_USER_ID", Topitup.POSUSER_ID);
+            intent.putExtra("BASE_URL_CONNECT", Topitup.BASE_URL_CONNECT);
+
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
 
