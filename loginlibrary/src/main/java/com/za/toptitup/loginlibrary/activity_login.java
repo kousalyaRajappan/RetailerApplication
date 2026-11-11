@@ -2583,13 +2583,13 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         Toast.makeText(getApplicationContext(), apiServer, Toast.LENGTH_SHORT).show();
         // setupSpinnerData();
         String selectedServer = "";
-        if (apiServer.contains("http://dev.topitup.co.za:25812")) {
+        if (apiServer.contains("https://api.topitup.co.za")) {
             selectedServer = "DEMO";
             //     Topitup.BASE_URL = "http: //dev.topitup.co.za:25812";
-        } else if (apiServer.contains("http://tx1.topitup.co.za:25812")) {
+        } else if (apiServer.contains("https://api.topitup.co.za")) {
             selectedServer = "SERVER2LIVE";
             //   Topitup.BASE_URL = "http: //tx1.topitup.co.za:25812";
-        } else if (apiServer.contains("http://tx2.topitup.co.za:25812")) {
+        } else if (apiServer.contains("https://api.topitup.co.za")){
             selectedServer = "SERVER3LIVE";
             //   Topitup.BASE_URL = "http: //tx2.topitup.co.za:25812";
         } else {
@@ -3179,7 +3179,7 @@ Topitup.BASE_URL_CONNECT=base_url;
                         String url;
                         String cleanedUrl;
                         if (parts.length <= 6) {
-                            url = "http: //tx.topitup.co.za:25812";
+                            url = "https: //api.topitup.co.za";
                             cleanedUrl = url.replace(" ", ""); // Removes all spaces
                             System.out.println(cleanedUrl);
                             if (!cleanedUrl.trim().endsWith("/")) {

@@ -167,6 +167,7 @@
                      android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="@dimen/licence_edit_txt_size"
+                    android:text="https://retailer.topitup.co.za"
                     android:visibility="visible" />
 
 
@@ -214,6 +215,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="@dimen/licence_edit_txt_size"
+                    android:text="https://retailer.topitup.co.za"
                     android:visibility="visible" />
                 <Button
                     android:id="@+id/btn_activate"

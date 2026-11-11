@@ -21,7 +21,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
-
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -347,7 +348,7 @@ public class MainWebViewActivity extends AppCompatActivity {
             BASE_URL = "https://dev.topitup.co.za";
         else if (Topitup.TIU_SERVER.equalsIgnoreCase("LIVE"))
             BASE_URL =  "http://topitupportal.co.za";*/
-        BASE_URL = base_url_connect;
+     /*   BASE_URL = base_url_connect;
         // Build final URL
         String finalUrl =
                 BASE_URL +
@@ -358,7 +359,27 @@ public class MainWebViewActivity extends AppCompatActivity {
 
         http:
 //topitupportal.co.za/public/wholesaler-app-login/{licensecode}/{posuserid}
-        webView.loadUrl(finalUrl);
+        webView.loadUrl(finalUrl);*/
+        BASE_URL =  "https://retailer.topitup.co.za";
+       // BASE_URL = base_url_connect;
+        try {
+            String postData = "LicenceCode=" +
+                    URLEncoder.encode(license, "UTF-8") +
+                    "&PosUserId=" +
+                    URLEncoder.encode(pos_user_id, "UTF-8");
+Toast.makeText(getApplicationContext(),BASE_URL+","+postData,Toast.LENGTH_LONG).show();
+            webView.postUrl(
+                    BASE_URL,
+                    postData.getBytes(StandardCharsets.UTF_8)
+            );
+
+        } catch (Exception e) {
+            Log.e("WebView", "POST request failed", e);
+        }
+
+
+
+
     }
 
     @Override
