@@ -169,7 +169,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="@dimen/licence_edit_txt_size"
-                    android:text="https://retailer.topitup.co.za"
+                    android:text="https://retailer.topitup.co.za/wholesaler-app-login/"
                     android:visibility="visible" />
 
                 <Button
@@ -216,7 +216,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="@dimen/licence_edit_txt_size"
-                    android:text="https://retailer.topitup.co.za"
+                    android:text="https://retailer.topitup.co.za/wholesaler-app-login/"
                     android:visibility="visible" />
 
                 <Button

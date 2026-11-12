@@ -71,12 +71,12 @@ public class MainWebViewActivity extends AppCompatActivity {
         String pos_user_id = intent.getStringExtra("POS_USER_ID");
         String base_url_connect = intent.getStringExtra("BASE_URL_CONNECT");
 
-
+/*
         printer = new PrinterTopitup(MainWebViewActivity.this);
         if (license == null || pos_user_id == null) {
             finish();
             return;
-        }
+        }*/
 
         // WebView settings
         WebSettings webSettings = webView.getSettings();
@@ -348,19 +348,23 @@ public class MainWebViewActivity extends AppCompatActivity {
             BASE_URL = "https://dev.topitup.co.za";
         else if (Topitup.TIU_SERVER.equalsIgnoreCase("LIVE"))
             BASE_URL =  "http://topitupportal.co.za";*/
-     /*   BASE_URL = base_url_connect;
+       // BASE_URL = base_url_connect;
         // Build final URL
-        String finalUrl =
+      /*  String finalUrl =
                 BASE_URL +
                         "/public/wholesaler-app-login/" +
                         license + "/" +
-                        pos_user_id;
+                        pos_user_id;*/
+        String finalUrl =
+                "https://topitupportal.co.za/public/wholesaler-app-login/" +
+                        "DEMO6757-2101-11f1-9eaa-ac1f6b9740b4" + "/" +
+                        "5147";
         //Toast.makeText(getApplicationContext(), finalUrl, LENGTH_LONG).show();
 
         http:
 //topitupportal.co.za/public/wholesaler-app-login/{licensecode}/{posuserid}
-        webView.loadUrl(finalUrl);*/
-        BASE_URL =  "https://retailer.topitup.co.za";
+        webView.loadUrl(finalUrl);
+      /*  BASE_URL =  "https://retailer.topitup.co.za";
        // BASE_URL = base_url_connect;
         try {
             String postData = "LicenceCode=" +
@@ -375,7 +379,7 @@ Toast.makeText(getApplicationContext(),BASE_URL+","+postData,Toast.LENGTH_LONG).
 
         } catch (Exception e) {
             Log.e("WebView", "POST request failed", e);
-        }
+        }*/
 
 
 
@@ -457,77 +461,6 @@ Toast.makeText(getApplicationContext(),BASE_URL+","+postData,Toast.LENGTH_LONG).
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void handleLogout() {
-//        final GetUpdateAll tiu_settings = realm.where(GetUpdateAll.class).findFirst();
-      /*  LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        String transactionDate = now.format(dateFormatter);
-        String transactionTime = now.format(timeFormatter);
-
-
-        String cslip =
-                        "1       CUSTOMER RECEIPT\n" +
-                        "1\n" +
-                        "1" + "Allied Cash and Carry\n" +
-
-                        "1Acc No :" + Topitup.ACCOUNT_NUMBER +
-                        "1\n" +
-                        "1Tid :" + "123456" + "\n" +
-
-                        "1Date       Time     POS User \n" +
-
-                        "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "" +
-                        "1\n" +
-                        "1\n" +
-                        "2       Approved  R " + "10.00" + "\n" +
-                        "1\n" +
-
-                        "1           Thank You\n" +
-                        "1\n" +
-                        "1    Top it Up | 0860 111 723\n" +
-                        "1    Whatsapp | 064 121 9970\n" +
-                        "1       www.topitup.co.za\n" +
-                        "1";
-        String mslip =
-                                 "1       MERCHANT RECEIPT\n" +
-                                 "1\n" +
-                                 "1" + "Allied Cash and Carry\n" +
-
-                                 "1Acc No :" + Topitup.ACCOUNT_NUMBER +
-                                 "1\n" +
-                                 "1Tid :" + "123456" + "\n" +
-
-                                 "1Date       Time     POS User \n" +
-
-                                 "1" + transactionDate + " " + transactionTime + " " + Topitup.POSUSER_NAME + "" +
-                                 "1\n" +
-                                 "1\n" +
-                                 "2       Approved  R " + "10.00" + "\n" +
-                                 "1\n" +
-
-                                 "1           Thank You\n" +
-                                 "1\n" +
-                                 "1    Top it Up | 0860 111 723\n" +
-                                 "1    Whatsapp | 064 121 9970\n" +
-                                 "1       www.topitup.co.za\n" +
-                                 "1";
-        if (Topitup.isBluetoothConnected) {
-            PrinterTopitup.print_data(cslip);
-            Toast.makeText(this, "Printing...", Toast.LENGTH_SHORT).show();
-        } else {
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                if (checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
-                    // Proceed with Bluetooth operations
-                    Topitup.connectBluetooth(MainWebViewActivity.this, mslip);
-                } else {
-                    requestBluetoothPermissions();
-                }
-            } else {
-                // For older Android versions, directly perform Bluetooth operations
-                Topitup.connectBluetooth(MainWebViewActivity.this, mslip);
-            }
-        }*/
         // Clear WebView data
         webView.clearCache(true);
         webView.clearHistory();
