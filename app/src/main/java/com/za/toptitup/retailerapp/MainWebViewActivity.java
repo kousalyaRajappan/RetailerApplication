@@ -1,6 +1,7 @@
 package com.za.toptitup.retailerapp;
 
 import static android.net.Uri.decode;
+import static android.widget.Toast.LENGTH_LONG;
 import static com.za.toptitup.loginlibrary.utils.Topitup.connectBluetooth;
 
 import android.app.ProgressDialog;
@@ -39,7 +40,9 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 import io.realm.Realm;
@@ -355,15 +358,26 @@ public class MainWebViewActivity extends AppCompatActivity {
                         "/public/wholesaler-app-login/" +
                         license + "/" +
                         pos_user_id;*/
+       /* String finalUrl =
+                "https://topitupportal.co.za/public/wholesaler-app-login/" +
+                        "DEMO6757-2101-11f1-9eaa-ac1f6b9740b4" + "/" +
+                        "5147";
+        Toast.makeText(getApplicationContext(), finalUrl, LENGTH_LONG).show();
+
+
+        webView.loadUrl(finalUrl);*/
+        Map<String, String> headers = new HashMap<>();
+        headers.put("X-App-WebView", "MyWholesalerApp");
+
         String finalUrl =
                 "https://topitupportal.co.za/public/wholesaler-app-login/" +
                         "DEMO6757-2101-11f1-9eaa-ac1f6b9740b4" + "/" +
                         "5147";
-        //Toast.makeText(getApplicationContext(), finalUrl, LENGTH_LONG).show();
 
-        http:
-//topitupportal.co.za/public/wholesaler-app-login/{licensecode}/{posuserid}
-        webView.loadUrl(finalUrl);
+        Toast.makeText(getApplicationContext(), finalUrl, Toast.LENGTH_LONG).show();
+
+// Load URL with custom header
+        webView.loadUrl(finalUrl, headers);
       /*  BASE_URL =  "https://retailer.topitup.co.za";
        // BASE_URL = base_url_connect;
         try {
@@ -395,7 +409,7 @@ Toast.makeText(getApplicationContext(),BASE_URL+","+postData,Toast.LENGTH_LONG).
                 // Permission granted, proceed with Bluetooth connection
                 connectBluetooth(MainWebViewActivity.this, "", "");
             } else {
-                Toast.makeText(this, "Bluetooth permissions are required for printing", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Bluetooth permissions are required for printing", LENGTH_LONG).show();
             }
         }
     }
