@@ -2589,7 +2589,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         } else if (apiServer.contains("https://api.topitup.co.za")) {
             selectedServer = "SERVER2LIVE";
             //   Topitup.BASE_URL = "http: //tx1.topitup.co.za:25812";
-        } else if (apiServer.contains("https://api.topitup.co.za")){
+        } else if (apiServer.contains("https://api.topitup.co.za")) {
             selectedServer = "SERVER3LIVE";
             //   Topitup.BASE_URL = "http: //tx2.topitup.co.za:25812";
         } else {
@@ -2620,9 +2620,10 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                     Toasty.error(mContext, "Please enter a valid URL!", 3000, true).show();
                     return;
                 }
+                Topitup.BASE_URL_CONNECT = "https://retailer.topitup.co.za/wholesaler-app-login/";
 
                 //  get_setup_information("4677217", "24559", SERVERSHARED);
-                get_approved_licence(SERVERSHARED,tv_base_url_live.getText().toString());
+                get_approved_licence(SERVERSHARED, tv_base_url_live.getText().toString());
             }
         });
         btn_deactivate.setOnClickListener(new View.OnClickListener() {
@@ -2873,7 +2874,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
         btnSaveNumber.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                Topitup.BASE_URL_CONNECT = "https://topitupportal.co.za/public/wholesaler-app-login/";
 
                 if (Topitup.DEVICE_TYPE.equals("TABLET")) {
                     if (tv_device_id.getText().toString().length() == 0) {
@@ -2881,7 +2882,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                     } else {
                         String SERVERSHARED = settings.getString("TIU_SERVER", "LIVE");
 
-                        get_approved_by_Device_id(tv_device_id.getText().toString(), SERVERSHARED,tv_base_url.getText().toString());
+                        get_approved_by_Device_id(tv_device_id.getText().toString(), SERVERSHARED, tv_base_url_live.getText().toString());
 //                        get_setup_information(tv_cell_number.getText().toString(), tv_device_id.getText().toString(), SERVERSHARED);
 
                     }
@@ -2902,7 +2903,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         Toasty.error(mContext, "Please enter a valid URL!", 3000, true).show();
                         return;
                     }
-
+                    Topitup.BASE_URL_CONNECT = "https://topitupportal.co.za/public/wholesaler-app-login/";
                     //Clear old info
                     SharedPreferences settings = getSharedPreferences("TIUPREF", 0);
                     SharedPreferences.Editor editor = settings.edit();
@@ -2947,7 +2948,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         Toasty.error(mContext, "Could not clear database", 3000, true).show();
                     }
 
-                    get_setup_information(tv_cell_number.getText().toString(), tv_device_id.getText().toString(), SERVERSHARED,tv_base_url.getText().toString());
+                    get_setup_information(tv_cell_number.getText().toString(), tv_device_id.getText().toString(), SERVERSHARED, tv_base_url.getText().toString());
 
                     //tech_cell_number = tv_cell_number.getText().toString();
 
@@ -3172,7 +3173,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
                         //String SERVERSHARED = settings.getString("TIU_SERVER","DEMO");
 
-Topitup.BASE_URL_CONNECT=base_url;
+
                         // Toasty.info(mContext, "s=."+SERVERSHARED, 3000, true).show();
 
                         String[] parts = res.split("\\^");
@@ -3854,7 +3855,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
 
     }
 
-    private void get_approved_licence(String SERVERSHARED,String base_url) {
+    private void get_approved_licence(String SERVERSHARED, String base_url) {
       /*  String android_id = Settings.Secure.getString(getContentResolver(),
                 Settings.Secure.ANDROID_ID);*/
 //        final Call<JsonObject> call = apiService.get_approve_licence("DEMO99c4-1999-11e9-84ad-001e6779cd30", "PP35272137000044");
@@ -3912,7 +3913,7 @@ Caused by: org.gradle.api.InvalidUserDataException: Invalid catalog definition:
                         Toasty.error(mContext, "Could not clear database", 3000, true).show();
                     }
 
-
+                    // Topitup.BASE_URL_CONNECT=base_url;
                     get_setup_information(licence, device_id, SERVERSHARED, base_url);
                 }
 

@@ -382,7 +382,7 @@ public class MainWebViewActivity extends AppCompatActivity {
         headers.put("X-App-WebView", "MyWholesalerApp");
 
         String finalUrl =
-                BASE_URL +
+                Topitup.BASE_URL_CONNECT +
                         license + "/" +
                         pos_user_id;
 
