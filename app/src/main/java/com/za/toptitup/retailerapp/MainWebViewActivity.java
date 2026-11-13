@@ -22,8 +22,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -74,12 +73,11 @@ public class MainWebViewActivity extends AppCompatActivity {
         String pos_user_id = intent.getStringExtra("POS_USER_ID");
         String base_url_connect = intent.getStringExtra("BASE_URL_CONNECT");
 
-/*
         printer = new PrinterTopitup(MainWebViewActivity.this);
         if (license == null || pos_user_id == null) {
             finish();
             return;
-        }*/
+        }
 
         // WebView settings
         WebSettings webSettings = webView.getSettings();
@@ -351,7 +349,7 @@ public class MainWebViewActivity extends AppCompatActivity {
             BASE_URL = "https://dev.topitup.co.za";
         else if (Topitup.TIU_SERVER.equalsIgnoreCase("LIVE"))
             BASE_URL =  "http://topitupportal.co.za";*/
-       // BASE_URL = base_url_connect;
+        // BASE_URL = base_url_connect;
         // Build final URL
       /*  String finalUrl =
                 BASE_URL +
@@ -366,7 +364,7 @@ public class MainWebViewActivity extends AppCompatActivity {
 
 
         webView.loadUrl(finalUrl);*/
-        Map<String, String> headers = new HashMap<>();
+     /*   Map<String, String> headers = new HashMap<>();
         headers.put("X-App-WebView", "MyWholesalerApp");
 
         String finalUrl =
@@ -374,13 +372,23 @@ public class MainWebViewActivity extends AppCompatActivity {
                         "DEMO6757-2101-11f1-9eaa-ac1f6b9740b4" + "/" +
                         "5147";
 
-        Toast.makeText(getApplicationContext(), finalUrl, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), finalUrl, Toast.LENGTH_LONG).show();*/
 
 // Load URL with custom header
+        //webView.loadUrl(finalUrl, headers);
+        // BASE_URL =  "https://retailer.topitup.co.za";
+        BASE_URL = base_url_connect;
+        Map<String, String> headers = new HashMap<>();
+        headers.put("X-App-WebView", "MyWholesalerApp");
+
+        String finalUrl =
+                BASE_URL +
+                        license + "/" +
+                        pos_user_id;
+
+        Toast.makeText(getApplicationContext(), finalUrl, Toast.LENGTH_LONG).show();
         webView.loadUrl(finalUrl, headers);
-      /*  BASE_URL =  "https://retailer.topitup.co.za";
-       // BASE_URL = base_url_connect;
-        try {
+       /* try {
             String postData = "LicenceCode=" +
                     URLEncoder.encode(license, "UTF-8") +
                     "&PosUserId=" +
@@ -394,8 +402,6 @@ Toast.makeText(getApplicationContext(),BASE_URL+","+postData,Toast.LENGTH_LONG).
         } catch (Exception e) {
             Log.e("WebView", "POST request failed", e);
         }*/
-
-
 
 
     }

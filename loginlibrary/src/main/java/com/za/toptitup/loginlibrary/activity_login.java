@@ -2947,7 +2947,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
                         Toasty.error(mContext, "Could not clear database", 3000, true).show();
                     }
 
-                    get_setup_information(tv_cell_number.getText().toString(), tv_device_id.getText().toString(), tv_base_url.getText().toString(), SERVERSHARED);
+                    get_setup_information(tv_cell_number.getText().toString(), tv_device_id.getText().toString(), SERVERSHARED,tv_base_url.getText().toString());
 
                     //tech_cell_number = tv_cell_number.getText().toString();
 
